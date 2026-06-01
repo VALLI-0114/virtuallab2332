@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { LayoutDashboard, Database, FlaskConical, GraduationCap, BookOpen, PanelLeft, Activity, Beaker } from "lucide-react";
+import { LayoutDashboard, Database, FlaskConical, GraduationCap, Beaker, Activity } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -71,90 +71,62 @@ function RootShell({ children }: { children: ReactNode }) {
 
 const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/domains", label: "Target Domains", icon: Database },
-  { to: "/workspace", label: "Experiment Workspace", icon: FlaskConical },
-  { to: "/faculty", label: "Faculty Portal", icon: GraduationCap },
+  { to: "/domains", label: "Domains", icon: Database },
+  { to: "/workspace", label: "Workspace", icon: FlaskConical },
+  { to: "/faculty", label: "Faculty", icon: GraduationCap },
 ] as const;
 
-function Sidebar() {
+function DynamicIsland() {
   return (
-    <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar">
-      <div className="flex items-center gap-3 px-5 py-5 border-b border-sidebar-border">
-        <div className="grid place-items-center size-9 rounded-md bg-primary text-primary-foreground">
-          <Beaker className="size-5" />
-        </div>
-        <div>
-          <div className="font-display font-bold text-sm tracking-tight">VLMS</div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Virtual Lab</div>
-        </div>
-      </div>
-      <nav className="flex-1 p-3 space-y-6">
-        <div>
-          <div className="px-2 mb-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Navigate</div>
-          <ul className="space-y-0.5">
-            {navItems.map(({ to, label, icon: Icon }) => (
-              <li key={to}>
-                <Link
-                  to={to}
-                  activeOptions={{ exact: to === "/" }}
-                  className="group flex items-center gap-3 rounded-md px-3 py-2 text-sm text-sidebar-foreground/80 hover:bg-secondary hover:text-foreground"
-                  activeProps={{ className: "bg-secondary text-foreground font-medium" }}
-                >
-                  <Icon className="size-4" />
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <div className="px-2 mb-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Resources</div>
-          <ul className="space-y-0.5">
-            <li className="flex items-center gap-3 rounded-md px-3 py-2 text-sm text-sidebar-foreground/80">
-              <BookOpen className="size-4" /> Syllabus Library
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div className="p-4 border-t border-sidebar-border font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-        v2.6 · Sandbox Stable
-      </div>
-    </aside>
-  );
-}
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[min(960px,calc(100vw-1.5rem))]">
+      <div className="flex items-center gap-2 rounded-full border border-border/70 bg-background/70 backdrop-blur-xl px-2 py-2 shadow-[0_10px_40px_-12px_color-mix(in_oklab,var(--foreground)_35%,transparent)]">
+        {/* Brand */}
+        <Link to="/" className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full">
+          <div className="grid place-items-center size-7 rounded-full bg-primary text-primary-foreground">
+            <Beaker className="size-3.5" />
+          </div>
+          <div className="hidden sm:flex flex-col leading-tight">
+            <span className="font-display font-bold text-[13px] tracking-tight">VLMS</span>
+            <span className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground -mt-0.5">Virtual Lab</span>
+          </div>
+        </Link>
 
-function Topbar() {
-  return (
-    <header className="flex items-center justify-between gap-4 border-b border-border bg-background/80 backdrop-blur px-5 py-3">
-      <div className="flex items-center gap-3 min-w-0">
-        <button className="lg:hidden grid place-items-center size-9 rounded-md border border-border"><PanelLeft className="size-4" /></button>
-        <div className="hidden md:flex items-center gap-3 text-xs">
-          <span className="font-mono uppercase tracking-[0.18em] text-muted-foreground">Indian Institute of Applied Computing</span>
-          <span className="text-border">|</span>
-          <span className="font-medium">Virtual Lab Management System</span>
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="hidden md:flex items-center gap-4 rounded-md border border-border px-3 py-1.5 text-[11px] font-mono">
-          <Metric label="Runtimes" value="42" dot />
-          <Metric label="Active Runs" value="1,284" />
-          <Metric label="Latency" value="87ms" />
-        </div>
-        <div className="hidden sm:flex items-center gap-2 rounded-md border border-cyan/40 bg-cyan/10 px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-foreground/80">
-          Zero-Friction · No Login Required
-        </div>
-        <div className="grid place-items-center size-9 rounded-md border border-border"><Activity className="size-4" /></div>
-      </div>
-    </header>
-  );
-}
+        <span className="hidden md:block h-6 w-px bg-border" />
 
-function Metric({ label, value, dot }: { label: string; value: string; dot?: boolean }) {
-  return (
-    <div className="flex items-center gap-1.5">
-      {dot && <span className="size-1.5 rounded-full bg-mint shadow-[0_0_8px_var(--mint)]" />}
-      <span className="uppercase tracking-wider text-muted-foreground">{label}</span>
-      <span className="font-semibold text-foreground">{value}</span>
+        {/* Nav */}
+        <nav className="flex items-center gap-1 flex-1 justify-center">
+          {navItems.map(({ to, label, icon: Icon }) => (
+            <Link
+              key={to}
+              to={to}
+              activeOptions={{ exact: to === "/" }}
+              className="group relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+              activeProps={{ className: "bg-secondary text-foreground shadow-sm" }}
+            >
+              <Icon className="size-3.5" />
+              <span className="hidden sm:inline">{label}</span>
+            </Link>
+          ))}
+        </nav>
+
+        {/* Status pill */}
+        <div className="hidden lg:flex items-center gap-3 rounded-full bg-secondary/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider">
+          <span className="flex items-center gap-1.5">
+            <span className="size-1.5 rounded-full bg-mint shadow-[0_0_8px_var(--mint)]" />
+            <span className="text-muted-foreground">Runtimes</span>
+            <span className="font-semibold text-foreground">42</span>
+          </span>
+          <span className="h-3 w-px bg-border" />
+          <span className="flex items-center gap-1.5">
+            <span className="text-muted-foreground">Lat</span>
+            <span className="font-semibold text-foreground">87ms</span>
+          </span>
+        </div>
+
+        <div className="grid place-items-center size-9 rounded-full bg-secondary/70">
+          <Activity className="size-4" />
+        </div>
+      </div>
     </div>
   );
 }
@@ -163,12 +135,11 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen">
-        <Sidebar />
-        <div className="flex-1 flex flex-col min-w-0">
-          <Topbar />
-          <main className="flex-1"><Outlet /></main>
-        </div>
+      <div className="min-h-screen">
+        <DynamicIsland />
+        <main className="pt-24">
+          <Outlet />
+        </main>
       </div>
     </QueryClientProvider>
   );
