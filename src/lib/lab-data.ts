@@ -1,4 +1,4 @@
-import { Code2, Database, Network, Cpu, Globe, Coffee, type LucideIcon } from "lucide-react";
+import { Code2, Database, Network, Cpu, FileCode, Coffee, type LucideIcon } from "lucide-react";
 
 export type Domain = {
   code: string;
@@ -17,7 +17,7 @@ export const domains: Domain[] = [
   { code: "DB", title: "Database Management Systems", subtitle: "PostgreSQL Query Isolated Sandbox", level: "Intermediate", labs: 22, hours: 30, topics: ["DDL/DML Operations", "Nested Subqueries", "Complex Joins", "Indexing", "Transactions"], icon: Database, tint: "from-mint/25 to-transparent" },
   { code: "DS", title: "Data Structures", subtitle: "Memory Layouts & Pointer Simulations", level: "Advanced", labs: 26, hours: 40, topics: ["Linked List Inversions", "BST Traversal", "Graph Algorithms", "Heaps"], icon: Network, tint: "from-primary/15 to-transparent" },
   { code: "OS", title: "Operating Systems", subtitle: "Process Scheduling Runtimes", level: "Advanced", labs: 20, hours: 36, topics: ["CPU Scheduling (Round Robin, SRTF)", "Semaphores", "Thread Mutexes", "Paging"], icon: Cpu, tint: "from-accent/40 to-transparent" },
-  { code: "WD", title: "Web Development", subtitle: "HTML5 / CSS3 / JS Sandbox Viewer", level: "Beginner-Intermediate", labs: 16, hours: 22, topics: ["Async REST API Integration", "Dynamic DOM Nodes", "Flexbox / Grid Systems"], icon: Globe, tint: "from-cyan/20 to-transparent" },
+  { code: "CP", title: "C Programming", subtitle: "GCC Compiler / Memory Layout Analysis", level: "Intermediate", labs: 20, hours: 32, topics: ["Pointers & Memory Management", "Structs & Unions", "File I/O Operations", "Linked Lists & Trees"], icon: FileCode, tint: "from-accent/30 to-transparent" },
   { code: "JV", title: "Java Programming", subtitle: "JVM Sandbox Compiler", level: "Intermediate", labs: 19, hours: 28, topics: ["Multi-threaded Synchronizations", "Polymorphic Interfaces", "Custom Exception Handlers"], icon: Coffee, tint: "from-mint/20 to-transparent" },
 ];
 
