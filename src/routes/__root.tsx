@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { LayoutDashboard, Database, FlaskConical, GraduationCap, Beaker, Activity } from "lucide-react";
+import { LayoutDashboard, Database, FlaskConical, ClipboardCheck, BookOpen, Beaker } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -81,7 +81,8 @@ const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/domains", label: "Domains", icon: Database },
   { to: "/workspace", label: "Workspace", icon: FlaskConical },
-  { to: "/faculty", label: "Faculty", icon: GraduationCap },
+  { to: "/assessments", label: "Assessments", icon: ClipboardCheck },
+  { to: "/resources", label: "Resources", icon: BookOpen },
 ] as const;
 
 function DynamicIsland() {
@@ -117,23 +118,6 @@ function DynamicIsland() {
           ))}
         </nav>
 
-        {/* Status pill */}
-        <div className="hidden lg:flex items-center gap-3 rounded-full bg-secondary/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider">
-          <span className="flex items-center gap-1.5">
-            <span className="size-1.5 rounded-full bg-mint shadow-[0_0_8px_var(--mint)]" />
-            <span className="text-muted-foreground">Runtimes</span>
-            <span className="font-semibold text-foreground">42</span>
-          </span>
-          <span className="h-3 w-px bg-border" />
-          <span className="flex items-center gap-1.5">
-            <span className="text-muted-foreground">Lat</span>
-            <span className="font-semibold text-foreground">87ms</span>
-          </span>
-        </div>
-
-        <div className="grid place-items-center size-9 rounded-full bg-secondary/70">
-          <Activity className="size-4" />
-        </div>
       </div>
     </div>
   );
