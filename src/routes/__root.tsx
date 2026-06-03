@@ -118,23 +118,6 @@ function DynamicIsland() {
           ))}
         </nav>
 
-        {/* Status pill */}
-        <div className="hidden lg:flex items-center gap-3 rounded-full bg-secondary/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider">
-          <span className="flex items-center gap-1.5">
-            <span className="size-1.5 rounded-full bg-mint shadow-[0_0_8px_var(--mint)]" />
-            <span className="text-muted-foreground">Runtimes</span>
-            <span className="font-semibold text-foreground">42</span>
-          </span>
-          <span className="h-3 w-px bg-border" />
-          <span className="flex items-center gap-1.5">
-            <span className="text-muted-foreground">Lat</span>
-            <span className="font-semibold text-foreground">87ms</span>
-          </span>
-        </div>
-
-        <div className="grid place-items-center size-9 rounded-full bg-secondary/70">
-          <Activity className="size-4" />
-        </div>
       </div>
     </div>
   );
