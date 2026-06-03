@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkspaceRouteImport } from './routes/workspace'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as DomainsRouteImport } from './routes/domains'
 import { Route as AssessmentsRouteImport } from './routes/assessments'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const WorkspaceRoute = WorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DomainsRoute = DomainsRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assessments': typeof AssessmentsRoute
   '/domains': typeof DomainsRoute
+  '/resources': typeof ResourcesRoute
   '/workspace': typeof WorkspaceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assessments': typeof AssessmentsRoute
   '/domains': typeof DomainsRoute
+  '/resources': typeof ResourcesRoute
   '/workspace': typeof WorkspaceRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,28 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assessments': typeof AssessmentsRoute
   '/domains': typeof DomainsRoute
+  '/resources': typeof ResourcesRoute
   '/workspace': typeof WorkspaceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assessments' | '/domains' | '/workspace'
+  fullPaths: '/' | '/assessments' | '/domains' | '/resources' | '/workspace'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assessments' | '/domains' | '/workspace'
-  id: '__root__' | '/' | '/assessments' | '/domains' | '/workspace'
+  to: '/' | '/assessments' | '/domains' | '/resources' | '/workspace'
+  id:
+    | '__root__'
+    | '/'
+    | '/assessments'
+    | '/domains'
+    | '/resources'
+    | '/workspace'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssessmentsRoute: typeof AssessmentsRoute
   DomainsRoute: typeof DomainsRoute
+  ResourcesRoute: typeof ResourcesRoute
   WorkspaceRoute: typeof WorkspaceRoute
 }
 
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/workspace'
       fullPath: '/workspace'
       preLoaderRoute: typeof WorkspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/domains': {
@@ -106,6 +129,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssessmentsRoute: AssessmentsRoute,
   DomainsRoute: DomainsRoute,
+  ResourcesRoute: ResourcesRoute,
   WorkspaceRoute: WorkspaceRoute,
 }
 export const routeTree = rootRouteImport
