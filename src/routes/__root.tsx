@@ -79,7 +79,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/domains", label: "Domains", icon: Database },
+  { to: "/branches", label: "Branches", icon: Database },
   { to: "/workspace", label: "Workspace", icon: FlaskConical },
   { to: "/resources", label: "Resources", icon: BookOpen },
 ] as const;

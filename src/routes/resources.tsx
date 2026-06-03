@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen, FileText, Video, Download } from "lucide-react";
-import { domains } from "@/lib/lab-data";
+import { branches } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/resources")({
   head: () => ({
@@ -28,7 +28,7 @@ function ResourcesPage() {
       </p>
 
       <div className="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {domains.flatMap((d) =>
+        {branches.flatMap((d) =>
           TYPES.map(({ type, icon: Icon, accent }) => (
             <div
               key={`${d.code}-${type}`}

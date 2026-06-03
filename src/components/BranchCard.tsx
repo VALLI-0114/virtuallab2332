@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
-import type { Domain } from "@/lib/lab-data";
+import type { Branch } from "@/lib/lab-data";
 
-export function DomainCard({ d }: { d: Domain }) {
+export function BranchCard({ d }: { d: Branch }) {
   const Icon = d.icon;
   return (
     <div className="group relative rounded-xl border border-border bg-card p-5 transition hover:border-foreground/20 hover:shadow-[0_8px_30px_-12px_color-mix(in_oklab,var(--foreground)_25%,transparent)]">

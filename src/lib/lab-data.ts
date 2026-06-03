@@ -1,6 +1,6 @@
-import { Code2, Database, Network, Cpu, FileCode, Coffee, type LucideIcon } from "lucide-react";
+import { Code2, Database, Network, Cpu, FileCode, Coffee, FlaskConical, type LucideIcon } from "lucide-react";
 
-export type Domain = {
+export type Branch = {
   code: string;
   title: string;
   subtitle: string;
@@ -12,13 +12,11 @@ export type Domain = {
   tint: string;
 };
 
-export const domains: Domain[] = [
-  { code: "PY", title: "Python Programming", subtitle: "Python 3 Runtime, Script Execution", level: "Beginner-Intermediate", labs: 18, hours: 24, topics: ["Matrix Manipulation", "File I/O Streams", "Functional Lambdas", "Generators"], icon: Code2, tint: "from-cyan/20 to-transparent" },
-  { code: "DB", title: "Database Management Systems", subtitle: "PostgreSQL Query Isolated Sandbox", level: "Intermediate", labs: 22, hours: 30, topics: ["DDL/DML Operations", "Nested Subqueries", "Complex Joins", "Indexing", "Transactions"], icon: Database, tint: "from-mint/25 to-transparent" },
-  { code: "DS", title: "Data Structures", subtitle: "Memory Layouts & Pointer Simulations", level: "Advanced", labs: 26, hours: 40, topics: ["Linked List Inversions", "BST Traversal", "Graph Algorithms", "Heaps"], icon: Network, tint: "from-primary/15 to-transparent" },
-  { code: "OS", title: "Operating Systems", subtitle: "Process Scheduling Runtimes", level: "Advanced", labs: 20, hours: 36, topics: ["CPU Scheduling (Round Robin, SRTF)", "Semaphores", "Thread Mutexes", "Paging"], icon: Cpu, tint: "from-accent/40 to-transparent" },
-  { code: "CP", title: "C Programming", subtitle: "GCC Compiler / Memory Layout Analysis", level: "Intermediate", labs: 20, hours: 32, topics: ["Pointers & Memory Management", "Structs & Unions", "File I/O Operations", "Linked Lists & Trees"], icon: FileCode, tint: "from-accent/30 to-transparent" },
-  { code: "JV", title: "Java Programming", subtitle: "JVM Sandbox Compiler", level: "Intermediate", labs: 19, hours: 28, topics: ["Multi-threaded Synchronizations", "Polymorphic Interfaces", "Custom Exception Handlers"], icon: Coffee, tint: "from-mint/20 to-transparent" },
+export const branches: Branch[] = [
+  { code: "IT", title: "Information Technology", subtitle: "IT Labs", level: "Advanced", labs: 30, hours: 45, topics: ["Python", "Java", "Data Structures", "OS", "DBMS", "Machine Learning"], icon: Code2, tint: "from-cyan/20 to-transparent" },
+  { code: "CSE", title: "Computer Science and Engineering", subtitle: "CSE Labs", level: "Advanced", labs: 25, hours: 38, topics: [], icon: Database, tint: "from-mint/25 to-transparent" },
+  { code: "ECE", title: "Electronics and Communication", subtitle: "ECE Labs", level: "Intermediate", labs: 20, hours: 30, topics: [], icon: Cpu, tint: "from-primary/15 to-transparent" },
+  { code: "BSHSS", title: "BS & HSS", subtitle: "Basic Sciences & Humanities", level: "Beginner-Intermediate", labs: 15, hours: 20, topics: ["C Programming", "Physics Lab", "Chemistry Lab"], icon: FlaskConical, tint: "from-accent/40 to-transparent" },
 ];
 
 export const metrics = [
