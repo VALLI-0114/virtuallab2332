@@ -81,7 +81,8 @@ const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/domains", label: "Domains", icon: Database },
   { to: "/workspace", label: "Workspace", icon: FlaskConical },
-  { to: "/faculty", label: "Faculty", icon: GraduationCap },
+  { to: "/assessments", label: "Assessments", icon: ClipboardCheck },
+  { to: "/resources", label: "Resources", icon: BookOpen },
 ] as const;
 
 function DynamicIsland() {
