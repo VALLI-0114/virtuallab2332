@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { LayoutDashboard, Database, FlaskConical, GraduationCap, Beaker, Activity } from "lucide-react";
+import { LayoutDashboard, Database, FlaskConical, ClipboardCheck, BookOpen, Beaker } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
