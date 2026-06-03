@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Beaker, HelpCircle } from "lucide-react";
 import { courses } from "@/lib/course-data";
+import Editor from "@monaco-editor/react";
 
 type WorkspaceSearch = {
   exp?: string;
@@ -41,19 +42,105 @@ function Workspace() {
   const weekTitle = details?.week.title || "";
 
   const [language, setLanguage] = useState("c");
+  const [code, setCode] = useState("");
+  const [stdin, setStdin] = useState("");
+  const [output, setOutput] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  const templates: Record<string, { file: string, code: string }> = {
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const templates: Record<string, { file: string, code: string, version: string }> = {
     c: {
       file: "main.c",
+      version: "10.2.0",
       code: `#include <stdio.h>\n\nint main() {\n    // Write your solution here\n    \n    printf("Hello World\\n");\n    \n    return 0;\n}`
     },
     java: {
       file: "Main.java",
+      version: "15.0.2",
       code: `public class Main {\n    public static void main(String[] args) {\n        // Write your solution here\n        \n        System.out.println("Hello World");\n    }\n}`
     },
     python: {
       file: "main.py",
+      version: "3.10.0",
       code: `def solve():\n    # Write your solution here\n    print("Hello World")\n\nif __name__ == "__main__":\n    solve()`
+    }
+  };
+
+  // Initialize code when language or problem changes
+  useEffect(() => {
+    // If it's a specific experiment, we default to C and the starter code if provided
+    let newCode = templates[language].code;
+    if (language === "c" && details?.experiment.title === "Hello World") {
+      newCode = `#include<stdio.h>\nint main(){\n  printf("Hello World");\n  return 0;\n}`;
+    }
+    
+    setCode(newCode);
+    setOutput("");
+    setIsError(false);
+  }, [language, exp]);
+
+  const handleReset = () => {
+    const newCode = templates[language].code;
+    setCode(newCode);
+    setOutput("");
+    setIsError(false);
+  };
+
+  const handleRun = async () => {
+    setIsLoading(true);
+    setOutput("Executing...");
+    setIsError(false);
+
+    try {
+      const compilerMap: Record<string, string> = {
+        c: "gcc-head-c",
+        java: "openjdk-jdk-22+36",
+        python: "cpython-head",
+      };
+
+      const bodyPayload: any = {
+        compiler: compilerMap[language] || "gcc-head",
+        code: code,
+        stdin: stdin,
+        options: "warning",
+      };
+
+      if (language === "c") {
+        bodyPayload["compiler-option-raw"] = "-lm";
+      }
+
+      const response = await fetch("https://wandbox.org/api/compile.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bodyPayload),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Wandbox HTTP ${response.status}: ${errorText}`);
+      }
+      const data = await response.json();
+      
+      if (data.compiler_error) {
+        setIsError(true);
+        setOutput(data.compiler_error);
+      } else if (data.program_error) {
+        setIsError(true);
+        setOutput(data.program_error);
+      } else {
+        setIsError(false);
+        setOutput(data.program_output || "Program exited with no output.");
+      }
+    } catch (err: any) {
+      setIsError(true);
+      setOutput(`Execution failed: ${err.message || "Wandbox server unavailable"}\n\nPlease try again.`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -66,9 +153,15 @@ function Workspace() {
           <div className="h-full flex flex-col overflow-y-auto bg-card">
              <div className="p-6 border-b border-border bg-secondary/20">
                <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
-                 <Link to="/branches" className="hover:text-foreground flex items-center gap-1"><ArrowLeft className="size-3.5"/> Back</Link>
-                 <span>/</span>
-                 {details ? <Link to={`/course/${details.course.id}`} className="hover:text-foreground">{courseTitle}</Link> : <span>{courseTitle}</span>}
+                 {details ? (
+                   <Link to={`/course/${details.course.id}`} className="hover:text-foreground flex items-center gap-1">
+                     <ArrowLeft className="size-3.5"/> Back to {courseTitle}
+                   </Link>
+                 ) : (
+                   <Link to="/branches" className="hover:text-foreground flex items-center gap-1">
+                     <ArrowLeft className="size-3.5"/> Back
+                   </Link>
+                 )}
                  {details && <span>/</span>}
                  {details && <span>{weekTitle}</span>}
                </div>
@@ -85,23 +178,17 @@ function Workspace() {
                     <section>
                       <h2 className="font-semibold text-base mb-2 flex items-center gap-2"><Beaker className="size-4 text-cyan" /> Problem Statement</h2>
                       <p className="leading-relaxed">
-                        Implement a program for the following objective: <br/><br/>
-                        <strong>{title}</strong>
+                        {details.experiment.desc}
                       </p>
                       <p className="mt-3 text-muted-foreground leading-relaxed">
                         {details.week.objective}
                       </p>
                     </section>
                     <section>
-                      <h2 className="font-semibold text-base mb-2 flex items-center gap-2"><Lightbulb className="size-4 text-mint" /> Example</h2>
+                      <h2 className="font-semibold text-base mb-2 flex items-center gap-2"><Lightbulb className="size-4 text-mint" /> Expected Output</h2>
                       <div className="bg-secondary/30 border border-border rounded-lg p-4 font-mono text-xs space-y-3">
-                         <div>
-                           <div className="text-muted-foreground mb-1">Input:</div>
-                           <div>10, 20, 30</div>
-                         </div>
-                         <div>
-                           <div className="text-muted-foreground mb-1">Output:</div>
-                           <div>Sum: 60, Avg: 20</div>
+                         <div className="text-[#3fb950] font-medium">
+                           {details.experiment.expected}
                          </div>
                       </div>
                     </section>
@@ -149,31 +236,60 @@ function Workspace() {
                   <span className="ml-2">{templates[language].file}</span>
                 </div>
                 <div className="flex gap-2">
-                  <button className="inline-flex items-center gap-2 rounded-md border border-border/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:bg-white/10 hover:text-white transition-colors"><RotateCcw className="size-3.5" /> Reset</button>
+                  <button onClick={handleReset} className="inline-flex items-center gap-2 rounded-md border border-border/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:bg-white/10 hover:text-white transition-colors"><RotateCcw className="size-3.5" /> Reset</button>
                   <button className="inline-flex items-center gap-2 rounded-md border border-border/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 hover:bg-white/10 hover:text-white transition-colors"><Save className="size-3.5" /> Save</button>
-                  <button className="inline-flex items-center gap-2 rounded-md bg-mint/20 text-mint border border-mint/20 px-4 py-1.5 text-xs font-medium hover:bg-mint/30 transition-colors"><Play className="size-3.5" /> Run Code</button>
+                  <button onClick={handleRun} disabled={isLoading} className="inline-flex items-center gap-2 rounded-md bg-mint/20 text-mint border border-mint/20 px-4 py-1.5 text-xs font-medium hover:bg-mint/30 transition-colors disabled:opacity-50"><Play className="size-3.5" /> {isLoading ? "Running..." : "Run Code"}</button>
                 </div>
              </div>
              
-             <div className="flex-1 overflow-auto p-4">
-                <pre className="text-[13px] leading-6 font-mono text-blue-300">
-{templates[language].code}
-                </pre>
+             {/* Monaco Editor Container */}
+             <div className="flex-1 overflow-hidden relative">
+               {isMounted && (
+                 <Editor
+                    height="100%"
+                    language={language === "python" ? "python" : language === "java" ? "java" : "c"}
+                    theme="vs-dark"
+                    value={code}
+                    onChange={(val) => setCode(val || "")}
+                    options={{
+                      minimap: { enabled: false },
+                      fontSize: 14,
+                      scrollBeyondLastLine: false,
+                    }}
+                 />
+               )}
              </div>
 
-             <div className="h-56 border-t border-border/10 bg-black/40 flex flex-col">
-                <div className="flex items-center gap-2 px-4 py-2 border-b border-border/10 text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                  <Terminal className="size-3.5" /> Console Output
-                </div>
-                <div className="flex-1 overflow-auto p-4">
-                  <pre className="text-[13px] font-mono text-green-400">
-{`> Compilation successful.
-> Executing...
-
-Hello World
-
-> Process exited with code 0`}
-                  </pre>
+             <div className="h-64 border-t border-border/10 bg-black/40 flex flex-col">
+                <div className="grid grid-cols-2 h-full divide-x divide-border/10">
+                  {/* STDIN Input */}
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center gap-2 px-4 py-2 border-b border-border/10 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                      <Terminal className="size-3.5" /> stdin
+                    </div>
+                    <textarea 
+                      value={stdin}
+                      onChange={(e) => setStdin(e.target.value)}
+                      placeholder="Enter inputs here (e.g. for scanf)..."
+                      className="flex-1 p-4 bg-transparent border-none outline-none resize-none text-[13px] font-mono text-white/80"
+                    />
+                  </div>
+                  
+                  {/* Console Output */}
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center gap-2 px-4 py-2 border-b border-border/10 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                      <Terminal className="size-3.5" /> Console Output
+                    </div>
+                    <div className="flex-1 overflow-auto p-4">
+                      {output ? (
+                        <pre className={`text-[13px] font-mono whitespace-pre-wrap ${isError ? 'text-red-400' : 'text-green-400'}`}>
+                          {output}
+                        </pre>
+                      ) : (
+                        <span className="text-white/30 text-[13px] font-mono italic">Output will appear here...</span>
+                      )}
+                    </div>
+                  </div>
                 </div>
              </div>
           </div>

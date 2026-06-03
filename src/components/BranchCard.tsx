@@ -23,9 +23,6 @@ export function BranchCard({ d }: { d: Branch }) {
               <p className="text-xs text-muted-foreground mt-0.5">{d.subtitle}</p>
             </div>
           </div>
-          <span className="text-[10px] font-mono uppercase tracking-wider rounded-full border border-border bg-background px-2 py-1">
-            {d.level}
-          </span>
         </div>
 
         <div className="mt-5 grid grid-cols-3 gap-2 text-xs">

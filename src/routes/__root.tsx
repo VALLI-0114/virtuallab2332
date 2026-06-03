@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { LayoutDashboard, Database, FlaskConical, BookOpen, Beaker } from "lucide-react";
+import { Loader } from "@/components/Loader";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -66,6 +67,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
+  pendingComponent: Loader,
 });
 
 function RootShell({ children }: { children: ReactNode }) {
