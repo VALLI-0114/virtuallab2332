@@ -30,9 +30,7 @@ function Dashboard() {
         <div className="absolute inset-0 grid-bg hero-fade" />
         <div className="relative px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-[1fr_360px] gap-10 items-start">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1 text-xs font-medium">
-              <FlaskConical className="size-3.5 text-cyan" /> Production-Grade Academic Sandbox · v2.6
-            </span>
+
             <h1 className="mt-6 font-display text-5xl lg:text-7xl font-bold leading-[0.95] tracking-tight">
               Virtual Lab <br />
               Management <span className="text-cyan">System</span>

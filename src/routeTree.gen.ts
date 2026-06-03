@@ -13,6 +13,8 @@ import { Route as WorkspaceRouteImport } from './routes/workspace'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as BranchesRouteImport } from './routes/branches'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CourseCourseIdRouteImport } from './routes/course.$courseId'
+import { Route as BranchBranchIdRouteImport } from './routes/branch.$branchId'
 
 const WorkspaceRoute = WorkspaceRouteImport.update({
   id: '/workspace',
@@ -34,18 +36,32 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CourseCourseIdRoute = CourseCourseIdRouteImport.update({
+  id: '/course/$courseId',
+  path: '/course/$courseId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BranchBranchIdRoute = BranchBranchIdRouteImport.update({
+  id: '/branch/$branchId',
+  path: '/branch/$branchId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/branches': typeof BranchesRoute
   '/resources': typeof ResourcesRoute
   '/workspace': typeof WorkspaceRoute
+  '/branch/$branchId': typeof BranchBranchIdRoute
+  '/course/$courseId': typeof CourseCourseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/branches': typeof BranchesRoute
   '/resources': typeof ResourcesRoute
   '/workspace': typeof WorkspaceRoute
+  '/branch/$branchId': typeof BranchBranchIdRoute
+  '/course/$courseId': typeof CourseCourseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +69,34 @@ export interface FileRoutesById {
   '/branches': typeof BranchesRoute
   '/resources': typeof ResourcesRoute
   '/workspace': typeof WorkspaceRoute
+  '/branch/$branchId': typeof BranchBranchIdRoute
+  '/course/$courseId': typeof CourseCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/branches' | '/resources' | '/workspace'
+  fullPaths:
+    | '/'
+    | '/branches'
+    | '/resources'
+    | '/workspace'
+    | '/branch/$branchId'
+    | '/course/$courseId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/branches' | '/resources' | '/workspace'
-  id: '__root__' | '/' | '/branches' | '/resources' | '/workspace'
+  to:
+    | '/'
+    | '/branches'
+    | '/resources'
+    | '/workspace'
+    | '/branch/$branchId'
+    | '/course/$courseId'
+  id:
+    | '__root__'
+    | '/'
+    | '/branches'
+    | '/resources'
+    | '/workspace'
+    | '/branch/$branchId'
+    | '/course/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +104,8 @@ export interface RootRouteChildren {
   BranchesRoute: typeof BranchesRoute
   ResourcesRoute: typeof ResourcesRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  BranchBranchIdRoute: typeof BranchBranchIdRoute
+  CourseCourseIdRoute: typeof CourseCourseIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +138,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/course/$courseId': {
+      id: '/course/$courseId'
+      path: '/course/$courseId'
+      fullPath: '/course/$courseId'
+      preLoaderRoute: typeof CourseCourseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/branch/$branchId': {
+      id: '/branch/$branchId'
+      path: '/branch/$branchId'
+      fullPath: '/branch/$branchId'
+      preLoaderRoute: typeof BranchBranchIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +160,8 @@ const rootRouteChildren: RootRouteChildren = {
   BranchesRoute: BranchesRoute,
   ResourcesRoute: ResourcesRoute,
   WorkspaceRoute: WorkspaceRoute,
+  BranchBranchIdRoute: BranchBranchIdRoute,
+  CourseCourseIdRoute: CourseCourseIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

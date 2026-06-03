@@ -5,7 +5,10 @@ import type { Branch } from "@/lib/lab-data";
 export function BranchCard({ d }: { d: Branch }) {
   const Icon = d.icon;
   return (
-    <div className="group relative rounded-xl border border-border bg-card p-5 transition hover:border-foreground/20 hover:shadow-[0_8px_30px_-12px_color-mix(in_oklab,var(--foreground)_25%,transparent)]">
+    <Link 
+      to={`/branch/${d.code.toLowerCase()}`}
+      className="group relative rounded-xl border border-border bg-card p-5 transition hover:border-foreground/20 hover:shadow-[0_8px_30px_-12px_color-mix(in_oklab,var(--foreground)_25%,transparent)] block"
+    >
       <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${d.tint} opacity-60 pointer-events-none`} />
       <div className="relative">
         <div className="flex items-start justify-between">
@@ -33,7 +36,12 @@ export function BranchCard({ d }: { d: Branch }) {
 
         <div className="mt-4 flex flex-wrap gap-1.5">
           {d.topics.slice(0, 3).map((t) => (
-            <span key={t} className="text-[11px] rounded-md border border-border bg-background/60 px-2 py-1 text-muted-foreground">{t}</span>
+            <span 
+              key={t} 
+              className="text-[11px] rounded-md border border-border bg-background/60 px-2 py-1 text-muted-foreground"
+            >
+              {t}
+            </span>
           ))}
           {d.topics.length > 3 && (
             <span className="text-[11px] rounded-md px-2 py-1 text-muted-foreground">+{d.topics.length - 3} more</span>
@@ -44,12 +52,12 @@ export function BranchCard({ d }: { d: Branch }) {
           <span className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground">
             <ShieldCheck className="size-3.5 text-mint" /> Sandboxed Runtime
           </span>
-          <Link to="/workspace" className="flex items-center gap-1 text-sm font-medium text-foreground group-hover:gap-2 transition-all">
-            Enter lab <ArrowUpRight className="size-4" />
-          </Link>
+          <span className="flex items-center gap-1 text-sm font-medium text-foreground group-hover:gap-2 transition-all">
+            View Subjects <ArrowUpRight className="size-4" />
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
