@@ -2308,7 +2308,199 @@ export const courses: Record<string, Course> = {
             id: "ml-w6-1",
             title: "Random Forest Algorithm",
             desc: "Apply Random Forest algorithm for classification and regression.",
-            expected: "Random Forest models successfully applied to both classification and regression tasks, demonstrating improved performance over single trees."
+            expected: "Random Forest models successfully applied to both classification and regression tasks, demonstrating improved performance over single trees.",
+            content: {
+              aim: {
+                text: "To implement the Random Forest algorithm for both Classification and Regression tasks on a given dataset using Python / R / Weka, to evaluate model performance using appropriate metrics, to analyze the effect of key hyperparameters such as the number of trees and maximum features on model performance, and to understand how ensemble learning improves accuracy and reduces overfitting compared to a single Decision Tree."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Ensemble Learning",
+                  body: [
+                    "Ensemble Learning is a machine learning paradigm where multiple individual models (called base learners or weak learners) are trained and their predictions are combined to produce a final output that is more accurate and robust than any single model alone.",
+                    "The core motivation behind ensemble learning is the principle that a group of diverse, moderately accurate models collectively outperforms any individual model.",
+                    "Three Main Ensemble Strategies:",
+                    "• Bagging: Train multiple models in parallel on different bootstrap samples and aggregate predictions (e.g. Random Forest).",
+                    "• Boosting: Train models sequentially where each model corrects the errors of the previous one (e.g. AdaBoost, XGBoost).",
+                    "• Stacking: Train multiple models and use another model (meta-learner) to combine their predictions."
+                  ]
+                },
+                {
+                  title: "2. Bagging (Bootstrap Aggregating)",
+                  body: [
+                    "Bagging is the foundational technique behind Random Forest. It works by:",
+                    "1. Creating multiple bootstrap samples from the original training dataset",
+                    "2. Training an independent base learner (Decision Tree) on each bootstrap sample",
+                    "3. Aggregating the predictions of all base learners into a final prediction",
+                    "Bootstrap Sampling: A bootstrap sample is created by randomly drawing n instances from the training dataset with replacement. On average, each bootstrap sample contains approximately 63.2% of unique training instances. The remaining 36.8% are Out-Of-Bag (OOB) instances.",
+                    "Effect of Bagging: Reduces variance without significantly increasing bias, stabilizes predictions, and naturally resists overfitting."
+                  ]
+                },
+                {
+                  title: "3. Random Forest Algorithm",
+                  body: [
+                    "Random Forest builds a large collection of decorrelated Decision Trees using two key sources of randomness:",
+                    "1. Bootstrap Sampling — Each tree is trained on a different random bootstrap sample.",
+                    "2. Random Feature Selection — At each node split, only a random subset of features is considered.",
+                    "These sources of randomness ensure individual trees are diverse and decorrelated, making the ensemble powerful."
+                  ]
+                },
+                {
+                  title: "4. Random Feature Selection",
+                  body: [
+                    "Instead of selecting the best split from all available features, Random Forest selects from a random subset (max_features).",
+                    "Default Values:",
+                    "• Classification: √p (square root of total features)",
+                    "• Regression: p/3 (one-third of total features)",
+                    "Why it works: By limiting features at each split, trees are forced to use different features, creating diversity. Diverse trees make different errors, which cancel out when aggregated."
+                  ]
+                },
+                {
+                  title: "5. Evaluation and Features",
+                  body: [
+                    "Classification Final Prediction: Majority voting across all trees. Metrics: Accuracy, Precision, Recall, F1-Score, ROC-AUC.",
+                    "Regression Final Prediction: Average of all individual tree predictions. Metrics: MAE, MSE, RMSE, R².",
+                    "Out-Of-Bag (OOB) Evaluation: Uses OOB instances to evaluate the tree's performance without a separate validation set.",
+                    "Feature Importance: Measures how much each feature contributes to reducing impurity across all trees."
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool (Python, R, or Weka).",
+                "Step 2: Select Task Type (Classification or Regression).",
+                "Step 3: Load the Dataset (e.g., Heart Disease, House Price).",
+                "Step 4: Explore the Dataset.",
+                "Step 5: Preprocess the Dataset.",
+                "Step 6: Set the Train-Test Split.",
+                "Step 7: Configure Initial Parameters.",
+                "Step 8: Train the Random Forest.",
+                "Step 9: Evaluate the Initial Model.",
+                "Step 10: Analyze OOB Score.",
+                "Step 11: Visualize Feature Importance.",
+                "Step 12: Perform Hyperparameter Tuning.",
+                "Step 13: View the Tuning Plots.",
+                "Step 14: Compare Random Forest vs Single Decision Tree.",
+                "Step 15: Visualize Individual Trees.",
+                "Step 16: Record Observations.",
+                "Step 17: Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n# Load Data\ndf = pd.read_csv('heart_disease.csv')\nX = df.drop('target', axis=1)\ny = df['target']\n\n# Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Train Random Forest\nrf = RandomForestClassifier(n_estimators=100, max_features='sqrt', oob_score=True)\nrf.fit(X_train, y_train)\n\n# Predict & Evaluate\ny_pred = rf.predict(X_test)\nacc = accuracy_score(y_test, y_pred)\n\nprint(f\"Test Accuracy: {acc*100:.2f}%\")\nprint(f\"OOB Score: {rf.oob_score_*100:.2f}%\")",
+                steps: [
+                  { line: 1, annotation: "Import RandomForestClassifier", memory: [], output: "" },
+                  { line: 8, annotation: "Split features and target", memory: [], output: "" },
+                  { line: 11, annotation: "Train-test split", memory: [], output: "" },
+                  { line: 14, annotation: "Initialize Random Forest", memory: [], output: "" },
+                  { line: 15, annotation: "Fit the model", memory: [], output: "" },
+                  { line: 18, annotation: "Predict on test set", memory: [], output: "" },
+                  { line: 21, annotation: "Print scores", memory: [], output: "Test Accuracy: 88.50%\nOOB Score: 85.90%" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Ensemble Learning is a technique that:",
+                  options: [
+                    "Trains a single powerful model on the entire dataset",
+                    "Combines multiple individual models to produce a stronger overall prediction",
+                    "Reduces the number of features in the dataset before training",
+                    "Applies clustering algorithms to group similar data points"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Random Forest is built upon which base learner?",
+                  options: [
+                    "K-Nearest Neighbors",
+                    "Support Vector Machine",
+                    "Decision Tree",
+                    "Logistic Regression"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "The technique of training each base learner on a different random bootstrap sample of the training data is called:",
+                  options: [
+                    "Boosting",
+                    "Stacking",
+                    "Bagging (Bootstrap Aggregating)",
+                    "Blending"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "In a Random Forest Classifier with 100 trees, if 60 trees predict Class A and 40 trees predict Class B for a new instance, the final prediction will be:",
+                  options: [
+                    "Class B",
+                    "An average of Class A and Class B",
+                    "Class A",
+                    "The prediction of the tree with the highest accuracy"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following is a key advantage of Random Forest over a single Decision Tree?",
+                  options: [
+                    "Random Forest is faster to train than a single Decision Tree",
+                    "Random Forest requires less memory than a single Decision Tree",
+                    "Random Forest reduces overfitting by averaging predictions across multiple diverse trees",
+                    "Random Forest always achieves 100% accuracy on training data"
+                  ],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "In a Random Forest with 200 trees performing binary classification, if 130 trees predict Class 1 and 70 trees predict Class 0 for a test instance, what is the predicted class and the prediction confidence?",
+                  options: [
+                    "Class 0 with 35% confidence",
+                    "Class 1 with 65% confidence",
+                    "Class 0 with 65% confidence",
+                    "Class 1 with 100% confidence"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "In the n_estimators vs Accuracy plot, after a certain number of trees the accuracy stabilizes and no longer improves. What is the most appropriate conclusion from this observation?",
+                  options: [
+                    "The model has started to overfit and more trees must be avoided",
+                    "The dataset is too small to benefit from more trees",
+                    "The model has reached its optimal ensemble size and adding more trees gives diminishing returns with increased computational cost",
+                    "The max_features parameter must be increased to continue improving accuracy"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following correctly explains why Random Forest trees are deliberately kept diverse and decorrelated from each other?",
+                  options: [
+                    "Diverse trees reduce the training time of the overall ensemble",
+                    "When diverse trees make different types of errors, aggregating their predictions causes errors to cancel out, reducing overall variance",
+                    "Decorrelated trees individually have higher accuracy than correlated trees",
+                    "Diverse trees use fewer features and are therefore simpler and faster to train"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Random Forest model returns an OOB Score of 84% and a Test Set Accuracy of 86%. What does this result indicate?",
+                  options: [
+                    "The model is overfitting since OOB Score is lower than test accuracy",
+                    "The OOB Score and Test Accuracy are closely aligned, suggesting the model generalizes well and the OOB estimate is a reliable proxy for test performance",
+                    "The model is underfitting and more trees should be added to close the gap",
+                    "The bootstrap sampling has failed and the model should be retrained without OOB evaluation"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Random Forest Classifier has 13 features in the dataset. By default, how many features are randomly considered at each split node?",
+                  options: [
+                    "13 (all features)",
+                    "4 (approximately √13 rounded to nearest integer)",
+                    "6 (approximately half of all features)",
+                    "1 (only one random feature at each split)"
+                  ],
+                  answerIndex: 1
+                }
+              ]
+            }
           }
         ]
       },
@@ -2322,7 +2514,190 @@ export const courses: Record<string, Course> = {
             id: "ml-w7-1",
             title: "Naïve Bayes Classification",
             desc: "Demonstrate Naïve Bayes Classification algorithm.",
-            expected: "Naïve Bayes classifier successfully trained and evaluated on a classification dataset."
+            expected: "Naïve Bayes classifier successfully trained and evaluated on a classification dataset.",
+            content: {
+              aim: {
+                text: "To implement the Naïve Bayes Classification algorithm on a given dataset using Python / R / Weka, to understand the probabilistic foundation of the algorithm based on Bayes' Theorem, to apply Gaussian, Multinomial, and Bernoulli variants of Naïve Bayes to appropriate datasets, to evaluate model performance using standard classification metrics, and to appreciate the role of the conditional independence assumption in enabling efficient probabilistic classification."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Probabilistic Learning & Bayes' Theorem",
+                  body: [
+                    "Probabilistic Learning approaches model uncertainty in predictions using probability theory, estimating the probability that an instance belongs to each class.",
+                    "Bayes' Theorem provides a framework for updating the probability of a hypothesis (class label) based on observed evidence (feature values).",
+                    "Formula: P(C | X) = [P(X | C) × P(C)] / P(X)",
+                    "P(C | X): Posterior Probability, P(X | C): Likelihood, P(C): Prior Probability, P(X): Marginal Probability."
+                  ]
+                },
+                {
+                  title: "2. The Naïve Conditional Independence Assumption",
+                  body: [
+                    "Computing P(X | C) is intractable for large feature spaces.",
+                    "Naïve Bayes assumes that each feature x_i is conditionally independent of every other feature given the class label C.",
+                    "This simplifies the likelihood to: P(X | C) = Π P(x_i | C).",
+                    "Classification Rule: ŷ = argmax P(C) × Π P(x_i | C)."
+                  ]
+                },
+                {
+                  title: "3. Variants of Naïve Bayes",
+                  body: [
+                    "Gaussian Naïve Bayes: Used when features are continuous. Assumes normal distribution.",
+                    "Multinomial Naïve Bayes: Used when features represent discrete counts (e.g., word counts in text classification).",
+                    "Bernoulli Naïve Bayes: Used when features are binary (presence or absence of a feature)."
+                  ]
+                },
+                {
+                  title: "4. Laplace Smoothing",
+                  body: [
+                    "The Zero Probability Problem occurs if a feature value never appears with a class in training; the product of likelihoods becomes zero.",
+                    "Laplace Smoothing solves this by adding a small constant α (typically 1) to feature counts.",
+                    "Effect: Prevents zero probabilities and slightly adjusts all estimates while preserving order."
+                  ]
+                },
+                {
+                  title: "5. Log Probabilities",
+                  body: [
+                    "Multiplying many small probabilities can cause numerical underflow.",
+                    "To avoid this, we work in log space: log P(C | X) ∝ log P(C) + Σ log P(x_i | C).",
+                    "Maximizing the log probability is equivalent to maximizing the original probability."
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool (Python, R, or Weka).",
+                "Step 2: Select the Naïve Bayes Variant (Gaussian, Multinomial, or Bernoulli).",
+                "Step 3: Load the Dataset.",
+                "Step 4: Explore the Dataset (Review summaries and distributions).",
+                "Step 5: Preprocess the Dataset (Handle missing values, text vectorization).",
+                "Step 6: Set the Train-Test Split.",
+                "Step 7: Configure Laplace Smoothing (Set Alpha).",
+                "Step 8: Train the Naïve Bayes Classifier.",
+                "Step 9: View the Probability Tables.",
+                "Step 10: Test with a New Instance.",
+                "Step 11: Evaluate Model Performance.",
+                "Step 12: Compare Naïve Bayes Variants.",
+                "Step 13: Tune the Smoothing Parameter.",
+                "Step 14: Visualize Decision Boundaries.",
+                "Step 15: Record Observations.",
+                "Step 16: Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.naive_bayes import GaussianNB\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n# Load Data\ndf = pd.read_csv('diabetes.csv')\nX = df.drop('Outcome', axis=1)\ny = df['Outcome']\n\n# Train-Test Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Initialize and Train Gaussian Naive Bayes\ngnb = GaussianNB()\ngnb.fit(X_train, y_train)\n\n# Predict & Evaluate\ny_pred = gnb.predict(X_test)\nacc = accuracy_score(y_test, y_pred)\n\nprint(f\"Test Accuracy: {acc*100:.2f}%\")",
+                steps: [
+                  { line: 1, annotation: "Import GaussianNB", memory: [], output: "" },
+                  { line: 8, annotation: "Split features and target", memory: [], output: "" },
+                  { line: 11, annotation: "Train-test split", memory: [], output: "" },
+                  { line: 14, annotation: "Initialize GaussianNB", memory: [], output: "" },
+                  { line: 15, annotation: "Fit the model", memory: [], output: "" },
+                  { line: 18, annotation: "Predict on test set", memory: [], output: "" },
+                  { line: 21, annotation: "Print scores", memory: [], output: "Test Accuracy: 76.60%" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Bayes' Theorem is used to calculate which of the following?",
+                  options: [
+                    "The Euclidean distance between two data points",
+                    "The posterior probability of a class given observed evidence",
+                    "The variance of a feature in a dataset",
+                    "The optimal number of clusters in a dataset"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "In Naïve Bayes, the word 'Naïve' refers to which assumption?",
+                  options: [
+                    "The algorithm assumes all classes have equal prior probabilities",
+                    "The algorithm assumes all features are conditionally independent of each other given the class label",
+                    "The algorithm assumes the data follows a uniform distribution",
+                    "The algorithm assumes there are no missing values in the dataset"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "In Bayes' Theorem, P(Class | Features) is called the:",
+                  options: [
+                    "Prior Probability",
+                    "Likelihood",
+                    "Marginal Probability",
+                    "Posterior Probability"
+                  ],
+                  answerIndex: 3
+                },
+                {
+                  question: "Which variant of Naïve Bayes is most suitable for text classification tasks where features represent word counts?",
+                  options: [
+                    "Gaussian Naïve Bayes",
+                    "Bernoulli Naïve Bayes",
+                    "Multinomial Naïve Bayes",
+                    "Complement Naïve Bayes"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "The problem of zero probability in Naïve Bayes is addressed by:",
+                  options: [
+                    "Removing the feature from the dataset",
+                    "Replacing zero probabilities with the class prior probability",
+                    "Laplace Smoothing (Additive Smoothing)",
+                    "Normalizing the feature values to a range of 0 to 1"
+                  ],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "In a Naïve Bayes classifier, the training dataset has 200 instances. Class A has 80 instances and Class B has 120 instances. What are the prior probabilities P(Class A) and P(Class B)?",
+                  options: [
+                    "P(Class A) = 0.50, P(Class B) = 0.50",
+                    "P(Class A) = 0.40, P(Class B) = 0.60",
+                    "P(Class A) = 0.60, P(Class B) = 0.40",
+                    "P(Class A) = 0.80, P(Class B) = 0.20"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Multinomial Naïve Bayes model without Laplace smoothing encounters the word 'lottery' which never appeared in the training data for the Ham class. What will happen to the posterior probability of Ham for a message containing 'lottery'?",
+                  options: [
+                    "The probability of Ham will slightly decrease",
+                    "The probability of Ham will remain unchanged",
+                    "The probability of Ham will become exactly zero regardless of all other words",
+                    "The probability of Ham will increase because 'lottery' is not a spam word"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "In Gaussian Naïve Bayes, the parameters learned from the training data for each feature and class are:",
+                  options: [
+                    "The minimum and maximum values of each feature per class",
+                    "The mean and variance of each feature per class",
+                    "The median and interquartile range of each feature per class",
+                    "The mode and standard deviation of each feature per class"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Naïve Bayes classifier computes the following unnormalized posterior scores for a new instance: Score(Class A) = 0.0042 and Score(Class B) = 0.0018. What is the normalized posterior probability P(Class A | X)?",
+                  options: [
+                    "42%",
+                    "18%",
+                    "70%",
+                    "30%"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following scenarios would cause Gaussian Naïve Bayes to perform poorly even if the conditional independence assumption holds?",
+                  options: [
+                    "The dataset has a large number of training instances",
+                    "The features follow strongly non-Gaussian distributions such as heavily skewed or multimodal distributions",
+                    "The dataset has equal prior probabilities for all classes",
+                    "The number of features is much smaller than the number of training instances"
+                  ],
+                  answerIndex: 1
+                }
+              ]
+            }
           }
         ]
       },
