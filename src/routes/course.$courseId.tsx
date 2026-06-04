@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses } from "@/lib/course-data";
-import { ArrowLeft, Book, Code, List, Info, Target, LayoutTemplate, Beaker } from "lucide-react";
+import { ArrowLeft, Book, Code, List, Info, Target, LayoutTemplate, Beaker, MessageSquare, Star } from "lucide-react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/course/$courseId")({
   component: CoursePage,
@@ -12,6 +13,7 @@ function CoursePage() {
   const course = courses[courseId];
   
   const [activeTab, setActiveTab] = useState("Introduction");
+  const [rating, setRating] = useState(0);
 
   if (!course) {
     return (
@@ -28,6 +30,7 @@ function CoursePage() {
   if (course.targetAudience) tabs.push({ id: "Target Audience", icon: List });
   if (course.alignment) tabs.push({ id: "Course Alignment", icon: LayoutTemplate });
   tabs.push({ id: "List of Experiments", icon: Beaker });
+  tabs.push({ id: "Feedback", icon: MessageSquare });
 
   const currentTab = tabs.find(t => t.id === activeTab) ? activeTab : tabs[0].id;
 
@@ -199,6 +202,136 @@ function CoursePage() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </section>
+          )}
+          {currentTab === "Feedback" && (
+            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+              <h2 className="text-2xl font-bold mb-6">Feedback</h2>
+              <div className="bg-card border border-border rounded-xl p-8 max-w-3xl">
+                <p className="text-muted-foreground mb-8">We value your feedback. Please take a few minutes to share your experience using this virtual laboratory. Your responses will help us improve the quality, usability, and content of the experiments.</p>
+                
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    toast.success("Feedback submitted successfully!", { description: "Thank you for helping us improve." });
+                    (e.target as HTMLFormElement).reset();
+                    setRating(0);
+                  }} 
+                  className="space-y-6"
+                >
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Name (Optional)</label>
+                      <input type="text" className="w-full bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-cyan transition-colors" placeholder="Your name" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Institute / College Name *</label>
+                      <input type="text" required className="w-full bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-cyan transition-colors" placeholder="Your institute" />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Course / Program *</label>
+                      <input type="text" required defaultValue={course.title} className="w-full bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-cyan transition-colors" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Year of Study *</label>
+                      <select required className="w-full bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-cyan transition-colors text-foreground">
+                        <option value="">Select Year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-2">
+                    <label className="text-sm font-medium text-foreground">Rating of the Lab *</label>
+                    <div className="flex items-center gap-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button 
+                          key={star} 
+                          type="button" 
+                          onClick={() => setRating(star)}
+                          className="focus:outline-none hover:scale-110 transition-transform"
+                        >
+                          <Star className={`size-6 ${star <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground/30'}`} />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-6 pt-4 border-t border-border/50">
+                    <div className="space-y-3">
+                      <label className="text-sm font-medium text-foreground">Was the experiment easy to understand?</label>
+                      <div className="flex gap-6">
+                        {['Yes', 'No', 'Partially'].map(opt => (
+                          <label key={`easy-${opt}`} className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+                            <input type="radio" name="easy" value={opt} required className="accent-cyan" /> {opt}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <label className="text-sm font-medium text-foreground">Were the instructions clear and well-structured?</label>
+                      <div className="flex gap-6">
+                        {['Yes', 'No', 'Partially'].map(opt => (
+                          <label key={`clear-${opt}`} className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+                            <input type="radio" name="clear" value={opt} required className="accent-cyan" /> {opt}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <label className="text-sm font-medium text-foreground">Did the virtual lab help you understand the concept better?</label>
+                      <div className="flex gap-6">
+                        {['Yes', 'No', 'Partially'].map(opt => (
+                          <label key={`helpful-${opt}`} className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+                            <input type="radio" name="helpful" value={opt} required className="accent-cyan" /> {opt}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-border/50">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Which experiment did you find most useful? *</label>
+                      <select required className="w-full bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-cyan transition-colors text-foreground">
+                        <option value="">Select Experiment</option>
+                        {course.weeks.flatMap(w => w.experiments).map(exp => (
+                          <option key={`useful-${exp.id}`} value={exp.id}>{exp.title}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Which experiment needs improvement? *</label>
+                      <select required className="w-full bg-background border border-border rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-cyan transition-colors text-foreground">
+                        <option value="">Select Experiment</option>
+                        {course.weeks.flatMap(w => w.experiments).map(exp => (
+                          <option key={`improve-${exp.id}`} value={exp.id}>{exp.title}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 pt-2">
+                    <label className="text-sm font-medium text-foreground">Suggestions or Comments</label>
+                    <textarea rows={4} className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-cyan transition-colors resize-none" placeholder="Share your thoughts..."></textarea>
+                  </div>
+
+                  <div className="pt-4">
+                    <button type="submit" className="px-6 py-2.5 rounded-lg bg-cyan text-cyan-foreground font-medium text-sm hover:bg-cyan/90 transition-colors shadow-sm hover:shadow active:scale-[0.98]">
+                      Submit Feedback
+                    </button>
+                  </div>
+                </form>
               </div>
             </section>
           )}

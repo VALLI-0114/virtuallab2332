@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Beaker, HelpCircle, Database, Book } from "lucide-react";
 import { courses } from "@/lib/course-data";
 import Editor from "@monaco-editor/react";
+import { toast } from "sonner";
 
 type WorkspaceSearch = {
   exp?: string;
@@ -307,8 +308,10 @@ ORDER  BY grade DESC;`,
   };
 
   useEffect(() => {
-    if (details?.course.id === "dbms") {   // ← replace "dbms" with your actual course ID
+    if (details?.course.id === "dbms") {
       setLanguage("sql");
+    } else if (details?.course.id === "machine-learning") {
+      setLanguage("python");
     } else {
       setLanguage("c");
     }
@@ -455,6 +458,10 @@ ORDER  BY grade DESC;`,
   };
 
   const handleNext = () => {
+    if (!isNextEnabled) {
+      toast.error(`Please answer all questions in the ${currentStepName} before proceeding.`);
+      return;
+    }
     if (activeStepIndex < WORKSPACE_STEPS.length - 1) setActiveStepIndex(activeStepIndex + 1);
   };
 
@@ -853,17 +860,16 @@ ORDER  BY grade DESC;`,
               </button>
               
               <div className="flex items-center gap-4">
-                {(currentStepName === "pretest" || currentStepName === "posttest") && isNextEnabled && (
+                {(currentStepName === "pretest" || currentStepName === "posttest") && isNextEnabled && currentContent[currentStepName] && (
                   <div className="flex items-center gap-2 text-sm font-medium px-4 py-2 bg-secondary/50 rounded-md border border-border">
                     <span className="text-muted-foreground">Score:</span>
-                    <span className="text-mint text-base">{calculateScore(currentStepName)} / {currentContent[currentStepName].length}</span>
+                    <span className="text-mint text-base">{calculateScore(currentStepName)} / {currentContent[currentStepName]?.length || 0}</span>
                   </div>
                 )}
                 
                 <button 
                   onClick={activeStepIndex === WORKSPACE_STEPS.length - 1 ? handleSubmit : handleNext} 
-                  disabled={activeStepIndex === WORKSPACE_STEPS.length - 1 ? false : !isNextEnabled}
-                  className="px-5 py-2.5 rounded-md bg-cyan text-cyan-foreground font-medium text-sm hover:bg-cyan/90 transition-colors disabled:opacity-50 disabled:pointer-events-none"
+                  className="px-5 py-2.5 rounded-md bg-cyan text-cyan-foreground font-medium text-sm hover:bg-cyan/90 transition-colors"
                 >
                   {activeStepIndex === WORKSPACE_STEPS.length - 1 ? "Submit" : "Next"}
                 </button>

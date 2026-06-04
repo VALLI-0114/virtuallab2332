@@ -4628,5 +4628,1461 @@ export const courses: Record<string, Course> = {
         ]
       }
     ]
+  },
+  "machine-learning": {
+    id: "machine-learning",
+    title: "Machine Learning Lab",
+    objectives: [
+      "To provide students with a practical understanding of core machine learning algorithms and their applications.",
+      "To enable students to preprocess, clean, and prepare real-world datasets for machine learning tasks.",
+      "To help students implement and evaluate supervised learning algorithms including classification and regression techniques.",
+      "To familiarize students with unsupervised learning techniques such as clustering and expectation maximization.",
+      "To develop the ability to tune algorithm parameters and evaluate model performance using appropriate metrics.",
+      "To expose students to tools and libraries commonly used in the machine learning ecosystem such as Python (scikit-learn, NumPy, pandas), R, and Weka.",
+      "To strengthen analytical and problem-solving skills by applying machine learning models to diverse datasets.",
+      "To prepare students for advanced topics in deep learning, data science, and AI-driven applications."
+    ],
+    introduction: [
+      "Machine Learning is a branch of Artificial Intelligence that enables systems to learn from data, identify patterns, and make decisions with minimal human intervention. It has become one of the most transformative technologies in fields such as healthcare, finance, e-commerce, computer vision, and natural language processing.",
+      "This virtual laboratory provides a hands-on learning environment for students to explore and experiment with core machine learning algorithms and techniques using Python, R, or Weka. The lab is designed to bridge the gap between theoretical concepts taught in classrooms and their practical implementation on real-world datasets.",
+      "Through a series of guided experiments, students will gain experience in data preprocessing, supervised learning, unsupervised learning, classification, regression, and clustering techniques. The experiments are structured progressively, starting from fundamental statistical measures and advancing to complex neural network and clustering algorithms.",
+      "This lab is developed to support undergraduate and postgraduate students pursuing courses in Machine Learning, Data Science, Artificial Intelligence, and related disciplines."
+    ],
+    targetAudience: {
+      primary: "Undergraduate students (B.Tech / B.E. / B.Sc.) pursuing courses in Computer Science, Information Technology, Electronics, or related engineering disciplines.",
+      prerequisites: [
+        "Programming fundamentals (preferably Python or R)",
+        "Mathematics including statistics, probability, and linear algebra",
+        "Basic concepts of data structures and algorithms"
+      ],
+      usefulFor: [
+        "Postgraduate students (M.Tech / M.E. / M.Sc. / MCA) specializing in Artificial Intelligence, Machine Learning, Data Science, or Computer Applications.",
+        "Research scholars and academicians who wish to explore and demonstrate machine learning concepts in a simulated environment.",
+        "Faculty members who want to use the lab as a supplementary teaching tool to reinforce classroom learning.",
+        "Professionals and self-learners who seek structured, experiment-based exposure to machine learning algorithms."
+      ]
+    },
+    alignment: {
+      university: "Various Universities Globally",
+      department: "Computer Science and Engineering / IT",
+      course: "Machine Learning Lab",
+      credits: "L:0 T:0 P:3 C:1.5",
+      yearSem: "Third / Fourth Year",
+      branches: "CSE, IT, AI&DS, ECE",
+      totalExperiments: "14 Guided Experiments",
+      compiler: "Python 3 Runtime Environment",
+      units: [
+        { unit: "Unit I", topics: "Statistical Foundations, Data Preprocessing", weeks: "Week 1–2" },
+        { unit: "Unit II", topics: "Instance-Based Learning, Tree-Based Models, Ensemble Methods", weeks: "Week 3–6" },
+        { unit: "Unit III", topics: "Probabilistic Learning, Kernel Methods, Linear Models", weeks: "Week 7–10" },
+        { unit: "Unit IV", topics: "Neural Networks", weeks: "Week 11" },
+        { unit: "Unit V", topics: "Clustering Algorithms", weeks: "Week 12–14" }
+      ]
+    },
+    weeks: [
+      {
+        title: "WEEK 1",
+        objective: "Understand and compute essential statistical metrics that summarize datasets.",
+        tutorial: "Tutorial 1: Statistical Foundations",
+        labTitle: "Lab 1: Descriptive Statistics",
+        experiments: [
+          {
+            id: "ml-w1-1",
+            title: "Compute Central Tendency and Dispersion",
+            desc: "Compute Central Tendency Measures: Mean, Median, Mode. Measure of Dispersion: Variance, Standard Deviation.",
+            expected: "Successfully computed Mean, Median, Mode, Variance, and Standard Deviation for the given dataset.",
+            content: {
+              aim: {
+                text: "To compute the measures of central tendency namely Mean, Median, and Mode, and measures of dispersion namely Variance and Standard Deviation for a given dataset using Python / R / Weka, and to interpret the statistical significance of each measure in understanding the distribution of data."
+              },
+              theory: [
+                {
+                  title: "1. Descriptive Statistics",
+                  body: [
+                    "Descriptive statistics summarize and describe the main features of a dataset. They provide simple summaries about the sample and the measures, forming the basis of quantitative analysis.",
+                    "Descriptive statistics are broadly divided into two categories:",
+                    "• Measures of Central Tendency — describe the center or typical value of a dataset",
+                    "• Measures of Dispersion — describe the spread or variability of a dataset"
+                  ]
+                },
+                {
+                  title: "2. Measures of Central Tendency",
+                  body: [
+                    "2.1 Mean (Arithmetic Mean)",
+                    "The mean is the sum of all values in the dataset divided by the total number of values. It is the most commonly used measure of central tendency.",
+                    "Formula: Mean (μ) = (x₁ + x₂ + x₃ + ... + xₙ) / n",
+                    "Properties: Sensitive to extreme values (outliers), Uses all data points in its calculation, Best used for normally distributed data.",
+                    "2.2 Median",
+                    "The median is the middle value of a dataset when the values are arranged in ascending or descending order. If the number of observations is even, the median is the average of the two middle values.",
+                    "Formula: If n is odd: Median = value at position (n+1)/2. If n is even: Median = average of values at positions n/2 and (n/2)+1.",
+                    "Properties: Not affected by outliers, Best used for skewed distributions, Divides the dataset into two equal halves.",
+                    "2.3 Mode",
+                    "The mode is the value that appears most frequently in a dataset. A dataset can have no mode, one mode (unimodal), two modes (bimodal), or more than two modes (multimodal).",
+                    "Properties: Can be used for both numerical and categorical data, Not affected by extreme values, May not exist or may not be unique."
+                  ]
+                },
+                {
+                  title: "3. Measures of Dispersion",
+                  body: [
+                    "3.1 Variance",
+                    "Variance measures how far each data point in the dataset is from the mean. It is the average of the squared differences from the mean.",
+                    "Formula: Population Variance (σ²) = Σ(xᵢ - μ)² / n, Sample Variance (s²) = Σ(xᵢ - x̄)² / (n - 1)",
+                    "Properties: Always non-negative, A variance of 0 means all values are identical, Higher variance indicates greater spread.",
+                    "3.2 Standard Deviation",
+                    "Standard deviation is the square root of variance. It expresses the spread of data in the same units as the original data, making it more interpretable than variance.",
+                    "Formula: Population Standard Deviation (σ) = √(σ²), Sample Standard Deviation (s) = √(s²)",
+                    "Properties: Expressed in the same unit as the data, A low standard deviation means values are close to the mean, A high standard deviation means values are spread out widely."
+                  ]
+                },
+                {
+                  title: "4. Relationship Between Measures",
+                  body: [
+                    "Mean - Central Tendency - Sensitive to Outliers - Best Used When Data is symmetric",
+                    "Median - Central Tendency - Not Sensitive to Outliers - Best Used When Data is skewed",
+                    "Mode - Central Tendency - Not Sensitive to Outliers - Best Used When Categorical / Frequency data",
+                    "Variance - Dispersion - Sensitive to Outliers - Best Used When Comparing spread across datasets",
+                    "Standard Deviation - Dispersion - Sensitive to Outliers - Best Used When Interpreting spread in original units"
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool. Choose your preferred programming environment from the available options: Python (using NumPy, pandas, SciPy), R (using base functions), Weka (using the Explorer interface).",
+                "Step 2: Load or Enter the Dataset. You may either enter a custom dataset manually using the input field provided, or Select a sample dataset from the dropdown list available in the simulation panel.",
+                "Step 3: Inspect the Dataset. View the raw data values displayed in the table. Note the number of observations (n), the minimum value, and the maximum value.",
+                "Step 4: Compute Measures of Central Tendency. Click the Compute Mean button to calculate and display the arithmetic mean. Click the Compute Median button to sort the data and identify the middle value. Click the Compute Mode button to identify the most frequently occurring value(s).",
+                "Step 5: Compute Measures of Dispersion. Click the Compute Variance button to calculate variance using both population and sample formulas. Click the Compute Standard Deviation button to derive the standard deviation.",
+                "Step 6: Visualize the Results. Observe the histogram or frequency distribution chart generated from the dataset. The mean, median, and mode values will be highlighted on the chart with distinct markers.",
+                "Step 7: Interpret the Output. Compare the mean, median, and mode values. Analyze whether the distribution is symmetric, positively skewed, or negatively skewed based on the relationship between these values. Note the spread of the data from the variance and standard deviation values.",
+                "Step 8: Change the Dataset. Modify the input data or select a different sample dataset to observe how the statistics change. Repeat Steps 3 to 7.",
+                "Step 9: Record Observations. Note your computed values in the observation table provided. Answer the post-test questions based on your understanding."
+              ],
+              simulation: {
+                code: "import numpy as np\nfrom scipy import stats\n\n# Dataset: 4, 7, 13, 2, 7, 9, 7, 3, 5, 11\ndata = [4, 7, 13, 2, 7, 9, 7, 3, 5, 11]\n\nmean = np.mean(data)\nmedian = np.median(data)\nmode = stats.mode(data, keepdims=False)[0]\n\nvar_pop = np.var(data)\nvar_sample = np.var(data, ddof=1)\n\nstd_pop = np.std(data)\nstd_sample = np.std(data, ddof=1)\n\nprint(f'Mean: {mean}')\nprint(f'Median: {median}')\nprint(f'Mode: {mode}')\nprint(f'Variance (Pop): {var_pop}')\nprint(f'Variance (Sample): {var_sample}')\nprint(f'Std Dev (Pop): {std_pop}')\nprint(f'Std Dev (Sample): {std_sample}')\n",
+                steps: [
+                  { line: 1, annotation: "Import numpy and scipy.stats", memory: [], output: "" },
+                  { line: 5, annotation: "Load the dataset", memory: [{variable: "data", type: "list", value: "[4, 7, 13, 2, 7, 9, 7, 3, 5, 11]"}], output: "" },
+                  { line: 7, annotation: "Compute Mean", memory: [{variable: "mean", type: "float", value: "6.8"}], output: "" },
+                  { line: 8, annotation: "Compute Median", memory: [{variable: "median", type: "float", value: "7.0"}], output: "" },
+                  { line: 9, annotation: "Compute Mode", memory: [{variable: "mode", type: "float", value: "7.0"}], output: "" },
+                  { line: 11, annotation: "Compute Population Variance", memory: [{variable: "var_pop", type: "float", value: "10.16"}], output: "" },
+                  { line: 12, annotation: "Compute Sample Variance", memory: [{variable: "var_sample", type: "float", value: "11.288"}], output: "" },
+                  { line: 14, annotation: "Compute Population Std Dev", memory: [{variable: "std_pop", type: "float", value: "3.187"}], output: "" },
+                  { line: 15, annotation: "Compute Sample Std Dev", memory: [{variable: "std_sample", type: "float", value: "3.360"}], output: "" },
+                  { line: 17, annotation: "Print outputs", memory: [], output: "Mean: 6.8\nMedian: 7.0\nMode: 7.0\nVariance (Pop): 10.16\nVariance (Sample): 11.288888888888888\nStd Dev (Pop): 3.1874754901019623\nStd Dev (Sample): 3.3598941782267675" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Which of the following is NOT a measure of central tendency?",
+                  options: ["Mean", "Median", "Variance", "Mode"],
+                  answerIndex: 2
+                },
+                {
+                  question: "The arithmetic mean of 5 values: 10, 20, 30, 40, 50 is:",
+                  options: ["25", "35", "30", "40"],
+                  answerIndex: 2
+                },
+                {
+                  question: "Standard Deviation is defined as:",
+                  options: ["Square of Variance", "Square Root of Variance", "Sum of all deviations from Mean", "Average of all squared values"],
+                  answerIndex: 1
+                },
+                {
+                  question: "For the dataset: 5, 3, 8, 3, 7, 3, 9 — what is the Mode?",
+                  options: ["5", "7", "3", "8"],
+                  answerIndex: 2
+                },
+                {
+                  question: "When the number of observations in a dataset is even, the Median is calculated as:",
+                  options: ["The largest value in the dataset", "The value at position (n+1)/2", "The average of the two middle values", "The most frequently occurring value"],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "For the dataset: 3, 5, 7, 7, 9, 11, 13 — what is the Median?",
+                  options: ["7", "7.86", "9", "8"],
+                  answerIndex: 0
+                },
+                {
+                  question: "Which measure of central tendency is most affected by the presence of outliers in a dataset?",
+                  options: ["Mode", "Median", "Mean", "All are equally affected"],
+                  answerIndex: 2
+                },
+                {
+                  question: "If the Mean of a dataset is 50 and the Standard Deviation is 0, what can you conclude?",
+                  options: ["All values are different", "All values are equal to 50", "The data is highly skewed", "The variance is 50"],
+                  answerIndex: 1
+                },
+                {
+                  question: "For the dataset: 2, 4, 4, 4, 5, 5, 7, 9 — the Sample Variance is:",
+                  options: ["3.57", "4.0", "2.0", "3.14"],
+                  answerIndex: 0
+                },
+                {
+                  question: "In a distribution where Mean > Median > Mode, the distribution is said to be:",
+                  options: ["Symmetric", "Negatively skewed (left-skewed)", "Positively skewed (right-skewed)", "Bimodal"],
+                  answerIndex: 2
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 2",
+        objective: "Learn to clean and prepare raw data for machine learning models.",
+        tutorial: "Tutorial 2: Data Preprocessing",
+        labTitle: "Lab 2: Data Cleaning & Feature Selection",
+        experiments: [
+          {
+            id: "ml-w2-1",
+            title: "Data Pre-processing Techniques",
+            desc: "Apply the following Pre-processing techniques for a given dataset: a. Attribute Selection b. Handling Missing Values c. Discretization d. Elimination of Outliers.",
+            expected: "Dataset successfully cleaned, missing values handled, continuous variables discretized, and outliers eliminated.",
+            content: {
+              aim: {
+                text: "To apply various data preprocessing techniques on a given raw dataset, including Attribute Selection, Handling Missing Values, Discretization, and Elimination of Outliers, using Python / R / Weka, and to understand the importance of clean and well-prepared data in building effective machine learning models."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Data Preprocessing",
+                  body: [
+                    "Real-world data is often incomplete, inconsistent, noisy, and unstructured. Feeding such raw data directly into a machine learning model leads to poor performance, inaccurate predictions, and unreliable results. Data preprocessing is the step that transforms raw data into a format that is suitable for machine learning.",
+                    "The key goals of data preprocessing are:",
+                    "• To improve the quality of data",
+                    "• To reduce redundancy and irrelevant information",
+                    "• To make the data consistent and complete",
+                    "• To improve the accuracy and efficiency of the machine learning model"
+                  ]
+                },
+                {
+                  title: "2. Attribute Selection (Feature Selection)",
+                  body: [
+                    "Attribute selection, also known as Feature Selection, is the process of identifying and selecting the most relevant attributes (features) from the dataset and removing irrelevant or redundant ones.",
+                    "Why Attribute Selection is Important:",
+                    "• Reduces the dimensionality of the dataset",
+                    "• Decreases model training time",
+                    "• Reduces the risk of overfitting",
+                    "• Improves model accuracy and interpretability",
+                    "Common Methods of Attribute Selection:",
+                    "• Filter Method: Selects features based on statistical scores independent of any machine learning algorithm (e.g., Correlation, Chi-Square test).",
+                    "• Wrapper Method: Uses a machine learning algorithm to evaluate feature subsets and selects the best performing combination (e.g., Recursive Feature Elimination).",
+                    "• Embedded Method: Feature selection is performed as part of the model training process (e.g., LASSO Regression, Decision Trees).",
+                    "Correlation-Based Selection:",
+                    "• If two features have high correlation with each other but low correlation with the target variable, one can be removed.",
+                    "• Features with near-zero variance carry little information and can be dropped."
+                  ]
+                },
+                {
+                  title: "3. Handling Missing Values",
+                  body: [
+                    "Missing values occur when no data value is stored for a variable in an observation. This can happen due to data entry errors, equipment malfunctions, or survey non-responses.",
+                    "Types of Missing Data:",
+                    "• Missing Completely at Random (MCAR): Missingness has no relationship with any variable.",
+                    "• Missing at Random (MAR): Missingness is related to observed data but not to the missing value itself.",
+                    "• Missing Not at Random (MNAR): Missingness is related to the unobserved (missing) value itself.",
+                    "Techniques to Handle Missing Values:",
+                    "• Deletion (Listwise): Remove rows with missing values. Best Used When: Very few rows have missing values.",
+                    "• Mean Imputation: Replace missing value with column mean. Best Used When: Data is numerical and normally distributed.",
+                    "• Median Imputation: Replace missing value with column median. Best Used When: Data is numerical and skewed.",
+                    "• Mode Imputation: Replace missing value with column mode. Best Used When: Data is categorical.",
+                    "• Forward/Backward Fill: Fill with the previous or next observed value. Best Used When: Time-series data.",
+                    "• Predictive Imputation: Use a regression or KNN model to predict the missing value. Best Used When: Complex datasets with patterns."
+                  ]
+                },
+                {
+                  title: "4. Discretization",
+                  body: [
+                    "Discretization is the process of converting continuous numerical attributes into discrete categorical intervals or bins. This is also called binning.",
+                    "Why Discretization is Used:",
+                    "• Some machine learning algorithms work better with categorical data.",
+                    "• Reduces the effect of minor observation errors.",
+                    "• Simplifies the model and makes it more interpretable.",
+                    "• Helps in handling outliers indirectly.",
+                    "Types of Discretization:",
+                    "• Equal Width Binning: Divides the range of data into equal-sized intervals (e.g., Age: 0–20, 21–40).",
+                    "• Equal Frequency Binning: Each bin contains approximately the same number of data points (e.g., Quartile-based binning).",
+                    "• Custom / Domain-Based Binning: Intervals defined based on domain knowledge (e.g., Income: Low, Medium, High)."
+                  ]
+                },
+                {
+                  title: "5. Elimination of Outliers",
+                  body: [
+                    "An outlier is a data point that differs significantly from other observations in the dataset. Outliers can distort statistical measures and negatively impact model performance.",
+                    "Sources of Outliers: Data entry errors, Measurement errors, Natural variability in the data, Experimental errors.",
+                    "Methods to Detect Outliers:",
+                    "• Z-Score Method: A data point is an outlier if its Z-Score is beyond ±3 standard deviations from the mean.",
+                    "• IQR Method: Values below Q1 − 1.5×IQR or above Q3 + 1.5×IQR are considered outliers.",
+                    "• Box Plot: Visual method; data points plotted beyond the whiskers are outliers.",
+                    "• Scatter Plot: Visual inspection of data distribution to identify extreme values.",
+                    "IQR Method Formula:",
+                    "• Q1 = 25th Percentile, Q3 = 75th Percentile, IQR = Q3 − Q1",
+                    "• Lower Bound = Q1 − 1.5 × IQR, Upper Bound = Q3 + 1.5 × IQR",
+                    "Handling Outliers:",
+                    "• Remove the outlier record entirely.",
+                    "• Cap the value at the lower or upper bound (Winsorization).",
+                    "• Replace with mean or median.",
+                    "• Keep the outlier if it represents genuine data."
+                  ]
+                },
+                {
+                  title: "6. Summary of Data Preprocessing Pipeline",
+                  body: [
+                    "Raw Data → Attribute Selection → Handle Missing Values → Discretization → Outlier Elimination → Preprocessed Clean Data → Machine Learning Model"
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool. Choose your preferred programming environment from the available options (Python, R, Weka).",
+                "Step 2: Load the Dataset. Select a sample dataset from the dropdown list provided in the simulation panel. View the raw dataset in the data preview table.",
+                "Step 3: Attribute Selection. View all available attributes (columns). Select the attributes to KEEP. Deselect irrelevant attributes.",
+                "Step 4: Handle Missing Values. The simulation highlights cells with missing values in red. Choose a strategy (Remove rows, Replace with Mean/Median/Mode).",
+                "Step 5: Discretization. Select a continuous numerical attribute. Choose the type of binning and number of bins.",
+                "Step 6: Eliminate Outliers. Select a numerical attribute. Choose detection method (Z-Score or IQR). Choose handling strategy (Remove, Cap, Replace).",
+                "Step 7: View Preprocessed Dataset. View the final cleaned dataset in the output table. Compare Before and After statistics.",
+                "Step 8: Download / Export Results. Save the cleaned data as a CSV file.",
+                "Step 9: Record Observations and Attempt Post-Test."
+              ],
+              simulation: {
+                code: "import pandas as pd\nimport numpy as np\n\n# Load Data\ndata = pd.DataFrame({'Age': [25, np.nan, 22, 120, 28], 'Salary': [50000, 60000, 55000, 200000, np.nan]})\n\n# Handle Missing Values\nmean_age = data['Age'].mean()\ndata['Age'].fillna(mean_age, inplace=True)\n\nmedian_salary = data['Salary'].median()\ndata['Salary'].fillna(median_salary, inplace=True)\n\n# Outlier Elimination (Age < 100)\ndata = data[data['Age'] < 100]\n\nprint(\"Preprocessing Complete\")\nprint(data)",
+                steps: [
+                  { line: 1, annotation: "Import pandas and numpy", memory: [], output: "" },
+                  { line: 5, annotation: "Load the raw dataset with missing values and outliers", memory: [{variable: "data", type: "DataFrame", value: "5 rows, 2 cols"}], output: "" },
+                  { line: 8, annotation: "Calculate Mean Age", memory: [{variable: "mean_age", type: "float", value: "48.75"}], output: "" },
+                  { line: 9, annotation: "Fill missing Age with Mean", memory: [{variable: "data['Age']", type: "Series", value: "Updated"}], output: "" },
+                  { line: 11, annotation: "Calculate Median Salary", memory: [{variable: "median_salary", type: "float", value: "57500.0"}], output: "" },
+                  { line: 12, annotation: "Fill missing Salary with Median", memory: [{variable: "data['Salary']", type: "Series", value: "Updated"}], output: "" },
+                  { line: 15, annotation: "Filter out Age outliers (>100)", memory: [{variable: "data", type: "DataFrame", value: "4 rows, 2 cols"}], output: "" },
+                  { line: 18, annotation: "Print final preprocessed dataset", memory: [], output: "Preprocessing Complete\n    Age   Salary\n0  25.0  50000.0\n1  48.7  60000.0\n2  22.0  55000.0\n4  28.0  57500.0" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Which of the following is the correct definition of Data Preprocessing?",
+                  options: [
+                    "The process of training a machine learning model on raw data",
+                    "The process of transforming raw data into a clean and usable format for machine learning",
+                    "The process of visualizing data using charts and graphs",
+                    "The process of storing data in a database"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Which of the following is a technique used to handle missing values in a dataset?",
+                  options: [
+                    "Normalization",
+                    "Imputation with Mean or Median",
+                    "Feature Extraction",
+                    "Cross Validation"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Discretization in data preprocessing refers to:",
+                  options: [
+                    "Removing duplicate records from the dataset",
+                    "Converting continuous numerical values into discrete categorical intervals",
+                    "Selecting the most relevant features from the dataset",
+                    "Splitting the dataset into training and testing sets"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "An outlier in a dataset is best described as:",
+                  options: [
+                    "A value that appears most frequently",
+                    "A value that lies far outside the overall pattern of the data",
+                    "A value that is equal to the mean",
+                    "A missing value in the dataset"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Which of the following methods is commonly used to detect outliers in a dataset?",
+                  options: [
+                    "K-Means Clustering",
+                    "Decision Tree",
+                    "Interquartile Range (IQR) Method",
+                    "Logistic Regression"
+                  ],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "In the IQR method, a value is considered an outlier if it falls:",
+                  options: [
+                    "Below Q1 − 2 × IQR or above Q3 + 2 × IQR",
+                    "Below Q1 − 1.5 × IQR or above Q3 + 1.5 × IQR",
+                    "Below the mean − standard deviation",
+                    "Below Q1 or above Q3"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Which attribute selection method uses the machine learning algorithm itself to evaluate feature subsets?",
+                  options: [
+                    "Filter Method",
+                    "Embedded Method",
+                    "Wrapper Method",
+                    "Statistical Method"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Equal Frequency Binning ensures that:",
+                  options: [
+                    "Each bin has the same width or range",
+                    "Each bin contains the same number of data points",
+                    "Each bin is defined based on domain knowledge",
+                    "All values in the dataset are normalized"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Which type of missing data is the most difficult to handle because the missingness is related to the unobserved value itself?",
+                  options: [
+                    "Missing Completely at Random (MCAR)",
+                    "Missing at Random (MAR)",
+                    "Missing Not at Random (MNAR)",
+                    "Structurally Missing Data"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "After applying all preprocessing steps on a dataset with 500 records and 12 attributes, 25 records were removed due to outliers and 2 attributes were dropped during feature selection. What are the dimensions of the final preprocessed dataset?",
+                  options: [
+                    "500 rows × 12 columns",
+                    "475 rows × 10 columns",
+                    "475 rows × 12 columns",
+                    "500 rows × 10 columns"
+                  ],
+                  answerIndex: 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 3",
+        objective: "Understand and implement Instance-Based Learning techniques.",
+        tutorial: "Tutorial 3: Instance-Based Learning",
+        labTitle: "Lab 3: K-Nearest Neighbors",
+        experiments: [
+          {
+            id: "ml-w3-1",
+            title: "KNN for Classification and Regression",
+            desc: "Apply KNN algorithm for classification and regression on a standard dataset.",
+            expected: "Successfully trained and evaluated KNN models for both classification and regression tasks.",
+            content: {
+              aim: {
+                text: "To apply the K-Nearest Neighbors (KNN) algorithm for both Classification and Regression tasks on a given dataset using Python / R / Weka, to evaluate the model performance using appropriate metrics, and to understand the effect of varying the value of K on the model's accuracy and prediction quality."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Instance-Based Learning",
+                  body: [
+                    "Instance-Based Learning (IBL) is a family of machine learning algorithms that do not build an explicit model during the training phase. Instead, they store all training instances and make predictions by comparing new instances to the stored ones at the time of prediction.",
+                    "Key Characteristics of Instance-Based Learning:",
+                    "• No training phase — the algorithm is called a Lazy Learner",
+                    "• Predictions are made at query time by comparing to stored examples",
+                    "• Very sensitive to the local structure of the data",
+                    "• Computationally expensive at prediction time",
+                    "The most widely used Instance-Based Learning algorithm is K-Nearest Neighbors (KNN)."
+                  ]
+                },
+                {
+                  title: "2. K-Nearest Neighbors (KNN) Algorithm",
+                  body: [
+                    "KNN is a simple, non-parametric, supervised machine learning algorithm that can be used for both classification and regression tasks. The core idea is that similar data points exist close to each other in the feature space.",
+                    "Core Assumption: Data points that are close to each other in the feature space are likely to belong to the same class or have similar output values."
+                  ]
+                },
+                {
+                  title: "3. Distance Metrics",
+                  body: [
+                    "The concept of 'nearness' in KNN is measured using distance metrics. The most commonly used are:",
+                    "• Euclidean Distance: The straight-line distance between two points in n-dimensional space.",
+                    "• Manhattan Distance: The sum of the absolute differences between coordinates of two points.",
+                    "• Minkowski Distance: A generalized distance metric that unifies Euclidean and Manhattan distances."
+                  ]
+                },
+                {
+                  title: "4. KNN for Classification",
+                  body: [
+                    "In classification, KNN predicts the class label of a new data point based on the majority class among its K nearest neighbors.",
+                    "Steps:",
+                    "1. Choose the value of K",
+                    "2. Calculate the distance between the new data point and all training data points",
+                    "3. Sort the distances in ascending order",
+                    "4. Select the top K nearest neighbors",
+                    "5. Perform majority voting among the K neighbors",
+                    "6. Assign the most frequent class label as the predicted class",
+                    "Evaluation Metrics for Classification:",
+                    "• Accuracy, Precision, Recall, F1-Score, Confusion Matrix."
+                  ]
+                },
+                {
+                  title: "5. KNN for Regression",
+                  body: [
+                    "In regression, KNN predicts a continuous numerical output for a new data point based on the average (or weighted average) of the output values of its K nearest neighbors.",
+                    "Steps:",
+                    "1. Choose the value of K",
+                    "2. Calculate the distance between the new data point and all training data points",
+                    "3. Sort the distances in ascending order",
+                    "4. Select the top K nearest neighbors",
+                    "5. Compute the average of the output values of the K neighbors",
+                    "6. Assign the computed average as the predicted output value",
+                    "Evaluation Metrics for Regression:",
+                    "• Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), R² Score."
+                  ]
+                },
+                {
+                  title: "6. Choosing the Right Value of K",
+                  body: [
+                    "The value of K is the most critical hyperparameter in KNN. It controls the bias-variance tradeoff:",
+                    "• Very Small (K = 1): Low bias, high variance — model overfits, sensitive to noise",
+                    "• Very Large (K = n): High bias, low variance — model underfits, ignores local patterns",
+                    "• Optimal K: Balanced bias and variance — determined by cross-validation",
+                    "General Guidelines:",
+                    "• Use odd values of K for binary classification to avoid ties.",
+                    "• Use cross-validation or elbow method to find the optimal K."
+                  ]
+                },
+                {
+                  title: "7. Feature Scaling in KNN",
+                  body: [
+                    "Since KNN relies on distance calculations, features with larger scales dominate the distance computation. Therefore, feature scaling is mandatory before applying KNN.",
+                    "Common Scaling Techniques:",
+                    "• Min-Max Normalization: Scales values to range [0, 1]",
+                    "• Z-Score Standardization: Scales to mean 0 and standard deviation 1"
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool. Choose your preferred programming environment.",
+                "Step 2: Select Task Type. Choose Classification or Regression.",
+                "Step 3: Load the Dataset. Select a dataset from the dropdown list.",
+                "Step 4: Explore the Dataset. Review the dataset summary and identify required preprocessing.",
+                "Step 5: Preprocess the Data. Apply Min-Max Normalization or Z-Score Standardization. Split the dataset.",
+                "Step 6: Set the Value of K. Use the K-value slider (1 to 20). Select the distance metric.",
+                "Step 7: Train and Predict. Click the Run KNN button to train the model.",
+                "Step 8: Evaluate Performance. View the relevant metrics (Accuracy/F1 for Classification, RMSE/MAE for Regression).",
+                "Step 9: Tune the Value of K. Use the K vs Accuracy / K vs RMSE plot to find the optimal K.",
+                "Step 10: Visualize Decision Boundary (Classification Only). View the 2D decision boundary plot.",
+                "Step 11: Record Observations and Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport numpy as np\n\n# Load Dataset\nX = np.array([[1, 2], [1, 4], [1, 0], [10, 2], [10, 4], [10, 0]])\ny = np.array([0, 0, 0, 1, 1, 1])\n\n# Train-Test Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)\n\n# KNN Initialization\nknn = KNeighborsClassifier(n_neighbors=3)\n\n# Train Model\nknn.fit(X_train, y_train)\n\n# Predict\ny_pred = knn.predict(X_test)\n\n# Evaluate\naccuracy = accuracy_score(y_test, y_pred)\nprint(f\"Accuracy: {accuracy * 100}%\")",
+                steps: [
+                  { line: 1, annotation: "Import sklearn libraries", memory: [], output: "" },
+                  { line: 7, annotation: "Load Features (X)", memory: [{variable: "X", type: "ndarray", value: "shape (6, 2)"}], output: "" },
+                  { line: 8, annotation: "Load Labels (y)", memory: [{variable: "y", type: "ndarray", value: "shape (6,)"}], output: "" },
+                  { line: 11, annotation: "Split data into training and test sets", memory: [{variable: "X_train", type: "ndarray", value: "shape (4, 2)"}, {variable: "X_test", type: "ndarray", value: "shape (2, 2)"}], output: "" },
+                  { line: 14, annotation: "Initialize KNN Classifier with K=3", memory: [{variable: "knn", type: "KNeighborsClassifier", value: "n_neighbors=3"}], output: "" },
+                  { line: 17, annotation: "Train the model", memory: [{variable: "knn", type: "KNeighborsClassifier", value: "Fitted"}], output: "" },
+                  { line: 20, annotation: "Make predictions on test set", memory: [{variable: "y_pred", type: "ndarray", value: "[0, 1]"}], output: "" },
+                  { line: 23, annotation: "Calculate accuracy", memory: [{variable: "accuracy", type: "float", value: "1.0"}], output: "" },
+                  { line: 24, annotation: "Print final evaluation", memory: [], output: "Accuracy: 100.0%" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "KNN stands for:",
+                  options: ["K-Node Nearest Network", "K-Nearest Neighbors", "K-Node Neural Network", "K-Nearest Node"],
+                  answerIndex: 1
+                },
+                {
+                  question: "KNN is categorized as which type of learning algorithm?",
+                  options: ["Supervised Learning — Generative Model", "Unsupervised Learning — Clustering", "Supervised Learning — Lazy Learner", "Reinforcement Learning"],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following distance metrics is most commonly used in KNN?",
+                  options: ["Hamming Distance", "Manhattan Distance", "Euclidean Distance", "Cosine Similarity"],
+                  answerIndex: 2
+                },
+                {
+                  question: "In KNN for Classification, the predicted class of a new data point is determined by:",
+                  options: ["The average of K nearest neighbors' output values", "The majority vote among the K nearest neighbors", "The distance to the farthest neighbor", "The class of the single nearest neighbor always"],
+                  answerIndex: 1
+                },
+                {
+                  question: "What happens when the value of K is set too low (e.g., K=1) in KNN?",
+                  options: ["The model underfits the data", "The model becomes computationally faster", "The model overfits the data and becomes sensitive to noise", "The model ignores all training data"],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "In KNN Regression with K = 3, if the three nearest neighbors have output values of 120, 150, and 90, what is the predicted value for the new data point?",
+                  options: ["150", "90", "120", "110"],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following statements about the Curse of Dimensionality in KNN is correct?",
+                  options: ["KNN performs better as the number of features increases", "As dimensionality increases, distances between points become increasingly similar, making KNN less effective", "Adding more features always improves KNN accuracy", "The Curse of Dimensionality only affects regression tasks in KNN"],
+                  answerIndex: 1
+                },
+                {
+                  question: "Why is feature scaling essential before applying the KNN algorithm?",
+                  options: ["To reduce the number of features in the dataset", "To ensure features with larger scales do not dominate the distance calculation", "To convert categorical features into numerical ones", "To increase the training speed of the algorithm"],
+                  answerIndex: 1
+                },
+                {
+                  question: "In the K vs Accuracy plot, if the accuracy is highest at K = 5 and then gradually decreases, which of the following best explains this behavior?",
+                  options: ["At K = 5 the model underfits the data; higher K values improve it", "At K = 5 the model achieves the best bias-variance balance; beyond this the model begins to underfit", "The training data is too small to support higher values of K", "Distance metric selection causes accuracy to drop after K = 5"],
+                  answerIndex: 1
+                },
+                {
+                  question: "For a binary classification problem with the following confusion matrix: TP = 40, TN = 35, FP = 5, FN = 10 — what is the Recall of the model?",
+                  options: ["88.9%", "80.0%", "87.5%", "75.0%"],
+                  answerIndex: 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 4",
+        objective: "Construct and tune Decision Trees for classification tasks.",
+        tutorial: "Tutorial 4: Tree-Based Classification",
+        labTitle: "Lab 4: Decision Tree Classifier",
+        experiments: [
+          {
+            id: "ml-w4-1",
+            title: "Decision Tree Classification and Tuning",
+            desc: "Demonstrate Decision Tree algorithm for a classification problem and perform parameter tuning for better results.",
+            expected: "Decision Tree classifier trained, visualized, and optimized using hyperparameter tuning (e.g., max_depth, min_samples_split).",
+            content: {
+              aim: {
+                text: "To implement the Decision Tree algorithm for a classification problem using Python / R / Weka, to visualize the constructed tree, to evaluate the model performance using standard classification metrics, and to perform parameter tuning techniques such as controlling tree depth, minimum samples per split, and pruning to achieve better generalization results."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Decision Trees",
+                  body: [
+                    "A Decision Tree is a supervised machine learning algorithm that uses a tree-like model of decisions and their possible consequences to perform classification and regression tasks. It mimics human decision-making by splitting data into subsets based on the most significant features at each step.",
+                    "Decision Trees are one of the most interpretable and widely used machine learning models. They form the foundation for more powerful ensemble methods such as Random Forest, Gradient Boosting, and XGBoost.",
+                    "Key Terminology:",
+                    "• Root Node: The topmost node representing the entire dataset and the first split",
+                    "• Internal Node: A node that represents a feature test and splits into child nodes",
+                    "• Branch: A connection between nodes representing the outcome of a test",
+                    "• Leaf Node: A terminal node that holds the final predicted class label",
+                    "• Depth: The length of the longest path from the root node to a leaf node",
+                    "• Splitting: The process of dividing a node into two or more sub-nodes",
+                    "• Pruning: The process of removing branches that provide little predictive power"
+                  ]
+                },
+                {
+                  title: "2. How a Decision Tree Works",
+                  body: [
+                    "The algorithm recursively splits the dataset into subsets based on feature values. At each node, it selects the feature and threshold that best separates the data according to a chosen splitting criterion.",
+                    "General Steps:",
+                    "1. Start with the entire dataset at the Root Node",
+                    "2. Select the best feature to split the data using a splitting criterion",
+                    "3. Split the dataset into subsets based on the selected feature and threshold",
+                    "4. Repeat the process recursively for each subset",
+                    "5. Stop splitting when one of the stopping conditions is met: All instances in a node belong to the same class, Maximum tree depth is reached, Minimum number of samples per node is reached, or No further information gain is possible",
+                    "6. Assign the majority class of each leaf node as the prediction"
+                  ]
+                },
+                {
+                  title: "3. Splitting Criteria",
+                  body: [
+                    "The splitting criterion determines which feature and threshold to use at each node to divide the data most effectively.",
+                    "3.1 Entropy and Information Gain (ID3 Algorithm)",
+                    "Entropy measures the impurity or disorder in a dataset. A pure node (all instances of one class) has entropy = 0.",
+                    "Entropy Formula: H(S) = − Σ pᵢ × log₂(pᵢ)",
+                    "Information Gain Formula: IG(S, A) = H(S) − Σ (|Sᵥ| / |S|) × H(Sᵥ)",
+                    "3.2 Gini Impurity (CART Algorithm)",
+                    "Gini Impurity measures the probability of incorrectly classifying a randomly chosen instance if it were randomly labelled according to the class distribution in the node.",
+                    "Gini Impurity Formula: Gini(S) = 1 − Σ pᵢ²",
+                    "Gini Gain Formula: Gini Gain(S, A) = Gini(S) − Σ (|Sᵥ| / |S|) × Gini(Sᵥ)",
+                    "The feature with the lowest Gini Impurity (highest Gini Gain) is selected for splitting."
+                  ]
+                },
+                {
+                  title: "4. Popular Decision Tree Algorithms",
+                  body: [
+                    "• ID3: Information Gain (Entropy), Multi-way split, no handling of missing values",
+                    "• C4.5: Gain Ratio, Multi-way split, handles missing values",
+                    "• CART: Gini Impurity, Binary split, handles missing values",
+                    "• CHAID: Chi-Square Test, Multi-way split, handles missing values"
+                  ]
+                },
+                {
+                  title: "5. Overfitting in Decision Trees",
+                  body: [
+                    "A fully grown Decision Tree tends to overfit the training data by creating very specific rules that do not generalize to unseen data. This happens when the tree is too deep, leaf nodes contain very few samples, or the tree memorizes noise in the training data.",
+                    "Signs of Overfitting: Very high training accuracy but low testing accuracy, a very deep and complex tree structure, leaf nodes with only one or two training instances."
+                  ]
+                },
+                {
+                  title: "6. Parameter Tuning Techniques",
+                  body: [
+                    "Parameter tuning (also called Hyperparameter Tuning) is the process of adjusting the model's parameters to reduce overfitting and improve generalization.",
+                    "6.1 Pre-Pruning (Early Stopping)",
+                    "Pre-Pruning stops the tree from growing by imposing constraints during tree construction.",
+                    "• max_depth: Maximum depth of the tree (reduces overfitting)",
+                    "• min_samples_split: Minimum samples required to split a node (reduces overfitting)",
+                    "• min_samples_leaf: Minimum samples required at a leaf node (reduces overfitting)",
+                    "• max_features: Number of features to consider for each split (controls randomness)",
+                    "• max_leaf_nodes: Maximum number of leaf nodes allowed (limits tree complexity)",
+                    "6.2 Post-Pruning (Cost Complexity Pruning)",
+                    "Post-Pruning first grows the full tree and then removes branches that do not improve generalization on the validation set.",
+                    "Cost Complexity Pruning (CCP) uses a parameter alpha (α). Higher alpha → more aggressive pruning → simpler tree.",
+                    "Pruning Formula: Cost Complexity = Error Rate + α × Number of Leaf Nodes"
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool. Choose your preferred programming environment.",
+                "Step 2: Load the Dataset. Select a dataset from the dropdown list.",
+                "Step 3: Explore and Preprocess the Dataset. Review the class distribution bar chart and handle any missing values.",
+                "Step 4: Set the Train-Test Split. Adjust the slider (default: 80% train, 20% test).",
+                "Step 5: Select the Splitting Criterion. Choose Gini Impurity or Entropy.",
+                "Step 6: Set Initial Parameters. Leave max_depth: None, min_samples_split: 2, min_samples_leaf: 1.",
+                "Step 7: Train the Decision Tree. Click the Train Decision Tree button and observe the fully grown tree visualization.",
+                "Step 8: Evaluate the Initial Model. View the Confusion Matrix, Accuracy, Precision, Recall, and F1-Score.",
+                "Step 9: Perform Parameter Tuning. Adjust max_depth, min_samples_split, min_samples_leaf, and ccp_alpha.",
+                "Step 10: View the Parameter Tuning Plots. Observe the Depth vs Accuracy plot and Alpha vs Accuracy plot.",
+                "Step 11: Compare Before and After Tuning. View the side-by-side comparison of tree structure and metrics.",
+                "Step 12: Visualize Feature Importance. View the Feature Importance bar chart.",
+                "Step 13: Record Observations.",
+                "Step 14: Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.tree import DecisionTreeClassifier\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n# Load Dataset\ndf = pd.DataFrame({'Feature1': [1,2,3,4,5], 'Target': [0,0,1,1,1]})\nX = df[['Feature1']]\ny = df['Target']\n\n# Train-Test Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Decision Tree Initialization\ndt = DecisionTreeClassifier(criterion='gini', max_depth=2)\n\n# Train Model\ndt.fit(X_train, y_train)\n\n# Predict\ny_pred = dt.predict(X_test)\n\n# Evaluate\nprint(f\"Accuracy: {accuracy_score(y_test, y_pred) * 100}%\")",
+                steps: [
+                  { line: 1, annotation: "Import sklearn libraries", memory: [], output: "" },
+                  { line: 8, annotation: "Load Features (X)", memory: [{variable: "X", type: "DataFrame", value: "shape (5, 1)"}], output: "" },
+                  { line: 9, annotation: "Load Labels (y)", memory: [{variable: "y", type: "Series", value: "shape (5,)"}], output: "" },
+                  { line: 12, annotation: "Split data into training and test sets", memory: [{variable: "X_train", type: "DataFrame", value: "shape (4, 1)"}], output: "" },
+                  { line: 15, annotation: "Initialize Decision Tree Classifier", memory: [{variable: "dt", type: "DecisionTreeClassifier", value: "max_depth=2"}], output: "" },
+                  { line: 18, annotation: "Train the model", memory: [{variable: "dt", type: "DecisionTreeClassifier", value: "Fitted"}], output: "" },
+                  { line: 21, annotation: "Make predictions on test set", memory: [{variable: "y_pred", type: "ndarray", value: "[0]"}], output: "" },
+                  { line: 24, annotation: "Calculate and print accuracy", memory: [], output: "Accuracy: 100.0%" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "A Decision Tree is which type of machine learning model?",
+                  options: ["Unsupervised — Clustering Model", "Supervised — Lazy Learner", "Supervised — Eager Learner", "Reinforcement Learning Model"],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following is used as a splitting criterion in Decision Trees?",
+                  options: ["Euclidean Distance", "Gini Impurity", "Pearson Correlation", "Z-Score"],
+                  answerIndex: 1
+                },
+                {
+                  question: "In a Decision Tree, a node that does not split further and holds the final predicted class is called:",
+                  options: ["Root Node", "Decision Node", "Internal Node", "Leaf Node"],
+                  answerIndex: 3
+                },
+                {
+                  question: "What does Information Gain measure in a Decision Tree?",
+                  options: ["The number of nodes in the tree", "The reduction in impurity achieved by splitting on a particular feature", "The depth of the tree after splitting", "The distance between data points"],
+                  answerIndex: 1
+                },
+                {
+                  question: "Which of the following problems is associated with a Decision Tree that is too deep and complex?",
+                  options: ["Underfitting", "High Bias", "Overfitting", "High Variance only in Regression"],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "For a node with 40 instances of Class A and 60 instances of Class B, what is the Gini Impurity?",
+                  options: ["0.50", "0.48", "0.24", "0.36"],
+                  answerIndex: 1
+                },
+                {
+                  question: "In the Depth vs Accuracy plot, if training accuracy keeps increasing with depth but testing accuracy peaks at depth 4 and then decreases, what is the best action?",
+                  options: ["Set max_depth to the maximum available value", "Set max_depth to 4 as it gives the best generalization", "Remove all depth constraints and grow the full tree", "Switch to a different algorithm entirely"],
+                  answerIndex: 1
+                },
+                {
+                  question: "Which of the following correctly describes Post-Pruning in a Decision Tree?",
+                  options: ["The tree is stopped from growing beyond a set depth during training", "The full tree is grown first and then branches are removed based on a complexity parameter", "Features are removed before training the Decision Tree", "The training data is reduced to simplify the tree structure"],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Decision Tree model shows 99% training accuracy and 72% testing accuracy. Which of the following is the most appropriate solution?",
+                  options: ["Increase the max_depth parameter", "Decrease the min_samples_leaf parameter", "Apply pruning and reduce max_depth to control overfitting", "Use Entropy instead of Gini as the splitting criterion"],
+                  answerIndex: 2
+                },
+                {
+                  question: "In Feature Importance from a Decision Tree, a feature with a high importance score means:",
+                  options: ["The feature has the highest number of unique values", "The feature appears only at the leaf nodes of the tree", "The feature contributes the most to reducing impurity across all splits in the tree", "The feature has the highest correlation with all other features"],
+                  answerIndex: 2
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 5",
+        objective: "Apply Tree-Based Models to predict continuous numerical values.",
+        tutorial: "Tutorial 5: Tree-Based Regression",
+        labTitle: "Lab 5: Decision Tree Regressor",
+        experiments: [
+          {
+            id: "ml-w5-1",
+            title: "Decision Tree for Regression",
+            desc: "Demonstrate Decision Tree algorithm for a regression problem.",
+            expected: "Decision Tree regressor trained and evaluated using metrics such as Mean Squared Error (MSE).",
+            content: {
+              aim: {
+                text: "To implement the Decision Tree Regressor algorithm for a regression problem using Python / R / Weka, to visualize the constructed regression tree, to evaluate model performance using standard regression metrics such as MAE, MSE, RMSE, and R² Score, and to understand how the tree structure captures non-linear relationships between input features and a continuous target variable."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Decision Tree Regression",
+                  body: [
+                    "A Decision Tree Regressor is a supervised machine learning model that predicts a continuous numerical output by recursively partitioning the input feature space into rectangular regions and assigning a constant predicted value (the mean of training instances) to each region.",
+                    "Unlike linear regression which assumes a linear relationship between features and output, a Decision Tree Regressor can naturally capture non-linear and complex relationships without requiring any transformation of the data.",
+                    "Decision Tree Regression forms the backbone of powerful ensemble regression methods such as Random Forest Regressor, Gradient Boosted Trees, and XGBoost."
+                  ]
+                },
+                {
+                  title: "2. How Decision Tree Regression Works",
+                  body: [
+                    "Core Idea: The algorithm divides the feature space into a set of non-overlapping rectangular regions. For a new input data point, the tree traverses from the root to a leaf node based on feature conditions, and the predicted output is the mean of all training instances that fall in that leaf node's region.",
+                    "Step-by-Step Process:",
+                    "1. Start with all training instances at the Root Node",
+                    "2. Select the feature and threshold that minimizes the splitting criterion (MSE or MAE)",
+                    "3. Split the dataset into two subsets",
+                    "4. Repeat the splitting process recursively for each child node",
+                    "5. Stop splitting when a stopping condition is met (maximum depth, minimum samples, etc.)",
+                    "6. At each leaf node, assign the mean of the target values of all training instances in that node as the predicted output"
+                  ]
+                },
+                {
+                  title: "3. Splitting Criterion for Regression",
+                  body: [
+                    "Unlike classification trees that use Gini Impurity or Entropy, regression trees use variance-based metrics to select the best split.",
+                    "3.1 Mean Squared Error (MSE) — Primary Criterion",
+                    "The algorithm selects the split that minimizes the weighted sum of MSE across the two child nodes.",
+                    "MSE at a Node Formula: MSE(node) = (1 / n) × Σ (yᵢ − ȳ)²",
+                    "Best Split = argmin [ (nₗ / n) × MSE(left) + (nᵣ / n) × MSE(right) ]",
+                    "3.2 Mean Absolute Error (MAE) — Alternative Criterion",
+                    "MAE is more robust to outliers than MSE and uses the median instead of the mean as the predicted value at each leaf."
+                  ]
+                },
+                {
+                  title: "4. Evaluation Metrics for Regression",
+                  body: [
+                    "• Mean Absolute Error (MAE): Measures the average absolute difference between actual and predicted values. Less sensitive to outliers.",
+                    "• Mean Squared Error (MSE): Measures the average squared difference between actual and predicted values. Penalizes large errors more heavily.",
+                    "• Root Mean Squared Error (RMSE): The square root of MSE. Expressed in the same units as the target variable making it more interpretable than MSE.",
+                    "• R² Score (Coefficient of Determination): Measures the proportion of variance in the target variable that is explained by the model."
+                  ]
+                },
+                {
+                  title: "5. Overfitting in Decision Tree Regression",
+                  body: [
+                    "A fully grown Decision Tree Regressor tends to memorize the training data by creating very specific leaf regions for individual instances, leading to poor generalization.",
+                    "Signs of Overfitting in Regression: Very low training MSE / RMSE but high testing MSE / RMSE, Very high training R² but significantly lower testing R², A very deep tree with leaf nodes containing very few instances, Extremely jagged and irregular predicted output curve.",
+                    "Controlling Overfitting involves parameters like max_depth, min_samples_split, min_samples_leaf, max_leaf_nodes, and ccp_alpha."
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool. Choose your preferred programming environment.",
+                "Step 2: Load the Dataset. Select a dataset from the dropdown list.",
+                "Step 3: Explore the Dataset. Review the dataset summary and identify required preprocessing.",
+                "Step 4: Preprocess the Dataset. Handle any missing values or categorical encodings.",
+                "Step 5: Set the Train-Test Split. Adjust the Train-Test Split slider.",
+                "Step 6: Select the Splitting Criterion. Choose MSE, MAE, or Friedman MSE.",
+                "Step 7: Set Initial Parameters. Leave parameters at default values for the initial run.",
+                "Step 8: Train the Decision Tree Regressor. Click the Train Decision Tree Regressor button.",
+                "Step 9: Evaluate the Initial Model. View performance metrics (MAE, MSE, RMSE, R²).",
+                "Step 10: Observe the Predicted Output Curve. View the Step Function plot.",
+                "Step 11: Perform Parameter Tuning. Adjust max_depth, min_samples_split, min_samples_leaf, ccp_alpha.",
+                "Step 12: View the Tuning Plots. Observe Depth vs RMSE and Alpha vs R².",
+                "Step 13: Compare Before and After Tuning. View the side-by-side comparisons.",
+                "Step 14: Visualize Feature Importance.",
+                "Step 15: Record Observations.",
+                "Step 16: Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.tree import DecisionTreeRegressor\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_squared_error\nimport pandas as pd\n\n# Load Dataset\ndf = pd.DataFrame({'Feature1': [1,2,3,4,5], 'Target': [10.5, 20.1, 30.5, 40.2, 50.8]})\nX = df[['Feature1']]\ny = df['Target']\n\n# Train-Test Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Decision Tree Initialization\ndt = DecisionTreeRegressor(criterion='squared_error', max_depth=3)\n\n# Train Model\ndt.fit(X_train, y_train)\n\n# Predict\ny_pred = dt.predict(X_test)\n\n# Evaluate\nmse = mean_squared_error(y_test, y_pred)\nprint(f\"MSE: {mse}\")",
+                steps: [
+                  { line: 1, annotation: "Import sklearn libraries", memory: [], output: "" },
+                  { line: 8, annotation: "Load Features (X)", memory: [{variable: "X", type: "DataFrame", value: "shape (5, 1)"}], output: "" },
+                  { line: 9, annotation: "Load Labels (y)", memory: [{variable: "y", type: "Series", value: "shape (5,)"}], output: "" },
+                  { line: 12, annotation: "Split data into training and test sets", memory: [{variable: "X_train", type: "DataFrame", value: "shape (4, 1)"}], output: "" },
+                  { line: 15, annotation: "Initialize Decision Tree Regressor", memory: [{variable: "dt", type: "DecisionTreeRegressor", value: "max_depth=3"}], output: "" },
+                  { line: 18, annotation: "Train the model", memory: [{variable: "dt", type: "DecisionTreeRegressor", value: "Fitted"}], output: "" },
+                  { line: 21, annotation: "Make predictions on test set", memory: [{variable: "y_pred", type: "ndarray", value: "[20.1]"}], output: "" },
+                  { line: 24, annotation: "Calculate and print MSE", memory: [], output: "MSE: 0.0" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Which of the following tasks is a Decision Tree Regressor designed to perform?",
+                  options: ["Predict a discrete class label for a given input", "Cluster data points into groups based on similarity", "Predict a continuous numerical output value for a given input", "Reduce the dimensionality of a dataset"],
+                  answerIndex: 2
+                },
+                {
+                  question: "In a Decision Tree Regressor, the predicted output value at each leaf node is:",
+                  options: ["The majority class of all training instances in that node", "The median of the target values of all training instances in that node", "The mean of the target values of all training instances in that node", "The maximum target value of all training instances in that node"],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following is the most commonly used splitting criterion for a Decision Tree Regressor?",
+                  options: ["Gini Impurity", "Entropy", "Mean Squared Error (MSE)", "Euclidean Distance"],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which metric measures the proportion of variance in the target variable explained by the regression model?",
+                  options: ["Mean Absolute Error (MAE)", "Root Mean Squared Error (RMSE)", "R² Score (Coefficient of Determination)", "F1-Score"],
+                  answerIndex: 2
+                },
+                {
+                  question: "What is the primary difference between a Decision Tree Classifier and a Decision Tree Regressor?",
+                  options: ["Classifiers use Euclidean distance for splitting while Regressors use Gini Impurity", "Classifiers predict continuous values while Regressors predict class labels", "Classifiers predict class labels using majority voting while Regressors predict continuous values using mean output", "There is no difference — both use the same splitting criterion and output method"],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "A Decision Tree Regressor with max_depth = 1 splits the data into exactly how many leaf regions?",
+                  options: ["1", "3", "2", "4"],
+                  answerIndex: 2
+                },
+                {
+                  question: "For a leaf node containing training instances with target values: 120, 130, 110, 140, 150 — what will be the predicted output for any new instance that falls into this leaf?",
+                  options: ["130", "120", "150", "110"],
+                  answerIndex: 0
+                },
+                {
+                  question: "In the Residual Plot of a Decision Tree Regressor, if residuals show a clear funnel-shaped pattern (increasing spread with increasing predicted values), this indicates:",
+                  options: ["The model is perfectly fitted", "The model has heteroscedasticity — variance of errors is not constant", "The model is underfitting the data", "The splitting criterion should be changed to MAE"],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Decision Tree Regressor is trained on house prices ranging from ₹20 Lakhs to ₹150 Lakhs. When asked to predict the price of a house valued at ₹200 Lakhs (beyond the training range), the model will:",
+                  options: ["Extrapolate and predict a value near ₹200 Lakhs", "Return an error as the value is out of range", "Predict the mean of the entire training set", "Predict a constant value equal to the mean of the nearest leaf node — it cannot extrapolate beyond training range"],
+                  answerIndex: 3
+                },
+                {
+                  question: "A Decision Tree Regressor gives the following results: Training R² = 0.98, Testing R² = 0.65. Which combination of parameter changes is most appropriate to improve the model?",
+                  options: ["Increase max_depth and decrease min_samples_leaf", "Decrease max_depth and increase min_samples_leaf", "Increase max_depth and increase min_samples_split", "Decrease min_samples_split and set ccp_alpha to 0"],
+                  answerIndex: 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 6",
+        objective: "Improve model accuracy and robustness using Ensemble Learning.",
+        tutorial: "Tutorial 6: Ensemble Methods",
+        labTitle: "Lab 6: Random Forests",
+        experiments: [
+          {
+            id: "ml-w6-1",
+            title: "Random Forest Algorithm",
+            desc: "Apply Random Forest algorithm for classification and regression.",
+            expected: "Random Forest models successfully applied to both classification and regression tasks, demonstrating improved performance over single trees.",
+            content: {
+              aim: {
+                text: "To implement the Random Forest algorithm for both Classification and Regression tasks on a given dataset using Python / R / Weka, to evaluate model performance using appropriate metrics, to analyze the effect of key hyperparameters such as the number of trees and maximum features on model performance, and to understand how ensemble learning improves accuracy and reduces overfitting compared to a single Decision Tree."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Ensemble Learning",
+                  body: [
+                    "Ensemble Learning is a machine learning paradigm where multiple individual models (called base learners or weak learners) are trained and their predictions are combined to produce a final output that is more accurate and robust than any single model alone.",
+                    "The core motivation behind ensemble learning is the principle that a group of diverse, moderately accurate models collectively outperforms any individual model.",
+                    "Three Main Ensemble Strategies:",
+                    "• Bagging: Train multiple models in parallel on different bootstrap samples and aggregate predictions (e.g. Random Forest).",
+                    "• Boosting: Train models sequentially where each model corrects the errors of the previous one (e.g. AdaBoost, XGBoost).",
+                    "• Stacking: Train multiple models and use another model (meta-learner) to combine their predictions."
+                  ]
+                },
+                {
+                  title: "2. Bagging (Bootstrap Aggregating)",
+                  body: [
+                    "Bagging is the foundational technique behind Random Forest. It works by:",
+                    "1. Creating multiple bootstrap samples from the original training dataset",
+                    "2. Training an independent base learner (Decision Tree) on each bootstrap sample",
+                    "3. Aggregating the predictions of all base learners into a final prediction",
+                    "Bootstrap Sampling: A bootstrap sample is created by randomly drawing n instances from the training dataset with replacement. On average, each bootstrap sample contains approximately 63.2% of unique training instances. The remaining 36.8% are Out-Of-Bag (OOB) instances.",
+                    "Effect of Bagging: Reduces variance without significantly increasing bias, stabilizes predictions, and naturally resists overfitting."
+                  ]
+                },
+                {
+                  title: "3. Random Forest Algorithm",
+                  body: [
+                    "Random Forest builds a large collection of decorrelated Decision Trees using two key sources of randomness:",
+                    "1. Bootstrap Sampling — Each tree is trained on a different random bootstrap sample.",
+                    "2. Random Feature Selection — At each node split, only a random subset of features is considered.",
+                    "These sources of randomness ensure individual trees are diverse and decorrelated, making the ensemble powerful."
+                  ]
+                },
+                {
+                  title: "4. Random Feature Selection",
+                  body: [
+                    "Instead of selecting the best split from all available features, Random Forest selects from a random subset (max_features).",
+                    "Default Values:",
+                    "• Classification: √p (square root of total features)",
+                    "• Regression: p/3 (one-third of total features)",
+                    "Why it works: By limiting features at each split, trees are forced to use different features, creating diversity. Diverse trees make different errors, which cancel out when aggregated."
+                  ]
+                },
+                {
+                  title: "5. Evaluation and Features",
+                  body: [
+                    "Classification Final Prediction: Majority voting across all trees. Metrics: Accuracy, Precision, Recall, F1-Score, ROC-AUC.",
+                    "Regression Final Prediction: Average of all individual tree predictions. Metrics: MAE, MSE, RMSE, R².",
+                    "Out-Of-Bag (OOB) Evaluation: Uses OOB instances to evaluate the tree's performance without a separate validation set.",
+                    "Feature Importance: Measures how much each feature contributes to reducing impurity across all trees."
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool (Python, R, or Weka).",
+                "Step 2: Select Task Type (Classification or Regression).",
+                "Step 3: Load the Dataset (e.g., Heart Disease, House Price).",
+                "Step 4: Explore the Dataset.",
+                "Step 5: Preprocess the Dataset.",
+                "Step 6: Set the Train-Test Split.",
+                "Step 7: Configure Initial Parameters.",
+                "Step 8: Train the Random Forest.",
+                "Step 9: Evaluate the Initial Model.",
+                "Step 10: Analyze OOB Score.",
+                "Step 11: Visualize Feature Importance.",
+                "Step 12: Perform Hyperparameter Tuning.",
+                "Step 13: View the Tuning Plots.",
+                "Step 14: Compare Random Forest vs Single Decision Tree.",
+                "Step 15: Visualize Individual Trees.",
+                "Step 16: Record Observations.",
+                "Step 17: Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n# Load Data\ndf = pd.read_csv('heart_disease.csv')\nX = df.drop('target', axis=1)\ny = df['target']\n\n# Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Train Random Forest\nrf = RandomForestClassifier(n_estimators=100, max_features='sqrt', oob_score=True)\nrf.fit(X_train, y_train)\n\n# Predict & Evaluate\ny_pred = rf.predict(X_test)\nacc = accuracy_score(y_test, y_pred)\n\nprint(f\"Test Accuracy: {acc*100:.2f}%\")\nprint(f\"OOB Score: {rf.oob_score_*100:.2f}%\")",
+                steps: [
+                  { line: 1, annotation: "Import RandomForestClassifier", memory: [], output: "" },
+                  { line: 8, annotation: "Split features and target", memory: [], output: "" },
+                  { line: 11, annotation: "Train-test split", memory: [], output: "" },
+                  { line: 14, annotation: "Initialize Random Forest", memory: [], output: "" },
+                  { line: 15, annotation: "Fit the model", memory: [], output: "" },
+                  { line: 18, annotation: "Predict on test set", memory: [], output: "" },
+                  { line: 21, annotation: "Print scores", memory: [], output: "Test Accuracy: 88.50%\nOOB Score: 85.90%" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Ensemble Learning is a technique that:",
+                  options: [
+                    "Trains a single powerful model on the entire dataset",
+                    "Combines multiple individual models to produce a stronger overall prediction",
+                    "Reduces the number of features in the dataset before training",
+                    "Applies clustering algorithms to group similar data points"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "Random Forest is built upon which base learner?",
+                  options: [
+                    "K-Nearest Neighbors",
+                    "Support Vector Machine",
+                    "Decision Tree",
+                    "Logistic Regression"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "The technique of training each base learner on a different random bootstrap sample of the training data is called:",
+                  options: [
+                    "Boosting",
+                    "Stacking",
+                    "Bagging (Bootstrap Aggregating)",
+                    "Blending"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "In a Random Forest Classifier with 100 trees, if 60 trees predict Class A and 40 trees predict Class B for a new instance, the final prediction will be:",
+                  options: [
+                    "Class B",
+                    "An average of Class A and Class B",
+                    "Class A",
+                    "The prediction of the tree with the highest accuracy"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following is a key advantage of Random Forest over a single Decision Tree?",
+                  options: [
+                    "Random Forest is faster to train than a single Decision Tree",
+                    "Random Forest requires less memory than a single Decision Tree",
+                    "Random Forest reduces overfitting by averaging predictions across multiple diverse trees",
+                    "Random Forest always achieves 100% accuracy on training data"
+                  ],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "In a Random Forest with 200 trees performing binary classification, if 130 trees predict Class 1 and 70 trees predict Class 0 for a test instance, what is the predicted class and the prediction confidence?",
+                  options: [
+                    "Class 0 with 35% confidence",
+                    "Class 1 with 65% confidence",
+                    "Class 0 with 65% confidence",
+                    "Class 1 with 100% confidence"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "In the n_estimators vs Accuracy plot, after a certain number of trees the accuracy stabilizes and no longer improves. What is the most appropriate conclusion from this observation?",
+                  options: [
+                    "The model has started to overfit and more trees must be avoided",
+                    "The dataset is too small to benefit from more trees",
+                    "The model has reached its optimal ensemble size and adding more trees gives diminishing returns with increased computational cost",
+                    "The max_features parameter must be increased to continue improving accuracy"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following correctly explains why Random Forest trees are deliberately kept diverse and decorrelated from each other?",
+                  options: [
+                    "Diverse trees reduce the training time of the overall ensemble",
+                    "When diverse trees make different types of errors, aggregating their predictions causes errors to cancel out, reducing overall variance",
+                    "Decorrelated trees individually have higher accuracy than correlated trees",
+                    "Diverse trees use fewer features and are therefore simpler and faster to train"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Random Forest model returns an OOB Score of 84% and a Test Set Accuracy of 86%. What does this result indicate?",
+                  options: [
+                    "The model is overfitting since OOB Score is lower than test accuracy",
+                    "The OOB Score and Test Accuracy are closely aligned, suggesting the model generalizes well and the OOB estimate is a reliable proxy for test performance",
+                    "The model is underfitting and more trees should be added to close the gap",
+                    "The bootstrap sampling has failed and the model should be retrained without OOB evaluation"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Random Forest Classifier has 13 features in the dataset. By default, how many features are randomly considered at each split node?",
+                  options: [
+                    "13 (all features)",
+                    "4 (approximately √13 rounded to nearest integer)",
+                    "6 (approximately half of all features)",
+                    "1 (only one random feature at each split)"
+                  ],
+                  answerIndex: 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 7",
+        objective: "Implement probabilistic classifiers based on Bayes' theorem.",
+        tutorial: "Tutorial 7: Probabilistic Learning",
+        labTitle: "Lab 7: Naïve Bayes",
+        experiments: [
+          {
+            id: "ml-w7-1",
+            title: "Naïve Bayes Classification",
+            desc: "Demonstrate Naïve Bayes Classification algorithm.",
+            expected: "Naïve Bayes classifier successfully trained and evaluated on a classification dataset.",
+            content: {
+              aim: {
+                text: "To implement the Naïve Bayes Classification algorithm on a given dataset using Python / R / Weka, to understand the probabilistic foundation of the algorithm based on Bayes' Theorem, to apply Gaussian, Multinomial, and Bernoulli variants of Naïve Bayes to appropriate datasets, to evaluate model performance using standard classification metrics, and to appreciate the role of the conditional independence assumption in enabling efficient probabilistic classification."
+              },
+              theory: [
+                {
+                  title: "1. Introduction to Probabilistic Learning & Bayes' Theorem",
+                  body: [
+                    "Probabilistic Learning approaches model uncertainty in predictions using probability theory, estimating the probability that an instance belongs to each class.",
+                    "Bayes' Theorem provides a framework for updating the probability of a hypothesis (class label) based on observed evidence (feature values).",
+                    "Formula: P(C | X) = [P(X | C) × P(C)] / P(X)",
+                    "P(C | X): Posterior Probability, P(X | C): Likelihood, P(C): Prior Probability, P(X): Marginal Probability."
+                  ]
+                },
+                {
+                  title: "2. The Naïve Conditional Independence Assumption",
+                  body: [
+                    "Computing P(X | C) is intractable for large feature spaces.",
+                    "Naïve Bayes assumes that each feature x_i is conditionally independent of every other feature given the class label C.",
+                    "This simplifies the likelihood to: P(X | C) = Π P(x_i | C).",
+                    "Classification Rule: ŷ = argmax P(C) × Π P(x_i | C)."
+                  ]
+                },
+                {
+                  title: "3. Variants of Naïve Bayes",
+                  body: [
+                    "Gaussian Naïve Bayes: Used when features are continuous. Assumes normal distribution.",
+                    "Multinomial Naïve Bayes: Used when features represent discrete counts (e.g., word counts in text classification).",
+                    "Bernoulli Naïve Bayes: Used when features are binary (presence or absence of a feature)."
+                  ]
+                },
+                {
+                  title: "4. Laplace Smoothing",
+                  body: [
+                    "The Zero Probability Problem occurs if a feature value never appears with a class in training; the product of likelihoods becomes zero.",
+                    "Laplace Smoothing solves this by adding a small constant α (typically 1) to feature counts.",
+                    "Effect: Prevents zero probabilities and slightly adjusts all estimates while preserving order."
+                  ]
+                },
+                {
+                  title: "5. Log Probabilities",
+                  body: [
+                    "Multiplying many small probabilities can cause numerical underflow.",
+                    "To avoid this, we work in log space: log P(C | X) ∝ log P(C) + Σ log P(x_i | C).",
+                    "Maximizing the log probability is equivalent to maximizing the original probability."
+                  ]
+                }
+              ],
+              procedure: [
+                "Step 1: Select the Tool (Python, R, or Weka).",
+                "Step 2: Select the Naïve Bayes Variant (Gaussian, Multinomial, or Bernoulli).",
+                "Step 3: Load the Dataset.",
+                "Step 4: Explore the Dataset (Review summaries and distributions).",
+                "Step 5: Preprocess the Dataset (Handle missing values, text vectorization).",
+                "Step 6: Set the Train-Test Split.",
+                "Step 7: Configure Laplace Smoothing (Set Alpha).",
+                "Step 8: Train the Naïve Bayes Classifier.",
+                "Step 9: View the Probability Tables.",
+                "Step 10: Test with a New Instance.",
+                "Step 11: Evaluate Model Performance.",
+                "Step 12: Compare Naïve Bayes Variants.",
+                "Step 13: Tune the Smoothing Parameter.",
+                "Step 14: Visualize Decision Boundaries.",
+                "Step 15: Record Observations.",
+                "Step 16: Attempt Post-Test."
+              ],
+              simulation: {
+                code: "from sklearn.naive_bayes import GaussianNB\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport pandas as pd\n\n# Load Data\ndf = pd.read_csv('diabetes.csv')\nX = df.drop('Outcome', axis=1)\ny = df['Outcome']\n\n# Train-Test Split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# Initialize and Train Gaussian Naive Bayes\ngnb = GaussianNB()\ngnb.fit(X_train, y_train)\n\n# Predict & Evaluate\ny_pred = gnb.predict(X_test)\nacc = accuracy_score(y_test, y_pred)\n\nprint(f\"Test Accuracy: {acc*100:.2f}%\")",
+                steps: [
+                  { line: 1, annotation: "Import GaussianNB", memory: [], output: "" },
+                  { line: 8, annotation: "Split features and target", memory: [], output: "" },
+                  { line: 11, annotation: "Train-test split", memory: [], output: "" },
+                  { line: 14, annotation: "Initialize GaussianNB", memory: [], output: "" },
+                  { line: 15, annotation: "Fit the model", memory: [], output: "" },
+                  { line: 18, annotation: "Predict on test set", memory: [], output: "" },
+                  { line: 21, annotation: "Print scores", memory: [], output: "Test Accuracy: 76.60%" }
+                ]
+              },
+              pretest: [
+                {
+                  question: "Bayes' Theorem is used to calculate which of the following?",
+                  options: [
+                    "The Euclidean distance between two data points",
+                    "The posterior probability of a class given observed evidence",
+                    "The variance of a feature in a dataset",
+                    "The optimal number of clusters in a dataset"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "In Naïve Bayes, the word 'Naïve' refers to which assumption?",
+                  options: [
+                    "The algorithm assumes all classes have equal prior probabilities",
+                    "The algorithm assumes all features are conditionally independent of each other given the class label",
+                    "The algorithm assumes the data follows a uniform distribution",
+                    "The algorithm assumes there are no missing values in the dataset"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "In Bayes' Theorem, P(Class | Features) is called the:",
+                  options: [
+                    "Prior Probability",
+                    "Likelihood",
+                    "Marginal Probability",
+                    "Posterior Probability"
+                  ],
+                  answerIndex: 3
+                },
+                {
+                  question: "Which variant of Naïve Bayes is most suitable for text classification tasks where features represent word counts?",
+                  options: [
+                    "Gaussian Naïve Bayes",
+                    "Bernoulli Naïve Bayes",
+                    "Multinomial Naïve Bayes",
+                    "Complement Naïve Bayes"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "The problem of zero probability in Naïve Bayes is addressed by:",
+                  options: [
+                    "Removing the feature from the dataset",
+                    "Replacing zero probabilities with the class prior probability",
+                    "Laplace Smoothing (Additive Smoothing)",
+                    "Normalizing the feature values to a range of 0 to 1"
+                  ],
+                  answerIndex: 2
+                }
+              ],
+              posttest: [
+                {
+                  question: "In a Naïve Bayes classifier, the training dataset has 200 instances. Class A has 80 instances and Class B has 120 instances. What are the prior probabilities P(Class A) and P(Class B)?",
+                  options: [
+                    "P(Class A) = 0.50, P(Class B) = 0.50",
+                    "P(Class A) = 0.40, P(Class B) = 0.60",
+                    "P(Class A) = 0.60, P(Class B) = 0.40",
+                    "P(Class A) = 0.80, P(Class B) = 0.20"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Multinomial Naïve Bayes model without Laplace smoothing encounters the word 'lottery' which never appeared in the training data for the Ham class. What will happen to the posterior probability of Ham for a message containing 'lottery'?",
+                  options: [
+                    "The probability of Ham will slightly decrease",
+                    "The probability of Ham will remain unchanged",
+                    "The probability of Ham will become exactly zero regardless of all other words",
+                    "The probability of Ham will increase because 'lottery' is not a spam word"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "In Gaussian Naïve Bayes, the parameters learned from the training data for each feature and class are:",
+                  options: [
+                    "The minimum and maximum values of each feature per class",
+                    "The mean and variance of each feature per class",
+                    "The median and interquartile range of each feature per class",
+                    "The mode and standard deviation of each feature per class"
+                  ],
+                  answerIndex: 1
+                },
+                {
+                  question: "A Naïve Bayes classifier computes the following unnormalized posterior scores for a new instance: Score(Class A) = 0.0042 and Score(Class B) = 0.0018. What is the normalized posterior probability P(Class A | X)?",
+                  options: [
+                    "42%",
+                    "18%",
+                    "70%",
+                    "30%"
+                  ],
+                  answerIndex: 2
+                },
+                {
+                  question: "Which of the following scenarios would cause Gaussian Naïve Bayes to perform poorly even if the conditional independence assumption holds?",
+                  options: [
+                    "The dataset has a large number of training instances",
+                    "The features follow strongly non-Gaussian distributions such as heavily skewed or multimodal distributions",
+                    "The dataset has equal prior probabilities for all classes",
+                    "The number of features is much smaller than the number of training instances"
+                  ],
+                  answerIndex: 1
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: "WEEK 8",
+        objective: "Use maximum-margin classifiers and kernel tricks for complex decision boundaries.",
+        tutorial: "Tutorial 8: Kernel Methods",
+        labTitle: "Lab 8: Support Vector Machines",
+        experiments: [
+          {
+            id: "ml-w8-1",
+            title: "SVM Classification",
+            desc: "Apply Support Vector Machine (SVM) algorithm for classification.",
+            expected: "SVM classifier successfully trained with different kernels (linear, RBF) and evaluated."
+          }
+        ]
+      },
+      {
+        title: "WEEK 9",
+        objective: "Model the linear relationship between independent and dependent variables.",
+        tutorial: "Tutorial 9: Linear Regression",
+        labTitle: "Lab 9: Simple Linear Regression",
+        experiments: [
+          {
+            id: "ml-w9-1",
+            title: "Simple Linear Regression",
+            desc: "Demonstrate Simple Linear Regression algorithm for a regression problem.",
+            expected: "Linear Regression model trained, best-fit line plotted, and performance evaluated using R-squared."
+          }
+        ]
+      },
+      {
+        title: "WEEK 10",
+        objective: "Apply generalized linear models for binary classification tasks.",
+        tutorial: "Tutorial 10: Linear Classification",
+        labTitle: "Lab 10: Logistic Regression",
+        experiments: [
+          {
+            id: "ml-w10-1",
+            title: "Logistic Regression Classification",
+            desc: "Apply Logistic Regression algorithm for a classification problem.",
+            expected: "Logistic Regression model successfully trained, decision boundary evaluated, and accuracy reported."
+          }
+        ]
+      },
+      {
+        title: "WEEK 11",
+        objective: "Understand artificial neural networks and backpropagation.",
+        tutorial: "Tutorial 11: Neural Networks",
+        labTitle: "Lab 11: Multi-layer Perceptron",
+        experiments: [
+          {
+            id: "ml-w11-1",
+            title: "MLP Classifier",
+            desc: "Demonstrate Multi-layer Perceptron (MLP) algorithm for a classification problem.",
+            expected: "MLP neural network trained, loss curve plotted, and classification metrics evaluated."
+          }
+        ]
+      },
+      {
+        title: "WEEK 12",
+        objective: "Perform unsupervised learning by partitioning data into K distinct clusters.",
+        tutorial: "Tutorial 12: Partition-Based Clustering",
+        labTitle: "Lab 12: K-Means Clustering",
+        experiments: [
+          {
+            id: "ml-w12-1",
+            title: "K-Means and K-Parameter Tuning",
+            desc: "Implement the K-Means algorithm and apply it to the selected dataset. Evaluate performance by measuring the sum of the Euclidean distance of each example from its class center. Test the performance of the algorithm as a function of the parameter K.",
+            expected: "K-Means clustering applied, Elbow method used to determine optimal K, and clusters visualized."
+          }
+        ]
+      },
+      {
+        title: "WEEK 13",
+        objective: "Implement soft clustering where data points can belong to multiple clusters with varying degrees of membership.",
+        tutorial: "Tutorial 13: Fuzzy Clustering",
+        labTitle: "Lab 13: Fuzzy C-Means",
+        experiments: [
+          {
+            id: "ml-w13-1",
+            title: "Fuzzy C-Means Clustering",
+            desc: "Demonstrate the use of Fuzzy C-Means Clustering.",
+            expected: "Fuzzy C-Means applied, membership matrix analyzed, and soft clusters visualized."
+          }
+        ]
+      },
+      {
+        title: "WEEK 14",
+        objective: "Use probabilistic models for clustering based on Gaussian distributions.",
+        tutorial: "Tutorial 14: Distribution-Based Clustering",
+        labTitle: "Lab 14: Expectation Maximization",
+        experiments: [
+          {
+            id: "ml-w14-1",
+            title: "Expectation Maximization (EM) Clustering",
+            desc: "Demonstrate the use of Expectation Maximization (EM) based clustering algorithm.",
+            expected: "Gaussian Mixture Model (GMM) fit using EM algorithm, covariances analyzed, and probabilistic clusters visualized."
+          }
+        ]
+      }
+    ]
   }
 };

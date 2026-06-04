@@ -13,6 +13,7 @@ import { Loader } from "@/components/Loader";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -133,6 +134,7 @@ function RootComponent() {
         <main className="pt-24">
           <Outlet />
         </main>
+        <Toaster />
       </div>
     </QueryClientProvider>
   );
