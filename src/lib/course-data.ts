@@ -862,20 +862,239 @@ export const courses: Record<string, Course> = {
             id: "c-w4-1",
             title: "Expression Evaluation",
             desc: "Evaluate the expression A+B*C+(D*E)+F*G.",
-            expected: "Result=X",
+            expected: "2 + 3 * 4 = 14",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to evaluate a complex arithmetic expression involving multiple operators and demonstrate the effect of operator precedence and associativity on the result. The student will:",
+                bullets: [
+                  "Understand operator precedence levels in C (*, /, % before +, -)",
+                  "Understand left-to-right associativity for arithmetic operators",
+                  "Use parentheses to control evaluation order",
+                  "Declare and use int and float variables to observe truncation vs precision",
+                  "Print intermediate and final results using printf()"
+                ]
+              },
+              theory: [
+                {
+                  title: "Operator Precedence",
+                  body: ["When an expression contains multiple operators, C evaluates higher-precedence operators first. The standard precedence order for arithmetic:", "Level 1 (highest): *, /, %", "Level 2: +, -", "Level 3 (lowest): = (assignment)", "Example: 2 + 3 * 4 evaluates as 2 + (3 * 4) = 2 + 12 = 14, not 20."]
+                },
+                {
+                  title: "Associativity",
+                  body: ["When two operators have equal precedence, associativity determines evaluation order. All basic arithmetic operators are left-to-right associative:", "10 - 3 - 2 evaluates as (10 - 3) - 2 = 5, not 10 - (3 - 2) = 9."]
+                },
+                {
+                  title: "Parentheses",
+                  body: ["Parentheses override all precedence rules and force a sub-expression to be evaluated first:", "(2 + 3) * 4 = 20"]
+                },
+                {
+                  title: "Modulus and Types",
+                  body: ["Integer vs Float Division — 7 / 2 = 3 (integer truncation). 7.0 / 2 = 3.5 (float).", "Modulus Operator — % gives the remainder of integer division. 17 % 5 = 2 because 17 = 5*3 + 2. % is only valid for integer operands in C."]
+                },
+                {
+                  title: "Increment and Decrement",
+                  body: ["++ and -- modify a variable by 1.", "Pre-increment ++x : increments first, then uses value.", "Post-increment x++ : uses value first, then increments."]
+                }
+              ],
+              pretest: [
+                { question: "What is the result of 2 + 3 * 4 in C?", options: ["20", "14", "24", "9"], answerIndex: 1 },
+                { question: "What is the result of 10 - 3 - 2 in C?", options: ["9", "5", "7", "3"], answerIndex: 1 },
+                { question: "What is 17 % 5?", options: ["3", "2", "1", "0"], answerIndex: 1 },
+                { question: "What is the value of x after: int x = 5; int y = x++;?", options: ["x = 6, y = 6", "x = 5, y = 5", "x = 6, y = 5", "x = 5, y = 6"], answerIndex: 2 },
+                { question: "What is the result of (2 + 3) * (8 - 4) / 2?", options: ["14", "8", "10", "20"], answerIndex: 2 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and step through the expression evaluation trace.",
+                "Observe how each sub-expression is evaluated in order of precedence.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "The program evaluates a set of expressions and prints each result.",
+                "Click Run Code. Verify each printed result matches the expected value.",
+                "Modify the expressions using parentheses and observe how results change. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    int res1 = 2 + 3 * 4;\n    int res2 = 10 - 3 - 2;\n    int res3 = 17 % 5;\n    printf(\"2 + 3 * 4 = %d\\n\", res1);\n    printf(\"10 - 3 - 2 = %d\\n\", res2);\n    printf(\"17 %% 5 = %d\\n\", res3);\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Evaluate 3 * 4 first, then 2 + 12 = 14", memory: [{variable: "res1", type: "int", value: "14"}], output: "" },
+                  { line: 5, annotation: "Left to right: 10 - 3 = 7, then 7 - 2 = 5", memory: [{variable: "res1", type: "int", value: "14"}, {variable: "res2", type: "int", value: "5"}], output: "" },
+                  { line: 6, annotation: "17 % 5 is remainder of 17 / 5, which is 2", memory: [{variable: "res1", type: "int", value: "14"}, {variable: "res2", type: "int", value: "5"}, {variable: "res3", type: "int", value: "2"}], output: "" },
+                  { line: 7, annotation: "Print first result", memory: [{variable: "res1", type: "int", value: "14"}, {variable: "res2", type: "int", value: "5"}, {variable: "res3", type: "int", value: "2"}], output: "2 + 3 * 4 = 14\n" },
+                  { line: 8, annotation: "Print second result", memory: [{variable: "res1", type: "int", value: "14"}, {variable: "res2", type: "int", value: "5"}, {variable: "res3", type: "int", value: "2"}], output: "2 + 3 * 4 = 14\n10 - 3 - 2 = 5\n" },
+                  { line: 9, annotation: "Print third result", memory: [{variable: "res1", type: "int", value: "14"}, {variable: "res2", type: "int", value: "5"}, {variable: "res3", type: "int", value: "2"}], output: "2 + 3 * 4 = 14\n10 - 3 - 2 = 5\n17 % 5 = 2\n" },
+                  { line: 10, annotation: "Program terminates", memory: [{variable: "res1", type: "int", value: "14"}, {variable: "res2", type: "int", value: "5"}, {variable: "res3", type: "int", value: "2"}], output: "2 + 3 * 4 = 14\n10 - 3 - 2 = 5\n17 % 5 = 2\n" }
+                ]
+              },
+              posttest: [
+                { question: "What is the result of 100 / 4 * 5 in C?", options: ["5", "20", "125", "500"], answerIndex: 2 },
+                { question: "What is the value of 5 + 3 * 2 - 8 / 4?", options: ["7", "9", "8", "4"], answerIndex: 1 },
+                { question: "What does ++x do differently from x++?", options: ["No difference", "++x increments after use; x++ increments before use", "++x increments before use; x++ increments after use", "++x works only on float"], answerIndex: 2 },
+                { question: "What is the result of 2 * 3 + 4 * 5 - 6 / 2?", options: ["20", "23", "18", "30"], answerIndex: 1 },
+                { question: "Which expression evaluates to 1 in C?", options: ["5 / 2 * 2", "5 % 2", "5 - 2 * 2", "5 * 0 + 1 / 2"], answerIndex: 1 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
           },
           {
             id: "c-w4-2",
             title: "Max of Three",
             desc: "Find maximum among three numbers using conditional operator.",
-            expected: "Max=X",
+            expected: "Maximum: 25",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to accept three integers from the user and determine the largest among them using the ternary operator and/or relational operators. The student will:",
+                bullets: [
+                  "Declare and use int variables",
+                  "Apply relational operators (>, <, >=, <=, ==, !=)",
+                  "Use the ternary (conditional) operator ?: to select the maximum value",
+                  "Understand short-circuit evaluation in logical expressions",
+                  "Use printf() to display the result"
+                ]
+              },
+              theory: [
+                {
+                  title: "Relational Operators",
+                  body: ["Used to compare two values and return 1 (true) or 0 (false):", "> greater than, < less than, >= greater than or equal to, <= less than or equal to", "== equal to (note: == not =, which is assignment)", "!= not equal to"]
+                },
+                {
+                  title: "Ternary Operator",
+                  body: ["The conditional (ternary) operator is the only C operator that takes three operands.", "Syntax: condition ? expression_if_true : expression_if_false", "Example: max = (a > b) ? a : b;", "If a > b is true, max gets a; otherwise max gets b."]
+                },
+                {
+                  title: "Finding Max of Three",
+                  body: ["Chain two ternary operations:", "max = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);", "Alternatively, use two sequential comparisons with a temporary variable:", "max = a; if (b > max) max = b; if (c > max) max = c;"]
+                },
+                {
+                  title: "Logical Operators and Precedence",
+                  body: ["Logical Operators — && (AND), || (OR), ! (NOT) are used to combine conditions. (a > b && a > c) is true only when a is strictly greater than both b and c.", "Arithmetic operators have higher precedence than relational operators.", "Relational operators have higher precedence than logical operators.", "Ternary has lower precedence than arithmetic and relational but higher than assignment."]
+                }
+              ],
+              pretest: [
+                { question: "What does the relational operator > return when the condition is false?", options: ["-1", "0", "1", "NULL"], answerIndex: 1 },
+                { question: "What is the result of (10 > 5) ? 10 : 5?", options: ["5", "0", "1", "10"], answerIndex: 3 },
+                { question: "Which operator is the ternary operator in C?", options: ["::", "?:", "??", "->"], answerIndex: 1 },
+                { question: "For a = 3, b = 7, c = 5, what does (a > b) ? a : b evaluate to?", options: ["3", "5", "7", "0"], answerIndex: 2 },
+                { question: "What is the difference between = and == in C?", options: ["No difference", "= compares, == assigns", "= assigns a value; == tests equality", "== is only for floats"], answerIndex: 2 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and step through the ternary evaluation trace.",
+                "Observe how conditions are evaluated and how the ternary operator selects a value.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter three integers — e.g. 10 25 7",
+                "Click Run Code. Verify output: Maximum: 25",
+                "Try equal values like 5 5 5 and negative values like -3 -1 -7. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    int a, b, c, max;\n    scanf(\"%d %d %d\", &a, &b, &c);\n    max = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);\n    printf(\"Maximum: %d\\n\", max);\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Allocate memory for integers", memory: [{variable: "a", type: "int", value: "?"}, {variable: "b", type: "int", value: "?"}, {variable: "c", type: "int", value: "?"}, {variable: "max", type: "int", value: "?"}], output: "" },
+                  { line: 5, annotation: "scanf() reads '10 25 7'", memory: [{variable: "a", type: "int", value: "10"}, {variable: "b", type: "int", value: "25"}, {variable: "c", type: "int", value: "7"}, {variable: "max", type: "int", value: "?"}], output: "" },
+                  { line: 6, annotation: "Evaluate ternary: (10 > 25) is false, so evaluate ((25 > 7) ? 25 : 7) -> 25", memory: [{variable: "a", type: "int", value: "10"}, {variable: "b", type: "int", value: "25"}, {variable: "c", type: "int", value: "7"}, {variable: "max", type: "int", value: "25"}], output: "" },
+                  { line: 7, annotation: "printf() displays max", memory: [{variable: "a", type: "int", value: "10"}, {variable: "b", type: "int", value: "25"}, {variable: "c", type: "int", value: "7"}, {variable: "max", type: "int", value: "25"}], output: "Maximum: 25\n" },
+                  { line: 8, annotation: "Program terminates", memory: [{variable: "a", type: "int", value: "10"}, {variable: "b", type: "int", value: "25"}, {variable: "c", type: "int", value: "7"}, {variable: "max", type: "int", value: "25"}], output: "Maximum: 25\n" }
+                ]
+              },
+              posttest: [
+                { question: "For inputs 4, 4, 4, what is the output?", options: ["0", "Error", "4", "Undefined"], answerIndex: 2 },
+                { question: "Which expression correctly finds the max of a and b?", options: ["max = a > b ? b : a", "max = (a > b) ? a : b", "max = a < b ? a : b", "max = a == b ? a : b"], answerIndex: 1 },
+                { question: "For inputs -5, -1, -9, what is the maximum?", options: ["-9", "-5", "-1", "0"], answerIndex: 2 },
+                { question: "What is the precedence order (highest to lowest) relevant here?", options: ["Ternary → Relational → Arithmetic", "Arithmetic → Ternary → Relational", "Arithmetic → Relational → Ternary", "Relational → Arithmetic → Ternary"], answerIndex: 2 },
+                { question: "For a = 10, b = 20, c = 15, what does the following evaluate to? (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c)", options: ["10", "15", "20", "0"], answerIndex: 2 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
           },
           {
             id: "c-w4-3",
             title: "Marks Average",
             desc: "Calculate total and average of 5 subjects.",
-            expected: "Total=X Avg=X.XX",
-          },
+            expected: "Total: 425 Average: 85.00 Grade: B",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to accept marks for multiple subjects from the user, compute the total and average marks, and display the results along with a grade determined using relational and logical operators. The student will:",
+                bullets: [
+                  "Declare and use int variables for marks and float for average",
+                  "Apply compound assignment operators (+=) to accumulate a total",
+                  "Use relational and logical operators to determine a grade band",
+                  "Use the ternary operator or chained conditions for grade classification",
+                  "Use printf() with %d and %.2f format specifiers"
+                ]
+              },
+              theory: [
+                {
+                  title: "Compound Assignment Operators",
+                  body: ["C provides shorthand operators that combine arithmetic with assignment:", "total += marks is equivalent to total = total + marks", "x *= 2 is equivalent to x = x * 2", "These make code concise and reduce repetition."]
+                },
+                {
+                  title: "Average Calculation",
+                  body: ["To compute an average:", "average = (float)total / n", "The cast to float ensures decimal precision. If total and n are both int, integer division truncates the result."]
+                },
+                {
+                  title: "Relational and Logical Operators in Grading",
+                  body: ["Grade bands are checked using >= and <= with && (AND):", "if (average >= 90 && average <= 100) → Grade A", "if (average >= 75 && average < 90) → Grade B", "if (average >= 60 && average < 75) → Grade C", "if (average >= 40 && average < 60) → Grade D", "if (average < 40) → Grade F"]
+                },
+                {
+                  title: "Precedence and Associativity",
+                  body: ["Arithmetic is evaluated first, then relational operators (>, >=, <, <=), then logical operators (&&, ||).", "Parentheses can be used to make complex conditions clearer.", "Both && and || are left-to-right associative. In (a && b && c), a is evaluated first; if a is false, the rest are short-circuited (not evaluated)."]
+                }
+              ],
+              pretest: [
+                { question: "What does the += operator do?", options: ["Compares two values", "Adds the right operand to the left and assigns the result", "Always increments by 1", "Performs modulus and assigns"], answerIndex: 1 },
+                { question: "For 5 subject marks totalling 375, what is the average?", options: ["70.00", "75.00", "80.00", "65.00"], answerIndex: 1 },
+                { question: "Which logical operator means AND in C?", options: ["&", "|", "&&", "||"], answerIndex: 2 },
+                { question: "What is the correct way to check if average is between 60 and 75 (inclusive of 60)?", options: ["60 < average < 75", "average >= 60 || average < 75", "average >= 60 && average < 75", "average == 60 && 75"], answerIndex: 2 },
+                { question: "Why cast total to float before dividing by number of subjects?", options: ["To make the code longer", "To avoid integer truncation and get a decimal average", "Because printf requires float", "Because += only works with float"], answerIndex: 1 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and step through the accumulation and grading trace.",
+                "Observe how += builds the total and how the grade condition chain is evaluated.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter marks for 5 subjects — e.g. 85 90 78 92 80",
+                "Click Run Code. Verify output shows Total, Average, and Grade correctly.",
+                "Try borderline inputs like 40 40 40 40 40 and 39 39 39 39 39. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    int m1, m2, m3, m4, m5;\n    int total = 0;\n    float avg;\n    scanf(\"%d %d %d %d %d\", &m1, &m2, &m3, &m4, &m5);\n    total += m1; total += m2; total += m3; total += m4; total += m5;\n    avg = (float)total / 5;\n    printf(\"Total: %d\\nAverage: %.2f\\n\", total, avg);\n    if (avg >= 90) printf(\"Grade: A\\n\");\n    else if (avg >= 75) printf(\"Grade: B\\n\");\n    else if (avg >= 60) printf(\"Grade: C\\n\");\n    else if (avg >= 40) printf(\"Grade: D\\n\");\n    else printf(\"Grade: F\\n\");\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Allocate memory for marks", memory: [{variable: "total", type: "int", value: "0"}, {variable: "avg", type: "float", value: "?"}], output: "" },
+                  { line: 7, annotation: "scanf() reads '85 90 78 92 80'", memory: [{variable: "total", type: "int", value: "0"}, {variable: "avg", type: "float", value: "?"}], output: "" },
+                  { line: 8, annotation: "Accumulate total using +=", memory: [{variable: "total", type: "int", value: "425"}, {variable: "avg", type: "float", value: "?"}], output: "" },
+                  { line: 9, annotation: "Compute float average", memory: [{variable: "total", type: "int", value: "425"}, {variable: "avg", type: "float", value: "85.00"}], output: "" },
+                  { line: 10, annotation: "Print total and average", memory: [{variable: "total", type: "int", value: "425"}, {variable: "avg", type: "float", value: "85.00"}], output: "Total: 425\nAverage: 85.00\n" },
+                  { line: 11, annotation: "Check if avg >= 90 (False)", memory: [{variable: "total", type: "int", value: "425"}, {variable: "avg", type: "float", value: "85.00"}], output: "Total: 425\nAverage: 85.00\n" },
+                  { line: 12, annotation: "Check if avg >= 75 (True), print Grade: B", memory: [{variable: "total", type: "int", value: "425"}, {variable: "avg", type: "float", value: "85.00"}], output: "Total: 425\nAverage: 85.00\nGrade: B\n" },
+                  { line: 17, annotation: "Program terminates", memory: [{variable: "total", type: "int", value: "425"}, {variable: "avg", type: "float", value: "85.00"}], output: "Total: 425\nAverage: 85.00\nGrade: B\n" }
+                ]
+              },
+              posttest: [
+                { question: "For marks 70 80 90 60 50, what is the total?", options: ["340", "360", "350", "370"], answerIndex: 2 },
+                { question: "For the same marks above (total 350), what is the average?", options: ["75.00", "70.00", "65.00", "80.00"], answerIndex: 1 },
+                { question: "With average 70.00, which grade is awarded?", options: ["A", "B", "C", "D"], answerIndex: 2 },
+                { question: "Which compound operator correctly accumulates marks into total?", options: ["total == total + marks", "total = marks", "total += marks", "total =+ marks"], answerIndex: 2 },
+                { question: "For marks 30 35 28 40 32, what is the grade?", options: ["D", "C", "F", "B"], answerIndex: 2 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
+          }
         ],
       },
       {
