@@ -1107,32 +1107,385 @@ export const courses: Record<string, Course> = {
             id: "c-w5-1",
             title: "Max and Min of Four Numbers",
             desc: "Find the max and min of four numbers using if-else.",
-            expected: "Max=X Min=X",
+            expected: "Maximum: 45 Minimum: 7",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to accept four integers from the user and determine the largest and smallest among them using nested if-else statements and relational operators. The student will:",
+                bullets: [
+                  "Declare and use int variables for four input numbers",
+                  "Apply nested if-else to compare multiple values systematically",
+                  "Use relational operators (>, <) to drive conditional logic",
+                  "Track both maximum and minimum in a single program pass",
+                  "Use printf() to display the results clearly"
+                ]
+              },
+              theory: [
+                {
+                  title: "Nested if-else",
+                  body: ["An if-else construct placed inside another if or else block is called a nested if-else. It allows multi-way decisions based on a sequence of conditions.", "if (condition1) {\n    if (condition2) { ... }\n    else { ... }\n} else { ... }"]
+                },
+                {
+                  title: "Finding Maximum and Minimum",
+                  body: ["Assume the first variable is the maximum, then compare it against each remaining variable, updating the maximum whenever a larger value is found:", "max = a; if (b > max) max = b; if (c > max) max = c; if (d > max) max = d;", "Same strategy in reverse for minimum:", "min = a; if (b < min) min = b; if (c < min) min = c; if (d < min) min = d;"]
+                },
+                {
+                  title: "Relational and Logical Operators",
+                  body: ["> greater than, < less than, >= greater or equal, <= less or equal, == equality check, != not equal.", "Logical AND (&&) can combine conditions to check max in one step: if (a >= b && a >= c && a >= d) max = a;"]
+                }
+              ],
+              pretest: [
+                { question: "What is the correct initial assumption when finding the maximum of four numbers?", options: ["Assume max = 0", "Assume max = first number", "Assume max = last number", "Assume max = average"], answerIndex: 1 },
+                { question: "For inputs 3, 9, 1, 7, what is the maximum?", options: ["3", "7", "1", "9"], answerIndex: 3 },
+                { question: "For inputs 3, 9, 1, 7, what is the minimum?", options: ["3", "1", "7", "9"], answerIndex: 1 },
+                { question: "What does the condition (b > max) check?", options: ["Whether b equals max", "Whether b is strictly greater than the current max", "Whether b is less than max", "Whether b is not zero"], answerIndex: 1 },
+                { question: "What relational operator is used to find the smallest value?", options: [">", ">=", "<", "=="], answerIndex: 2 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and step through the comparison trace.",
+                "Observe how max and min are updated as each number is compared.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter four integers — e.g. 12 45 7 30",
+                "Click Run Code. Verify output: Maximum: 45  Minimum: 7",
+                "Try all equal values like 5 5 5 5 and negative values like -3 -8 -1 -5. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    int a, b, c, d, max, min;\n    scanf(\"%d %d %d %d\", &a, &b, &c, &d);\n    max = a; min = a;\n    if (b > max) max = b;\n    if (c > max) max = c;\n    if (d > max) max = d;\n    if (b < min) min = b;\n    if (c < min) min = c;\n    if (d < min) min = d;\n    printf(\"Maximum: %d\\nMinimum: %d\\n\", max, min);\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Allocate variables", memory: [{variable: "a", type: "int", value: "?"}, {variable: "b", type: "int", value: "?"}, {variable: "c", type: "int", value: "?"}, {variable: "d", type: "int", value: "?"}, {variable: "max", type: "int", value: "?"}, {variable: "min", type: "int", value: "?"}], output: "" },
+                  { line: 5, annotation: "scanf() reads '12 45 7 30'", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "?"}, {variable: "min", type: "int", value: "?"}], output: "" },
+                  { line: 6, annotation: "Assume first is max and min", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "12"}, {variable: "min", type: "int", value: "12"}], output: "" },
+                  { line: 7, annotation: "45 > 12 is true, update max to 45", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "12"}], output: "" },
+                  { line: 8, annotation: "7 > 45 is false, max stays 45", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "12"}], output: "" },
+                  { line: 9, annotation: "30 > 45 is false, max stays 45", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "12"}], output: "" },
+                  { line: 10, annotation: "45 < 12 is false, min stays 12", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "12"}], output: "" },
+                  { line: 11, annotation: "7 < 12 is true, update min to 7", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "7"}], output: "" },
+                  { line: 12, annotation: "30 < 7 is false, min stays 7", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "7"}], output: "" },
+                  { line: 13, annotation: "Print result", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "7"}], output: "Maximum: 45\nMinimum: 7\n" },
+                  { line: 14, annotation: "Program terminates", memory: [{variable: "a", type: "int", value: "12"}, {variable: "b", type: "int", value: "45"}, {variable: "c", type: "int", value: "7"}, {variable: "d", type: "int", value: "30"}, {variable: "max", type: "int", value: "45"}, {variable: "min", type: "int", value: "7"}], output: "Maximum: 45\nMinimum: 7\n" }
+                ]
+              },
+              posttest: [
+                { question: "For inputs -3, -8, -1, -5, what is the maximum?", options: ["-8", "-5", "-3", "-1"], answerIndex: 3 },
+                { question: "For inputs -3, -8, -1, -5, what is the minimum?", options: ["-1", "-3", "-8", "-5"], answerIndex: 2 },
+                { question: "What is wrong with initialising max = 0 when all inputs are negative?", options: ["Nothing, it always works", "max would remain 0, which is larger than all inputs — giving a wrong result", "It causes a compilation error", "It only fails when inputs are floats"], answerIndex: 1 },
+                { question: "How many comparisons are needed to find max from four numbers using the sequential update method?", options: ["2", "4", "3", "6"], answerIndex: 2 },
+                { question: "For inputs 5, 5, 5, 5, what are max and min?", options: ["max = 0, min = 0", "max = 5, min = 0", "max = 5, min = 5", "Undefined"], answerIndex: 2 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
           },
           {
             id: "c-w5-2",
             title: "Electricity Bill Generator",
             desc: "Generate electricity bill based on units consumed.",
-            expected: "Bill=X.XX",
+            expected: "Electricity Bill: Rs. 650.00",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to accept the number of units of electricity consumed by a customer and compute the electricity bill using a slab-based tariff structure implemented with if-else if-else statements. The student will:",
+                bullets: [
+                  "Declare and use int and float variables for units and bill amount",
+                  "Apply if-else if-else chains to implement multi-slab billing logic",
+                  "Perform cumulative arithmetic across multiple slabs",
+                  "Use printf() with %.2f to display the bill to 2 decimal places",
+                  "Understand real-world applications of conditional branching"
+                ]
+              },
+              theory: [
+                {
+                  title: "Slab-Based Tariff",
+                  body: ["Electricity boards charge different rates per unit for different consumption ranges. A common slab structure:", "Units 1–100 : Rs. 1.50 per unit", "Units 101–200 : Rs. 2.50 per unit (for units above 100)", "Units 201–300 : Rs. 4.00 per unit (for units above 200)", "Units above 300: Rs. 6.00 per unit (for units above 300)"]
+                },
+                {
+                  title: "Cumulative Billing",
+                  body: ["A consumer using 250 units pays:", "First 100 units: 100 * 1.50 = 150.00", "Next 100 units: 100 * 2.50 = 250.00", "Last 50 units: 50 * 4.00 = 200.00", "Total: Rs. 600.00"]
+                },
+                {
+                  title: "if-else if-else Chain",
+                  body: ["Used when exactly one of several mutually exclusive conditions must be selected:", "if (units <= 100) { ... } else if (units <= 200) { ... } else if (units <= 300) { ... } else { ... }", "Once a condition is true, the rest of the chain is skipped. A fixed service charge (e.g. Rs. 50) is often added to the computed amount."]
+                }
+              ],
+              pretest: [
+                { question: "What kind of conditional structure is best for multi-slab billing?", options: ["Nested ternary operators", "switch-case", "if-else if-else chain", "while loop"], answerIndex: 2 },
+                { question: "A customer uses 150 units. How many units are billed at Rs. 2.50/unit?", options: ["150", "100", "50", "200"], answerIndex: 2 },
+                { question: "What is the bill for 100 units at Rs. 1.50 per unit?", options: ["100.00", "200.00", "150.00", "50.00"], answerIndex: 2 },
+                { question: "For 250 units using the slab above, what is the bill (excluding service charge)?", options: ["500.00", "625.00", "600.00", "550.00"], answerIndex: 2 },
+                { question: "Once a true condition is found in an if-else if chain, what happens to the rest?", options: ["They are all evaluated", "They are skipped", "They cause an error", "They are evaluated only if the first is false"], answerIndex: 1 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and step through the slab selection and bill computation.",
+                "Observe how the if-else if chain selects exactly one slab block to execute.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter number of units consumed — e.g. 250",
+                "Click Run Code. Verify output: Electricity Bill: Rs. 650.00 (including Rs. 50 service charge)",
+                "Try 50, 150, 350 units to exercise all slab branches. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    int units;\n    float bill = 0;\n    scanf(\"%d\", &units);\n    if (units <= 100) {\n        bill = units * 1.50;\n    } else if (units <= 200) {\n        bill = (100 * 1.50) + ((units - 100) * 2.50);\n    } else if (units <= 300) {\n        bill = (100 * 1.50) + (100 * 2.50) + ((units - 200) * 4.00);\n    } else {\n        bill = (100 * 1.50) + (100 * 2.50) + (100 * 4.00) + ((units - 300) * 6.00);\n    }\n    bill += 50.00;\n    printf(\"Electricity Bill: Rs. %.2f\\n\", bill);\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Allocate variables", memory: [{variable: "units", type: "int", value: "?"}, {variable: "bill", type: "float", value: "0.00"}], output: "" },
+                  { line: 5, annotation: "scanf() reads '250'", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "0.00"}], output: "" },
+                  { line: 6, annotation: "units <= 100 is false", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "0.00"}], output: "" },
+                  { line: 8, annotation: "units <= 200 is false", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "0.00"}], output: "" },
+                  { line: 10, annotation: "units <= 300 is true, executing this block", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "0.00"}], output: "" },
+                  { line: 11, annotation: "Calculate 150 + 250 + (50 * 4.00) = 600.00", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "600.00"}], output: "" },
+                  { line: 15, annotation: "Add fixed service charge of Rs. 50", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "650.00"}], output: "" },
+                  { line: 16, annotation: "printf() displays total bill", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "650.00"}], output: "Electricity Bill: Rs. 650.00\n" },
+                  { line: 17, annotation: "Program terminates", memory: [{variable: "units", type: "int", value: "250"}, {variable: "bill", type: "float", value: "650.00"}], output: "Electricity Bill: Rs. 650.00\n" }
+                ]
+              },
+              posttest: [
+                { question: "For 100 units, what is the bill (excluding service charge)?", options: ["200.00", "100.00", "250.00", "150.00"], answerIndex: 3 },
+                { question: "For 200 units, what is the bill (excluding service charge)?", options: ["300.00", "400.00", "500.00", "350.00"], answerIndex: 2 },
+                { question: "For 350 units, what is the bill (excluding service charge)?", options: ["900.00", "1100.00", "1050.00", "1150.00"], answerIndex: 3 },
+                { question: "What is the role of the else block in the slab billing program?", options: ["Handles units equal to 300", "Handles zero units", "Handles units greater than 300", "Is never executed"], answerIndex: 2 },
+                { question: "Why is a service charge added separately rather than inside each slab?", options: ["It makes the program longer", "It is a fixed charge applied regardless of units consumed", "It only applies to high consumers", "It is required by the C standard"], answerIndex: 1 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
           },
           {
             id: "c-w5-3",
             title: "Quadratic Roots",
             desc: "Find roots of the quadratic equation ax2+bx+c=0.",
-            expected: "Roots or Complex",
+            expected: "Roots: 3.00, 2.00 or Complex",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to accept coefficients a, b, and c of a quadratic equation ax² + bx + c = 0 and compute and classify its roots using the discriminant. The student will:",
+                bullets: [
+                  "Declare and use float/double variables for coefficients and roots",
+                  "Compute the discriminant: D = b*b - 4*a*c",
+                  "Use nested if-else to classify roots as real & distinct, real & equal, or complex",
+                  "Apply sqrt() from math.h to compute real roots",
+                  "Handle edge cases including a = 0 (not a quadratic)"
+                ]
+              },
+              theory: [
+                {
+                  title: "Quadratic Formula",
+                  body: ["A second-degree polynomial equation of the form: ax² + bx + c = 0 where a ≠ 0", "Formula: x = (-b ± sqrt(b² - 4ac)) / (2a)"]
+                },
+                {
+                  title: "Discriminant",
+                  body: ["D = b² - 4ac determines the nature of the roots:", "D > 0 : Two distinct real roots. x1 = (-b + sqrt(D)) / (2a), x2 = (-b - sqrt(D)) / (2a)", "D == 0 : Two equal (repeated) real roots. x1 = x2 = -b / (2a)", "D < 0 : Two complex conjugate roots (no real roots). Real part = -b / (2a), Imaginary part = sqrt(-D) / (2a)"]
+                },
+                {
+                  title: "Edge Case",
+                  body: ["If a = 0, the equation becomes linear: bx + c = 0, solved as x = -c/b.", "This must be checked before applying the quadratic formula to avoid division by zero."]
+                }
+              ],
+              pretest: [
+                { question: "What is the discriminant of a quadratic equation?", options: ["b² + 4ac", "b² - 4ac", "2a - b", "-b / 2a"], answerIndex: 1 },
+                { question: "If D > 0, the roots are:", options: ["Complex", "Equal", "Two distinct real roots", "Zero"], answerIndex: 2 },
+                { question: "If D = 0, what can be said about the roots?", options: ["No real roots exist", "Two distinct real roots", "Two equal real roots", "One root is always zero"], answerIndex: 2 },
+                { question: "For a = 1, b = -5, c = 6, what is the discriminant?", options: ["1", "49", "25", "1"], answerIndex: 3 },
+                { question: "Why must a = 0 be handled separately before computing roots?", options: ["It causes a syntax error", "It makes D negative", "It results in division by zero in the quadratic formula", "sqrt() fails when a = 0"], answerIndex: 2 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and trace through the discriminant computation and branching.",
+                "Observe how D > 0, D == 0, and D < 0 lead to three different output paths.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter a, b, c — e.g. 1 -5 6",
+                "Click Run Code. Verify output: Root1: 3.00  Root2: 2.00",
+                "Try 1 2 1 (equal roots) and 1 1 1 (complex roots). Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n#include <math.h>\n\nint main() {\n    double a, b, c, d, r1, r2;\n    scanf(\"%lf %lf %lf\", &a, &b, &c);\n    if (a == 0) {\n        printf(\"Not a quadratic equation.\\n\");\n    } else {\n        d = b * b - 4 * a * c;\n        if (d > 0) {\n            r1 = (-b + sqrt(d)) / (2 * a);\n            r2 = (-b - sqrt(d)) / (2 * a);\n            printf(\"Root1: %.2f  Root2: %.2f\\n\", r1, r2);\n        } else if (d == 0) {\n            r1 = -b / (2 * a);\n            printf(\"Equal roots: %.2f\\n\", r1);\n        } else {\n            printf(\"Complex roots\\n\");\n        }\n    }\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio and math libraries", memory: [], output: "" },
+                  { line: 5, annotation: "Allocate variables", memory: [{variable: "a", type: "double", value: "?"}, {variable: "b", type: "double", value: "?"}, {variable: "c", type: "double", value: "?"}, {variable: "d", type: "double", value: "?"}], output: "" },
+                  { line: 6, annotation: "scanf() reads '1 -5 6'", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "?"}], output: "" },
+                  { line: 7, annotation: "Check if a == 0 (False)", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "?"}], output: "" },
+                  { line: 10, annotation: "Compute discriminant D = 25 - 24 = 1", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "1.0"}], output: "" },
+                  { line: 11, annotation: "Check if D > 0 (True)", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "1.0"}], output: "" },
+                  { line: 12, annotation: "Compute Root1 = (5 + 1)/2 = 3.0", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "1.0"}], output: "" },
+                  { line: 13, annotation: "Compute Root2 = (5 - 1)/2 = 2.0", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "1.0"}], output: "" },
+                  { line: 14, annotation: "printf() displays both distinct roots", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "1.0"}], output: "Root1: 3.00  Root2: 2.00\n" },
+                  { line: 22, annotation: "Program terminates", memory: [{variable: "a", type: "double", value: "1.0"}, {variable: "b", type: "double", value: "-5.0"}, {variable: "c", type: "double", value: "6.0"}, {variable: "d", type: "double", value: "1.0"}], output: "Root1: 3.00  Root2: 2.00\n" }
+                ]
+              },
+              posttest: [
+                { question: "For a=1, b=2, c=1, what is the discriminant and nature of roots?", options: ["D=8, distinct real", "D=0, equal real roots", "D=-4, complex", "D=4, distinct real"], answerIndex: 1 },
+                { question: "For a=1, b=1, c=1, what is the nature of roots?", options: ["Distinct real", "Equal real", "Complex", "Zero"], answerIndex: 2 },
+                { question: "For a=1, b=-5, c=6, what are the roots?", options: ["1 and 6", "2 and 3", "-2 and -3", "5 and 1"], answerIndex: 1 },
+                { question: "What is the real part of complex roots when D < 0?", options: ["sqrt(-D) / (2a)", "b / (2a)", "-b / (2a)", "-b / a"], answerIndex: 2 },
+                { question: "For a=0, b=2, c=4, what should the program output?", options: ["Roots: -2.00 and 2.00", "Not a quadratic — linear equation, x = -2.00", "Division by zero error", "Complex roots"], answerIndex: 1 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
           },
           {
             id: "c-w5-4",
-            title: "Calculator using Switch",
+            title: "Calculator Using Switch",
             desc: "Simulate a basic calculator for +, -, *, /.",
-            expected: "Result of operation",
+            expected: "Result: 13.00",
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to implement a simple arithmetic calculator that accepts two numbers and an operator from the user and performs the corresponding operation using a switch-case statement. The student will:",
+                bullets: [
+                  "Declare and use float variables for operands and result",
+                  "Accept a char input for the operator (+, -, *, /)",
+                  "Use switch-case to dispatch to the correct operation",
+                  "Handle division by zero as a special case within the division branch",
+                  "Use the default case to handle invalid operators",
+                  "Use printf() with %.2f to display the result"
+                ]
+              },
+              theory: [
+                {
+                  title: "switch-case Statement",
+                  body: ["An alternative to long if-else if chains when branching on the value of a single integer or character expression.", "switch (expression) {\n    case value1: statements; break;\n    case value2: statements; break;\n    default: statements;\n}"]
+                },
+                {
+                  title: "break Statement and Fall-Through",
+                  body: ["Each case must end with break to prevent fall-through. Without break, execution continues into the next case regardless of its label.", "Intentional fall-through (omitting break) can group cases: case '+': case 'p': result = a + b; break;"]
+                },
+                {
+                  title: "default Case and Char Input",
+                  body: ["default case is executed when no case value matches the expression. Used to handle invalid or unexpected input gracefully.", "Operators are characters. Read with scanf(\" %c\", &op). The leading space in \" %c\" skips any leftover whitespace or newline in the input buffer."]
+                },
+                {
+                  title: "Division by Zero",
+                  body: ["Always check if the divisor is zero before performing division:\ncase '/':\n    if (b == 0) printf(\"Error\");\n    else result = a / b;\n    break;"]
+                }
+              ],
+              pretest: [
+                { question: "Which statement prevents fall-through in a switch-case block?", options: ["continue", "exit", "return", "break"], answerIndex: 3 },
+                { question: "What is executed when no case matches in a switch statement?", options: ["The first case", "Nothing — program exits", "The default case", "An error is thrown"], answerIndex: 2 },
+                { question: "What format specifier reads a character in scanf?", options: ["%s", "%d", "%c", "%ch"], answerIndex: 2 },
+                { question: "For inputs 10, 0, and operator /, what should the program output?", options: ["0.00", "Infinity", "Error: Division by zero", "10.00"], answerIndex: 2 },
+                { question: "What happens if break is omitted from a case in switch?", options: ["Compilation error", "That case is skipped", "Execution falls through to the next case", "switch exits immediately"], answerIndex: 2 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and trace through the switch dispatch for different operators.",
+                "Observe how break stops execution after each case and how default catches bad input.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter two numbers and an operator — e.g. 10 3 +",
+                "Click Run Code. Verify output: Result: 13.00",
+                "Test all four operators and try 10 0 / for division by zero. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    float a, b, res;\n    char op;\n    scanf(\"%f %f %c\", &a, &b, &op);\n    switch(op) {\n        case '+': res = a + b; printf(\"Result: %.2f\\n\", res); break;\n        case '-': res = a - b; printf(\"Result: %.2f\\n\", res); break;\n        case '*': res = a * b; printf(\"Result: %.2f\\n\", res); break;\n        case '/': \n            if (b == 0) printf(\"Error: Division by zero\\n\");\n            else printf(\"Result: %.2f\\n\", a / b);\n            break;\n        default: printf(\"Invalid operator\\n\");\n    }\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Allocate variables", memory: [{variable: "a", type: "float", value: "?"}, {variable: "b", type: "float", value: "?"}, {variable: "op", type: "char", value: "?"}], output: "" },
+                  { line: 5, annotation: "scanf() reads '10 3 +'", memory: [{variable: "a", type: "float", value: "10.0"}, {variable: "b", type: "float", value: "3.0"}, {variable: "op", type: "char", value: "'+'"}], output: "" },
+                  { line: 6, annotation: "switch evaluates op '+'", memory: [{variable: "a", type: "float", value: "10.0"}, {variable: "b", type: "float", value: "3.0"}, {variable: "op", type: "char", value: "'+'"}], output: "" },
+                  { line: 7, annotation: "Case '+' matches. Compute res and print", memory: [{variable: "a", type: "float", value: "10.0"}, {variable: "b", type: "float", value: "3.0"}, {variable: "op", type: "char", value: "'+'"}], output: "Result: 13.00\n" },
+                  { line: 7, annotation: "break statement exits switch block", memory: [{variable: "a", type: "float", value: "10.0"}, {variable: "b", type: "float", value: "3.0"}, {variable: "op", type: "char", value: "'+'"}], output: "Result: 13.00\n" },
+                  { line: 16, annotation: "Program terminates", memory: [{variable: "a", type: "float", value: "10.0"}, {variable: "b", type: "float", value: "3.0"}, {variable: "op", type: "char", value: "'+'"}], output: "Result: 13.00\n" }
+                ]
+              },
+              posttest: [
+                { question: "For inputs 15, 4, and operator *, what is the output?", options: ["11.00", "3.75", "19.00", "60.00"], answerIndex: 3 },
+                { question: "For inputs 9, 4, and operator -, what is the output?", options: ["13.00", "2.25", "5.00", "36.00"], answerIndex: 2 },
+                { question: "For inputs 7, 2, and operator /, what is the output?", options: ["3.00", "3.50", "4.00", "14.00"], answerIndex: 1 },
+                { question: "What does the default case in this calculator program do?", options: ["Performs addition as a fallback", "Exits the program silently", "Prints an invalid operator message", "Repeats the last valid operation"], answerIndex: 2 },
+                { question: "Why is \" %c\" (with a leading space) used instead of \"%c\" for reading the operator?", options: ["%c cannot read symbols", "The leading space flushes the newline left in the input buffer", "Symbols require a space before them in scanf", "It makes the output prettier"], answerIndex: 1 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
           },
           {
             id: "c-w5-5",
             title: "Leap Year Check",
             desc: "Determine if a given year is a leap year.",
             expected: "Leap Year / Not Leap Year",
-          },
+            content: {
+              aim: {
+                text: "In this experiment, the student will write a C program to accept a year from the user and determine whether it is a leap year or not using nested if-else statements and logical operators. The student will:",
+                bullets: [
+                  "Declare and use an int variable for the year",
+                  "Apply the standard leap year rule using % (modulus) and logical operators",
+                  "Implement the three-condition leap year test using nested if-else",
+                  "Use printf() to display whether the year is a leap year or not"
+                ]
+              },
+              theory: [
+                {
+                  title: "Leap Year Rules",
+                  body: ["A year is a leap year if: Rule 1: It is divisible by 4 AND Rule 2: It is NOT divisible by 100 OR Rule 3: It is divisible by 400", "Condensed Rule: (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)"]
+                },
+                {
+                  title: "Breakdown",
+                  body: ["Divisible by 4 : Candidate for leap year (e.g. 2024)", "Divisible by 100 : Century year — NOT a leap year unless also divisible by 400", "Divisible by 400 : Always a leap year (e.g. 2000)"]
+                },
+                {
+                  title: "Examples",
+                  body: ["2024 : 2024 % 4 == 0, 2024 % 100 != 0 → Leap year", "1900 : 1900 % 4 == 0, 1900 % 100 == 0, 1900 % 400 != 0 → Not a leap year", "2000 : 2000 % 400 == 0 → Leap year", "2023 : 2023 % 4 != 0 → Not a leap year"]
+                },
+                {
+                  title: "Operators",
+                  body: ["Modulus Operator — year % 4 gives the remainder when year is divided by 4.", "Logical Operators: && (AND) both conditions must be true, || (OR) at least one condition must be true, ! (NOT) inverts a boolean result"]
+                }
+              ],
+              pretest: [
+                { question: "Which of the following is the correct leap year condition in C?", options: ["year % 4 == 0", "(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)", "year % 100 == 0 || year % 4 == 0", "year % 400 == 0 && year % 4 == 0"], answerIndex: 1 },
+                { question: "Is 1900 a leap year?", options: ["Yes", "No", "Only in some calendars", "Depends on the compiler"], answerIndex: 1 },
+                { question: "Is 2000 a leap year?", options: ["No", "Yes", "Only if divisible by 100", "Cannot be determined"], answerIndex: 1 },
+                { question: "What does year % 4 == 0 check?", options: ["Whether year is greater than 4", "Whether year divided by 4 leaves no remainder", "Whether year is a multiple of 100", "Whether year is odd"], answerIndex: 1 },
+                { question: "Why is the divisible-by-100 rule needed in addition to divisible-by-4?", options: ["To handle negative years", "Because century years are not leap years unless divisible by 400", "To speed up computation", "To handle float years"], answerIndex: 1 }
+              ],
+              procedure: [
+                "Read the Aim and Theory sections carefully.",
+                "Open the Simulation tab and trace through the three-level condition check.",
+                "Observe how 2000, 1900, 2024, and 2023 each take different paths through the logic.",
+                "Open the Code Test tab. Starter code is pre-loaded.",
+                "In the Stdin box enter a year — e.g. 2024",
+                "Click Run Code. Verify output: 2024 is a Leap Year",
+                "Test 1900, 2000, 2023, and 1600 to cover all rule branches. Proceed to Posttest."
+              ],
+              simulation: {
+                code: "#include <stdio.h>\n\nint main() {\n    int year;\n    scanf(\"%d\", &year);\n    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {\n        printf(\"%d is a Leap Year\\n\", year);\n    } else {\n        printf(\"%d is not a Leap Year\\n\", year);\n    }\n    return 0;\n}",
+                steps: [
+                  { line: 1, annotation: "Load stdio library", memory: [], output: "" },
+                  { line: 4, annotation: "Allocate year variable", memory: [{variable: "year", type: "int", value: "?"}], output: "" },
+                  { line: 5, annotation: "scanf() reads '2024'", memory: [{variable: "year", type: "int", value: "2024"}], output: "" },
+                  { line: 6, annotation: "Check condition: (2024 % 4 == 0 && 2024 % 100 != 0) is true", memory: [{variable: "year", type: "int", value: "2024"}], output: "" },
+                  { line: 7, annotation: "printf() prints leap year message", memory: [{variable: "year", type: "int", value: "2024"}], output: "2024 is a Leap Year\n" },
+                  { line: 11, annotation: "Program terminates", memory: [{variable: "year", type: "int", value: "2024"}], output: "2024 is a Leap Year\n" }
+                ]
+              },
+              posttest: [
+                { question: "Is 1600 a leap year?", options: ["No", "Yes", "Only if % 4 == 0", "Cannot be determined"], answerIndex: 1 },
+                { question: "Is 2100 a leap year?", options: ["Yes, divisible by 4", "No — divisible by 100 but not 400", "Yes, divisible by 400", "Yes, all future years are leap years"], answerIndex: 1 },
+                { question: "What is the output for year = 2023?", options: ["2023 is a Leap Year", "2023 is not a Leap Year", "Compilation error", "Undefined"], answerIndex: 1 },
+                { question: "Which logical operator is used to combine the two main leap year conditions?", options: ["&&", "!", "||", "^"], answerIndex: 2 },
+                { question: "How many leap years are there between 1900 and 2000 inclusive?", options: ["25", "24", "26", "23"], answerIndex: 1 }
+              ],
+              references: [
+                "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
+                "Balagurusamy, \"Programming in ANSI C\", 8th Ed., McGraw Hill",
+                "JNTUGV C Programming Lab Syllabus, BS&HSS Dept.",
+                "GCC Documentation: https://gcc.gnu.org/onlinedocs/"
+              ]
+            }
+          }
         ],
       },
       {
