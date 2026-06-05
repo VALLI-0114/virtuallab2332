@@ -122,4 +122,24 @@
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; border-color: transparent; }
+  }
+  .typing-line-1 {
+    animation: typing 1.5s steps(30, end) forwards;
+  }
+  .typing-line-2 {
+    animation: typing 1s steps(30, end) 1.5s forwards;
+    animation-fill-mode: both;
+  }
+  .typing-line-3 {
+    animation: typing 1s steps(30, end) 2.5s forwards;
+    animation-fill-mode: both;
+  }
+  .typing-line-4 {
+    animation: typing 1s steps(30, end) 3.5s forwards;
+    animation-fill-mode: both;
+  }
 }

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Sparkles, Activity, Boxes, Send, Timer, ShieldCheck, GitBranch, FlaskConical } from "lucide-react";
 import { BranchCard } from "@/components/BranchCard";
 import { LearningJourney } from "@/components/LearningJourney";
+import { HeroAnimation } from "@/components/HeroAnimation";
 import { branches, metrics, runtimes } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/")({
@@ -56,16 +57,7 @@ function Dashboard() {
           </div>
 
           <div className="hidden lg:block relative opacity-0 animate-fade-in-up delay-300 z-10">
-            <div className="relative group cursor-pointer">
-              {/* Floating animated image */}
-              <img 
-                src="/isometric-computer-lab.png" 
-                alt="Animated Computer Lab" 
-                className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(0,255,255,0.15)] animate-float transition-all duration-500 group-hover:scale-105 group-hover:rotate-1 group-hover:drop-shadow-[0_0_40px_rgba(0,255,255,0.4)]"
-              />
-              {/* Hover glow effect behind image */}
-              <div className="absolute inset-0 bg-cyan/30 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 mix-blend-screen pointer-events-none" />
-            </div>
+            <HeroAnimation />
           </div>
         </div>
       </section>
