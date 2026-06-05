@@ -18,31 +18,38 @@ function Dashboard() {
   return (
     <div>
       {/* Banner */}
-      <div className="border-b border-border bg-secondary/50 px-6 py-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-        <span className="inline-flex items-center gap-1.5 font-semibold text-foreground">
-          <Sparkles className="size-3.5 text-cyan" /> Zero-Friction Access Model
+      <div className="border-b border-border bg-secondary/50 px-6 py-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs group cursor-default transition-colors hover:bg-secondary/70">
+        <span className="inline-flex items-center gap-1.5 font-semibold text-foreground relative">
+          <Sparkles className="size-3.5 text-cyan animate-pulse group-hover:animate-spin" style={{ animationDuration: '3s' }} />
+          Zero-Friction Access Model
+          <span className="absolute inset-0 bg-cyan/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
         </span>
-        <span className="text-muted-foreground">No Registration or Login Required for Student Investigators · Drafts persist via Local Storage hooks</span>
+        <span className="text-muted-foreground transition-colors group-hover:text-foreground">No Registration or Login Required for Student Investigators · Drafts persist via Local Storage hooks</span>
       </div>
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 grid-bg hero-fade" />
+        
+        {/* Animated Background Orbs */}
+        <div className="absolute top-10 left-10 lg:top-1/4 lg:left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-cyan/20 rounded-full mix-blend-screen filter blur-[80px] lg:blur-[100px] opacity-50 animate-pulse" style={{ animationDuration: '5s' }} />
+        <div className="absolute top-20 right-10 lg:top-1/3 lg:right-1/4 w-80 h-80 lg:w-[30rem] lg:h-[30rem] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] lg:blur-[120px] opacity-50 animate-pulse" style={{ animationDuration: '8s' }} />
+
         <div className="relative px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-[1fr_360px] gap-10 items-start">
           <div className="max-w-2xl">
 
-            <h1 className="mt-6 font-display text-5xl lg:text-7xl font-bold leading-[0.95] tracking-tight">
+            <h1 className="mt-6 font-display text-5xl lg:text-7xl font-bold leading-[0.95] tracking-tight opacity-0 animate-fade-in-up">
               Virtual Lab <br />
-              Management <span className="text-cyan">System</span>
+              Management <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary">System</span>
             </h1>
-            <p className="mt-6 text-base lg:text-lg text-muted-foreground max-w-xl">
+            <p className="mt-6 text-base lg:text-lg text-muted-foreground max-w-xl opacity-0 animate-fade-in-up delay-100">
               An isolated, authoritative laboratory framework for computer science curricula. Instant runtimes, automated evaluation, and zero-friction student access — no registration required.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/workspace" className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary/90">
-                Launch Workspace <ArrowUpRight className="size-4" />
+            <div className="mt-8 flex flex-wrap gap-3 opacity-0 animate-fade-in-up delay-200">
+              <Link to="/workspace" className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-primary/20 group">
+                Launch Workspace <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              <Link to="/courses" className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-secondary">
+              <Link to="/courses" className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium hover:bg-secondary transition-all duration-300 hover:scale-105 active:scale-95 hover:border-cyan/30 hover:text-cyan">
                 Browse Courses
               </Link>
             </div>
@@ -58,19 +65,24 @@ function Dashboard() {
 
 
       {/* Courses */}
-      <section className="px-6 lg:px-10 py-14">
+      <section className="px-6 lg:px-10 py-14 opacity-0 animate-fade-in-up delay-300">
         <div className="flex items-end justify-between flex-wrap gap-4">
           <SectionHeader eyebrow="Curriculum Tracks" title="Courses" caption="Technical courses aligned to the undergraduate computer science syllabus." />
-          <Link to="/courses" className="inline-flex items-center gap-1 text-sm font-medium hover:gap-2 transition-all">
-            View matrix <ArrowUpRight className="size-4" />
+          <Link to="/courses" className="inline-flex items-center gap-1 text-sm font-medium group transition-all text-cyan hover:text-cyan/80">
+            View matrix <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         </div>
         <div className="mt-8 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {branches.find(b => b.code === "IT")?.topics.map((t) => (
-            <div key={t} className="p-4 rounded-xl border border-border bg-card">
-              <h3 className="font-semibold text-lg">{t}</h3>
-              <Link to={`/course/${t.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} className="text-sm text-cyan mt-2 inline-block">Explore Course &rarr;</Link>
-            </div>
+          {branches.find(b => b.code === "IT")?.topics.map((t, idx) => (
+            <Link to={`/course/${t.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} key={t} className={`block group opacity-0 animate-fade-in-up`} style={{ animationDelay: `${400 + idx * 100}ms` }}>
+              <div className="p-5 rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan/5 hover:border-cyan/30 relative overflow-hidden h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <h3 className="font-semibold text-lg relative z-10">{t}</h3>
+                <span className="text-sm text-cyan mt-3 inline-flex items-center gap-1 relative z-10">
+                  Explore Course <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </section>

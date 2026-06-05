@@ -221,7 +221,7 @@ function SimulationPlayer({ data }: { data: any }) {
   );
 }
 
-export default function Workspace() {
+function Workspace() {
   const { exp } = Route.useSearch();
   const details = getExperimentDetails(exp);
 
