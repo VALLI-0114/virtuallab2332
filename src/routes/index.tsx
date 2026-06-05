@@ -35,8 +35,8 @@ function Dashboard() {
         <div className="absolute top-10 left-10 lg:top-1/4 lg:left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-cyan/20 rounded-full mix-blend-screen filter blur-[80px] lg:blur-[100px] opacity-50 animate-pulse" style={{ animationDuration: '5s' }} />
         <div className="absolute top-20 right-10 lg:top-1/3 lg:right-1/4 w-80 h-80 lg:w-[30rem] lg:h-[30rem] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] lg:blur-[120px] opacity-50 animate-pulse" style={{ animationDuration: '8s' }} />
 
-        <div className="relative px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-[1fr_360px] gap-10 items-start">
-          <div className="max-w-2xl">
+        <div className="relative px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_500px] gap-10 items-center">
+          <div className="max-w-2xl relative z-10">
 
             <h1 className="mt-6 font-display text-5xl lg:text-7xl font-bold leading-[0.95] tracking-tight opacity-0 animate-fade-in-up">
               Virtual Lab <br />
@@ -55,6 +55,18 @@ function Dashboard() {
             </div>
           </div>
 
+          <div className="hidden lg:block relative opacity-0 animate-fade-in-up delay-300 z-10">
+            <div className="relative group cursor-pointer">
+              {/* Floating animated image */}
+              <img 
+                src="/isometric-computer-lab.png" 
+                alt="Animated Computer Lab" 
+                className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(0,255,255,0.15)] animate-float transition-all duration-500 group-hover:scale-105 group-hover:rotate-1 group-hover:drop-shadow-[0_0_40px_rgba(0,255,255,0.4)]"
+              />
+              {/* Hover glow effect behind image */}
+              <div className="absolute inset-0 bg-cyan/30 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 mix-blend-screen pointer-events-none" />
+            </div>
+          </div>
         </div>
       </section>
 

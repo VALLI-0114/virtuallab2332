@@ -113,4 +113,13 @@
   .delay-400 { animation-delay: 400ms; }
   
   .opacity-0 { opacity: 0; }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
 }
