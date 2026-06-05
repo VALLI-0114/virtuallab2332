@@ -47,8 +47,8 @@ export function HeroAnimation() {
             <div key={i} className="flex-1 bg-black/60 border border-slate-800 rounded-md flex items-center px-4 gap-4 overflow-hidden relative">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/50 to-cyan/50" />
               <div className="flex gap-2">
-                <div className={`size-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]`} style={{ animationDelay: \`\${i * 0.2}s\` }} />
-                <div className={`size-2 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_rgba(0,255,255,0.8)]`} style={{ animationDelay: \`\${i * 0.4}s\` }} />
+                <div className={`size-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]`} style={{ animationDelay: `${i * 0.2}s` }} />
+                <div className={`size-2 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_rgba(0,255,255,0.8)]`} style={{ animationDelay: `${i * 0.4}s` }} />
               </div>
               <div className="flex-1 space-y-2">
                 <div className="h-1 bg-slate-700 rounded w-full" />
