@@ -1,6 +1,7 @@
 import type { Course } from "./course-data";
 import { dsExercise1 } from "./ds-e1";
 import { dsExercise2 } from "./ds-e2";
+import { dsExercise3 } from "./ds-e3";
 
 export const dsCourse: Course = {
   id: "data-structures-using-c-programming",
@@ -64,17 +65,7 @@ export const dsCourse: Course = {
   weeks: [
     dsExercise1,
     dsExercise2,
-    {
-      title: "EXERCISE 3",
-      objective: "Linked List Applications including duplicate detection and removal, polynomial representation and addition using linked lists, and double-ended queue implementation as real-world linked list use cases.",
-      tutorial: "Tutorial 3: Linked List Applications",
-      labTitle: "Lab 3: Linked List Applications",
-      experiments: [
-        { id: "ds-e3-1", title: "Detect and Remove Duplicates from Linked List", desc: "Find and remove duplicate elements from a linked list.", expected: "List without duplicates" },
-        { id: "ds-e3-2", title: "Polynomial Addition using Linked List", desc: "Add two polynomials represented using linked lists.", expected: "Resultant polynomial" },
-        { id: "ds-e3-3", title: "Double-Ended Queue (Deque) Implementation", desc: "Implement a Deque using a linked list.", expected: "Deque operations output" }
-      ]
-    },
+    dsExercise3,
     {
       title: "EXERCISE 4",
       objective: "Double Linked List Implementation including doubly linked list operations with forward and backward traversal and circular linked list implementation with insertion, deletion, and traversal.",
