@@ -127,11 +127,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "Which shape represents an entity in an ER diagram?", "options": ["Diamond", "Ellipse", "Rectangle", "Line"], "answerIndex": 2 },
-              { "question": "Which shape represents a relationship in an ER diagram?", "options": ["Rectangle", "Diamond", "Ellipse", "Arrow"], "answerIndex": 1 },
-              { "question": "A multivalued attribute is represented in ER diagrams as:", "options": ["Dashed ellipse", "Double ellipse", "Rectangle", "Diamond"], "answerIndex": 1 },
-              { "question": "What cardinality does STUDENT ENROLLS IN COURSE have?", "options": ["1:1", "1:N", "M:N", "N:1"], "answerIndex": 2 },
-              { "question": "Total participation in a relationship is shown by:", "options": ["Single line", "Dashed line", "Double line", "Arrow"], "answerIndex": 2 }
+              { "question": "Which shape represents an entity in an ER diagram?", "options": ["Diamond", "Ellipse", "Rectangle", "Line"], "answerIndex": 2, hint: "Think of an entity as a distinct 'thing' or 'object'. Just like physical boxes are used to hold or organize items in the real world" },
+              { "question": "Which shape represents a relationship in an ER diagram?", "options": ["Rectangle", "Diamond", "Ellipse", "Arrow"], "answerIndex": 1, hint:  "Relationships describe how entities are associated — which shape looks like a decision diamond?"},
+              { "question": "A multivalued attribute is represented in ER diagrams as:", "options": ["Dashed ellipse", "Double ellipse", "Rectangle", "Diamond"], "answerIndex": 1, hint:"The prefix 'multi' is a clue — and the double border signals something special." },
+              { "question": "What cardinality does STUDENT ENROLLS IN COURSE have?", "options": ["1:1", "1:N", "M:N", "N:1"], "answerIndex": 2, hint:"How many students can enroll in one course, and how many courses can one student take?" },
+              { "question": "Total participation in a relationship is shown by:", "options": ["Single line", "Dashed line", "Double line", "Arrow"], "answerIndex": 2, hint:"Think about whether every entity must participate or only some."}
             ],
             "procedure": [
               "Read the Aim and Theory sections carefully before designing the diagram",
@@ -158,11 +158,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "In the ENROLLS relationship between Student and Course, the cardinality is:", "options": ["1:1", "1:N", "M:N", "N:1"], "answerIndex": 2 },
-              { "question": "If every course must be taught by at least one instructor, the participation of Course in TEACHES is:", "options": ["Partial", "Total", "Optional", "Recursive"], "answerIndex": 1 },
-              { "question": "An attribute like 'Age' computed from 'Date_of_Birth' is called a:", "options": ["Simple attribute", "Multivalued attribute", "Derived attribute", "Composite attribute"], "answerIndex": 2 },
-              { "question": "Which of the following is a relationship attribute in the university ER diagram?", "options": ["Roll_No", "Course_ID", "Grade", "Dept_Name"], "answerIndex": 2 },
-              { "question": "In ER notation, the primary key attribute is represented by:", "options": ["Bold text", "Italic text", "Underlined text", "Double ellipse"], "answerIndex": 2 }
+              { "question": "In the ENROLLS relationship between Student and Course, the cardinality is:", "options": ["1:1", "1:N", "M:N", "N:1"], "answerIndex": 2, hint:"Same question as the enrollment cardinality — revisit the ENROLLS relationship definition."},
+              { "question": "If every course must be taught by at least one instructor, the participation of Course in TEACHES is:", "options": ["Partial", "Total", "Optional", "Recursive"], "answerIndex": 1, hint: "If every course must have at least one instructor, what does that say about participation?"},
+              { "question": "An attribute like 'Age' computed from 'Date_of_Birth' is called a:", "options": ["Simple attribute", "Multivalued attribute", "Derived attribute", "Composite attribute"], "answerIndex": 2 , hint: "The clue is in the word 'computed' — Age is not stored directly."},
+              { "question": "Which of the following is a relationship attribute in the university ER diagram?", "options": ["Roll_No", "Course_ID", "Grade", "Dept_Name"], "answerIndex": 2, hint:"Grades belong to the act of enrollment itself, not to a student or course alone." },
+              { "question": "In ER notation, the primary key attribute is represented by:", "options": ["Bold text", "Italic text", "Underlined text", "Double ellipse"], "answerIndex": 2,hint: "In ER diagrams, a line under the attribute name signals a special role — which formatting means uniqueness?" }
             ],
             references: [
                 "Silberschatz, A., Korth, H.F. and Sudarshan, S. - 'Database System Concepts', 5th Edition, TMH, Chapter 1: Introduction (Sections 1.1-1.3)",
@@ -216,11 +216,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "A weak entity is represented in ER diagrams as:", "options": ["Single rectangle", "Double rectangle", "Dashed rectangle", "Diamond"], "answerIndex": 1 },
-              { "question": "The relationship between a weak entity and its owner is called:", "options": ["Strong relationship", "Identifying relationship", "Partial relationship", "Recursive relationship"], "answerIndex": 1 },
-              { "question": "Which of the following demonstrates specialization?", "options": ["Student and Course merged into Person", "Doctor split into Surgeon and General Physician", "Patient linked to Ward", "Medicine linked to Doctor"], "answerIndex": 1 },
-              { "question": "A ternary relationship connects how many entity sets?", "options": ["2", "3", "4", "1"], "answerIndex": 1 },
-              { "question": "Subclasses in specialization inherit attributes from the:", "options": ["Weak entity", "Superclass", "Relationship", "Key attribute"], "answerIndex": 1 }
+              { "question": "A weak entity is represented in ER diagrams as:", "options": ["Single rectangle", "Double rectangle", "Dashed rectangle", "Diamond"], "answerIndex": 1,hint: "Weak entities depend on another entity — what visual distinction separates them from strong entities?"},
+              { "question": "The relationship between a weak entity and its owner is called:", "options": ["Strong relationship", "Identifying relationship", "Partial relationship", "Recursive relationship"], "answerIndex": 1,hint:"The relationship that gives a weak entity its identity has a special name and notation." },
+              { "question": "Which of the following demonstrates specialization?", "options": ["Student and Course merged into Person", "Doctor split into Surgeon and General Physician", "Patient linked to Ward", "Medicine linked to Doctor"], "answerIndex": 1,hint: "Specialization goes from general to specific — which option shows a more specific type of Doctor?"},
+              { "question": "A ternary relationship connects how many entity sets?", "options": ["2", "3", "4", "1"], "answerIndex": 1,hint:"Count the entity sets involved — a ternary relationship involves a specific number." },
+              { "question": "Subclasses in specialization inherit attributes from the:", "options": ["Weak entity", "Superclass", "Relationship", "Key attribute"], "answerIndex": 1 ,hint:"Subclasses inherit from their parent — what is the parent called?"}
             ],
             "procedure": [
               "Read Aim and Theory before starting",
@@ -243,11 +243,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "What identifies a Bed in the hospital database (weak entity)?", "options": ["Bed_No alone", "Ward_No alone", "Combination of Bed_No and Ward_No", "Patient_ID"], "answerIndex": 2 },
-              { "question": "The partial key of a weak entity is shown in ER diagrams as:", "options": ["Underlined", "Double underlined", "Dashed underline", "Bold"], "answerIndex": 2 },
-              { "question": "In specialization, which entity has more attributes — superclass or subclass?", "options": ["Superclass always has more", "Subclass always has more", "Superclass has common attributes; subclass adds specific ones", "Both have exactly the same"], "answerIndex": 2 },
-              { "question": "Dosage placed on the PRESCRIBES relationship is an example of:", "options": ["Entity attribute", "Relationship attribute", "Derived attribute", "Multivalued attribute"], "answerIndex": 1 },
-              { "question": "The ISA triangle in ER diagrams represents:", "options": ["A recursive relationship", "Specialization or generalization", "A ternary relationship", "Participation constraint"], "answerIndex": 1 }
+              { "question": "What identifies a Bed in the hospital database (weak entity)?", "options": ["Bed_No alone", "Ward_No alone", "Combination of Bed_No and Ward_No", "Patient_ID"], "answerIndex": 2, hint:"A weak entity needs both its own partial key and its owner's key — which combination works?" },
+              { "question": "The partial key of a weak entity is shown in ER diagrams as:", "options": ["Underlined", "Double underlined", "Dashed underline", "Bold"], "answerIndex": 2, hint:"Partial keys use a different underline style than primary keys — think dashed vs solid." },
+              { "question": "In specialization, which entity has more attributes — superclass or subclass?", "options": ["Superclass always has more", "Subclass always has more", "Superclass has common attributes; subclass adds specific ones", "Both have exactly the same"], "answerIndex": 2, hint: "Superclasses hold what is common; subclasses add what is unique — who has more in total?"},
+              { "question": "Dosage placed on the PRESCRIBES relationship is an example of:", "options": ["Entity attribute", "Relationship attribute", "Derived attribute", "Multivalued attribute"], "answerIndex": 1,hint: "Dosage is a property of the prescribing act, not of the doctor or medicine alone."},
+              { "question": "The ISA triangle in ER diagrams represents:", "options": ["A recursive relationship", "Specialization or generalization", "A ternary relationship", "Participation constraint"], "answerIndex": 1, hint: "The ISA triangle represents a hierarchy — think inheritance and specialization." }
             ],
             references: [
                 "Ramakrishnan, R. and Gehrke, J. - 'Database Management Systems', 3rd Edition, TMH, Chapter 2: Entity-Relationship Modeling (Sections 2.6-2.8 on Specialization, Weak Entities)",
@@ -317,11 +317,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "Which relational algebra operation filters rows based on a condition?", "options": ["PROJECT (π)", "SELECT (σ)", "JOIN (⋈)", "UNION (∪)"], "answerIndex": 1 },
-              { "question": "Which operation extracts specific columns from a relation?", "options": ["SELECT (σ)", "RENAME (ρ)", "PROJECT (π)", "DIFFERENCE (−)"], "answerIndex": 2 },
-              { "question": "What does π_Name,Salary(EMPLOYEE) return?", "options": ["All employees with Name and Salary > 0", "A relation with only Name and Salary columns", "Employees sorted by Salary", "Count of employees"], "answerIndex": 1 },
-              { "question": "The SELECT operation in relational algebra corresponds to which SQL clause?", "options": ["SELECT", "FROM", "WHERE", "GROUP BY"], "answerIndex": 2 },
-              { "question": "π_Dept(EMPLOYEE) eliminates duplicate department names because:", "options": ["Relations are bags", "Relations are sets — duplicates are removed", "PROJECT sorts automatically", "Dept is a primary key"], "answerIndex": 1 }
+              { "question": "Which relational algebra operation filters rows based on a condition?", "options": ["PROJECT (π)", "SELECT (σ)", "JOIN (⋈)", "UNION (∪)"], "answerIndex": 1, hint: "SELECT in relational algebra filters rows — think horizontal slicing."},
+              { "question": "Which operation extracts specific columns from a relation?", "options": ["SELECT (σ)", "RENAME (ρ)", "PROJECT (π)", "DIFFERENCE (−)"], "answerIndex": 2, hint:"PROJECT extracts columns — think vertical slicing."},
+              { "question": "What does π_Name,Salary(EMPLOYEE) return?", "options": ["All employees with Name and Salary > 0", "A relation with only Name and Salary columns", "Employees sorted by Salary", "Count of employees"], "answerIndex": 1, hint:"π with two attribute names returns only those columns — no filtering of rows." },
+              { "question": "The SELECT operation in relational algebra corresponds to which SQL clause?", "options": ["SELECT", "FROM", "WHERE", "GROUP BY"], "answerIndex": 2,hint: "The SQL WHERE clause restricts which rows appear — which relational algebra operation does the same?" },
+              { "question": "π_Dept(EMPLOYEE) eliminates duplicate department names because:", "options": ["Relations are bags", "Relations are sets — duplicates are removed", "PROJECT sorts automatically", "Dept is a primary key"], "answerIndex": 1, hint:"Relations are sets by definition — what property of sets prevents repeated elements?" }
             ],
             "procedure": [
               "Read the Aim and Theory sections carefully",
@@ -343,11 +343,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "What is the result of π_Dept(EMPLOYEE) on the sample data?", "options": ["{HR, IT, Finance, HR}", "{HR, IT, Finance}", "{Alice, Bob, Carol, Dave}", "All 4 tuples unchanged"], "answerIndex": 1 },
-              { "question": "Which expression finds names of employees with salary between 50000 and 70000?", "options": ["π_Name(EMPLOYEE)", "σ_Salary>50000(π_Name(EMPLOYEE))", "π_Name(σ_Salary>50000 ∧ Salary<70000(EMPLOYEE))", "σ_Name(EMPLOYEE)"], "answerIndex": 2 },
-              { "question": "How many tuples does σ_Dept='IT'(EMPLOYEE) return on the sample data?", "options": ["0", "1", "2", "4"], "answerIndex": 1 },
-              { "question": "PROJECT eliminates duplicates because relational algebra treats relations as:", "options": ["Bags (multisets)", "Lists", "Sets", "Arrays"], "answerIndex": 2 },
-              { "question": "The expression π_Name,Dept(σ_Salary>60000(EMPLOYEE)) is evaluated in which order?", "options": ["PROJECT first, then SELECT", "SELECT first, then PROJECT", "Both simultaneously", "Neither — the expression is invalid"], "answerIndex": 1 }
+              { "question": "What is the result of π_Dept(EMPLOYEE) on the sample data?", "options": ["{HR, IT, Finance, HR}", "{HR, IT, Finance}", "{Alice, Bob, Carol, Dave}", "All 4 tuples unchanged"], "answerIndex": 1, hint:"Count unique department values in the sample data — duplicates are removed." },
+              { "question": "Which expression finds names of employees with salary between 50000 and 70000?", "options": ["π_Name(EMPLOYEE)", "σ_Salary>50000(π_Name(EMPLOYEE))", "π_Name(σ_Salary>50000 ∧ Salary<70000(EMPLOYEE))", "σ_Name(EMPLOYEE)"], "answerIndex": 2,hint: "You need both a lower and upper bound on Salary — which operation combines conditions?"},
+              { "question": "How many tuples does σ_Dept='IT'(EMPLOYEE) return on the sample data?", "options": ["0", "1", "2", "4"], "answerIndex": 1,hint: "How many employees are in the IT department in the sample data?" },
+              { "question": "PROJECT eliminates duplicates because relational algebra treats relations as:", "options": ["Bags (multisets)", "Lists", "Sets", "Arrays"], "answerIndex": 2, hint:"The key word is 'set' — relational algebra defines relations as sets, not bags." },
+              { "question": "The expression π_Name,Dept(σ_Salary>60000(EMPLOYEE)) is evaluated in which order?", "options": ["PROJECT first, then SELECT", "SELECT first, then PROJECT", "Both simultaneously", "Neither — the expression is invalid"], "answerIndex": 1, hint:"Inner expressions are evaluated first — which operation filters before the other extracts?" }
             ],
             references: [
                 "Ramakrishnan, R. and Gehrke, J. - 'Database Management Systems', 3rd Edition, TMH, Chapter 4: Relational Algebra (Sections 4.1-4.3)",
@@ -409,11 +409,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "Natural join eliminates duplicate columns. Which attributes are joined?", "options": ["All attributes", "Only primary keys", "All attributes with the same name", "Only foreign keys"], "answerIndex": 2 },
-              { "question": "If |R| = 5 and |S| = 4, how many tuples does R × S produce?", "options": ["9", "20", "1", "Depends on data"], "answerIndex": 1 },
-              { "question": "Which operation finds tuples present in R but not in S?", "options": ["R ∪ S", "R ∩ S", "R − S", "R ⋈ S"], "answerIndex": 2 },
-              { "question": "For set operations (∪, ∩, −), the relations must be:", "options": ["Same primary key", "Union-compatible", "From the same database", "Sorted"], "answerIndex": 1 },
-              { "question": "The RENAME operation ρ is primarily used to:", "options": ["Sort tuples", "Resolve attribute name conflicts", "Filter rows", "Project columns"], "answerIndex": 1 }
+              { "question": "Natural join eliminates duplicate columns. Which attributes are joined?", "options": ["All attributes", "Only primary keys", "All attributes with the same name", "Only foreign keys"], "answerIndex": 2, hint: "Natural join automatically finds matching columns — it doesn't need you to specify which ones to join on." },
+              { "question": "If |R| = 5 and |S| = 4, how many tuples does R × S produce?", "options": ["9", "20", "1", "Depends on data"], "answerIndex": 1, hint: "Cartesian product pairs every row of one table with every row of the other — multiply the sizes." },
+              { "question": "Which operation finds tuples present in R but not in S?", "options": ["R ∪ S", "R ∩ S", "R − S", "R ⋈ S"], "answerIndex": 2, hint: "Set difference keeps what's on the left but not on the right."},
+              { "question": "For set operations (∪, ∩, −), the relations must be:", "options": ["Same primary key", "Union-compatible", "From the same database", "Sorted"], "answerIndex": 1, hint: "Set operations require the two sides to have the same structure — what term describes this?"},
+              { "question": "The RENAME operation ρ is primarily used to:", "options": ["Sort tuples", "Resolve attribute name conflicts", "Filter rows", "Project columns"], "answerIndex": 1, hint:"RENAME helps when two references to the same table would cause naming confusion." }
             ],
             "procedure": [
               "Review sample EMPLOYEE and DEPARTMENT data in the Simulation tab",
@@ -433,11 +433,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "Natural join of EMPLOYEE and DEPARTMENT on Dept_ID produces:", "options": ["All pairs regardless of Dept_ID", "Only matching Dept_ID pairs, one Dept_ID column", "Only matching pairs, Dept_ID appears twice", "Only EMPLOYEE tuples"], "answerIndex": 1 },
-              { "question": "What SQL clause is equivalent to a Theta Join's condition?", "options": ["FROM", "WHERE", "SELECT", "ORDER BY"], "answerIndex": 1 },
-              { "question": "R ∩ S is equivalent to which expression using set difference?", "options": ["R − (R − S)", "(R ∪ S) − R", "R − S", "S − R"], "answerIndex": 0 },
-              { "question": "Why is RENAME needed before a self-join of EMPLOYEE?", "options": ["To sort the table", "To create a copy with different attribute names to avoid ambiguity", "To remove duplicates", "To change the primary key"], "answerIndex": 1 },
-              { "question": "Which expression finds all employees who are also managers?", "options": ["EMPLOYEE ∪ DEPARTMENT", "π_Emp_ID(EMPLOYEE) ∩ π_Manager_ID(DEPARTMENT)", "EMPLOYEE − DEPARTMENT", "EMPLOYEE ⋈ DEPARTMENT"], "answerIndex": 1 }
+              { "question": "Natural join of EMPLOYEE and DEPARTMENT on Dept_ID produces:", "options": ["All pairs regardless of Dept_ID", "Only matching Dept_ID pairs, one Dept_ID column", "Only matching pairs, Dept_ID appears twice", "Only EMPLOYEE tuples"], "answerIndex": 1, hint:"Natural join merges on common attributes and shows each only once." },
+              { "question": "What SQL clause is equivalent to a Theta Join's condition?", "options": ["FROM", "WHERE", "SELECT", "ORDER BY"], "answerIndex": 1 , hint:"A Theta Join is a Cartesian product with a condition — which SQL clause expresses that condition?"},
+              { "question": "R ∩ S is equivalent to which expression using set difference?", "options": ["R − (R − S)", "(R ∪ S) − R", "R − S", "S − R"], "answerIndex": 0, hint: "Try expressing R ∩ S using only set difference — apply it twice."},
+              { "question": "Why is RENAME needed before a self-join of EMPLOYEE?", "options": ["To sort the table", "To create a copy with different attribute names to avoid ambiguity", "To remove duplicates", "To change the primary key"], "answerIndex": 1, hint:"A self-join requires two separate references to the same table — how do you distinguish them?" },
+              { "question": "Which expression finds all employees who are also managers?", "options": ["EMPLOYEE ∪ DEPARTMENT", "π_Emp_ID(EMPLOYEE) ∩ π_Manager_ID(DEPARTMENT)", "EMPLOYEE − DEPARTMENT", "EMPLOYEE ⋈ DEPARTMENT"], "answerIndex": 1 , hint:"Employees who are also managers appear in both EMPLOYEE and as Manager_ID in DEPARTMENT."}
             ],
             references: [
                 "Ramakrishnan, R. and Gehrke, J. - 'Database Management Systems', 3rd Edition, TMH, Chapter 4: Relational Algebra (Sections 4.4-4.5 on Joins and Set Operations)",
@@ -514,11 +514,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "Which constraint ensures no two rows have the same value in a column?", "options": ["NOT NULL", "DEFAULT", "UNIQUE", "CHECK"], "answerIndex": 2 },
-              { "question": "A PRIMARY KEY constraint implies:", "options": ["UNIQUE only", "NOT NULL only", "Both UNIQUE and NOT NULL", "DEFAULT value"], "answerIndex": 2 },
-              { "question": "Which constraint enforces that a column's value must satisfy a condition like Age >= 18?", "options": ["NOT NULL", "CHECK", "UNIQUE", "FOREIGN KEY"], "answerIndex": 1 },
-              { "question": "ON DELETE CASCADE means:", "options": ["Deletion is prevented", "Parent row is deleted, child rows set to NULL", "When parent is deleted, child rows are also deleted", "Deletion updates the foreign key"], "answerIndex": 2 },
-              { "question": "How many PRIMARY KEY constraints can a table have?", "options": ["Unlimited", "One", "Two", "One per column"], "answerIndex": 1 }
+              { "question": "Which constraint ensures no two rows have the same value in a column?", "options": ["NOT NULL", "DEFAULT", "UNIQUE", "CHECK"], "answerIndex": 2,hint: "Both UNIQUE and PRIMARY KEY prevent duplicates — but only one also enforces NOT NULL." },
+              { "question": "A PRIMARY KEY constraint implies:", "options": ["UNIQUE only", "NOT NULL only", "Both UNIQUE and NOT NULL", "DEFAULT value"], "answerIndex": 2, hint: "PRIMARY KEY combines two constraints into one — which two?" },
+              { "question": "Which constraint enforces that a column's value must satisfy a condition like Age >= 18?", "options": ["NOT NULL", "CHECK", "UNIQUE", "FOREIGN KEY"], "answerIndex": 1 , hint:"CHECK allows you to define a custom condition — Age >= 18 is a value restriction."},
+              { "question": "ON DELETE CASCADE means:", "options": ["Deletion is prevented", "Parent row is deleted, child rows set to NULL", "When parent is deleted, child rows are also deleted", "Deletion updates the foreign key"], "answerIndex": 2, hint:"CASCADE means the action flows down — deleting a parent removes its children too." },
+              { "question": "How many PRIMARY KEY constraints can a table have?", "options": ["Unlimited", "One", "Two", "One per column"], "answerIndex": 1 , hint:"A table has exactly one identity — how many primary keys does that imply?"}
             ],
             "procedure": [
               "Read the Aim and Theory sections carefully",
@@ -543,11 +543,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "What happens when you try to INSERT a student with a Dept_ID that does not exist in DEPARTMENT?", "options": ["The row is inserted with NULL Dept_ID", "A FOREIGN KEY constraint violation error is raised", "The student is inserted and DEPARTMENT is updated", "Nothing happens"], "answerIndex": 1 },
-              { "question": "Which ALTER TABLE command adds a column Phone_No VARCHAR(15) to STUDENT?", "options": ["ALTER TABLE STUDENT ADD COLUMN Phone_No VARCHAR(15);", "ALTER STUDENT ADD Phone_No VARCHAR(15);", "UPDATE TABLE STUDENT ADD Phone_No VARCHAR(15);", "INSERT COLUMN Phone_No INTO STUDENT;"], "answerIndex": 0 },
-              { "question": "If Dept_ID has ON DELETE CASCADE in COURSE, deleting a department will:", "options": ["Raise a foreign key error", "Set Course.Dept_ID to NULL", "Delete all courses in that department", "No effect"], "answerIndex": 2 },
-              { "question": "Can a UNIQUE column contain a NULL value?", "options": ["No, UNIQUE implies NOT NULL", "Yes, UNIQUE allows one NULL", "Yes, UNIQUE allows multiple NULLs in most databases", "No, NULL is never allowed"], "answerIndex": 2 },
-              { "question": "Which constraint would you use to ensure Credits is only 1, 2, 3, or 4?", "options": ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"], "answerIndex": 3 }
+              { "question": "What happens when you try to INSERT a student with a Dept_ID that does not exist in DEPARTMENT?", "options": ["The row is inserted with NULL Dept_ID", "A FOREIGN KEY constraint violation error is raised", "The student is inserted and DEPARTMENT is updated", "Nothing happens"], "answerIndex": 1, hint:"Foreign key constraints verify that the referenced value exists in the parent table." },
+              { "question": "Which ALTER TABLE command adds a column Phone_No VARCHAR(15) to STUDENT?", "options": ["ALTER TABLE STUDENT ADD COLUMN Phone_No VARCHAR(15);", "ALTER STUDENT ADD Phone_No VARCHAR(15);", "UPDATE TABLE STUDENT ADD Phone_No VARCHAR(15);", "INSERT COLUMN Phone_No INTO STUDENT;"], "answerIndex": 0 , hint:"The SQL syntax for adding a column uses a specific keyword after the table name."},
+              { "question": "If Dept_ID has ON DELETE CASCADE in COURSE, deleting a department will:", "options": ["Raise a foreign key error", "Set Course.Dept_ID to NULL", "Delete all courses in that department", "No effect"], "answerIndex": 2, hint: "ON DELETE CASCADE propagates the deletion — what happens to rows that reference the deleted row?"},
+              { "question": "Can a UNIQUE column contain a NULL value?", "options": ["No, UNIQUE implies NOT NULL", "Yes, UNIQUE allows one NULL", "Yes, UNIQUE allows multiple NULLs in most databases", "No, NULL is never allowed"], "answerIndex": 2, hint:"UNIQUE and NOT NULL are different constraints — UNIQUE focuses on distinctness, not presence." },
+              { "question": "Which constraint would you use to ensure Credits is only 1, 2, 3, or 4?", "options": ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"], "answerIndex": 3,hint: "CHECK with IN(...) restricts values to a defined list."}
             ],
             references: [
                 "Silberschatz, A., Korth, H.F. and Sudarshan, S. - 'Database System Concepts', 5th Edition, TMH, Chapter 1: Introduction (Sections 1.5-1.6 on Data Definition)",
@@ -603,11 +603,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "Which SQL command is used to add new rows to a table?", "options": ["ADD", "UPDATE", "INSERT", "CREATE"], "answerIndex": 2 },
-              { "question": "What happens when UPDATE is run without a WHERE clause?", "options": ["Only the first row is updated", "No rows are updated", "All rows are updated", "A syntax error occurs"], "answerIndex": 2 },
-              { "question": "What is the difference between DELETE and TRUNCATE?", "options": ["DELETE removes structure, TRUNCATE removes only data", "DELETE can have a WHERE clause and is logged; TRUNCATE removes all rows quickly", "They are identical", "TRUNCATE is faster but adds a WHERE clause automatically"], "answerIndex": 1 },
-              { "question": "Which statement copies rows from one table to another?", "options": ["INSERT INTO t1 SELECT * FROM t2;", "COPY FROM t2 INTO t1;", "UPDATE t1 FROM t2;", "MOVE t2 TO t1;"], "answerIndex": 0 },
-              { "question": "Can you DELETE a row from DEPARTMENT if a STUDENT row references it with ON DELETE RESTRICT?", "options": ["Yes, always", "No, referential integrity prevents it", "Yes, but the student row is set to NULL", "Yes, but the student row is also deleted"], "answerIndex": 1 }
+              { "question": "Which SQL command is used to add new rows to a table?", "options": ["ADD", "UPDATE", "INSERT", "CREATE"], "answerIndex": 2, hint: "INSERT adds new rows — think of it as adding data to the table."},
+              { "question": "What happens when UPDATE is run without a WHERE clause?", "options": ["Only the first row is updated", "No rows are updated", "All rows are updated", "A syntax error occurs"], "answerIndex": 2, hint: "Without WHERE, the operation applies to every row — no filtering means no restriction."},
+              { "question": "What is the difference between DELETE and TRUNCATE?", "options": ["DELETE removes structure, TRUNCATE removes only data", "DELETE can have a WHERE clause and is logged; TRUNCATE removes all rows quickly", "They are identical", "TRUNCATE is faster but adds a WHERE clause automatically"], "answerIndex": 1 , hint:"DELETE logs each row removal and can be undone; TRUNCATE is a bulk operation."},
+              { "question": "Which statement copies rows from one table to another?", "options": ["INSERT INTO t1 SELECT * FROM t2;", "COPY FROM t2 INTO t1;", "UPDATE t1 FROM t2;", "MOVE t2 TO t1;"], "answerIndex": 0,hint:"INSERT INTO ... SELECT ... copies rows from a query result into another table." },
+              { "question": "Can you DELETE a row from DEPARTMENT if a STUDENT row references it with ON DELETE RESTRICT?", "options": ["Yes, always", "No, referential integrity prevents it", "Yes, but the student row is set to NULL", "Yes, but the student row is also deleted"], "answerIndex": 1, hint:"ON DELETE RESTRICT prevents deletion when child rows still reference the parent." }
             ],
             "procedure": [
               "Open the Code Test tab with the pre-loaded DML statements",
@@ -630,11 +630,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "After DELETE FROM STUDENT WHERE Age > 22, how many rows remain?", "options": ["4", "3", "2", "0"], "answerIndex": 1 },
-              { "question": "What SQL statement updates the email of student with Roll_No = 101?", "options": ["UPDATE STUDENT SET Email='new@edu.in';", "UPDATE STUDENT SET Email='new@edu.in' WHERE Roll_No=101;", "MODIFY STUDENT Email='new@edu.in' WHERE Roll_No=101;", "ALTER STUDENT SET Email='new@edu.in' WHERE Roll_No=101;"], "answerIndex": 1 },
-              { "question": "Which operation deletes all rows but keeps the table structure?", "options": ["DROP TABLE", "DELETE FROM t;", "Both DELETE FROM t; and TRUNCATE TABLE t;", "REMOVE TABLE"], "answerIndex": 2 },
-              { "question": "INSERT INTO STUDENT SELECT * FROM ARCHIVE_STUDENT WHERE Age < 25; does what?", "options": ["Creates a new table", "Copies qualifying rows from ARCHIVE_STUDENT into STUDENT", "Replaces STUDENT with ARCHIVE_STUDENT", "Deletes matching rows"], "answerIndex": 1 },
-              { "question": "A student's Dept_ID is set to ON DELETE SET NULL. After the referenced department is deleted, the student's Dept_ID becomes:", "options": ["0", "Deleted", "NULL", "Default value"], "answerIndex": 2 }
+              { "question": "After DELETE FROM STUDENT WHERE Age > 22, how many rows remain?", "options": ["4", "3", "2", "0"], "answerIndex": 1, hint:"Count rows where Age > 22 in the sample — only those are removed."},
+              { "question": "What SQL statement updates the email of student with Roll_No = 101?", "options": ["UPDATE STUDENT SET Email='new@edu.in';", "UPDATE STUDENT SET Email='new@edu.in' WHERE Roll_No=101;", "MODIFY STUDENT Email='new@edu.in' WHERE Roll_No=101;", "ALTER STUDENT SET Email='new@edu.in' WHERE Roll_No=101;"], "answerIndex": 1, hint: "UPDATE requires both SET and WHERE — the WHERE clause targets the specific row."},
+              { "question": "Which operation deletes all rows but keeps the table structure?", "options": ["DROP TABLE", "DELETE FROM t;", "Both DELETE FROM t; and TRUNCATE TABLE t;", "REMOVE TABLE"], "answerIndex": 2, hint: "Both DELETE FROM t and TRUNCATE TABLE t remove all rows but preserve the schema."},
+              { "question": "INSERT INTO STUDENT SELECT * FROM ARCHIVE_STUDENT WHERE Age < 25; does what?", "options": ["Creates a new table", "Copies qualifying rows from ARCHIVE_STUDENT into STUDENT", "Replaces STUDENT with ARCHIVE_STUDENT", "Deletes matching rows"], "answerIndex": 1 ,hint:"INSERT INTO ... SELECT ... moves qualifying rows from one table to another."},
+              { "question": "A student's Dept_ID is set to ON DELETE SET NULL. After the referenced department is deleted, the student's Dept_ID becomes:", "options": ["0", "Deleted", "NULL", "Default value"], "answerIndex": 2,hint:"ON DELETE SET NULL replaces the foreign key value with NULL rather than deleting the row."}
             ],
             references: [
                 "Silberschatz, A., Korth, H.F. and Sudarshan, S. - 'Database System Concepts', 5th Edition, TMH, Chapter 3: Introduction to SQL (Sections 3.1-3.2 on DML)",
@@ -705,11 +705,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "Which operator checks if a value lies within a range (inclusive)?", "options": ["IN", "LIKE", "BETWEEN", "IS NULL"], "answerIndex": 2 },
-              { "question": "What does LIKE 'A%' match?", "options": ["Names starting with A", "Names ending with A", "Names containing A anywhere", "Names exactly equal to A"], "answerIndex": 0 },
-              { "question": "Which clause is used to check for NULL values in SQL?", "options": ["= NULL", "IS NULL", "== NULL", "NULL()"], "answerIndex": 1 },
-              { "question": "What is the result of SELECT 10 / 3 in integer SQL arithmetic?", "options": ["3.33", "3", "4", "0"], "answerIndex": 1 },
-              { "question": "WHERE Dept IN ('CSE','IT') is equivalent to:", "options": ["WHERE Dept = 'CSE' AND Dept = 'IT'", "WHERE Dept = 'CSE' OR Dept = 'IT'", "WHERE Dept BETWEEN 'CSE' AND 'IT'", "WHERE Dept LIKE 'CSE' OR 'IT'"], "answerIndex": 1 }
+              { "question": "Which operator checks if a value lies within a range (inclusive)?", "options": ["IN", "LIKE", "BETWEEN", "IS NULL"], "answerIndex": 2 , hint:"BETWEEN includes both boundary values — it's equivalent to >= AND <=."},
+              { "question": "What does LIKE 'A%' match?", "options": ["Names starting with A", "Names ending with A", "Names containing A anywhere", "Names exactly equal to A"], "answerIndex": 0 ,hint:"The % wildcard matches any sequence — 'A%' anchors the match to the start."},
+              { "question": "Which clause is used to check for NULL values in SQL?", "options": ["= NULL", "IS NULL", "== NULL", "NULL()"], "answerIndex": 1,hint: "NULL is the absence of a value — you can't compare it with = because it's unknown."},
+              { "question": "What is the result of SELECT 10 / 3 in integer SQL arithmetic?", "options": ["3.33", "3", "4", "0"], "answerIndex": 1,hint: "Integer division drops the remainder — 10 divided by 3 is 3 with remainder 1."},
+              { "question": "WHERE Dept IN ('CSE','IT') is equivalent to:", "options": ["WHERE Dept = 'CSE' AND Dept = 'IT'", "WHERE Dept = 'CSE' OR Dept = 'IT'", "WHERE Dept BETWEEN 'CSE' AND 'IT'", "WHERE Dept LIKE 'CSE' OR 'IT'"], "answerIndex": 1,hint:"IN is a shorthand for multiple OR conditions on the same column." }
             ],
             "procedure": [
               "Open the Code Test tab — the STUDENT, DEPARTMENT, and MARKS tables are pre-populated",
@@ -732,11 +732,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "How many rows does SELECT * FROM STUDENT WHERE Age BETWEEN 19 AND 21 return on the sample data?", "options": ["1", "2", "3", "4"], "answerIndex": 2 },
-              { "question": "What does WHERE Name LIKE '_o%' match?", "options": ["Names starting with o", "Names where the second character is o", "Names ending with o", "Names containing exactly two characters"], "answerIndex": 1 },
-              { "question": "Which query correctly finds students NOT in CSE?", "options": ["WHERE Dept_Name = NOT 'CSE'", "WHERE Dept_Name <> 'CSE'", "WHERE NOT Dept_Name IN 'CSE'", "WHERE Dept_Name != NULL"], "answerIndex": 1 },
-              { "question": "SELECT Name, Marks * 0.1 AS GPA — what data type is the GPA column?", "options": ["INT", "FLOAT/REAL", "VARCHAR", "BOOLEAN"], "answerIndex": 1 },
-              { "question": "What is the output of WHERE Email IS NOT NULL for the sample data?", "options": ["0 rows", "5 rows", "Only rows where Email is blank", "Error"], "answerIndex": 1 }
+              { "question": "How many rows does SELECT * FROM STUDENT WHERE Age BETWEEN 19 AND 21 return on the sample data?", "options": ["1", "2", "3", "4"], "answerIndex": 2, hint: "Count students with Age between 19 and 21 inclusive in the sample data."},
+              { "question": "What does WHERE Name LIKE '_o%' match?", "options": ["Names starting with o", "Names where the second character is o", "Names ending with o", "Names containing exactly two characters"], "answerIndex": 1, hint:"The underscore _ matches exactly one character — its position matters."},
+              { "question": "Which query correctly finds students NOT in CSE?", "options": ["WHERE Dept_Name = NOT 'CSE'", "WHERE Dept_Name <> 'CSE'", "WHERE NOT Dept_Name IN 'CSE'", "WHERE Dept_Name != NULL"], "answerIndex": 1,hint: "Not equal to can be written as <> — which option uses the correct operator?" },
+              { "question": "SELECT Name, Marks * 0.1 AS GPA — what data type is the GPA column?", "options": ["INT", "FLOAT/REAL", "VARCHAR", "BOOLEAN"], "answerIndex": 1,hint: "Arithmetic on an integer column produces a numeric result — which data type fits?" },
+              { "question": "What is the output of WHERE Email IS NOT NULL for the sample data?", "options": ["0 rows", "5 rows", "Only rows where Email is blank", "Error"], "answerIndex": 1 , hint:"If all emails are provided, how many rows satisfy IS NOT NULL?"}
             ],
             references: [
                 "Silberschatz, A., Korth, H.F. and Sudarshan, S. - 'Database System Concepts', 5th Edition, TMH, Chapter 3: Introduction to SQL (Section 3.4 on WHERE Clause)",
@@ -797,11 +797,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "What does SUBSTR('Database', 5, 4) return?", "options": ["Data", "base", "abas", "base"], "answerIndex": 1 },
-              { "question": "Which function returns the number of characters in a string?", "options": ["SIZE()", "COUNT()", "LENGTH()", "LEN()"], "answerIndex": 2 },
-              { "question": "What does ROUND(7.856, 1) return?", "options": ["7.9", "7.8", "8.0", "7.85"], "answerIndex": 0 },
-              { "question": "In SQLite, which function returns today's date?", "options": ["NOW()", "SYSDATE()", "date('now')", "CURRENT_DATE()"], "answerIndex": 2 },
-              { "question": "What does 'Hello' || ' ' || 'World' produce?", "options": ["HelloWorld", "Hello World", "Hello+World", "Error"], "answerIndex": 1 }
+              { "question": "What does SUBSTR('Database', 5, 4) return?", "options": ["Data", "base", "abas", "base"], "answerIndex": 1 , hint:"SUBSTR uses 1-based indexing — count from position 5 to find which characters are extracted."},
+              { "question": "Which function returns the number of characters in a string?", "options": ["SIZE()", "COUNT()", "LENGTH()", "LEN()"], "answerIndex": 2, hint:"LENGTH returns a count of characters — which function name matches that description?" },
+              { "question": "What does ROUND(7.856, 1) return?", "options": ["7.9", "7.8", "8.0", "7.85"], "answerIndex": 0, hint: "ROUND to 1 decimal place — look at the second decimal to decide whether to round up."},
+              { "question": "In SQLite, which function returns today's date?", "options": ["NOW()", "SYSDATE()", "date('now')", "CURRENT_DATE()"], "answerIndex": 2,hint: "SQLite uses its own date function syntax — which option matches the SQLite style?"},
+              { "question": "What does 'Hello' || ' ' || 'World' produce?", "options": ["HelloWorld", "Hello World", "Hello+World", "Error"], "answerIndex": 1, hint:"The || operator concatenates strings — what does joining three strings with a space produce?" }
             ],
             "procedure": [
               "Open the Code Test tab with the pre-loaded STUDENT table (includes DOB column)",
@@ -823,11 +823,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "What does SUBSTR('Management',4,4) return?", "options": ["Mana", "nage", "agem", "geme"], "answerIndex": 2 },
-              { "question": "SELECT REPLACE('Hello World','World','SQL') returns:", "options": ["Hello SQL", "Hello World SQL", "Hello", "SQL Hello"], "answerIndex": 0 },
-              { "question": "How many rows does WHERE LENGTH(Name) = 3 return on the sample data (Alice, Bob, Carol, David, Amy)?", "options": ["1", "2", "3", "0"], "answerIndex": 1 },
-              { "question": "What does ROUND(8.75, 1) return?", "options": ["8.7", "8.8", "9.0", "8.75"], "answerIndex": 1 },
-              { "question": "What does strftime('%m', '2003-06-15') return?", "options": ["2003", "06", "15", "6"], "answerIndex": 1 }
+              { "question": "What does SUBSTR('Management',4,4) return?", "options": ["Mana", "nage", "agem", "geme"], "answerIndex": 2 , hint:"SUBSTR('Management',4,4) starts at position 4 — count the characters carefully."},
+              { "question": "SELECT REPLACE('Hello World','World','SQL') returns:", "options": ["Hello SQL", "Hello World SQL", "Hello", "SQL Hello"], "answerIndex": 0, hint:"REPLACE substitutes all occurrences of one substring with another." },
+              { "question": "How many rows does WHERE LENGTH(Name) = 3 return on the sample data (Alice, Bob, Carol, David, Amy)?", "options": ["1", "2", "3", "0"], "answerIndex": 1, hint: "Count names in the sample data that have exactly 3 characters."},
+              { "question": "What does ROUND(8.75, 1) return?", "options": ["8.7", "8.8", "9.0", "8.75"], "answerIndex": 1, hint:"ROUND(8.75, 1) looks at the second decimal — apply standard rounding rules." },
+              { "question": "What does strftime('%m', '2003-06-15') return?", "options": ["2003", "06", "15", "6"], "answerIndex": 1, hint: "strftime with '%m' extracts only the month portion of a date string."}
             ],
             references: [
                 "Silberschatz, A., Korth, H.F. and Sudarshan, S. - 'Database System Concepts', 5th Edition, TMH, Chapter 3: Introduction to SQL (Section 3.4.3 on Built-in Functions)",
@@ -887,11 +887,11 @@ export const dbmsCourse: Course = {
               }
             ],
             "pretest": [
-              { "question": "What is the difference between COUNT(*) and COUNT(col)?", "options": ["No difference", "COUNT(*) counts all rows; COUNT(col) counts non-NULL values", "COUNT(col) is faster", "COUNT(*) only counts distinct rows"], "answerIndex": 1 },
-              { "question": "Which clause filters results AFTER aggregation?", "options": ["WHERE", "HAVING", "GROUP BY", "ORDER BY"], "answerIndex": 1 },
-              { "question": "If Marks has values 80, 90, NULL, 70 — what does AVG(Marks) return?", "options": ["60.0", "80.0", "85.0", "57.5"], "answerIndex": 1 },
-              { "question": "Which of the following is INVALID when using GROUP BY?", "options": ["SELECT Dept, COUNT(*) FROM STUDENT GROUP BY Dept", "SELECT Dept, Name, COUNT(*) FROM STUDENT GROUP BY Dept", "SELECT Dept, MAX(Age) FROM STUDENT GROUP BY Dept", "SELECT Dept, AVG(Age) FROM STUDENT GROUP BY Dept"], "answerIndex": 1 },
-              { "question": "Which query finds courses with average marks above 75?", "options": ["SELECT Course_ID FROM MARKS WHERE AVG(Marks) > 75", "SELECT Course_ID, AVG(Marks) FROM MARKS GROUP BY Course_ID HAVING AVG(Marks) > 75", "SELECT Course_ID, AVG(Marks) FROM MARKS HAVING AVG(Marks) > 75", "SELECT Course_ID FROM MARKS GROUP BY AVG(Marks) > 75"], "answerIndex": 1 }
+              { "question": "What is the difference between COUNT(*) and COUNT(col)?", "options": ["No difference", "COUNT(*) counts all rows; COUNT(col) counts non-NULL values", "COUNT(col) is faster", "COUNT(*) only counts distinct rows"], "answerIndex": 1,hint:"COUNT(*) counts all rows; COUNT(col) skips NULLs — which is broader?" },
+              { "question": "Which clause filters results AFTER aggregation?", "options": ["WHERE", "HAVING", "GROUP BY", "ORDER BY"], "answerIndex": 1,hint:"HAVING filters after grouping; WHERE filters before — only one can use aggregates." },
+              { "question": "If Marks has values 80, 90, NULL, 70 — what does AVG(Marks) return?", "options": ["60.0", "80.0", "85.0", "57.5"], "answerIndex": 1, hint:"AVG ignores NULLs — divide the sum of non-NULL values by the count of non-NULL values." },
+              { "question": "Which of the following is INVALID when using GROUP BY?", "options": ["SELECT Dept, COUNT(*) FROM STUDENT GROUP BY Dept", "SELECT Dept, Name, COUNT(*) FROM STUDENT GROUP BY Dept", "SELECT Dept, MAX(Age) FROM STUDENT GROUP BY Dept", "SELECT Dept, AVG(Age) FROM STUDENT GROUP BY Dept"], "answerIndex": 1,hint:"SELECT columns that aren't aggregated must appear in GROUP BY — which option violates this?" },
+              { "question": "Which query finds courses with average marks above 75?", "options": ["SELECT Course_ID FROM MARKS WHERE AVG(Marks) > 75", "SELECT Course_ID, AVG(Marks) FROM MARKS GROUP BY Course_ID HAVING AVG(Marks) > 75", "SELECT Course_ID, AVG(Marks) FROM MARKS HAVING AVG(Marks) > 75", "SELECT Course_ID FROM MARKS GROUP BY AVG(Marks) > 75"], "answerIndex": 1,hint: "WHERE cannot contain aggregate functions — HAVING is the correct clause for group-level filtering."}
             ],
             "procedure": [
               "Open the Code Test tab — STUDENT and MARKS tables are pre-populated",
@@ -914,11 +914,11 @@ export const dbmsCourse: Course = {
               ]
             },
             "posttest": [
-              { "question": "What does COUNT(DISTINCT Dept_Name) return for the sample STUDENT data?", "options": ["5", "3", "2", "1"], "answerIndex": 1 },
-              { "question": "If one student's Marks is NULL, which aggregate changes?", "options": ["Only COUNT(*)", "Only AVG and SUM; COUNT(*) stays the same", "All aggregates change equally", "None change"], "answerIndex": 1 },
-              { "question": "What is wrong with: SELECT Dept_Name, Name, COUNT(*) FROM STUDENT GROUP BY Dept_Name?", "options": ["COUNT(*) is wrong", "Name must also appear in GROUP BY or an aggregate", "GROUP BY should use Count", "Nothing is wrong"], "answerIndex": 1 },
-              { "question": "Which query finds the department with the highest average age?", "options": ["SELECT Dept_Name, MAX(AVG(Age)) FROM STUDENT GROUP BY Dept_Name", "SELECT Dept_Name, AVG(Age) AS A FROM STUDENT GROUP BY Dept_Name ORDER BY A DESC LIMIT 1", "SELECT Dept_Name FROM STUDENT HAVING MAX(Age)", "SELECT MAX(Age), Dept_Name FROM STUDENT"], "answerIndex": 1 },
-              { "question": "HAVING COUNT(*) > 1 versus WHERE COUNT(*) > 1 — what is the difference?", "options": ["No difference in result", "HAVING works after grouping; WHERE does not allow aggregate functions", "WHERE is faster", "HAVING filters individual rows; WHERE filters groups"], "answerIndex": 1 }
+              { "question": "What does COUNT(DISTINCT Dept_Name) return for the sample STUDENT data?", "options": ["5", "3", "2", "1"], "answerIndex": 1, hint:  "COUNT(DISTINCT col) counts unique values — how many unique department names are in the sample?"},
+              { "question": "If one student's Marks is NULL, which aggregate changes?", "options": ["Only COUNT(*)", "Only AVG and SUM; COUNT(*) stays the same", "All aggregates change equally", "None change"], "answerIndex": 1, hint:"AVG and SUM skip NULLs; COUNT(*) does not — which aggregates are affected?" },
+              { "question": "What is wrong with: SELECT Dept_Name, Name, COUNT(*) FROM STUDENT GROUP BY Dept_Name?", "options": ["COUNT(*) is wrong", "Name must also appear in GROUP BY or an aggregate", "GROUP BY should use Count", "Nothing is wrong"], "answerIndex": 1 ,hint:"Non-aggregated columns in SELECT must appear in GROUP BY — which column is missing?" },
+              { "question": "Which query finds the department with the highest average age?", "options": ["SELECT Dept_Name, MAX(AVG(Age)) FROM STUDENT GROUP BY Dept_Name", "SELECT Dept_Name, AVG(Age) AS A FROM STUDENT GROUP BY Dept_Name ORDER BY A DESC LIMIT 1", "SELECT Dept_Name FROM STUDENT HAVING MAX(Age)", "SELECT MAX(Age), Dept_Name FROM STUDENT"], "answerIndex": 1, hint:"To find the top department, sort by average age descending and take the first row." },
+              { "question": "HAVING COUNT(*) > 1 versus WHERE COUNT(*) > 1 — what is the difference?", "options": ["No difference in result", "HAVING works after grouping; WHERE does not allow aggregate functions", "WHERE is faster", "HAVING filters individual rows; WHERE filters groups"], "answerIndex": 1 ,hint:"HAVING filters groups after aggregation; WHERE cannot reference aggregate functions."}
             ],
             references: [
                 "Silberschatz, A., Korth, H.F. and Sudarshan, S. - 'Database System Concepts', 5th Edition, TMH, Chapter 3: Introduction to SQL (Section 3.6 on Aggregate Functions)",
@@ -996,7 +996,7 @@ export const dbmsCourse: Course = {
                   "Simultaneously",
                   "Depends on the database"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1, hint:"SQL processes clauses in a fixed order — WHERE comes before GROUP BY in evaluation."
               },
               {
                 "question": "Which query is valid?",
@@ -1006,7 +1006,7 @@ export const dbmsCourse: Course = {
                   "SELECT Dept FROM STUDENT WHERE COUNT(*) > 1",
                   "SELECT Dept, AVG(Marks) FROM STUDENT GROUP BY Dept WHERE AVG(Marks) > 70"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1, hint:"HAVING uses aggregate functions; WHERE does not allow them — which query is valid?"
               },
               {
                 "question": "How many result rows does GROUP BY Dept_Name return if there are 3 distinct departments?",
@@ -1016,7 +1016,7 @@ export const dbmsCourse: Course = {
                   "1 (grand total)",
                   "Depends on HAVING"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"GROUP BY collapses rows into groups — the number of result rows equals the number of distinct group values."
               },
               {
                 "question": "Which clause finds the department with the highest average marks?",
@@ -1026,7 +1026,7 @@ export const dbmsCourse: Course = {
                   "ORDER BY AVG(Marks) DESC LIMIT 1",
                   "GROUP BY MAX(Marks)"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2, hint:"To find the top result, sort descending and limit to one row — which clause does this?"
               },
               {
                 "question": "HAVING COUNT(*) >= 2 on a grouped result will:",
@@ -1036,7 +1036,7 @@ export const dbmsCourse: Course = {
                   "Return all rows",
                   "Raise an error — HAVING cannot use COUNT"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1, hint:"HAVING filters groups, not individual rows — COUNT refers to group size."
               }
             ],
             "procedure": [
@@ -1092,7 +1092,7 @@ export const dbmsCourse: Course = {
                   "GROUP BY must come before WHERE",
                   "AVG cannot be used with Dept"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint: "AVG is an aggregate function — it cannot appear in a WHERE clause."
               },
               {
                 "question": "Which query finds departments where ALL students scored above 60?",
@@ -1102,7 +1102,7 @@ export const dbmsCourse: Course = {
                   "SELECT Dept FROM MARKS GROUP BY Dept HAVING Marks > 60",
                   "SELECT Dept FROM STUDENT HAVING MIN(Marks) > 60"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1, hint:"To find departments where ALL students passed, use MIN on marks and compare to the threshold."
               },
               {
                 "question": "SELECT Dept_Name, COUNT(*) FROM STUDENT GROUP BY Dept_Name ORDER BY COUNT(*) DESC LIMIT 2 — what does this return?",
@@ -1112,7 +1112,7 @@ export const dbmsCourse: Course = {
                   "2 departments with most students",
                   "All departments, top 2 marks"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2, hint:"ORDER BY COUNT(*) DESC gives most to fewest — LIMIT 2 takes the top two."
               },
               {
                 "question": "Can HAVING reference a column alias defined in SELECT?",
@@ -1122,7 +1122,7 @@ export const dbmsCourse: Course = {
                   "Yes in most databases; no in strict SQL standard",
                   "Only for numeric aliases"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2, hint:"Column aliases in HAVING depend on when the alias is resolved — standard SQL evaluates SELECT after HAVING."
               },
               {
                 "question": "GROUP BY Dept_Name, Course_ID on STUDENT-MARKS creates groups based on:",
@@ -1132,7 +1132,7 @@ export const dbmsCourse: Course = {
                   "Each unique department-course combination",
                   "Student and course"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2, hint:"GROUP BY Dept_Name, Course_ID creates one group per unique pair of both values."
               }
             ],
             references: [
@@ -1198,7 +1198,7 @@ export const dbmsCourse: Course = {
                   "Insertion order",
                   "Random"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1, hint:"ASC is the default direction — you only need to specify the direction when sorting descending."
               },
               {
                 "question": "How do you retrieve records 6 through 10 using LIMIT and OFFSET?",
@@ -1208,7 +1208,7 @@ export const dbmsCourse: Course = {
                   "LIMIT 5 OFFSET 5",
                   "LIMIT 6 OFFSET 10"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"OFFSET skips rows; LIMIT restricts the count — to get rows 6–10, skip 5 and take 5."
               },
               {
                 "question": "SELECT DISTINCT Dept_Name FROM STUDENT — if there are 5 students in 3 departments, how many rows?",
@@ -1218,7 +1218,7 @@ export const dbmsCourse: Course = {
                   "1",
                   "0"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"DISTINCT applies to all selected columns combined — count unique department names in the data."
               },
               {
                 "question": "Which query returns the student with the lowest marks?",
@@ -1228,7 +1228,7 @@ export const dbmsCourse: Course = {
                   "SELECT MIN(Marks) FROM MARKS LIMIT 1",
                   "SELECT * FROM MARKS WHERE Marks = MIN(Marks)"
                 ],
-                "answerIndex": 0
+                "answerIndex": 0,hint:"The student with the lowest marks is at the bottom of a descending sort or top of an ascending one."
               },
               {
                 "question": "ORDER BY 2 DESC means:",
@@ -1238,7 +1238,7 @@ export const dbmsCourse: Course = {
                   "Sort 2 rows descending",
                   "Error"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"ORDER BY 2 refers to the second column in the SELECT list by position."
               }
             ],
             "procedure": [
@@ -1294,7 +1294,7 @@ export const dbmsCourse: Course = {
                   "Unique ages only",
                   "All rows of STUDENT"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"DISTINCT applies to the combination of all listed columns — Dept_Name and Age together."
               },
               {
                 "question": "Which query gives the second highest total marks?",
@@ -1304,7 +1304,7 @@ export const dbmsCourse: Course = {
                   "SELECT MAX(SUM(Marks)) FROM MARKS",
                   "SELECT SUM(Marks) FROM MARKS LIMIT 2"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"OFFSET 1 skips the top result — with GROUP BY and ORDER BY you can paginate aggregates."
               },
               {
                 "question": "ORDER BY Name ASC, Age DESC means:",
@@ -1314,7 +1314,7 @@ export const dbmsCourse: Course = {
                   "Sort descending by both",
                   "Error: cannot mix ASC and DESC"
                 ],
-                "answerIndex": 0
+                "answerIndex": 0,hint:"Multiple sort keys are applied left to right — the second key breaks ties from the first."
               },
               {
                 "question": "If STUDENT has 10 rows, what does LIMIT 5 OFFSET 10 return?",
@@ -1324,7 +1324,7 @@ export const dbmsCourse: Course = {
                   "Rows 5-10",
                   "All 10 rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"If OFFSET equals or exceeds the total row count, no rows are returned."
               },
               {
                 "question": "Why should ORDER BY always be used with LIMIT?",
@@ -1334,7 +1334,7 @@ export const dbmsCourse: Course = {
                   "ORDER BY doubles query speed",
                   "LIMIT without ORDER BY returns NULL rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Without ORDER BY, the DBMS can return rows in any order — LIMIT results are unpredictable."
               }
             ],
             references: [
@@ -1415,7 +1415,7 @@ export const dbmsCourse: Course = {
                   "All rows from left table",
                   "All rows from right table"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"INNER JOIN acts like an intersection — only rows that match in both tables appear."
               },
               {
                 "question": "LEFT JOIN returns unmatched left rows with:",
@@ -1425,7 +1425,7 @@ export const dbmsCourse: Course = {
                   "NULL in right-table columns",
                   "Error"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"LEFT JOIN preserves the left table completely — missing right-side values become NULL."
               },
               {
                 "question": "How do you find students NOT in the MARKS table using LEFT JOIN?",
@@ -1435,7 +1435,7 @@ export const dbmsCourse: Course = {
                   "WHERE M.Roll_No IS NOT NULL",
                   "WHERE S.Roll_No IS NULL"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"After LEFT JOIN, unmatched rows have NULL in right-table columns — use IS NULL to find them."
               },
               {
                 "question": "Which is the default JOIN type when you write just JOIN?",
@@ -1445,7 +1445,7 @@ export const dbmsCourse: Course = {
                   "INNER JOIN",
                   "CROSS JOIN"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Writing just JOIN without a qualifier defaults to the most common join type."
               },
               {
                 "question": "A JOIN between STUDENT (5 rows) and MARKS (3 rows) where 3 students have marks — INNER JOIN returns:",
@@ -1455,7 +1455,7 @@ export const dbmsCourse: Course = {
                   "8 rows",
                   "15 rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"INNER JOIN only returns matched rows — count the students that have marks records."
               }
             ],
             "procedure": [
@@ -1512,7 +1512,7 @@ export const dbmsCourse: Course = {
                   "11",
                   "Depends on duplicates in MARKS"
                 ],
-                "answerIndex": 3
+                "answerIndex": 3,hint:"If one student has multiple marks rows, the LEFT JOIN produces multiple rows for that student — think about what 'depends on duplicates' means."
               },
               {
                 "question": "Which pattern finds records in STUDENT but NOT in MARKS?",
@@ -1522,7 +1522,7 @@ export const dbmsCourse: Course = {
                   "RIGHT JOIN WHERE S.Roll_No IS NULL",
                   "FULL JOIN WHERE M.Roll_No IS NOT NULL"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"To find rows in the left table with no match on the right, check for NULL in right-table columns after LEFT JOIN."
               },
               {
                 "question": "What is the result of INNER JOIN when one table is empty?",
@@ -1532,7 +1532,7 @@ export const dbmsCourse: Course = {
                   "0 rows",
                   "Error"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"INNER JOIN requires matches in both tables — if one table is empty, no matches are possible."
               },
               {
                 "question": "In the query SELECT S.Name, M.Marks FROM STUDENT S LEFT JOIN MARKS M ON S.Roll_No=M.Roll_No, what appears in M.Marks for a student with no mark record?",
@@ -1542,7 +1542,7 @@ export const dbmsCourse: Course = {
                   "NULL",
                   "Error"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"LEFT JOIN fills unmatched right-side columns with NULL — not zero, not empty string."
               },
               {
                 "question": "Which of the following is equivalent to INNER JOIN?",
@@ -1552,7 +1552,7 @@ export const dbmsCourse: Course = {
                   "JOIN (without qualifier)",
                   "OUTER JOIN"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"INNER JOIN and JOIN without a qualifier are the same — check which qualifier is implied."
               }
             ],
             references: [
@@ -1617,7 +1617,7 @@ export const dbmsCourse: Course = {
                   "Both tables",
                   "Neither"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"RIGHT JOIN is the mirror of LEFT JOIN — it preserves the right table."
               },
               {
                 "question": "How is FULL OUTER JOIN simulated in SQLite?",
@@ -1627,7 +1627,7 @@ export const dbmsCourse: Course = {
                   "LEFT JOIN UNION RIGHT JOIN (or LEFT JOIN with swapped tables)",
                   "SELF JOIN"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"SQLite lacks FULL OUTER JOIN — combine LEFT JOIN results from both directions using UNION."
               },
               {
                 "question": "In a SELF JOIN on EMPLOYEE, why are two aliases needed?",
@@ -1637,7 +1637,7 @@ export const dbmsCourse: Course = {
                   "Aliases speed up the query",
                   "To avoid primary key conflicts"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"A self-join references the same table twice — two aliases prevent column name ambiguity."
               },
               {
                 "question": "T1 LEFT JOIN T2 UNION T2 LEFT JOIN T1 simulates:",
@@ -1647,7 +1647,7 @@ export const dbmsCourse: Course = {
                   "FULL OUTER JOIN",
                   "SELF JOIN"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"FULL JOIN includes unmatched rows from both sides — which combination achieves this?"
               },
               {
                 "question": "A SELF JOIN INNER JOIN on Mgr_ID = Emp_ID will exclude:",
@@ -1657,7 +1657,7 @@ export const dbmsCourse: Course = {
                   "Managers",
                   "All rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"INNER self-join only matches rows where Mgr_ID is not NULL — who lacks a manager?"
               }
             ],
             "procedure": [
@@ -1707,7 +1707,7 @@ export const dbmsCourse: Course = {
                   "All matched rows",
                   "All rows from both"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"WHERE A.id IS NULL after RIGHT JOIN finds rows in B with no match in A."
               },
               {
                 "question": "Why does SQLite not support RIGHT JOIN natively?",
@@ -1717,7 +1717,7 @@ export const dbmsCourse: Course = {
                   "RIGHT JOIN is slower",
                   "SQLite only supports INNER JOIN"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"RIGHT JOIN and LEFT JOIN produce equivalent results when the table order is swapped."
               },
               {
                 "question": "SELF JOIN is commonly used for:",
@@ -1727,7 +1727,7 @@ export const dbmsCourse: Course = {
                   "Combining two result sets",
                   "Eliminating duplicates"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Self-joins are used when a table contains a reference back to itself — like an employee-manager relationship."
               },
               {
                 "question": "In the EMPLOYEE self-join, what does COALESCE(M.Name,'No Manager') do?",
@@ -1737,7 +1737,7 @@ export const dbmsCourse: Course = {
                   "Creates a new manager named 'No Manager'",
                   "Filters employees with no manager"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"COALESCE returns the first non-NULL argument — it replaces NULL with a fallback value."
               },
               {
                 "question": "FULL OUTER JOIN of A (3 rows) and B (4 rows) with 2 matches returns:",
@@ -1747,7 +1747,7 @@ export const dbmsCourse: Course = {
                   "12 rows",
                   "5 rows (3+4-2)"
                 ],
-                "answerIndex": 3
+                "answerIndex": 3,hint:"FULL JOIN result size = matched rows + unmatched from A + unmatched from B — calculate from the numbers given."
               }
             ],
             references: [
@@ -1813,7 +1813,7 @@ export const dbmsCourse: Course = {
                   "1 row",
                   "Depends on data"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"CROSS JOIN produces every possible pairing — multiply the row counts of both tables."
               },
               {
                 "question": "Which of the following is an implicit CROSS JOIN?",
@@ -1823,7 +1823,7 @@ export const dbmsCourse: Course = {
                   "FROM A CROSS JOIN B ON A.id=B.id",
                   "FROM A LEFT JOIN B ON A.id=B.id"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"The comma-separated table syntax in FROM without a WHERE condition is an implicit CROSS JOIN."
               },
               {
                 "question": "Why is explicit JOIN syntax preferred over implicit comma-separated tables?",
@@ -1833,7 +1833,7 @@ export const dbmsCourse: Course = {
                   "It is the only valid SQL syntax",
                   "Implicit JOIN is deprecated in all databases"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Explicit JOIN syntax keeps join conditions separate from filter conditions — which benefit does this provide?"
               },
               {
                 "question": "In a three-table join A JOIN B JOIN C, which join is evaluated first?",
@@ -1843,7 +1843,7 @@ export const dbmsCourse: Course = {
                   "Depends on indexes",
                   "The database optimizer decides — order in query is a hint only"
                 ],
-                "answerIndex": 3
+                "answerIndex": 3,hint:"The optimizer may reorder joins regardless of how they appear in the query."
               },
               {
                 "question": "CROSS JOIN is particularly dangerous on large tables because:",
@@ -1853,7 +1853,7 @@ export const dbmsCourse: Course = {
                   "It only works on tables with the same schema",
                   "It ignores indexes"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"CROSS JOIN with large tables creates a result that grows multiplicatively — think about the scale."
               }
             ],
             "procedure": [
@@ -1897,7 +1897,7 @@ export const dbmsCourse: Course = {
                   "3",
                   "6"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Multiply the row counts of the two tables in a CROSS JOIN."
               },
               {
                 "question": "What is the difference between CROSS JOIN and INNER JOIN result?",
@@ -1907,7 +1907,7 @@ export const dbmsCourse: Course = {
                   "INNER JOIN is always larger",
                   "CROSS JOIN requires a WHERE clause"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"CROSS JOIN gives all combinations; INNER JOIN only gives matched ones — what is the key difference?"
               },
               {
                 "question": "In a three-table join, if COURSE has no row matching a MARKS.Course_ID, what happens to that marks row in INNER JOIN?",
@@ -1917,7 +1917,7 @@ export const dbmsCourse: Course = {
                   "Error is raised",
                   "A default row from COURSE is used"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"INNER JOIN excludes unmatched rows — if COURSE has no matching row, that marks row disappears."
               },
               {
                 "question": "FROM STUDENT S, MARKS M WHERE S.Roll_No=M.Roll_No is equivalent to:",
@@ -1927,7 +1927,7 @@ export const dbmsCourse: Course = {
                   "S INNER JOIN M ON S.Roll_No=M.Roll_No",
                   "S FULL JOIN M ON S.Roll_No=M.Roll_No"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"The comma-separated FROM syntax is equivalent to which type of explicit JOIN?"
               },
               {
                 "question": "A realistic use of CROSS JOIN is:",
@@ -1937,7 +1937,7 @@ export const dbmsCourse: Course = {
                   "Replacing INNER JOIN for better performance",
                   "Finding unmatched rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Think of a round-robin tournament — every team plays every other team exactly once."
               }
             ],
             references: [
@@ -2021,7 +2021,7 @@ export const dbmsCourse: Course = {
                   "Scalar sub-query",
                   "Nested join"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"A scalar sub-query returns a single value — one row, one column."
               },
               {
                 "question": "WHERE Roll_No IN (SELECT Roll_No FROM MARKS) returns:",
@@ -2031,7 +2031,7 @@ export const dbmsCourse: Course = {
                   "All students",
                   "Only the first matching student"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"IN checks if a value exists in a set — the set comes from the inner query."
               },
               {
                 "question": "What is the NULL pitfall with NOT IN?",
@@ -2041,7 +2041,7 @@ export const dbmsCourse: Course = {
                   "NULL is treated as 0 in NOT IN",
                   "NOT IN cannot be used with sub-queries"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"NOT IN returns no rows when the sub-query result contains even one NULL — this is a critical pitfall."
               },
               {
                 "question": "Which of the following is equivalent to T1 WHERE col IN (SELECT col FROM T2)?",
@@ -2051,7 +2051,7 @@ export const dbmsCourse: Course = {
                   "T1 CROSS JOIN T2",
                   "T1 FULL JOIN T2"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"IN sub-queries can often be rewritten as a JOIN — which type of JOIN matches the IN behavior?"
               },
               {
                 "question": "Sub-queries in the FROM clause are called:",
@@ -2061,7 +2061,7 @@ export const dbmsCourse: Course = {
                   "Scalar sub-queries",
                   "Inline views"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Sub-queries in the FROM clause act as temporary tables — they must have a name to be referenced."
               }
             ],
             "procedure": [
@@ -2119,7 +2119,7 @@ export const dbmsCourse: Course = {
                   "Only students with NULL Roll_No",
                   "Error"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"NOT IN with an empty set — nothing to exclude — returns all rows from the outer query."
               },
               {
                 "question": "Which query correctly finds students enrolled in BOTH CS101 and CS102?",
@@ -2129,7 +2129,7 @@ export const dbmsCourse: Course = {
                   "WHERE Course_ID='CS101' AND Course_ID='CS102'",
                   "WHERE Roll_No NOT IN (SELECT Roll_No FROM MARKS)"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Enrolled in BOTH courses means the student must appear in the MARKS table for each course."
               },
               {
                 "question": "A sub-query in the FROM clause must:",
@@ -2139,7 +2139,7 @@ export const dbmsCourse: Course = {
                   "Return exactly one row",
                   "Use IN operator"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Sub-queries in the FROM clause must be named so the outer query can reference them."
               },
               {
                 "question": "Why is NOT EXISTS often preferred over NOT IN?",
@@ -2149,7 +2149,7 @@ export const dbmsCourse: Course = {
                   "NOT IN does not work in SQLite",
                   "NOT EXISTS uses joins internally"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"NOT EXISTS stops at the first match and handles NULLs correctly — which makes it safer than NOT IN?"
               },
               {
                 "question": "SELECT Name FROM STUDENT WHERE Roll_No IN (SELECT Roll_No FROM MARKS WHERE Marks > 80) returns:",
@@ -2159,7 +2159,7 @@ export const dbmsCourse: Course = {
                   "Students with average marks > 80",
                   "All students"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"IN returns rows where the column value matches ANY value in the sub-query result set."
               }
             ],
             references: [
@@ -2234,7 +2234,7 @@ export const dbmsCourse: Course = {
                   "It returns more than one row",
                   "It appears in the FROM clause"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"A correlated sub-query references a column from the outer query — that reference is the key distinction."
               },
               {
                 "question": "EXISTS returns TRUE when the sub-query:",
@@ -2244,7 +2244,7 @@ export const dbmsCourse: Course = {
                   "Returns zero rows",
                   "Returns a NULL value"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"EXISTS checks for the presence of at least one row — it doesn't care about the specific values returned."
               },
               {
                 "question": "How many times does a correlated sub-query execute (approximately)?",
@@ -2254,7 +2254,7 @@ export const dbmsCourse: Course = {
                   "Once per outer query row",
                   "Once per inner query row"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"The inner query re-runs for each outer row — how many outer rows determine how many times it runs?"
               },
               {
                 "question": "Which is NULL-safe: IN or EXISTS?",
@@ -2264,7 +2264,7 @@ export const dbmsCourse: Course = {
                   "Both",
                   "Neither"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"EXISTS handles NULL safely because it checks for row presence, not value equality."
               },
               {
                 "question": "SELECT 1 inside an EXISTS sub-query is used because:",
@@ -2274,7 +2274,7 @@ export const dbmsCourse: Course = {
                   "It is faster than SELECT *",
                   "It filters NULL values"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"SELECT 1 is conventional in EXISTS — only the existence of a row matters, not what it contains."
               }
             ],
             "procedure": [
@@ -2324,7 +2324,7 @@ export const dbmsCourse: Course = {
                   "100,000",
                   "10"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"The inner query scans the inner table once per outer row — multiply the two table sizes."
               },
               {
                 "question": "SELECT * FROM DEPARTMENT D WHERE NOT EXISTS (SELECT 1 FROM STUDENT S WHERE S.Dept_Name=D.Dept_Name) returns:",
@@ -2334,7 +2334,7 @@ export const dbmsCourse: Course = {
                   "All departments",
                   "Departments with exactly one student"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"NOT EXISTS returns TRUE when the sub-query returns zero rows — what does that mean for departments?"
               },
               {
                 "question": "Which approach avoids re-executing the average computation for every row?",
@@ -2344,7 +2344,7 @@ export const dbmsCourse: Course = {
                   "Derived table with GROUP BY",
                   "NOT IN clause"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Pre-computing averages in a derived table avoids repeating the calculation for each outer row."
               },
               {
                 "question": "EXISTS (SELECT 1 FROM T WHERE ...) and EXISTS (SELECT * FROM T WHERE ...) produce:",
@@ -2354,7 +2354,7 @@ export const dbmsCourse: Course = {
                   "EXISTS with SELECT 1 is faster always",
                   "Only SELECT 1 is valid syntax"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"SELECT 1 and SELECT * in EXISTS sub-queries produce the same existence result."
               },
               {
                 "question": "A correlated sub-query WHERE M.Marks > (SELECT AVG(M2.Marks) FROM MARKS M2 WHERE M2.Course_ID = M.Course_ID) finds:",
@@ -2364,7 +2364,7 @@ export const dbmsCourse: Course = {
                   "Students above the maximum marks",
                   "Students below course average"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"The sub-query average is computed per course — each student's marks are compared against their own course average."
               }
             ],
             references: [
@@ -2445,7 +2445,7 @@ export const dbmsCourse: Course = {
                   "True if materialized",
                   "Depends on DBMS"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Views don't store data — they store the query definition and re-execute it each time."
               },
               {
                 "question": "Which statement creates a view?",
@@ -2455,7 +2455,7 @@ export const dbmsCourse: Course = {
                   "INSERT VIEW v SELECT ...",
                   "DEFINE VIEW v SELECT ..."
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"The SQL keyword for creating a view starts with CREATE — which syntax is correct?"
               },
               {
                 "question": "If the base table is updated after a view is created, the view reflects:",
@@ -2465,7 +2465,7 @@ export const dbmsCourse: Course = {
                   "An error",
                   "Depends on the view type"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Views are dynamic — they re-execute the stored query against the current base table data."
               },
               {
                 "question": "What command removes a view?",
@@ -2475,7 +2475,7 @@ export const dbmsCourse: Course = {
                   "DROP VIEW v",
                   "TRUNCATE VIEW v"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"DROP removes a database object — which variant removes a view?"
               },
               {
                 "question": "Views are primarily used for:",
@@ -2485,7 +2485,7 @@ export const dbmsCourse: Course = {
                   "Simplifying complex queries and enforcing security",
                   "Replacing indexes"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Views provide a layer of abstraction — they simplify access and can restrict what users see."
               }
             ],
             "procedure": [
@@ -2543,7 +2543,7 @@ export const dbmsCourse: Course = {
                   "It is unchanged — only the view definition is removed",
                   "An error occurs"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Dropping a view removes only the view definition — the base table is unaffected."
               },
               {
                 "question": "Which view advantage ensures that users cannot see salary data even if querying the view?",
@@ -2553,7 +2553,7 @@ export const dbmsCourse: Course = {
                   "Performance",
                   "Normalization"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Views expose only selected columns — salary data excluded from the view can't be seen through it."
               },
               {
                 "question": "If STUDENT table is renamed to LEARNER after CSE_STUDENTS view is created, querying CSE_STUDENTS will:",
@@ -2563,7 +2563,7 @@ export const dbmsCourse: Course = {
                   "Return empty result",
                   "Rename the table back"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"The view definition references a table by name — if the table is renamed, the view breaks."
               },
               {
                 "question": "Can a view reference another view?",
@@ -2573,7 +2573,7 @@ export const dbmsCourse: Course = {
                   "Only in Oracle",
                   "Only if both views have no joins"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Views are just stored queries — one view's SELECT can reference another view."
               },
               {
                 "question": "Which statement about a view with a correlated sub-query is true?",
@@ -2583,7 +2583,7 @@ export const dbmsCourse: Course = {
                   "The sub-query result is cached permanently",
                   "Correlated sub-queries cannot appear in views"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"The stored query re-executes each time the view is queried — sub-queries included."
               }
             ],
             references: [
@@ -2647,7 +2647,7 @@ export const dbmsCourse: Course = {
                   "Single-table view without aggregation",
                   "View with INNER JOIN"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Single-table views without aggregation can pass DML through to the base table."
               },
               {
                 "question": "WITH CHECK OPTION on a view ensures:",
@@ -2657,7 +2657,7 @@ export const dbmsCourse: Course = {
                   "Only SELECT is allowed on the view",
                   "The view is materialized"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"WITH CHECK OPTION enforces that DML through the view produces rows that remain visible in the view."
               },
               {
                 "question": "A view defined as SELECT Dept_Name, COUNT(*) FROM STUDENT GROUP BY Dept_Name is:",
@@ -2667,7 +2667,7 @@ export const dbmsCourse: Course = {
                   "Updatable only for DELETE",
                   "Updatable only for SELECT"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Views with GROUP BY compute aggregate results — the DBMS cannot reverse-map a DML to a base row."
               },
               {
                 "question": "Inserting a row through a view modifies:",
@@ -2677,7 +2677,7 @@ export const dbmsCourse: Course = {
                   "The underlying base table",
                   "A temporary copy of the base table"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"DML through a view modifies the underlying base table — the view itself stores no data."
               },
               {
                 "question": "What happens if you INSERT a row through a view without WITH CHECK OPTION that does not match the view's WHERE?",
@@ -2687,7 +2687,7 @@ export const dbmsCourse: Course = {
                   "The view is recreated",
                   "An error is always raised"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Without CHECK OPTION, an insert can succeed even if the new row wouldn't appear in the view."
               }
             ],
             "procedure": [
@@ -2744,7 +2744,7 @@ export const dbmsCourse: Course = {
                   "Updatable only for DELETE",
                   "Updatable with WITH CHECK OPTION"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"DISTINCT eliminates duplicates — the DBMS cannot determine which base row to update when rows are collapsed."
               },
               {
                 "question": "After INSERT INTO IT_STUDENTS VALUES (111,'Kiran',21,'kiran@edu.in','IT'), which table actually gains a new row?",
@@ -2754,7 +2754,7 @@ export const dbmsCourse: Course = {
                   "Only STUDENT",
                   "A temporary buffer"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"DML through a view modifies the base table — the view is just a window into it."
               },
               {
                 "question": "WITH CHECK OPTION prevents:",
@@ -2764,7 +2764,7 @@ export const dbmsCourse: Course = {
                   "Insertions of rows that would not be visible in the view",
                   "Queries on the view"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"WITH CHECK OPTION ensures the new row satisfies the view's WHERE — rows that don't match are rejected."
               },
               {
                 "question": "Which of the following views IS updatable?",
@@ -2774,7 +2774,7 @@ export const dbmsCourse: Course = {
                   "CREATE VIEW V AS SELECT Roll_No, Name FROM STUDENT WHERE Age > 20",
                   "CREATE VIEW V AS SELECT S.Name, M.Marks FROM STUDENT S JOIN MARKS M ON S.Roll_No=M.Roll_No"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Look for a view with a single base table and no aggregation, DISTINCT, or computed columns."
               },
               {
                 "question": "Why are JOIN-based views generally non-updatable?",
@@ -2784,7 +2784,7 @@ export const dbmsCourse: Course = {
                   "SQL standard forbids joins in views",
                   "Join views have no primary key"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Joins combine data from multiple tables — the DBMS can't determine which table to update without ambiguity."
               }
             ],
             references: [
@@ -2865,7 +2865,7 @@ export const dbmsCourse: Course = {
                   "From the same table",
                   "Have the same WHERE clause"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Union-compatibility means same structure — same number of columns and compatible data types."
               },
               {
                 "question": "What is the difference between UNION and UNION ALL?",
@@ -2875,7 +2875,7 @@ export const dbmsCourse: Course = {
                   "UNION ALL removes duplicates",
                   "No difference"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"UNION performs an implicit DISTINCT; UNION ALL skips that step — which keeps all rows?"
               },
               {
                 "question": "Column names in a UNION result are taken from:",
@@ -2885,7 +2885,7 @@ export const dbmsCourse: Course = {
                   "An automatic combination",
                   "Must be specified explicitly"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"The result columns take their names from the first SELECT statement in the UNION."
               },
               {
                 "question": "Where does ORDER BY appear in a UNION query?",
@@ -2895,7 +2895,7 @@ export const dbmsCourse: Course = {
                   "At the very end of the entire UNION query",
                   "Inside the WHERE clause"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"ORDER BY applies to the final combined result — it cannot appear after individual SELECT statements."
               },
               {
                 "question": "UNION ALL is preferred over UNION when:",
@@ -2905,7 +2905,7 @@ export const dbmsCourse: Course = {
                   "Tables are from different databases",
                   "Only one SELECT is used"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"If duplicates are valid and you want all rows preserved, which variant should you use?"
               }
             ],
             "procedure": [
@@ -2949,7 +2949,7 @@ export const dbmsCourse: Course = {
                   "Returns only column A",
                   "Returns only columns B and C"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"UNION requires union-compatible operands — mismatched column counts cause an error."
               },
               {
                 "question": "If Q1 returns 5 rows and Q2 returns 3 rows with 2 identical to Q1, Q1 UNION Q2 returns:",
@@ -2959,7 +2959,7 @@ export const dbmsCourse: Course = {
                   "5 rows",
                   "3 rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"UNION removes duplicates — subtract the shared rows from the total."
               },
               {
                 "question": "If Q1 returns 5 rows and Q2 returns 3 rows with 2 identical to Q1, Q1 UNION ALL Q2 returns:",
@@ -2969,7 +2969,7 @@ export const dbmsCourse: Course = {
                   "5 rows",
                   "3 rows"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"UNION ALL keeps all rows including duplicates — simply add the row counts."
               },
               {
                 "question": "Can ORDER BY be applied to individual SELECT statements inside a UNION?",
@@ -2979,7 +2979,7 @@ export const dbmsCourse: Course = {
                   "Yes, but only to the first SELECT",
                   "Yes, only with UNION ALL"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"ORDER BY sorts the final result — it belongs at the end of the entire UNION expression."
               },
               {
                 "question": "What is a practical use case for UNION ALL over UNION?",
@@ -2989,7 +2989,7 @@ export const dbmsCourse: Course = {
                   "Eliminating duplicate product entries",
                   "Finding common records between two tables"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"UNION ALL is useful when every row matters and duplicates are meaningful data."
               }
             ],
             references: [
@@ -3056,7 +3056,7 @@ export const dbmsCourse: Course = {
                   "Both result sets",
                   "Neither result set"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"INTERSECT is a set intersection — only rows common to both sides are returned."
               },
               {
                 "question": "EXCEPT returns rows that appear in:",
@@ -3066,7 +3066,7 @@ export const dbmsCourse: Course = {
                   "The second result set but NOT the first",
                   "Neither result set"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"EXCEPT removes from the left side what appears on the right — it's a set difference."
               },
               {
                 "question": "Oracle's equivalent of EXCEPT is:",
@@ -3076,7 +3076,7 @@ export const dbmsCourse: Course = {
                   "MINUS",
                   "REMOVE"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Different database vendors use different keywords for set difference — Oracle has its own name."
               },
               {
                 "question": "Which JOIN simulates INTERSECT?",
@@ -3086,7 +3086,7 @@ export const dbmsCourse: Course = {
                   "CROSS JOIN",
                   "FULL JOIN WHERE both IS NULL"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"INTERSECT returns only matching rows — which JOIN type also produces only matched rows?"
               },
               {
                 "question": "A INTERSECT B INTERSECT C returns rows present in:",
@@ -3096,7 +3096,7 @@ export const dbmsCourse: Course = {
                   "A and B and C",
                   "A only"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"INTERSECT applied repeatedly requires a value to be present in all operands."
               }
             ],
             "procedure": [
@@ -3152,7 +3152,7 @@ export const dbmsCourse: Course = {
                   "{1,2,3,4,5,6}",
                   "{1,2}"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Set intersection keeps only what's in both A and B — list the values present in both."
               },
               {
                 "question": "If set A = {1,2,3,4} and B = {3,4,5,6}, A EXCEPT B = ?",
@@ -3162,7 +3162,7 @@ export const dbmsCourse: Course = {
                   "{1,2}",
                   "{5,6}"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Set difference A EXCEPT B keeps what's in A but not in B — identify those values."
               },
               {
                 "question": "Which query finds students enrolled in CS101 but not CS103?",
@@ -3172,7 +3172,7 @@ export const dbmsCourse: Course = {
                   "SELECT Roll_No FROM MARKS WHERE Course_ID='CS101' INTERSECT SELECT Roll_No FROM MARKS WHERE Course_ID='CS103'",
                   "SELECT Roll_No FROM MARKS WHERE Course_ID IN ('CS101','CS103')"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"EXCEPT removes the second set from the first — which course group should be subtracted?"
               },
               {
                 "question": "Does INTERSECT eliminate duplicate rows in the result?",
@@ -3182,7 +3182,7 @@ export const dbmsCourse: Course = {
                   "Only if DISTINCT is specified",
                   "Depends on the database"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"INTERSECT removes duplicates by default — like UNION, it returns a set."
               },
               {
                 "question": "The EXCEPT simulation using LEFT JOIN + IS NULL — what does the IS NULL condition represent?",
@@ -3192,7 +3192,7 @@ export const dbmsCourse: Course = {
                   "Rows from the right table only",
                   "All NULL values in both tables"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"IS NULL after LEFT JOIN identifies rows in the left table with no matching row on the right."
               }
             ],
             references: [
@@ -3277,7 +3277,7 @@ export const dbmsCourse: Course = {
                   "Deleting one row removes unrelated data",
                   "A query returns wrong results"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Update anomaly arises from redundancy — the same fact stored in multiple rows can become inconsistent."
               },
               {
                 "question": "Roll_No → Name is an example of:",
@@ -3287,7 +3287,7 @@ export const dbmsCourse: Course = {
                   "Functional Dependency",
                   "Multivalued Dependency"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"A functional dependency means one value uniquely determines another — Roll_No → Name is a classic example."
               },
               {
                 "question": "If {Roll_No, Course_ID} is the primary key and Roll_No → Name, then Name has a:",
@@ -3297,7 +3297,7 @@ export const dbmsCourse: Course = {
                   "Transitive dependency",
                   "No dependency"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Partial dependency means a non-key attribute depends on only part of the composite key."
               },
               {
                 "question": "Which anomaly prevents adding a new course without a student enrolled?",
@@ -3307,7 +3307,7 @@ export const dbmsCourse: Course = {
                   "Insertion anomaly",
                   "Redundancy anomaly"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Insertion anomaly means valid data cannot be stored — what is missing that forces a null or fake value?"
               },
               {
                 "question": "Roll_No → Dept and Dept → HOD together imply:",
@@ -3317,7 +3317,7 @@ export const dbmsCourse: Course = {
                   "Dept → Roll_No",
                   "No additional FD"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Transitivity chains FDs: if A→B and B→C, then A→C by transitivity."
               }
             ],
             "procedure": [
@@ -3374,7 +3374,7 @@ export const dbmsCourse: Course = {
                   "Deletion anomaly — Bob's enrollment and CS101-IT data are lost together",
                   "No anomaly"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Deletion anomaly removes more information than intended — what else is lost when Bob's row is deleted?"
               },
               {
                 "question": "The FD Dept → HOD in STUDENT_COURSE indicates a:",
@@ -3384,7 +3384,7 @@ export const dbmsCourse: Course = {
                   "Transitive FD through Roll_No",
                   "Trivial FD"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Look at which part of the composite key {Roll_No, Course_ID} determines HOD — is it the full key or part of it?"
               },
               {
                 "question": "What is the primary key of STUDENT_COURSE?",
@@ -3394,7 +3394,7 @@ export const dbmsCourse: Course = {
                   "{Roll_No, Course_ID}",
                   "{Roll_No, Name, Course_ID}"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"The primary key must uniquely identify each row — which combination of attributes does that here?"
               },
               {
                 "question": "The FD Roll_No → HOD via Dept is an example of:",
@@ -3404,7 +3404,7 @@ export const dbmsCourse: Course = {
                   "Full dependency",
                   "Multivalued dependency"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Transitive dependency: Roll_No → Dept and Dept → HOD — the path goes through an intermediate attribute."
               },
               {
                 "question": "Which FD represents a full functional dependency on the primary key?",
@@ -3414,7 +3414,7 @@ export const dbmsCourse: Course = {
                   "{Roll_No, Course_ID} → Marks",
                   "Dept → HOD"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"A full FD requires the entire composite key to determine the attribute — not just part of it."
               }
             ],
             references: [
@@ -3488,7 +3488,7 @@ export const dbmsCourse: Course = {
                   "It has transitive dependencies",
                   "It has more than 3 columns"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"1NF requires atomic values — a cell with multiple values (like a list) violates this."
               },
               {
                 "question": "Partial functional dependency arises when:",
@@ -3498,7 +3498,7 @@ export const dbmsCourse: Course = {
                   "The primary key has only one attribute",
                   "Two non-key attributes depend on each other"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Partial dependency involves only part of a composite key determining a non-key attribute."
               },
               {
                 "question": "In 2NF, which of the following is eliminated?",
@@ -3508,7 +3508,7 @@ export const dbmsCourse: Course = {
                   "Multi-valued dependencies",
                   "All redundancy"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"2NF eliminates partial dependencies — transitive ones are addressed in a later normal form."
               },
               {
                 "question": "A relation with a single-attribute primary key is automatically in:",
@@ -3518,7 +3518,7 @@ export const dbmsCourse: Course = {
                   "3NF",
                   "BCNF"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"With a single-attribute primary key, no subset of it exists — so partial dependency is impossible."
               },
               {
                 "question": "Roll_No → Dept → HOD is an example of:",
@@ -3528,7 +3528,7 @@ export const dbmsCourse: Course = {
                   "Multi-valued dependency",
                   "Full dependency"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Transitive dependency is A→B→C — the non-key attribute depends on another non-key attribute."
               }
             ],
             "procedure": [
@@ -3586,7 +3586,7 @@ export const dbmsCourse: Course = {
                   "4",
                   "1"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"Count the distinct relations created when removing partial dependencies from STUDENT_COURSE."
               },
               {
                 "question": "Which relation still violates 3NF after the 2NF decomposition?",
@@ -3596,7 +3596,7 @@ export const dbmsCourse: Course = {
                   "STUDENT_2NF (Roll_No→Dept→HOD)",
                   "None — 2NF implies 3NF"
                 ],
-                "answerIndex": 2
+                "answerIndex": 2,hint:"Check which 2NF relation still has a chain A→B→C where B is not the primary key."
               },
               {
                 "question": "After full 3NF decomposition, STUDENT_3NF contains which attributes?",
@@ -3606,7 +3606,7 @@ export const dbmsCourse: Course = {
                   "Roll_No, Dept, HOD",
                   "Roll_No, Name, Dept, HOD, Course_ID"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"After removing the transitive FD, STUDENT_3NF retains only the direct student attributes."
               },
               {
                 "question": "The 3NF decomposition guarantees:",
@@ -3616,7 +3616,7 @@ export const dbmsCourse: Course = {
                   "Lossless-join only",
                   "Dependency preservation only"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"3NF decomposition always guarantees lossless-join — but what about dependency preservation?"
               },
               {
                 "question": "A relation R(A,B,C) with A as PK and FD B→C is in:",
@@ -3626,7 +3626,7 @@ export const dbmsCourse: Course = {
                   "3NF",
                   "BCNF"
                 ],
-                "answerIndex": 1
+                "answerIndex": 1,hint:"With A as PK and B→C, C depends on B (not the key) — classify the dependency type."
               }
             ],
             references: [
@@ -3711,7 +3711,7 @@ export const dbmsCourse: Course = {
                 "X is a candidate key only",
                 "Y contains all attributes"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"BCNF requires every determinant to be a superkey — no exceptions for prime attributes."
             },
             {
               "question": "The closure of attribute set X, written X+, represents:",
@@ -3721,7 +3721,7 @@ export const dbmsCourse: Course = {
                 "The primary key of X",
                 "The set of all candidate keys"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Attribute closure X+ is the set of all attributes determined by X — it tells you what X 'controls'."
             },
             {
               "question": "BCNF guarantees:",
@@ -3731,7 +3731,7 @@ export const dbmsCourse: Course = {
                 "Both lossless and dependency preservation",
                 "Elimination of multi-valued dependencies"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"BCNF decomposition splits on the violating FD — which property is always guaranteed?"
             },
             {
               "question": "Given R(A,B,C) with FDs A→B and B→C and B→A. What are the candidate keys?",
@@ -3741,7 +3741,7 @@ export const dbmsCourse: Course = {
                 "{A,B}",
                 "{A,B,C}"
               ],
-              "answerIndex": 0
+              "answerIndex": 0,hint:"Find the closure of each candidate set — a candidate key's closure equals all attributes of R."
             },
             {
               "question": "BCNF is stricter than 3NF because:",
@@ -3751,7 +3751,7 @@ export const dbmsCourse: Course = {
                 "3NF allows X→A if A is a prime attribute; BCNF requires X to always be a superkey",
                 "3NF has more normal form checks"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"3NF allows X→A when A is a prime attribute; BCNF does not make that exception."
             }
           ],
           "procedure": [
@@ -3810,7 +3810,7 @@ export const dbmsCourse: Course = {
                 "{A,C,D}",
                 "{A,B,C,D} — A,B,C,D all appear in some candidate key"
               ],
-              "answerIndex": 3
+              "answerIndex": 3,hint:"Prime attributes appear in at least one candidate key — check both candidate keys found."
             },
             {
               "question": "After BCNF decomposition into R1(B,C) and R2(A,C,D), which FD is lost?",
@@ -3820,7 +3820,7 @@ export const dbmsCourse: Course = {
                 "A → D",
                 "No FD is lost"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"When decomposing using C→B, the FD AB→C is split across both resulting relations."
             },
             {
               "question": "The lossless-join property of BCNF decomposition using X→Y is guaranteed because:",
@@ -3830,7 +3830,7 @@ export const dbmsCourse: Course = {
                 "R1 ∩ R2 = Y, and Y is a key of R2",
                 "BCNF always preserves all FDs"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Lossless join is guaranteed because the intersection of the two decomposed relations is a key of one of them."
             },
             {
               "question": "A relation R with only one candidate key (single attribute) that satisfies 3NF is:",
@@ -3840,7 +3840,7 @@ export const dbmsCourse: Course = {
                 "In BCNF only if no FDs exist",
                 "In BCNF only if the key is composite"
               ],
-              "answerIndex": 0
+              "answerIndex": 0,hint:"If a relation has a single-attribute primary key and satisfies 3NF, check whether any FD has a non-superkey determinant."
             },
             {
               "question": "Which statement about BCNF is correct?",
@@ -3850,7 +3850,7 @@ export const dbmsCourse: Course = {
                 "BCNF and 3NF are equivalent",
                 "BCNF is weaker than 3NF"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"BCNF is strictly stronger — every BCNF relation is in 3NF, but not every 3NF relation is in BCNF."
             }
           ],
           references: [
@@ -3915,7 +3915,7 @@ export const dbmsCourse: Course = {
                 "Y determines X",
                 "X and Y are in a many-to-many relationship"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"An MVD X↠Y means the Y-values for a given X are independent of all other attributes."
             },
             {
               "question": "A relation in BCNF can still violate 4NF if it has:",
@@ -3925,7 +3925,7 @@ export const dbmsCourse: Course = {
                 "A non-trivial MVD where the determinant is not a superkey",
                 "A composite primary key"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"BCNF handles FDs; 4NF additionally handles MVDs — a BCNF relation can still violate 4NF."
             },
             {
               "question": "EMPLOYEE_SKILLS_PROJECTS(Emp_ID, Skill, Project) with Emp_ID ↠ Skill is decomposed into:",
@@ -3935,7 +3935,7 @@ export const dbmsCourse: Course = {
                 "(Skill, Project) and (Emp_ID)",
                 "(Emp_ID, Skill) and (Skill, Project)"
               ],
-              "answerIndex": 0
+              "answerIndex": 0,hint:"4NF decomposition splits X↠Y into two relations, each containing X paired with one of the independent attribute sets."
             },
             {
               "question": "4NF decomposition is guaranteed to be:",
@@ -3945,7 +3945,7 @@ export const dbmsCourse: Course = {
                 "Both lossless and dependency preserving",
                 "Neither"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"4NF decomposition is always lossless — the intersection of the two resulting relations is X, which is a key."
             },
             {
               "question": "Every FD X → Y implies the MVD:",
@@ -3955,7 +3955,7 @@ export const dbmsCourse: Course = {
                 "X → Y only (FD does not imply MVD)",
                 "Z ↠ XY where Z is remaining"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Every FD is a special case of an MVD — the reverse is not true."
             }
           ],
           "procedure": [
@@ -4012,7 +4012,7 @@ export const dbmsCourse: Course = {
                 "The primary key is wrong",
                 "BCNF and 4NF are the same"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The relation has no non-trivial FDs at all — check whether MVDs cause the 4NF violation."
             },
             {
               "question": "After 4NF decomposition into EMP_SKILL and EMP_PROJECT, adding a new project for an employee requires:",
@@ -4022,7 +4022,7 @@ export const dbmsCourse: Course = {
                 "Inserting into EMP_PROJECT only (one row)",
                 "No insertion needed"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"After 4NF decomposition, skills and projects are stored independently — adding a project affects only one table."
             },
             {
               "question": "The lossless-join of R1(X,Y) and R2(X,Z) from MVD decomposition is guaranteed because:",
@@ -4032,7 +4032,7 @@ export const dbmsCourse: Course = {
                 "Y and Z are disjoint",
                 "MVD decomposition is always dependency preserving"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The intersection of the two decomposed relations equals X, and X is a key in both — this guarantees lossless join."
             },
             {
               "question": "If Emp_ID ↠ Skill holds, which of the following must also hold?",
@@ -4042,7 +4042,7 @@ export const dbmsCourse: Course = {
                 "Skill → Emp_ID",
                 "Project ↠ Skill"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The complement rule states that if X↠Y holds in R(X,Y,Z), then X↠Z also holds."
             },
             {
               "question": "A relation with only FDs (no non-trivial MVDs) and in BCNF is automatically in:",
@@ -4052,7 +4052,7 @@ export const dbmsCourse: Course = {
                 "5NF",
                 "1NF only"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"If only FDs exist (no non-trivial MVDs) and the relation is in BCNF, the next normal form is automatically satisfied."
             }
           ],
           references: [
@@ -4133,7 +4133,7 @@ export const dbmsCourse: Course = {
                 "Durability",
                 "Atomicity"
               ],
-              "answerIndex": 3
+              "answerIndex": 3,hint:"Atomicity means all-or-nothing — no partial application of a transaction is allowed."
             },
             {
               "question": "Which ACID property is enforced by integrity constraints (CHECK, FK)?",
@@ -4143,7 +4143,7 @@ export const dbmsCourse: Course = {
                 "Isolation",
                 "Durability"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Consistency is maintained by integrity constraints — they enforce valid database states."
             },
             {
               "question": "Durability means:",
@@ -4153,7 +4153,7 @@ export const dbmsCourse: Course = {
                 "Transactions are isolated from each other",
                 "Constraints are always enforced"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Durability means committed changes survive failures — the write-ahead log enables this."
             },
             {
               "question": "In SQLite, what command starts a transaction explicitly?",
@@ -4163,7 +4163,7 @@ export const dbmsCourse: Course = {
                 "OPEN TRANSACTION",
                 "INIT TRANSACTION"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"SQLite uses BEGIN to start an explicit transaction — check the exact keyword syntax."
             },
             {
               "question": "ROLLBACK reverses:",
@@ -4173,7 +4173,7 @@ export const dbmsCourse: Course = {
                 "Only the last SQL statement",
                 "The entire database"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"ROLLBACK reverses all changes since the last BEGIN — it undoes the entire current transaction."
             }
           ],
           "procedure": [
@@ -4231,7 +4231,7 @@ export const dbmsCourse: Course = {
                 "0",
                 "Error state"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"ROLLBACK restores the state before the transaction began — the DEBIT is undone."
             },
             {
               "question": "Which ACID property prevents another transaction from seeing Alice's deducted balance before COMMIT?",
@@ -4241,7 +4241,7 @@ export const dbmsCourse: Course = {
                 "Isolation",
                 "Durability"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"Isolation controls visibility of uncommitted data between concurrent transactions."
             },
             {
               "question": "A database crash occurs 1 second after COMMIT. After recovery, the committed data:",
@@ -4251,7 +4251,7 @@ export const dbmsCourse: Course = {
                 "Must be re-entered manually",
                 "Is rolled back automatically"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Durability relies on the write-ahead log — committed data is written to durable storage."
             },
             {
               "question": "The CHECK (Balance >= 0) constraint enforces which ACID property?",
@@ -4261,7 +4261,7 @@ export const dbmsCourse: Course = {
                 "Isolation",
                 "Durability"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"CHECK constraints enforce data validity — they ensure the database remains in a consistent state."
             },
             {
               "question": "If a transaction has UPDATE A and UPDATE B, and UPDATE B fails, which outcome is correct?",
@@ -4271,7 +4271,7 @@ export const dbmsCourse: Course = {
                 "UPDATE A remains; B is skipped",
                 "The database is left in a partial state"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Atomicity requires either all operations succeed or none take effect — a mid-failure triggers rollback."
             }
           ],
           references: [
@@ -4348,7 +4348,7 @@ export const dbmsCourse: Course = {
                 "An intermediate marker within a transaction",
                 "A copy of the entire database"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"SAVEPOINT creates a named marker inside a transaction — it doesn't commit or end the transaction."
             },
             {
               "question": "ROLLBACK TO SAVEPOINT SP1 undoes:",
@@ -4358,7 +4358,7 @@ export const dbmsCourse: Course = {
                 "Only the last statement",
                 "All committed transactions"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"ROLLBACK TO SAVEPOINT undoes only what happened after the savepoint — earlier changes survive."
             },
             {
               "question": "After ROLLBACK TO SAVEPOINT SP1, the transaction:",
@@ -4368,7 +4368,7 @@ export const dbmsCourse: Course = {
                 "Remains active — further statements can be executed",
                 "Returns to auto-commit mode"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"After ROLLBACK TO SAVEPOINT, the transaction is still open — more SQL can be executed."
             },
             {
               "question": "RELEASE SAVEPOINT SP1 does what?",
@@ -4378,7 +4378,7 @@ export const dbmsCourse: Course = {
                 "Removes the SP1 marker without committing or rolling back",
                 "Ends the transaction"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"RELEASE SAVEPOINT removes the marker only — it neither commits nor rolls back."
             },
             {
               "question": "Which sequence correctly commits only the first INSERT and rolls back the second?",
@@ -4388,7 +4388,7 @@ export const dbmsCourse: Course = {
                 "BEGIN; INSERT1; COMMIT; INSERT2; ROLLBACK;",
                 "INSERT1; SAVEPOINT SP1; INSERT2; COMMIT;"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"SAVEPOINT lets you undo only part of a transaction — which sequence achieves partial rollback?"
             }
           ],
           "procedure": [
@@ -4444,7 +4444,7 @@ export const dbmsCourse: Course = {
                 "Changes made AFTER SP1 was created",
                 "Only the COMMIT is preserved"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"ROLLBACK TO SAVEPOINT preserves changes made before the savepoint was created."
             },
             {
               "question": "Can more SQL statements be executed after ROLLBACK TO SAVEPOINT?",
@@ -4454,7 +4454,7 @@ export const dbmsCourse: Course = {
                 "Only SELECT statements",
                 "Only COMMIT is allowed"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"ROLLBACK TO SAVEPOINT leaves the transaction active — additional statements can follow."
             },
             {
               "question": "RELEASE SAVEPOINT SP1 followed by ROLLBACK will:",
@@ -4464,7 +4464,7 @@ export const dbmsCourse: Course = {
                 "Commit changes up to SP1",
                 "Only rollback changes after SP1"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Once a savepoint is released, it no longer exists as a rollback target — only a full ROLLBACK remains."
             },
             {
               "question": "In a multi-step order processing system, SAVEPOINTs are used to:",
@@ -4474,7 +4474,7 @@ export const dbmsCourse: Course = {
                 "Permanently save intermediate states",
                 "Replace COMMIT statements"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"SAVEPOINTs allow granular error recovery within a single transaction — which use case matches this?"
             },
             {
               "question": "In auto-commit mode, each SQL statement:",
@@ -4484,7 +4484,7 @@ export const dbmsCourse: Course = {
                 "Is never committed until COMMIT is issued",
                 "Requires a SAVEPOINT"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Auto-commit wraps each statement in its own transaction — no explicit COMMIT is needed."
             }
           ],
           references: [
@@ -4566,7 +4566,7 @@ export const dbmsCourse: Course = {
                 "Belong to different transactions, access the same item, and at least one is a write",
                 "Both are read operations"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"Conflicts require different transactions, same data item, and at least one write."
             },
             {
               "question": "An edge Ti → Tj in the precedence graph means:",
@@ -4576,7 +4576,7 @@ export const dbmsCourse: Course = {
                 "Ti and Tj access the same data item",
                 "Ti writes after Tj writes"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"A precedence edge goes from the earlier transaction to the later one — it shows which must come first."
             },
             {
               "question": "A schedule is conflict-serializable if the precedence graph is:",
@@ -4586,7 +4586,7 @@ export const dbmsCourse: Course = {
                 "Complete (all nodes connected)",
                 "Empty (no edges)"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Conflict-serializability is tested by checking the precedence graph for cycles."
             },
             {
               "question": "R-R (Read-Read) operations between two transactions:",
@@ -4596,7 +4596,7 @@ export const dbmsCourse: Course = {
                 "Conflict only on primary key columns",
                 "Conflict if one is a dirty read"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Read-Read operations don't modify data — two readers never interfere with each other."
             },
             {
               "question": "Topological sort of an acyclic precedence graph gives:",
@@ -4606,7 +4606,7 @@ export const dbmsCourse: Course = {
                 "All possible schedules",
                 "The lock acquisition order"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Topological sort of a DAG gives a valid linear ordering — this is the equivalent serial order."
             }
           ],
           "procedure": [
@@ -4663,7 +4663,7 @@ export const dbmsCourse: Course = {
                 "T1→T2 only",
                 "No conflict — R and W do not conflict"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Identify both the R-W conflict (T1 reads before T2 writes) and the W-W conflict (T2 writes before T1 writes) on X."
             },
             {
               "question": "A precedence graph with 3 transactions and edges T1→T2, T2→T3, T3→T1 is:",
@@ -4673,7 +4673,7 @@ export const dbmsCourse: Course = {
                 "Acyclic if we remove one edge",
                 "Always serializable regardless of cycles"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"A cycle in the precedence graph means no serial order can produce the same result."
             },
             {
               "question": "Topological sort of acyclic graph T1→T2→T3 gives serial order:",
@@ -4683,7 +4683,7 @@ export const dbmsCourse: Course = {
                 "T2, T1, T3",
                 "Any order is valid"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Topological sort follows the direction of edges — the node with no incoming edges comes first."
             },
             {
               "question": "Which pair of operations does NOT conflict?",
@@ -4693,7 +4693,7 @@ export const dbmsCourse: Course = {
                 "T1:R(X) and T2:R(X)",
                 "T1:W(X) and T2:R(X)"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"R-R is the one operation pair that never causes a conflict — two reads don't interfere."
             },
             {
               "question": "Every conflict-serializable schedule is view-serializable. The converse:",
@@ -4703,7 +4703,7 @@ export const dbmsCourse: Course = {
                 "Is true only for 2 transactions",
                 "Is true if no blind writes exist"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Conflict-serializability is a subset of view-serializability — the relationship goes one way."
             }
           ],
           references: [
@@ -4777,7 +4777,7 @@ export const dbmsCourse: Course = {
                 "One transaction to write and others to read",
                 "No other transaction to access the item"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Shared locks allow concurrent readers — multiple S-locks on the same item are compatible."
             },
             {
               "question": "In 2PL, after a transaction releases its first lock, it can:",
@@ -4787,7 +4787,7 @@ export const dbmsCourse: Course = {
                 "Acquire S-locks but not X-locks",
                 "Acquire any lock with the manager's permission"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The shrinking phase begins with the first lock release — no new locks can be acquired after that."
             },
             {
               "question": "A deadlock is detected using:",
@@ -4797,7 +4797,7 @@ export const dbmsCourse: Course = {
                 "Lock compatibility matrix",
                 "Timestamp ordering"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"A wait-for graph shows which transactions are waiting for which — a cycle means deadlock."
             },
             {
               "question": "Strict 2PL holds X-locks until:",
@@ -4807,7 +4807,7 @@ export const dbmsCourse: Course = {
                 "Transaction commit or abort",
                 "The end of the growing phase"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"Strict 2PL holds X-locks until the transaction ends — this prevents other transactions from reading uncommitted data."
             },
             {
               "question": "Cascading rollback occurs in basic 2PL when:",
@@ -4817,7 +4817,7 @@ export const dbmsCourse: Course = {
                 "Two transactions write the same item",
                 "The lock table is full"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Cascading rollback happens when a transaction reads data that is later rolled back by another."
             }
           ],
           "procedure": [
@@ -4875,7 +4875,7 @@ export const dbmsCourse: Course = {
                 "X and S",
                 "S and S"
               ],
-              "answerIndex": 3
+              "answerIndex": 3,hint:"Check the lock compatibility matrix — S-S is the only combination where both are granted immediately."
             },
             {
               "question": "In 2PL, a transaction enters the shrinking phase when:",
@@ -4885,7 +4885,7 @@ export const dbmsCourse: Course = {
                 "It acquires its last lock",
                 "It issues COMMIT"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The shrinking phase starts the moment any lock is released — after that, no new locks are allowed."
             },
             {
               "question": "A wait-for graph cycle T1→T2→T3→T1 indicates:",
@@ -4895,7 +4895,7 @@ export const dbmsCourse: Course = {
                 "A valid lock acquisition order",
                 "An acyclic schedule"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"A cycle in the wait-for graph means each transaction is waiting for another — circular dependency."
             },
             {
               "question": "Strict 2PL prevents cascading rollbacks because:",
@@ -4905,7 +4905,7 @@ export const dbmsCourse: Course = {
                 "It uses timestamps instead of locks",
                 "Transactions cannot read during the shrinking phase"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"If X-locks are held until commit, no other transaction can read the uncommitted data — dirty reads are impossible."
             },
             {
               "question": "The lock point in 2PL is defined as:",
@@ -4915,7 +4915,7 @@ export const dbmsCourse: Course = {
                 "The time of first lock release",
                 "The time of COMMIT"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The lock point is the boundary between the growing and shrinking phases — it's when the last lock is acquired."
             }
           ],
           references: [
@@ -5001,7 +5001,7 @@ export const dbmsCourse: Course = {
                 "Leaf nodes",
                 "All nodes equally"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"In a B+ tree, all actual data (or record pointers) reside only at the leaf level."
             },
             {
               "question": "A B+ tree of order 3 allows at most how many keys per internal node?",
@@ -5011,7 +5011,7 @@ export const dbmsCourse: Course = {
                 "4",
                 "1"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Order n means at most n pointers per internal node — so at most n-1 keys."
             },
             {
               "question": "When a leaf node overflows in a B+ tree, the middle key is:",
@@ -5021,7 +5021,7 @@ export const dbmsCourse: Course = {
                 "Deleted from the tree",
                 "Moved to the right sibling"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"When a leaf splits, the middle key goes up to the parent but also stays in the leaf — internal node splits are different."
             },
             {
               "question": "Leaf nodes in a B+ tree are linked as a:",
@@ -5031,7 +5031,7 @@ export const dbmsCourse: Course = {
                 "Hash table",
                 "Stack"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Leaf nodes form a linked list — this enables sequential access for range queries."
             },
             {
               "question": "CREATE INDEX on a column speeds up:",
@@ -5041,7 +5041,7 @@ export const dbmsCourse: Course = {
                 "SELECT queries with WHERE conditions on that column",
                 "All DML operations equally"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"An index on a column lets the DBMS jump directly to matching rows instead of scanning every row."
             }
           ],
           "procedure": [
@@ -5099,7 +5099,7 @@ export const dbmsCourse: Course = {
                 "1",
                 "4"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Order 3 means at most 3 pointers per internal node — how many keys fit in a leaf?"
             },
             {
               "question": "When a leaf splits in a B+ tree, the middle key is:",
@@ -5109,7 +5109,7 @@ export const dbmsCourse: Course = {
                 "Deleted from the tree entirely",
                 "Moved to the left sibling"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Leaf splits copy the middle key up; internal node splits push the middle key up — which applies to leaves?"
             },
             {
               "question": "Which query type benefits MORE from a B+ tree index compared to a hash index?",
@@ -5119,7 +5119,7 @@ export const dbmsCourse: Course = {
                 "Aggregate query (COUNT(*))",
                 "JOIN query without a WHERE clause"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"B+ tree leaves are linked — a range query can follow the chain after finding the starting point."
             },
             {
               "question": "EXPLAIN QUERY PLAN in SQLite shows 'SCAN TABLE STUDENT' instead of using an index when:",
@@ -5129,7 +5129,7 @@ export const dbmsCourse: Course = {
                 "The index was just created",
                 "SQLite never uses indexes"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"The optimizer chooses between index scan and full table scan based on estimated cost — high selectivity favors the index."
             },
             {
               "question": "The height of a B+ tree grows when:",
@@ -5139,7 +5139,7 @@ export const dbmsCourse: Course = {
                 "An internal node splits",
                 "A key is deleted"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Tree height increases only when the root itself overflows and splits — a new root is created."
             }
           ],
           references: [
@@ -5216,7 +5216,7 @@ export const dbmsCourse: Course = {
                 "2",
                 "3"
               ],
-              "answerIndex": 3
+              "answerIndex": 3,hint:"Apply the hash function: compute 23 MOD 5 to find the bucket number."
             },
             {
               "question": "Overflow in a static hash index is handled by:",
@@ -5226,7 +5226,7 @@ export const dbmsCourse: Course = {
                 "Rehashing all keys",
                 "Deleting old records"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"When a primary bucket fills up, the hash index chains an additional overflow bucket to it."
             },
             {
               "question": "Hash indexes are unsuitable for range queries because:",
@@ -5236,7 +5236,7 @@ export const dbmsCourse: Course = {
                 "Hash indexes do not support integer keys",
                 "Hash functions always produce collisions for range queries"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Range queries need consecutive keys — hash functions scatter keys across buckets unpredictably."
             },
             {
               "question": "Average search cost for a point query in a hash index (no overflow) is:",
@@ -5246,7 +5246,7 @@ export const dbmsCourse: Course = {
                 "O(1)",
                 "O(n log n)"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"Hash indexes compute the bucket in one step — no traversal needed, unlike a tree."
             },
             {
               "question": "The load factor α of a hash index is defined as:",
@@ -5256,7 +5256,7 @@ export const dbmsCourse: Course = {
                 "Number of collisions / Number of records",
                 "Bucket size / Key size"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Load factor is a ratio — divide the number of records by the number of buckets."
             }
           ],
           "procedure": [
@@ -5314,7 +5314,7 @@ export const dbmsCourse: Course = {
                 "Bucket 2",
                 "Bucket 3"
               ],
-              "answerIndex": 3
+              "answerIndex": 3,hint:"Apply h(k) = k MOD 5 to key 18 — compute the remainder."
             },
             {
               "question": "What is the load factor when 15 records are stored in 5 buckets?",
@@ -5324,7 +5324,7 @@ export const dbmsCourse: Course = {
                 "0.33",
                 "75"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Divide the number of records by the number of buckets to get the load factor."
             },
             {
               "question": "For a range query WHERE salary BETWEEN 50000 AND 80000, which index is more efficient?",
@@ -5334,7 +5334,7 @@ export const dbmsCourse: Course = {
                 "Both are equally efficient for range queries",
                 "Neither — full scan is always used for range queries"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Range queries need ordered access — which index structure stores keys in sorted, linked order?"
             },
             {
               "question": "Chaining in a hash index refers to:",
@@ -5344,7 +5344,7 @@ export const dbmsCourse: Course = {
                 "Linking hash tables together",
                 "Chaining hash functions"
               ],
-              "answerIndex": 1
+              "answerIndex": 1,hint:"Chaining links overflow pages to the primary bucket — this is how hash indexes handle bucket overflow."
             },
             {
               "question": "In SQLite, CREATE INDEX creates which type of index by default?",
@@ -5354,7 +5354,7 @@ export const dbmsCourse: Course = {
                 "B+ tree index",
                 "Clustered heap index"
               ],
-              "answerIndex": 2
+              "answerIndex": 2,hint:"SQLite's default index type is the same structure used for most database indexes — it's not a hash."
             }
           ],
           references: [

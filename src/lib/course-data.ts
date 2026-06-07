@@ -5,6 +5,7 @@ export type MCQ = {
   question: string;
   options: string[];
   answerIndex: number; // 0-indexed
+  hint?: string;
 };
 
 export type SimulationStep = {
@@ -1623,12 +1624,12 @@ export const courses: Record<string, Course> = {
                   body: ["All statements inside main() are enclosed within curly braces. The opening { marks the beginning and closing } marks the end of the function body."]
                 }
               ],
-              pretest: [
-                { question: "Which of the following is the correct extension for a C source file?", options: [".cp", ".c", ".cpp", ".cv"], answerIndex: 1 },
-                { question: "Which header file is required to use printf() in C?", options: ["math.h", "string.h", "stdio.h", "stdlib.h"], answerIndex: 2 },
-                { question: "What is the entry point of every C program?", options: ["start()", "begin()", "main()", "run()"], answerIndex: 2 },
-                { question: "What does \\n do inside printf()?", options: ["Prints the letter n", "Adds a tab space", "Moves to the next line", "Ends the program"], answerIndex: 2 },
-                { question: "What value should main() return to indicate successful execution?", options: ["1", "-1", "0", "NULL"], answerIndex: 2 }
+              pretest:[
+                { question: "Which of the following is the correct extension for a C source file?", options: [".cp", ".c", ".cpp", ".cv"], answerIndex: 1, hint: "Most C compilers look for this specific file extension to recognize source code." },
+                { question: "Which header file is required to use printf() in C?", options: ["math.h", "string.h", "stdio.h", "stdlib.h"], answerIndex: 2, hint: "This header provides standard functions for Input and Output operations." },
+                { question: "What is the entry point of every C program?", options: ["start()", "begin()", "main()", "run()"], answerIndex: 2, hint: "The operating system looks for this specific function name to start executing the program." },
+                { question: "What does \\n do inside printf()?", options: ["Prints the letter n", "Adds a tab space", "Moves to the next line", "Ends the program"], answerIndex: 2, hint: "It's an escape sequence for a control character that affects cursor positioning." },
+                { question: "What value should main() return to indicate successful execution?", options: ["1", "-1", "0", "NULL"], answerIndex: 2, hint: "By convention, this return value tells the OS that the program ended without errors." }
               ],
               procedure: [
                 "Read the Aim and Theory sections completely before starting",
@@ -1654,11 +1655,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the output of printf(\"Hello\\nWorld\");?", options: ["Hello World", "Hello\\nWorld (on two lines)", "HelloWorld", "Error"], answerIndex: 1 },
-                { question: "Which of the following correctly prints \"JNTUGV\" in C?", options: ["print(\"JNTUGV\")", "printf[JNTUGV]", "printf(\"JNTUGV\");", "Printf(\"JNTUGV\");"], answerIndex: 2 },
-                { question: "What happens if you remove #include<stdio.h> from the Hello World program?", options: ["Program still runs normally", "printf() will not be recognized, compiler error", "Program prints nothing", "Program crashes at runtime"], answerIndex: 1 },
-                { question: "What does int before main() indicate?", options: ["main() takes integer arguments", "main() returns an integer value", "main() is an integer variable", "Nothing, it is optional"], answerIndex: 1 },
-                { question: "Which of the following will print Hello World with a newline at the end?", options: ["printf(\"Hello World\")", "printf(\"Hello World\\n\")", "printf(\\nHello World)", "printf(\"Hello World\\t\")"], answerIndex: 1 }
+                { question: "What is the output of printf(\"Hello\\nWorld\");?", options: ["Hello World", "Hello\\nWorld (on two lines)", "HelloWorld", "Error"], answerIndex: 1, hint: "The escape sequence \\n is interpreted as a newline command, not literal characters." },
+                { question: "Which of the following correctly prints \"JNTUGV\" in C?", options: ["print(\"JNTUGV\")", "printf[JNTUGV]", "printf(\"JNTUGV\");", "Printf(\"JNTUGV\");"], answerIndex: 2, hint: "C is case-sensitive. The correct function name and syntax are required." },
+                { question: "What happens if you remove #include<stdio.h> from the Hello World program?", options: ["Program still runs normally", "printf() will not be recognized, compiler error", "Program prints nothing", "Program crashes at runtime"], answerIndex: 1, hint: "The compiler needs to know the declaration of printf() before it can be used." },
+                { question: "What does int before main() indicate?", options: ["main() takes integer arguments", "main() returns an integer value", "main() is an integer variable", "Nothing, it is optional"], answerIndex: 1, hint: "It specifies the data type of the value the function sends back to the caller." },
+                { question: "Which of the following will print Hello World with a newline at the end?", options: ["printf(\"Hello World\")", "printf(\"Hello World\\n\")", "printf(\\nHello World)", "printf(\"Hello World\\t\")"], answerIndex: 1, hint: "Escape sequences like \\n and \\t control output formatting. Which one moves the cursor to a new line?" }
               ],
               references: [
                 "Kernighan, B.W. and Ritchie, D.M., 'The C Programming Language', 2nd Edition, Prentice Hall",
@@ -1712,11 +1713,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "Which function is used to take input from the user in C?", options: ["input()", "cin()", "scanf()", "read()"], answerIndex: 2 },
-                { question: "What is the format specifier for an integer in C?", options: ["%i", "%d", "%int", "%n"], answerIndex: 1 },
-                { question: "What does the & symbol do in scanf(\"%d\", &age)?", options: ["It is the AND operator", "It passes the address of the variable", "It multiplies the value", "It is not required"], answerIndex: 1 },
-                { question: "To store a person's name in C, which data type is used?", options: ["string name", "char name[]", "text name[]", "varchar name"], answerIndex: 1 },
-                { question: "What is the format specifier for a string in printf()?", options: ["%c", "%str", "%s", "%ch"], answerIndex: 2 }
+                { question: "Which function is used to take input from the user in C?", options: ["input()", "cin()", "scanf()", "read()"], answerIndex: 2, hint: "This function is the standard input counterpart to printf()." },
+                { question: "What is the format specifier for an integer in C?", options: ["%i", "%d", "%int", "%n"], answerIndex: 1, hint: "It stands for 'decimal integer'." },
+                { question: "What does the & symbol do in scanf(\"%d\", &age)?", options: ["It is the AND operator", "It passes the address of the variable", "It multiplies the value", "It is not required"], answerIndex: 1, hint: "It tells scanf() *where* in memory to store the input value." },
+                { question: "To store a person's name in C, which data type is used?", options: ["string name", "char name[]", "text name[]", "varchar name"], answerIndex: 1, hint: "C doesn't have a built-in string type; it uses an array of characters." },
+                { question: "What is the format specifier for a string in printf()?", options: ["%c", "%str", "%s", "%ch"], answerIndex: 2, hint: "It's a mnemonic for 'string'." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully",
@@ -1743,12 +1744,12 @@ export const courses: Record<string, Course> = {
                   { line: 8, annotation: "Program ends successfully", memory: [{ variable: "name", type: "char[50]", value: "\"Likhith\"" }, { variable: "age", type: "int", value: "20" }], output: "Name: Likhith Age: 20\n" }
                 ]
               },
-              posttest: [
-                { question: "What will be the output of the program if input is Ram 25?", options: ["Name: Ram Age: 25", "Ram 25", "Name=Ram Age=25", "Error"], answerIndex: 0 },
-                { question: "Why is & not used with char arrays in scanf()?", options: ["It is a syntax error", "char arrays already represent memory addresses", "scanf() does not support strings", "& is only for float variables"], answerIndex: 1 },
-                { question: "What is the size of char name[50]?", options: ["50 integers", "50 characters including null terminator", "50 bytes of float", "50 bits"], answerIndex: 1 },
-                { question: "Which format specifier is used to print a float value?", options: ["%d", "%s", "%f", "%fl"], answerIndex: 2 },
-                { question: "What happens if you forget & before an int variable in scanf()?", options: ["Program prints 0", "Program compiles but may crash at runtime (undefined behavior)", "Program prints garbage value", "Compiler gives a warning but runs fine"], answerIndex: 1 }
+              posttest:[
+                { question: "What will be the output of the program if input is Ram 25?", options: ["Name: Ram Age: 25", "Ram 25", "Name=Ram Age=25", "Error"], answerIndex: 0, hint: "The format string of printf() dictates the exact output pattern, including words and spaces." },
+                { question: "Why is & not used with char arrays in scanf()?", options: ["It is a syntax error", "char arrays already represent memory addresses", "scanf() does not support strings", "& is only for float variables"], answerIndex: 1, hint: "The name of an array on its own acts like a pointer to its first element." },
+                { question: "What is the size of char name[50]?", options: ["50 integers", "50 characters including null terminator", "50 bytes of float", "50 bits"], answerIndex: 1, hint: "The number in the brackets specifies the number of elements of that type." },
+                { question: "Which format specifier is used to print a float value?", options: ["%d", "%s", "%f", "%fl"], answerIndex: 2, hint: "This specifier is a mnemonic for 'floating-point'." },
+                { question: "What happens if you forget & before an int variable in scanf()?", options: ["Program prints 0", "Program compiles but may crash at runtime (undefined behavior)", "Program prints garbage value", "Compiler gives a warning but runs fine"], answerIndex: 1, hint: "Without the address, scanf() gets the *value* of the variable and treats it as an invalid memory location." }
               ],
               references: [
                 "Kernighan, B.W. and Ritchie, D.M., 'The C Programming Language', 2nd Edition, Prentice Hall",
@@ -1799,12 +1800,12 @@ export const courses: Record<string, Course> = {
                   body: ["%.2f prints a float with exactly 2 decimal places. Useful for displaying averages cleanly."]
                 }
               ],
-              pretest: [
-                { question: "What is the result of 7 / 2 in C when both are int?", options: ["3.5", "3", "4", "Error"], answerIndex: 1 },
-                { question: "Which format specifier prints a float to 2 decimal places?", options: ["%d", "%f", "%.2f", "%2d"], answerIndex: 2 },
-                { question: "To get float division from two int variables a and b, you write:", options: ["a / b", "(float)a / b", "float(a / b)", "a % b"], answerIndex: 1 },
-                { question: "What operator computes the remainder of division?", options: ["/", "//", "%", "**"], answerIndex: 2 },
-                { question: "If a = 10 and b = 4, what is (float)(a + b) / 2?", options: ["7", "7.00", "7.5", "3.0"], answerIndex: 1 }
+              pretest:[
+                { question: "What is the result of 7 / 2 in C when both are int?", options: ["3.5", "3", "4", "Error"], answerIndex: 1, hint: "Integer division truncates the fractional part." },
+                { question: "Which format specifier prints a float to 2 decimal places?", options: ["%d", "%f", "%.2f", "%2d"], answerIndex: 2, hint: "It involves a precision modifier placed between the % and the f." },
+                { question: "To get float division from two int variables a and b, you write:", options: ["a / b", "(float)a / b", "float(a / b)", "a % b"], answerIndex: 1, hint: "This is called 'type casting'. You temporarily convert one operand to a float." },
+                { question: "What operator computes the remainder of division?", options: ["/", "//", "%", "**"], answerIndex: 2, hint: "It's called the modulus operator." },
+                { question: "If a = 10 and b = 4, what is (float)(a + b) / 2?", options: ["7", "7.00", "7.5", "3.0"], answerIndex: 1, hint: "Calculate inside the parentheses first. The result is an integer, then cast to float, then divided." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -1828,12 +1829,12 @@ export const courses: Record<string, Course> = {
                   { line: 10, annotation: "Program terminates successfully", memory: [{variable: "a", type: "int", value: "10"}, {variable: "b", type: "int", value: "4"}, {variable: "sum", type: "int", value: "14"}, {variable: "avg", type: "float", value: "7.00"}], output: "Sum: 14 Average: 7.00\n" }
                 ]
               },
-              posttest: [
-                { question: "What will printf(\"Sum: %d\", 10+4); print?", options: ["Sum: 14", "Sum: 10+4", "14", "Error"], answerIndex: 0 },
-                { question: "Which variable type is best for storing the average of two integers?", options: ["int", "float", "char", "double"], answerIndex: 1 },
-                { question: "For inputs 7 and 3, what is the average printed with %.2f?", options: ["5.00", "5", "5.5", "4.00"], answerIndex: 0 },
-                { question: "What is the purpose of type casting in (float)sum / 2?", options: ["Changes sum permanently to float", "Temporarily treats sum as float for division", "Rounds sum to nearest float", "No effect"], answerIndex: 1 },
-                { question: "What is 13 % 4?", options: ["3.25", "1", "3", "4"], answerIndex: 1 }
+              posttest:[
+                { question: "What will printf(\"Sum: %d\", 10+4); print?", options: ["Sum: 14", "Sum: 10+4", "14", "Error"], answerIndex: 0, hint: "The %d is a placeholder, and the expression 10+4 is calculated before being placed there." },
+                { question: "Which variable type is best for storing the average of two integers?", options: ["int", "float", "char", "double"], answerIndex: 1, hint: "An average is often not a whole number." },
+                { question: "For inputs 7 and 3, what is the average printed with %.2f?", options: ["5.00", "5", "5.5", "4.00"], answerIndex: 0, hint: "Remember integer division truncates. How would you get a decimal result for 10/2?" },
+                { question: "What is the purpose of type casting in (float)sum / 2?", options: ["Changes sum permanently to float", "Temporarily treats sum as float for division", "Rounds sum to nearest float", "No effect"], answerIndex: 1, hint: "It's a temporary conversion for the purpose of the operation, not a permanent change to the variable." },
+                { question: "What is 13 % 4?", options: ["3.25", "1", "3", "4"], answerIndex: 1, hint: "It's the remainder after division. 4 goes into 13 three times (12), with what left over?" }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -1877,11 +1878,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the correct formula to convert Fahrenheit to Celsius?", options: ["C = (F + 32) * 5 / 9", "C = (F - 32) * 9 / 5", "C = (F - 32) * 5 / 9", "C = F - 32 / 5 * 9"], answerIndex: 2 },
-                { question: "What data type should be used to store a temperature like 98.6?", options: ["int", "char", "float", "long"], answerIndex: 2 },
-                { question: "What is 98.6°F converted to Celsius (approx)?", options: ["32.00", "37.00", "66.60", "45.30"], answerIndex: 1 },
-                { question: "Why are parentheses needed in (F - 32) * 5 / 9?", options: ["They are not needed", "To ensure subtraction happens before multiplication", "To convert F to an integer", "To print the result"], answerIndex: 1 },
-                { question: "What will %.2f do when printing 37.0?", options: ["Print 37", "Print 37.0", "Print 37.00", "Print 37.000"], answerIndex: 2 }
+                { question: "What is the correct formula to convert Fahrenheit to Celsius?", options: ["C = (F + 32) * 5 / 9", "C = (F - 32) * 9 / 5", "C = (F - 32) * 5 / 9", "C = F - 32 / 5 * 9"], answerIndex: 2, hint: "Think about the boiling and freezing points of water: 212°F and 32°F correspond to 100°C and 0°C." },
+                { question: "What data type should be used to store a temperature like 98.6?", options: ["int", "char", "float", "long"], answerIndex: 2, hint: "This data type is designed to hold numbers with a decimal point." },
+                { question: "What is 98.6°F converted to Celsius (approx)?", options: ["32.00", "37.00", "66.60", "45.30"], answerIndex: 1, hint: "This is the standard human body temperature." },
+                { question: "Why are parentheses needed in (F - 32) * 5 / 9?", options: ["They are not needed", "To ensure subtraction happens before multiplication", "To convert F to an integer", "To print the result"], answerIndex: 1, hint: "In C, multiplication and division have a higher precedence than subtraction." },
+                { question: "What will %.2f do when printing 37.0?", options: ["Print 37", "Print 37.0", "Print 37.00", "Print 37.000"], answerIndex: 2, hint: "The number after the decimal point in the format specifier controls the *precision*, or number of digits shown." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -1904,11 +1905,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is 0°C in Fahrenheit?", options: ["0", "32", "100", "212"], answerIndex: 1 },
-                { question: "What output does the program print for input 32?", options: ["Celsius: 0.00", "Celsius: 32.00", "Celsius: 1.00", "Celsius: -1.00"], answerIndex: 0 },
-                { question: "What happens if fahrenheit is declared as int instead of float?", options: ["No difference", "Decimal part of input is lost", "Program crashes", "Output doubles"], answerIndex: 1 },
-                { question: "Which of the following correctly computes Celsius in C?", options: ["celsius = F - 32 * 5 / 9;", "celsius = (F - 32) * 5 / 9;", "celsius = F * 5 / 9 - 32;", "celsius = (F / 9) * 5 - 32;"], answerIndex: 1 },
-                { question: "For input 212°F, what is the expected Celsius output?", options: ["180.00", "100.00", "37.00", "0.00"], answerIndex: 1 }
+                { question: "What is 0°C in Fahrenheit?", options: ["0", "32", "100", "212"], answerIndex: 1, hint: "This is the freezing point of water on the Fahrenheit scale." },
+                { question: "What output does the program print for input 32?", options: ["Celsius: 0.00", "Celsius: 32.00", "Celsius: 1.00", "Celsius: -1.00"], answerIndex: 0, hint: "Plug F=32 into the formula C = (F - 32) * 5 / 9. The first term becomes zero." },
+                { question: "What happens if fahrenheit is declared as int instead of float?", options: ["No difference", "Decimal part of input is lost", "Program crashes", "Output doubles"], answerIndex: 1, hint: "An integer variable cannot store the fractional part of a number." },
+                { question: "Which of the following correctly computes Celsius in C?", options: ["celsius = F - 32 * 5 / 9;", "celsius = (F - 32) * 5 / 9;", "celsius = F * 5 / 9 - 32;", "celsius = (F / 9) * 5 - 32;"], answerIndex: 1, hint: "Because of operator precedence, the subtraction must happen first." },
+                { question: "For input 212°F, what is the expected Celsius output?", options: ["180.00", "100.00", "37.00", "0.00"], answerIndex: 1, hint: "This is the boiling point of water." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -1948,11 +1949,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the formula for Simple Interest?", options: ["SI = P + R + T", "SI = (P * R * T) / 100", "SI = (P + R) * T / 100", "SI = P / (R * T)"], answerIndex: 1 },
-                { question: "What data type is most appropriate for storing principal and rate?", options: ["int", "char", "float", "void"], answerIndex: 2 },
-                { question: "If P = 1000, R = 5, T = 2, what is SI?", options: ["10.00", "100.00", "1000.00", "50.00"], answerIndex: 1 },
-                { question: "Why is dividing by 100 necessary in the SI formula?", options: ["To convert years to months", "Because rate is given as a percentage", "To round the result", "It is not necessary"], answerIndex: 1 },
-                { question: "Which printf format specifier prints a float to 2 decimal places?", options: ["%d", "%f", "%.2f", "%s"], answerIndex: 2 }
+                { question: "What is the formula for Simple Interest?", options: ["SI = P + R + T", "SI = (P * R * T) / 100", "SI = (P + R) * T / 100", "SI = P / (R * T)"], answerIndex: 1, hint: "It's a product of Principal, Rate, and Time, divided by 100 because the rate is a percentage." },
+                { question: "What data type is most appropriate for storing principal and rate?", options: ["int", "char", "float", "void"], answerIndex: 2, hint: "Monetary and percentage values often have decimal places." },
+                { question: "If P = 1000, R = 5, T = 2, what is SI?", options: ["10.00", "100.00", "1000.00", "50.00"], answerIndex: 1, hint: "(1000 * 5 * 2) / 100 = (10000) / 100 = ?" },
+                { question: "Why is dividing by 100 necessary in the SI formula?", options: ["To convert years to months", "Because rate is given as a percentage", "To round the result", "It is not necessary"], answerIndex: 1, hint: "If the rate is 5%, it means 5/100 = 0.05 in the formula." },
+                { question: "Which printf format specifier prints a float to 2 decimal places?", options: ["%d", "%f", "%.2f", "%s"], answerIndex: 2, hint: "The .2 is a precision modifier that ensures exactly two digits after the decimal." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -1975,11 +1976,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For P = 500, R = 10, T = 3, what is SI?", options: ["15.00", "150.00", "1500.00", "50.00"], answerIndex: 1 },
-                { question: "What happens if T is declared as int and the user enters 1.5?", options: ["SI is computed correctly", "T stores 1, losing the 0.5", "Program crashes", "T becomes 2"], answerIndex: 1 },
-                { question: "Which line correctly computes simple interest in C?", options: ["si = P + R + T / 100;", "si = (P * R * T) / 100;", "si = P * R / T * 100;", "si = (P / 100) * R + T;"], answerIndex: 1 },
-                { question: "What is the output for P = 2000, R = 3.5, T = 4?", options: ["28.00", "280.00", "2800.00", "700.00"], answerIndex: 1 },
-                { question: "Why should SI be declared as float rather than int?", options: ["int cannot store numbers above 100", "SI may have a decimal part", "float is faster to compute", "printf requires float for all output"], answerIndex: 1 }
+                { question: "For P = 500, R = 10, T = 3, what is SI?", options: ["15.00", "150.00", "1500.00", "50.00"], answerIndex: 1, hint: "(500 * 10 * 3) / 100 = (15000) / 100 = ?" },
+                { question: "What happens if T is declared as int and the user enters 1.5?", options: ["SI is computed correctly", "T stores 1, losing the 0.5", "Program crashes", "T becomes 2"], answerIndex: 1, hint: "An integer variable truncates any fractional part of a number assigned to it." },
+                { question: "Which line correctly computes simple interest in C?", options: ["si = P + R + T / 100;", "si = (P * R * T) / 100;", "si = P * R / T * 100;", "si = (P / 100) * R + T;"], answerIndex: 1, hint: "Following the formula, all operations are multiplication and division, which have equal precedence and are evaluated left-to-right." },
+                { question: "What is the output for P = 2000, R = 3.5, T = 4?", options: ["28.00", "280.00", "2800.00", "700.00"], answerIndex: 1, hint: "(2000 * 3.5 * 4) / 100 = (28000) / 100 = ?" },
+                { question: "Why should SI be declared as float rather than int?", options: ["int cannot store numbers above 100", "SI may have a decimal part", "float is faster to compute", "printf requires float for all output"], answerIndex: 1, hint: "The result of division (especially after dividing by 100) is often not a whole number." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2031,12 +2032,12 @@ export const courses: Record<string, Course> = {
                   body: ["When using math.h functions, compile with: gcc program.c -o program -lm", "The -lm flag links the math library explicitly. Without it, a linker error occurs on some systems.", "sqrt() returns a double. If your variable is float, an implicit conversion occurs. It is safest to declare the variable as double when using math.h functions."]
                 }
               ],
-              pretest: [
-                { question: "Which header file must be included to use sqrt() in C?", options: ["stdio.h", "stdlib.h", "math.h", "string.h"], answerIndex: 2 },
-                { question: "What does sqrt(144) return?", options: ["14.00", "12.00", "72.00", "1.44"], answerIndex: 1 },
-                { question: "What is the return type of the sqrt() function?", options: ["int", "float", "double", "char"], answerIndex: 2 },
-                { question: "What happens if you pass a negative value to sqrt()?", options: ["Program crashes", "Returns 0", "Returns NaN", "Returns the absolute value"], answerIndex: 2 },
-                { question: "Which compilation command correctly links the math library?", options: ["gcc program.c -o program", "gcc program.c -o program -lm", "gcc program.c -math -o program", "gcc -sqrt program.c -o program"], answerIndex: 1 }
+              pretest:[
+                { question: "Which header file must be included to use sqrt() in C?", options: ["stdio.h", "stdlib.h", "math.h", "string.h"], answerIndex: 2, hint: "This header contains declarations for various mathematical functions." },
+                { question: "What does sqrt(144) return?", options: ["14.00", "12.00", "72.00", "1.44"], answerIndex: 1, hint: "Which number, when multiplied by itself, equals 144?" },
+                { question: "What is the return type of the sqrt() function?", options: ["int", "float", "double", "char"], answerIndex: 2, hint: "Look at the function signature in documentation: double sqrt(double x);" },
+                { question: "What happens if you pass a negative value to sqrt()?", options: ["Program crashes", "Returns 0", "Returns NaN", "Returns the absolute value"], answerIndex: 2, hint: "Mathematically, the square root of a negative number is not a real number." },
+                { question: "Which compilation command correctly links the math library?", options: ["gcc program.c -o program", "gcc program.c -o program -lm", "gcc program.c -math -o program", "gcc -sqrt program.c -o program"], answerIndex: 1, hint: "The -lm flag tells the compiler to link the 'libm' (math) library." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2059,12 +2060,12 @@ export const courses: Record<string, Course> = {
                   { line: 9, annotation: "Program terminates successfully", memory: [{variable: "n", type: "double", value: "25.00"}, {variable: "root", type: "double", value: "5.00"}], output: "Square Root: 5.00\n" }
                 ]
               },
-              posttest: [
-                { question: "What is the output for input 2?", options: ["1.00", "1.41", "4.00", "2.00"], answerIndex: 1 },
-                { question: "What is sqrt(0)?", options: ["1.00", "Undefined", "0.00", "NaN"], answerIndex: 2 },
-                { question: "Which of the following correctly calls the square root function in C?", options: ["squareroot(n)", "sqrt[n]", "sqrt(n)", "Math.sqrt(n)"], answerIndex: 2 },
-                { question: "What error occurs if you forget -lm during compilation?", options: ["Syntax error", "Runtime crash", "Linker error", "Logical error"], answerIndex: 2 },
-                { question: "If the user enters 50, what is the approximate output?", options: ["25.00", "10.00", "5.00", "7.07"], answerIndex: 3 }
+              posttest:[
+                { question: "What is the output for input 2?", options: ["1.00", "1.41", "4.00", "2.00"], answerIndex: 1, hint: "The square root of 2 is an irrational number, approximately 1.4142." },
+                { question: "What is sqrt(0)?", options: ["1.00", "Undefined", "0.00", "NaN"], answerIndex: 2, hint: "What number multiplied by itself equals 0?" },
+                { question: "Which of the following correctly calls the square root function in C?", options: ["squareroot(n)", "sqrt[n]", "sqrt(n)", "Math.sqrt(n)"], answerIndex: 2, hint: "Function calls in C use parentheses ( ), not square brackets [ ]." },
+                { question: "What error occurs if you forget -lm during compilation?", options: ["Syntax error", "Runtime crash", "Linker error", "Logical error"], answerIndex: 2, hint: "The compiler compiles your code fine, but the linker can't find the implementation of sqrt() in the standard libraries." },
+                { question: "If the user enters 50, what is the approximate output?", options: ["25.00", "10.00", "5.00", "7.07"], answerIndex: 3, hint: "7*7=49, which is very close to 50." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2109,11 +2110,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the formula for the Amount in compound interest?", options: ["A = P + R * T / 100", "A = P * pow(1 + R/100, T)", "A = P * R * T / 100", "A = P / pow(R, T)"], answerIndex: 1 },
-                { question: "Which function is used to raise a number to a power in C?", options: ["sqrt()", "exp()", "pow()", "log()"], answerIndex: 2 },
-                { question: "What is the Compound Interest itself (not the Amount)?", options: ["CI = P * pow(1 + R/100, T)", "CI = A + P", "CI = A - P", "CI = P - A"], answerIndex: 2 },
-                { question: "For P = 1000, R = 10, T = 1, what is the compound interest?", options: ["110.00", "10.00", "100.00", "1100.00"], answerIndex: 2 },
-                { question: "Why is pow() preferred over repeated multiplication for compound interest?", options: ["It is faster for small T", "It correctly handles any value of T including non-integers", "It avoids the need for float variables", "It rounds the result automatically"], answerIndex: 1 }
+                { question: "What is the formula for the Amount in compound interest?", options: ["A = P + R * T / 100", "A = P * pow(1 + R/100, T)", "A = P * R * T / 100", "A = P / pow(R, T)"], answerIndex: 1, hint: "The amount grows exponentially with time, not linearly." },
+                { question: "Which function is used to raise a number to a power in C?", options: ["sqrt()", "exp()", "pow()", "log()"], answerIndex: 2, hint: "It's short for 'power'." },
+                { question: "What is the Compound Interest itself (not the Amount)?", options: ["CI = P * pow(1 + R/100, T)", "CI = A + P", "CI = A - P", "CI = P - A"], answerIndex: 2, hint: "Interest is the extra money earned, which is the final amount minus your original principal." },
+                { question: "For P = 1000, R = 10, T = 1, what is the compound interest?", options: ["110.00", "10.00", "100.00", "1100.00"], answerIndex: 2, hint: "For T=1, the formula simplifies to P * R / 100, which is the same as simple interest." },
+                { question: "Why is pow() preferred over repeated multiplication for compound interest?", options: ["It is faster for small T", "It correctly handles any value of T including non-integers", "It avoids the need for float variables", "It rounds the result automatically"], answerIndex: 1, hint: "What if the time period is 2.5 years? A loop for multiplication wouldn't work easily." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2136,12 +2137,12 @@ export const courses: Record<string, Course> = {
                   { line: 10, annotation: "Program terminates successfully", memory: [{variable: "p", type: "double", value: "1000"}, {variable: "r", type: "double", value: "10"}, {variable: "t", type: "double", value: "2"}, {variable: "a", type: "double", value: "1210.00"}, {variable: "ci", type: "double", value: "210.00"}], output: "Compound Interest: 210.00\n" }
                 ]
               },
-              posttest: [
-                { question: "For P = 1000, R = 10, T = 2, what is the Amount?", options: ["1100.00", "1200.00", "1210.00", "1020.00"], answerIndex: 2 },
-                { question: "What is the Compound Interest for P = 1000, R = 10, T = 2?", options: ["200.00", "210.00", "100.00", "220.00"], answerIndex: 1 },
-                { question: "How does compound interest differ from simple interest for the same inputs?", options: ["They are always equal", "Simple interest is always greater", "Compound interest grows faster because interest is earned on interest", "Compound interest only applies to integers"], answerIndex: 2 },
-                { question: "What header and flag are required to use pow() in C?", options: ["stdlib.h, no flag needed", "math.h, -lm", "stdio.h, -lm", "math.h, -lmath"], answerIndex: 1 },
-                { question: "For P = 500, R = 5, T = 3, what is CI approximately?", options: ["75.00", "78.81", "57.88", "100.00"], answerIndex: 1 }
+              posttest:[
+                { question: "For P = 1000, R = 10, T = 2, what is the Amount?", options: ["1100.00", "1200.00", "1210.00", "1020.00"], answerIndex: 2, hint: "A = 1000 * pow(1.10, 2) = 1000 * 1.21 = ?" },
+                { question: "What is the Compound Interest for P = 1000, R = 10, T = 2?", options: ["200.00", "210.00", "100.00", "220.00"], answerIndex: 1, hint: "Interest = Amount - Principal. 1210 - 1000 = ?" },
+                { question: "How does compound interest differ from simple interest for the same inputs?", options: ["They are always equal", "Simple interest is always greater", "Compound interest grows faster because interest is earned on interest", "Compound interest only applies to integers"], answerIndex: 2, hint: "Think about the 'snowball effect' on the interest you've already earned." },
+                { question: "What header and flag are required to use pow() in C?", options: ["stdlib.h, no flag needed", "math.h, -lm", "stdio.h, -lm", "math.h, -lmath"], answerIndex: 1, hint: "One is a header file for the function declaration, the other is a linker flag for the function definition." },
+                { question: "For P = 500, R = 5, T = 3, what is CI approximately?", options: ["75.00", "78.81", "57.88", "100.00"], answerIndex: 1, hint: "Calculate A = 500 * 1.05 * 1.05 * 1.05, then subtract the principal." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2186,11 +2187,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the semi-perimeter s of a triangle with sides 3, 4, 5?", options: ["12", "7", "6", "5"], answerIndex: 2 },
-                { question: "Using Heron's Formula, what is the area of a triangle with sides 3, 4, 5?", options: ["7.50", "5.00", "6.00", "12.00"], answerIndex: 2 },
-                { question: "Which function computes the square root needed in Heron's Formula?", options: ["pow()", "sqrt()", "abs()", "ceil()"], answerIndex: 1 },
-                { question: "What does the triangle inequality state?", options: ["All sides must be equal", "The sum of any two sides must be greater than the third", "One side must be the square root of another", "The sides must be integers"], answerIndex: 1 },
-                { question: "What is the result inside sqrt() if the sides do not form a valid triangle?", options: ["A large positive number", "Zero or a negative number", "Always 1", "An integer"], answerIndex: 1 }
+                { question: "For P = 1000, R = 10, T = 2, what is the Amount?", options: ["1100.00", "1200.00", "1210.00", "1020.00"], answerIndex: 2, hint: "A = 1000 * pow(1.10, 2) = 1000 * 1.21 = ?" },
+                { question: "What is the Compound Interest for P = 1000, R = 10, T = 2?", options: ["200.00", "210.00", "100.00", "220.00"], answerIndex: 1, hint: "Interest = Amount - Principal. 1210 - 1000 = ?" },
+                { question: "How does compound interest differ from simple interest for the same inputs?", options: ["They are always equal", "Simple interest is always greater", "Compound interest grows faster because interest is earned on interest", "Compound interest only applies to integers"], answerIndex: 2, hint: "Think about the 'snowball effect' on the interest you've already earned." },
+                { question: "What header and flag are required to use pow() in C?", options: ["stdlib.h, no flag needed", "math.h, -lm", "stdio.h, -lm", "math.h, -lmath"], answerIndex: 1, hint: "One is a header file for the function declaration, the other is a linker flag for the function definition." },
+                { question: "For P = 500, R = 5, T = 3, what is CI approximately?", options: ["75.00", "78.81", "57.88", "100.00"], answerIndex: 1, hint: "Calculate A = 500 * 1.05 * 1.05 * 1.05, then subtract the principal." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2214,11 +2215,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For sides 5, 5, 5, what is the semi-perimeter?", options: ["5.00", "15.00", "7.50", "10.00"], answerIndex: 2 },
-                { question: "What is the area of an equilateral triangle with side 6?", options: ["36.00", "18.00", "15.59", "12.00"], answerIndex: 2 },
-                { question: "For sides 1, 2, 10, what does the program output?", options: ["Area: 0.00", "Area: NaN or invalid result", "Area: 5.00", "Compilation error"], answerIndex: 1 },
-                { question: "Which intermediate value must be computed before the area in Heron's Formula?", options: ["The height of the triangle", "The perimeter only", "The semi-perimeter s", "The largest angle"], answerIndex: 2 },
-                { question: "For sides 6, 8, 10, what is the area?", options: ["48.00", "20.00", "30.00", "24.00"], answerIndex: 2 }
+                { question: "For sides 5, 5, 5, what is the semi-perimeter?", options: ["5.00", "15.00", "7.50", "10.00"], answerIndex: 2, hint: "Perimeter is 15, half of that is ?" },
+                { question: "What is the area of an equilateral triangle with side 6?", options: ["36.00", "18.00", "15.59", "12.00"], answerIndex: 2, hint: "Use Heron's formula: s=9, then sqrt(9*3*3*3) = sqrt(243) ≈ 15.588." },
+                { question: "For sides 1, 2, 10, what does the program output?", options: ["Area: 0.00", "Area: NaN or invalid result", "Area: 5.00", "Compilation error"], answerIndex: 1, hint: "The triangle inequality fails (1+2 is not > 10), causing the product under the square root to be negative." },
+                { question: "Which intermediate value must be computed before the area in Heron's Formula?", options: ["The height of the triangle", "The perimeter only", "The semi-perimeter s", "The largest angle"], answerIndex: 2, hint: "Heron's formula is area = sqrt(s(s-a)(s-b)(s-c)). You can't proceed without calculating this first." },
+                { question: "For sides 6, 8, 10, what is the area?", options: ["48.00", "20.00", "30.00", "24.00"], answerIndex: 2, hint: "This is a right triangle (double of 3-4-5). The area is (1/2)*6*8 = ?" }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2262,11 +2263,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the kinematic formula for distance traveled under uniform acceleration?", options: ["s = u + a * t", "s = u*t + 0.5 * a * t * t", "s = 0.5 * u * t * t + a", "s = (u + a) * t / 2"], answerIndex: 1 },
-                { question: "What does 1/2 evaluate to in C when both are integer literals?", options: ["0.5", "1", "0", "2"], answerIndex: 2 },
-                { question: "How should the half factor be correctly written in C?", options: ["1/2", "1//2", "0.5", "half"], answerIndex: 2 },
-                { question: "If u = 0, a = 10, t = 2, what is the distance?", options: ["40.00", "10.00", "20.00", "5.00"], answerIndex: 2 },
-                { question: "Which operator computes t squared in C?", options: ["t^2", "t**2", "pow(t,2) or t*t", "sq(t)"], answerIndex: 2 }
+                { question: "What is the kinematic formula for distance traveled under uniform acceleration?", options: ["s = u + a * t", "s = u*t + 0.5 * a * t * t", "s = 0.5 * u * t * t + a", "s = (u + a) * t / 2"], answerIndex: 1, hint: "It's the second equation of motion. It includes an initial velocity term and an acceleration term." },
+                { question: "What does 1/2 evaluate to in C when both are integer literals?", options: ["0.5", "1", "0", "2"], answerIndex: 2, hint: "C performs integer arithmetic if both operands are integers. The decimal part is truncated." },
+                { question: "How should the half factor be correctly written in C?", options: ["1/2", "1//2", "0.5", "half"], answerIndex: 2, hint: "Using a floating-point literal ensures the division is done as a floating-point operation." },
+                { question: "If u = 0, a = 10, t = 2, what is the distance?", options: ["40.00", "10.00", "20.00", "5.00"], answerIndex: 2, hint: "s = 0*2 + 0.5*10*4 = 0.5 * 40 = ?" },
+                { question: "Which operator computes t squared in C?", options: ["t^2", "t**2", "pow(t,2) or t*t", "sq(t)"], answerIndex: 2, hint: "C has no exponentiation operator, so you must multiply the variable by itself." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2289,11 +2290,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For u = 5, a = 2, t = 3, what is the distance?", options: ["20.00", "21.00", "24.00", "30.00"], answerIndex: 2 },
-                { question: "What is the distance when u = 10, a = 0, t = 5?", options: ["0.00", "25.00", "50.00", "100.00"], answerIndex: 2 },
-                { question: "Why is t*t preferred over pow(t,2) for squaring in simple programs?", options: ["pow() gives wrong results for integers", "t*t avoids including math.h and is simpler", "pow() only works for doubles", "t*t is always more accurate"], answerIndex: 1 },
-                { question: "What is the output for u = 0, a = 0, t = 10?", options: ["10.00", "100.00", "0.00", "50.00"], answerIndex: 2 },
-                { question: "For u = 20, a = -5, t = 4, what is the distance?", options: ["80.00", "40.00", "60.00", "20.00"], answerIndex: 1 }
+                { question: "For u = 5, a = 2, t = 3, what is the distance?", options: ["20.00", "21.00", "24.00", "30.00"], answerIndex: 2, hint: "s = (5*3) + (0.5*2*9) = 15 + 9 = ?" },
+                { question: "What is the distance when u = 10, a = 0, t = 5?", options: ["0.00", "25.00", "50.00", "100.00"], answerIndex: 2, hint: "Without acceleration, the formula simplifies to s = u * t." },
+                { question: "Why is t*t preferred over pow(t,2) for squaring in simple programs?", options: ["pow() gives wrong results for integers", "t*t avoids including math.h and is simpler", "pow() only works for doubles", "t*t is always more accurate"], answerIndex: 1, hint: "Multiplication is a basic operation, while pow() is a complex function that requires a library." },
+                { question: "What is the output for u = 0, a = 0, t = 10?", options: ["10.00", "100.00", "0.00", "50.00"], answerIndex: 2, hint: "If you start at rest and have no acceleration, you never move." },
+                { question: "For u = 20, a = -5, t = 4, what is the distance?", options: ["80.00", "40.00", "60.00", "20.00"], answerIndex: 1, hint: "s = (20*4) + (0.5 * -5 * 16) = 80 - 40 = ?" }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2350,11 +2351,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the result of 2 + 3 * 4 in C?", options: ["20", "14", "24", "9"], answerIndex: 1 },
-                { question: "What is the result of 10 - 3 - 2 in C?", options: ["9", "5", "7", "3"], answerIndex: 1 },
-                { question: "What is 17 % 5?", options: ["3", "2", "1", "0"], answerIndex: 1 },
-                { question: "What is the value of x after: int x = 5; int y = x++;?", options: ["x = 6, y = 6", "x = 5, y = 5", "x = 6, y = 5", "x = 5, y = 6"], answerIndex: 2 },
-                { question: "What is the result of (2 + 3) * (8 - 4) / 2?", options: ["14", "8", "10", "20"], answerIndex: 2 }
+                { question: "What is the result of 2 + 3 * 4 in C?", options: ["20", "14", "24", "9"], answerIndex: 1, hint: "Multiplication (*) has higher precedence than addition (+)." },
+                { question: "What is the result of 10 - 3 - 2 in C?", options: ["9", "5", "7", "3"], answerIndex: 1, hint: "Subtraction has left-to-right associativity." },
+                { question: "What is 17 % 5?", options: ["3", "2", "1", "0"], answerIndex: 1, hint: "The modulus operator gives the remainder after division." },
+                { question: "What is the value of x after: int x = 5; int y = x++;?", options: ["x = 6, y = 6", "x = 5, y = 5", "x = 6, y = 5", "x = 5, y = 6"], answerIndex: 2, hint: "The post-increment operator uses the current value of x for the assignment, then increments x." },
+                { question: "What is the result of (2 + 3) * (8 - 4) / 2?", options: ["14", "8", "10", "20"], answerIndex: 2, hint: "Parentheses force the operations inside to happen first. Then proceed with * and / from left to right." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2379,11 +2380,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the result of 100 / 4 * 5 in C?", options: ["5", "20", "125", "500"], answerIndex: 2 },
-                { question: "What is the value of 5 + 3 * 2 - 8 / 4?", options: ["7", "9", "8", "4"], answerIndex: 1 },
-                { question: "What does ++x do differently from x++?", options: ["No difference", "++x increments after use; x++ increments before use", "++x increments before use; x++ increments after use", "++x works only on float"], answerIndex: 2 },
-                { question: "What is the result of 2 * 3 + 4 * 5 - 6 / 2?", options: ["20", "23", "18", "30"], answerIndex: 1 },
-                { question: "Which expression evaluates to 1 in C?", options: ["5 / 2 * 2", "5 % 2", "5 - 2 * 2", "5 * 0 + 1 / 2"], answerIndex: 1 }
+                { question: "What is the result of 100 / 4 * 5 in C?", options: ["5", "20", "125", "500"], answerIndex: 2, hint: "/ and * have equal precedence and are evaluated left-to-right." },
+                { question: "What is the value of 5 + 3 * 2 - 8 / 4?", options: ["7", "9", "8", "4"], answerIndex: 1, hint: "Do the * and / first: 3*2=6, 8/4=2. Then the expression is 5+6-2." },
+                { question: "What does ++x do differently from x++?", options: ["No difference", "++x increments after use; x++ increments before use", "++x increments before use; x++ increments after use", "++x works only on float"], answerIndex: 2, hint: "The placement of the ++ determines if the increment happens before or after the variable's value is used in the expression." },
+                { question: "What is the result of 2 * 3 + 4 * 5 - 6 / 2?", options: ["20", "23", "18", "30"], answerIndex: 1, hint: "Perform all multiplications/divisions first: 6 + 20 - 3. Then do the additions/subtractions left-to-right." },
+                { question: "Which expression evaluates to 1 in C?", options: ["5 / 2 * 2", "5 % 2", "5 - 2 * 2", "5 * 0 + 1 / 2"], answerIndex: 1, hint: "Which operator gives you the remainder of a division? For 5 / 2, the quotient is 2, remainder is 1." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2428,11 +2429,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does the relational operator > return when the condition is false?", options: ["-1", "0", "1", "NULL"], answerIndex: 1 },
-                { question: "What is the result of (10 > 5) ? 10 : 5?", options: ["5", "0", "1", "10"], answerIndex: 3 },
-                { question: "Which operator is the ternary operator in C?", options: ["::", "?:", "??", "->"], answerIndex: 1 },
-                { question: "For a = 3, b = 7, c = 5, what does (a > b) ? a : b evaluate to?", options: ["3", "5", "7", "0"], answerIndex: 2 },
-                { question: "What is the difference between = and == in C?", options: ["No difference", "= compares, == assigns", "= assigns a value; == tests equality", "== is only for floats"], answerIndex: 2 }
+                { question: "What does the relational operator > return when the condition is false?", options: ["-1", "0", "1", "NULL"], answerIndex: 1, hint: "Relational operators in C yield an integer result, 1 for true or 0 for false." },
+                { question: "What is the result of (10 > 5) ? 10 : 5?", options: ["5", "0", "1", "10"], answerIndex: 3, hint: "The ternary operator evaluates the condition. If true, the expression takes the value of the first part after the '?'." },
+                { question: "Which operator is the ternary operator in C?", options: ["::", "?:", "??", "->"], answerIndex: 1, hint: "It's the only operator that takes three operands." },
+                { question: "For a = 3, b = 7, c = 5, what does (a > b) ? a : b evaluate to?", options: ["3", "5", "7", "0"], answerIndex: 2, hint: "Check the condition first. Is a > b? If true, the result is a. If false, the result is b." },
+                { question: "What is the difference between = and == in C?", options: ["No difference", "= compares, == assigns", "= assigns a value; == tests equality", "== is only for floats"], answerIndex: 2, hint: "One is for setting a variable to a value, the other is for comparing two values." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2455,11 +2456,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For inputs 4, 4, 4, what is the output?", options: ["0", "Error", "4", "Undefined"], answerIndex: 2 },
-                { question: "Which expression correctly finds the max of a and b?", options: ["max = a > b ? b : a", "max = (a > b) ? a : b", "max = a < b ? a : b", "max = a == b ? a : b"], answerIndex: 1 },
-                { question: "For inputs -5, -1, -9, what is the maximum?", options: ["-9", "-5", "-1", "0"], answerIndex: 2 },
-                { question: "What is the precedence order (highest to lowest) relevant here?", options: ["Ternary → Relational → Arithmetic", "Arithmetic → Ternary → Relational", "Arithmetic → Relational → Ternary", "Relational → Arithmetic → Ternary"], answerIndex: 2 },
-                { question: "For a = 10, b = 20, c = 15, what does the following evaluate to? (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c)", options: ["10", "15", "20", "0"], answerIndex: 2 }
+                { question: "For inputs 4, 4, 4, what is the output?", options: ["0", "Error", "4", "Undefined"], answerIndex: 2, hint: "All numbers are equal, so the maximum is that number." },
+                { question: "Which expression correctly finds the max of a and b?", options: ["max = a > b ? b : a", "max = (a > b) ? a : b", "max = a < b ? a : b", "max = a == b ? a : b"], answerIndex: 1, hint: "If a is greater than b, the answer should be a. Otherwise, it should be b." },
+                { question: "For inputs -5, -1, -9, what is the maximum?", options: ["-9", "-5", "-1", "0"], answerIndex: 2, hint: "-1 is the largest (closest to zero) among these negative numbers." },
+                { question: "What is the precedence order (highest to lowest) relevant here?", options: ["Ternary → Relational → Arithmetic", "Arithmetic → Ternary → Relational", "Arithmetic → Relational → Ternary", "Relational → Arithmetic → Ternary"], answerIndex: 2, hint: "The condition in the ternary operator is a relational expression, which must be evaluated after any arithmetic it contains." },
+                { question: "For a = 10, b = 20, c = 15, what does the following evaluate to? (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c)", options: ["10", "15", "20", "0"], answerIndex: 2, hint: "The outer condition is false, so the expression becomes ((b > c) ? b : c). Since b > c, the result is b." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2504,11 +2505,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does the += operator do?", options: ["Compares two values", "Adds the right operand to the left and assigns the result", "Always increments by 1", "Performs modulus and assigns"], answerIndex: 1 },
-                { question: "For 5 subject marks totalling 375, what is the average?", options: ["70.00", "75.00", "80.00", "65.00"], answerIndex: 1 },
-                { question: "Which logical operator means AND in C?", options: ["&", "|", "&&", "||"], answerIndex: 2 },
-                { question: "What is the correct way to check if average is between 60 and 75 (inclusive of 60)?", options: ["60 < average < 75", "average >= 60 || average < 75", "average >= 60 && average < 75", "average == 60 && 75"], answerIndex: 2 },
-                { question: "Why cast total to float before dividing by number of subjects?", options: ["To make the code longer", "To avoid integer truncation and get a decimal average", "Because printf requires float", "Because += only works with float"], answerIndex: 1 }
+                { question: "What does the += operator do?", options: ["Compares two values", "Adds the right operand to the left and assigns the result", "Always increments by 1", "Performs modulus and assigns"], answerIndex: 1, hint: "It's a shorthand for var = var + value." },
+                { question: "For 5 subject marks totalling 375, what is the average?", options: ["70.00", "75.00", "80.00", "65.00"], answerIndex: 1, hint: "Average = Total sum / Number of items." },
+                { question: "Which logical operator means AND in C?", options: ["&", "|", "&&", "||"], answerIndex: 2, hint: "It's a double ampersand, used to combine conditions that must both be true." },
+                { question: "What is the correct way to check if average is between 60 and 75 (inclusive of 60)?", options: ["60 < average < 75", "average >= 60 || average < 75", "average >= 60 && average < 75", "average == 60 && 75"], answerIndex: 2, hint: "You need to check two separate relational conditions and combine them with the AND operator." },
+                { question: "Why cast total to float before dividing by number of subjects?", options: ["To make the code longer", "To avoid integer truncation and get a decimal average", "Because printf requires float", "Because += only works with float"], answerIndex: 1, hint: "If both total and 5 are integers, the division will be integer division, chopping off any decimal part." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2534,11 +2535,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For marks 70 80 90 60 50, what is the total?", options: ["340", "360", "350", "370"], answerIndex: 2 },
-                { question: "For the same marks above (total 350), what is the average?", options: ["75.00", "70.00", "65.00", "80.00"], answerIndex: 1 },
-                { question: "With average 70.00, which grade is awarded?", options: ["A", "B", "C", "D"], answerIndex: 2 },
-                { question: "Which compound operator correctly accumulates marks into total?", options: ["total == total + marks", "total = marks", "total += marks", "total =+ marks"], answerIndex: 2 },
-                { question: "For marks 30 35 28 40 32, what is the grade?", options: ["D", "C", "F", "B"], answerIndex: 2 }
+                { question: "For marks 70 80 90 60 50, what is the total?", options: ["340", "360", "350", "370"], answerIndex: 2, hint: "Sum of the five numbers." },
+                { question: "For the same marks above (total 350), what is the average?", options: ["75.00", "70.00", "65.00", "80.00"], answerIndex: 1, hint: "350 / 5 = 70.00" },
+                { question: "With average 70.00, which grade is awarded?", options: ["A", "B", "C", "D"], answerIndex: 2, hint: "The condition for a 'C' is average >= 60 and average < 75." },
+                { question: "Which compound operator correctly accumulates marks into total?", options: ["total == total + marks", "total = marks", "total += marks", "total =+ marks"], answerIndex: 2, hint: "The correct shorthand for 'add marks to total' is total += marks." },
+                { question: "For marks 30 35 28 40 32, what is the grade?", options: ["D", "C", "F", "B"], answerIndex: 2, hint: "The total is 165, average is 33, which is less than 40." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2587,11 +2588,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the correct initial assumption when finding the maximum of four numbers?", options: ["Assume max = 0", "Assume max = first number", "Assume max = last number", "Assume max = average"], answerIndex: 1 },
-                { question: "For inputs 3, 9, 1, 7, what is the maximum?", options: ["3", "7", "1", "9"], answerIndex: 3 },
-                { question: "For inputs 3, 9, 1, 7, what is the minimum?", options: ["3", "1", "7", "9"], answerIndex: 1 },
-                { question: "What does the condition (b > max) check?", options: ["Whether b equals max", "Whether b is strictly greater than the current max", "Whether b is less than max", "Whether b is not zero"], answerIndex: 1 },
-                { question: "What relational operator is used to find the smallest value?", options: [">", ">=", "<", "=="], answerIndex: 2 }
+                { question: "What is the correct initial assumption when finding the maximum of four numbers?", options: ["Assume max = 0", "Assume max = first number", "Assume max = last number", "Assume max = average"], answerIndex: 1, hint: "You must have a valid starting point to compare against. The first number in the list is a safe choice." },
+                { question: "For inputs 3, 9, 1, 7, what is the maximum?", options: ["3", "7", "1", "9"], answerIndex: 3, hint: "Visually inspect the numbers; which one is the largest?" },
+                { question: "For inputs 3, 9, 1, 7, what is the minimum?", options: ["3", "1", "7", "9"], answerIndex: 1, hint: "Which is the smallest number?" },
+                { question: "What does the condition (b > max) check?", options: ["Whether b equals max", "Whether b is strictly greater than the current max", "Whether b is less than max", "Whether b is not zero"], answerIndex: 1, hint: "This is the core comparison to see if we've found a new, larger number." },
+                { question: "What relational operator is used to find the smallest value?", options: [">", ">=", "<", "=="], answerIndex: 2, hint: "You need to check if a number is less than the current minimum." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2620,11 +2621,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For inputs -3, -8, -1, -5, what is the maximum?", options: ["-8", "-5", "-3", "-1"], answerIndex: 3 },
-                { question: "For inputs -3, -8, -1, -5, what is the minimum?", options: ["-1", "-3", "-8", "-5"], answerIndex: 2 },
-                { question: "What is wrong with initialising max = 0 when all inputs are negative?", options: ["Nothing, it always works", "max would remain 0, which is larger than all inputs — giving a wrong result", "It causes a compilation error", "It only fails when inputs are floats"], answerIndex: 1 },
-                { question: "How many comparisons are needed to find max from four numbers using the sequential update method?", options: ["2", "4", "3", "6"], answerIndex: 2 },
-                { question: "For inputs 5, 5, 5, 5, what are max and min?", options: ["max = 0, min = 0", "max = 5, min = 0", "max = 5, min = 5", "Undefined"], answerIndex: 2 }
+                { question: "For inputs -3, -8, -1, -5, what is the maximum?", options: ["-8", "-5", "-3", "-1"], answerIndex: 3, hint: "-1 is the closest to zero, and therefore the largest, among these negative numbers." },
+                { question: "For inputs -3, -8, -1, -5, what is the minimum?", options: ["-1", "-3", "-8", "-5"], answerIndex: 2, hint: "-8 is the farthest from zero, and therefore the smallest." },
+                { question: "What is wrong with initialising max = 0 when all inputs are negative?", options: ["Nothing, it always works", "max would remain 0, which is larger than all inputs — giving a wrong result", "It causes a compilation error", "It only fails when inputs are floats"], answerIndex: 1, hint: "If all numbers are less than 0, the initial max (0) will never be replaced, as none of the inputs will be > 0." },
+                { question: "How many comparisons are needed to find max from four numbers using the sequential update method?", options: ["2", "4", "3", "6"], answerIndex: 2, hint: "After initializing with the first number, you need to compare it against the remaining 3 numbers." },
+                { question: "For inputs 5, 5, 5, 5, what are max and min?", options: ["max = 0, min = 0", "max = 5, min = 0", "max = 5, min = 5", "Undefined"], answerIndex: 2, hint: "If all numbers are equal, that number is both the maximum and the minimum." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2665,11 +2666,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What kind of conditional structure is best for multi-slab billing?", options: ["Nested ternary operators", "switch-case", "if-else if-else chain", "while loop"], answerIndex: 2 },
-                { question: "A customer uses 150 units. How many units are billed at Rs. 2.50/unit?", options: ["150", "100", "50", "200"], answerIndex: 2 },
-                { question: "What is the bill for 100 units at Rs. 1.50 per unit?", options: ["100.00", "200.00", "150.00", "50.00"], answerIndex: 2 },
-                { question: "For 250 units using the slab above, what is the bill (excluding service charge)?", options: ["500.00", "625.00", "600.00", "550.00"], answerIndex: 2 },
-                { question: "Once a true condition is found in an if-else if chain, what happens to the rest?", options: ["They are all evaluated", "They are skipped", "They cause an error", "They are evaluated only if the first is false"], answerIndex: 1 }
+                { question: "What kind of conditional structure is best for multi-slab billing?", options: ["Nested ternary operators", "switch-case", "if-else if-else chain", "while loop"], answerIndex: 2, hint: "This structure is ideal for checking a value (units) against a series of mutually exclusive ranges." },
+                { question: "A customer uses 150 units. How many units are billed at Rs. 2.50/unit?", options: ["150", "100", "50", "200"], answerIndex: 2, hint: "The first 100 units are billed at the first rate. The remaining 50 fall into the next slab." },
+                { question: "What is the bill for 100 units at Rs. 1.50 per unit?", options: ["100.00", "200.00", "150.00", "50.00"], answerIndex: 2, hint: "100 units * 1.50 Rs/unit = ?" },
+                { question: "For 250 units using the slab above, what is the bill (excluding service charge)?", options: ["500.00", "625.00", "600.00", "550.00"], answerIndex: 2, hint: "Calculate slab-wise: (100*1.5) + (100*2.5) + (50*4.0) = 150 + 250 + 200 = ?" },
+                { question: "Once a true condition is found in an if-else if chain, what happens to the rest?", options: ["They are all evaluated", "They are skipped", "They cause an error", "They are evaluated only if the first is false"], answerIndex: 1, hint: "This is an efficiency feature. Once the correct slab is found, the program doesn't need to check the others." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2696,11 +2697,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For 100 units, what is the bill (excluding service charge)?", options: ["200.00", "100.00", "250.00", "150.00"], answerIndex: 3 },
-                { question: "For 200 units, what is the bill (excluding service charge)?", options: ["300.00", "400.00", "500.00", "350.00"], answerIndex: 2 },
-                { question: "For 350 units, what is the bill (excluding service charge)?", options: ["900.00", "1100.00", "1050.00", "1150.00"], answerIndex: 3 },
-                { question: "What is the role of the else block in the slab billing program?", options: ["Handles units equal to 300", "Handles zero units", "Handles units greater than 300", "Is never executed"], answerIndex: 2 },
-                { question: "Why is a service charge added separately rather than inside each slab?", options: ["It makes the program longer", "It is a fixed charge applied regardless of units consumed", "It only applies to high consumers", "It is required by the C standard"], answerIndex: 1 }
+                { question: "For 100 units, what is the bill (excluding service charge)?", options: ["200.00", "100.00", "250.00", "150.00"], answerIndex: 3, hint: "units <= 100, so bill = 100 * 1.50" },
+                { question: "For 200 units, what is the bill (excluding service charge)?", options: ["300.00", "400.00", "500.00", "350.00"], answerIndex: 2, hint: "units <= 200, so bill = (100*1.5) + (100*2.5) = 150 + 250" },
+                { question: "For 350 units, what is the bill (excluding service charge)?", options: ["900.00", "1100.00", "1050.00", "1150.00"], answerIndex: 3, hint: "units > 300, so bill = (100*1.5)+(100*2.5)+(100*4.0)+(50*6.0) = 150+250+400+300" },
+                { question: "What is the role of the else block in the slab billing program?", options: ["Handles units equal to 300", "Handles zero units", "Handles units greater than 300", "Is never executed"], answerIndex: 2, hint: "It's the 'catch-all' for consumption that doesn't match any of the previous if or else if conditions." },
+                { question: "Why is a service charge added separately rather than inside each slab?", options: ["It makes the program longer", "It is a fixed charge applied regardless of units consumed", "It only applies to high consumers", "It is required by the C standard"], answerIndex: 1, hint: "The service charge is a constant fee that is the same for everyone, so it's added after the consumption-based calculation is done." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2741,11 +2742,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the discriminant of a quadratic equation?", options: ["b² + 4ac", "b² - 4ac", "2a - b", "-b / 2a"], answerIndex: 1 },
-                { question: "If D > 0, the roots are:", options: ["Complex", "Equal", "Two distinct real roots", "Zero"], answerIndex: 2 },
-                { question: "If D = 0, what can be said about the roots?", options: ["No real roots exist", "Two distinct real roots", "Two equal real roots", "One root is always zero"], answerIndex: 2 },
-                { question: "For a = 1, b = -5, c = 6, what is the discriminant?", options: ["1", "49", "25", "1"], answerIndex: 3 },
-                { question: "Why must a = 0 be handled separately before computing roots?", options: ["It causes a syntax error", "It makes D negative", "It results in division by zero in the quadratic formula", "sqrt() fails when a = 0"], answerIndex: 2 }
+                { question: "What is the discriminant of a quadratic equation?", options: ["b² + 4ac", "b² - 4ac", "2a - b", "-b / 2a"], answerIndex: 1, hint: "It's the part under the square root in the quadratic formula: √(b² - 4ac)." },
+                { question: "If D > 0, the roots are:", options: ["Complex", "Equal", "Two distinct real roots", "Zero"], answerIndex: 2, hint: "The √(D) term is a positive real number, leading to two different results when added and subtracted." },
+                { question: "If D = 0, what can be said about the roots?", options: ["No real roots exist", "Two distinct real roots", "Two equal real roots", "One root is always zero"], answerIndex: 2, hint: "The ±√0 term vanishes, so (-b)/(2a) is the only result, occurring twice." },
+                { question: "For a = 1, b = -5, c = 6, what is the discriminant?", options: ["1", "49", "25", "1"], answerIndex: 3, hint: "(-5)² - 4*1*6 = 25 - 24 = 1" },
+                { question: "Why must a = 0 be handled separately before computing roots?", options: ["It causes a syntax error", "It makes D negative", "It results in division by zero in the quadratic formula", "sqrt() fails when a = 0"], answerIndex: 2, hint: "The quadratic formula, x = (-b ± √(b² - 4ac)) / (2a), has a division by 2a." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2772,11 +2773,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For a=1, b=2, c=1, what is the discriminant and nature of roots?", options: ["D=8, distinct real", "D=0, equal real roots", "D=-4, complex", "D=4, distinct real"], answerIndex: 1 },
-                { question: "For a=1, b=1, c=1, what is the nature of roots?", options: ["Distinct real", "Equal real", "Complex", "Zero"], answerIndex: 2 },
-                { question: "For a=1, b=-5, c=6, what are the roots?", options: ["1 and 6", "2 and 3", "-2 and -3", "5 and 1"], answerIndex: 1 },
-                { question: "What is the real part of complex roots when D < 0?", options: ["sqrt(-D) / (2a)", "b / (2a)", "-b / (2a)", "-b / a"], answerIndex: 2 },
-                { question: "For a=0, b=2, c=4, what should the program output?", options: ["Roots: -2.00 and 2.00", "Not a quadratic — linear equation, x = -2.00", "Division by zero error", "Complex roots"], answerIndex: 1 }
+                { question: "For a=1, b=2, c=1, what is the discriminant and nature of roots?", options: ["D=8, distinct real", "D=0, equal real roots", "D=-4, complex", "D=4, distinct real"], answerIndex: 1, hint: "D = 2² - 4*1*1 = 4 - 4 = 0." },
+                { question: "For a=1, b=1, c=1, what is the nature of roots?", options: ["Distinct real", "Equal real", "Complex", "Zero"], answerIndex: 2, hint: "D = 1² - 4*1*1 = 1 - 4 = -3, which is negative." },
+                { question: "For a=1, b=-5, c=6, what are the roots?", options: ["1 and 6", "2 and 3", "-2 and -3", "5 and 1"], answerIndex: 1, hint: "(x-2)(x-3) = x² -5x + 6 = 0." },
+                { question: "What is the real part of complex roots when D < 0?", options: ["sqrt(-D) / (2a)", "b / (2a)", "-b / (2a)", "-b / a"], answerIndex: 2, hint: "In the formula, it's the -b/(2a) part before the ± i√|D|/(2a)." },
+                { question: "For a=0, b=2, c=4, what should the program output?", options: ["Roots: -2.00 and 2.00", "Not a quadratic — linear equation, x = -2.00", "Division by zero error", "Complex roots"], answerIndex: 1, hint: "The equation becomes 2x + 4 = 0, which solves to x = -2." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2822,11 +2823,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "Which statement prevents fall-through in a switch-case block?", options: ["continue", "exit", "return", "break"], answerIndex: 3 },
-                { question: "What is executed when no case matches in a switch statement?", options: ["The first case", "Nothing — program exits", "The default case", "An error is thrown"], answerIndex: 2 },
-                { question: "What format specifier reads a character in scanf?", options: ["%s", "%d", "%c", "%ch"], answerIndex: 2 },
-                { question: "For inputs 10, 0, and operator /, what should the program output?", options: ["0.00", "Infinity", "Error: Division by zero", "10.00"], answerIndex: 2 },
-                { question: "What happens if break is omitted from a case in switch?", options: ["Compilation error", "That case is skipped", "Execution falls through to the next case", "switch exits immediately"], answerIndex: 2 }
+                { question: "Which statement prevents fall-through in a switch-case block?", options: ["continue", "exit", "return", "break"], answerIndex: 3, hint: "It exits the current block (loop or switch) and prevents execution from continuing to the next case." },
+                { question: "What is executed when no case matches in a switch statement?", options: ["The first case", "Nothing — program exits", "The default case", "An error is thrown"], answerIndex: 2, hint: "This is a safety net case that's executed when all other case labels fail to match." },
+                { question: "What format specifier reads a character in scanf?", options: ["%s", "%d", "%c", "%ch"], answerIndex: 2, hint: "It's a mnemonic for 'character'." },
+                { question: "For inputs 10, 0, and operator /, what should the program output?", options: ["0.00", "Infinity", "Error: Division by zero", "10.00"], answerIndex: 2, hint: "Mathematically, division by zero is undefined. A good program will check for this and report an error instead of crashing." },
+                { question: "What happens if break is omitted from a case in switch?", options: ["Compilation error", "That case is skipped", "Execution falls through to the next case", "switch exits immediately"], answerIndex: 2, hint: "This is called 'fall-through'. The program will continue executing the code for the following case(s)." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2850,11 +2851,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For inputs 15, 4, and operator *, what is the output?", options: ["11.00", "3.75", "19.00", "60.00"], answerIndex: 3 },
-                { question: "For inputs 9, 4, and operator -, what is the output?", options: ["13.00", "2.25", "5.00", "36.00"], answerIndex: 2 },
-                { question: "For inputs 7, 2, and operator /, what is the output?", options: ["3.00", "3.50", "4.00", "14.00"], answerIndex: 1 },
-                { question: "What does the default case in this calculator program do?", options: ["Performs addition as a fallback", "Exits the program silently", "Prints an invalid operator message", "Repeats the last valid operation"], answerIndex: 2 },
-                { question: "Why is \" %c\" (with a leading space) used instead of \"%c\" for reading the operator?", options: ["%c cannot read symbols", "The leading space flushes the newline left in the input buffer", "Symbols require a space before them in scanf", "It makes the output prettier"], answerIndex: 1 }
+                { question: "For inputs 15, 4, and operator *, what is the output?", options: ["11.00", "3.75", "19.00", "60.00"], answerIndex: 3, hint: "15 * 4 = 60" },
+                { question: "For inputs 9, 4, and operator -, what is the output?", options: ["13.00", "2.25", "5.00", "36.00"], answerIndex: 2, hint: "9 - 4 = 5" },
+                { question: "For inputs 7, 2, and operator /, what is the output?", options: ["3.00", "3.50", "4.00", "14.00"], answerIndex: 1, hint: "7 / 2 = 3.5" },
+                { question: "What does the default case in this calculator program do?", options: ["Performs addition as a fallback", "Exits the program silently", "Prints an invalid operator message", "Repeats the last valid operation"], answerIndex: 2, hint: "It handles cases where the user didn't enter a valid +, -, *, or / symbol." },
+                { question: "Why is \" %c\" (with a leading space) used instead of \"%c\" for reading the operator?", options: ["%c cannot read symbols", "The leading space flushes the newline left in the input buffer", "Symbols require a space before them in scanf", "It makes the output prettier"], answerIndex: 1, hint: "After reading the two numbers, a newline character (\\n) is often left in the input buffer. The leading space tells scanf to skip any whitespace (like newlines) before reading the character." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2898,11 +2899,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "Which of the following is the correct leap year condition in C?", options: ["year % 4 == 0", "(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)", "year % 100 == 0 || year % 4 == 0", "year % 400 == 0 && year % 4 == 0"], answerIndex: 1 },
-                { question: "Is 1900 a leap year?", options: ["Yes", "No", "Only in some calendars", "Depends on the compiler"], answerIndex: 1 },
-                { question: "Is 2000 a leap year?", options: ["No", "Yes", "Only if divisible by 100", "Cannot be determined"], answerIndex: 1 },
-                { question: "What does year % 4 == 0 check?", options: ["Whether year is greater than 4", "Whether year divided by 4 leaves no remainder", "Whether year is a multiple of 100", "Whether year is odd"], answerIndex: 1 },
-                { question: "Why is the divisible-by-100 rule needed in addition to divisible-by-4?", options: ["To handle negative years", "Because century years are not leap years unless divisible by 400", "To speed up computation", "To handle float years"], answerIndex: 1 }
+                { question: "Which of the following is the correct leap year condition in C?", options: ["year % 4 == 0", "(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)", "year % 100 == 0 || year % 4 == 0", "year % 400 == 0 && year % 4 == 0"], answerIndex: 1, hint: "It's a two-part rule: divisible by 4, but not by 100, unless it's also divisible by 400." },
+                { question: "Is 1900 a leap year?", options: ["Yes", "No", "Only in some calendars", "Depends on the compiler"], answerIndex: 1, hint: "It is divisible by 4 and by 100, but not by 400." },
+                { question: "Is 2000 a leap year?", options: ["No", "Yes", "Only if divisible by 100", "Cannot be determined"], answerIndex: 1, hint: "It is divisible by 400, so it is a leap year." },
+                { question: "What does year % 4 == 0 check?", options: ["Whether year is greater than 4", "Whether year divided by 4 leaves no remainder", "Whether year is a multiple of 100", "Whether year is odd"], answerIndex: 1, hint: "The % (modulus) operator gives the remainder. If the remainder is zero, it's evenly divisible." },
+                { question: "Why is the divisible-by-100 rule needed in addition to divisible-by-4?", options: ["To handle negative years", "Because century years are not leap years unless divisible by 400", "To speed up computation", "To handle float years"], answerIndex: 1, hint: "This rule corrects an over-correction. Just being divisible by 4 is not enough for century years." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -2925,11 +2926,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "Is 1600 a leap year?", options: ["No", "Yes", "Only if % 4 == 0", "Cannot be determined"], answerIndex: 1 },
-                { question: "Is 2100 a leap year?", options: ["Yes, divisible by 4", "No — divisible by 100 but not 400", "Yes, divisible by 400", "Yes, all future years are leap years"], answerIndex: 1 },
-                { question: "What is the output for year = 2023?", options: ["2023 is a Leap Year", "2023 is not a Leap Year", "Compilation error", "Undefined"], answerIndex: 1 },
-                { question: "Which logical operator is used to combine the two main leap year conditions?", options: ["&&", "!", "||", "^"], answerIndex: 2 },
-                { question: "How many leap years are there between 1900 and 2000 inclusive?", options: ["25", "24", "26", "23"], answerIndex: 1 }
+                { question: "Is 1600 a leap year?", options: ["No", "Yes", "Only if % 4 == 0", "Cannot be determined"], answerIndex: 1, hint: "It is divisible by 400, so it's a leap year." },
+                { question: "Is 2100 a leap year?", options: ["Yes, divisible by 4", "No — divisible by 100 but not 400", "Yes, divisible by 400", "Yes, all future years are leap years"], answerIndex: 1, hint: "It is divisible by 100, but not by 400." },
+                { question: "What is the output for year = 2023?", options: ["2023 is a Leap Year", "2023 is not a Leap Year", "Compilation error", "Undefined"], answerIndex: 1, hint: "2023 % 4 = 3, so it's not divisible by 4." },
+                { question: "Which logical operator is used to combine the two main leap year conditions?", options: ["&&", "!", "||", "^"], answerIndex: 2, hint: "The year is a leap year if (condition A) is true OR (condition B) is true." },
+                { question: "How many leap years are there between 1900 and 2000 inclusive?", options: ["25", "24", "26", "23"], answerIndex: 1, hint: "Leap years are every 4 years (1904, 1908...2000), but 1900 is not a leap year. How many are there? 2000 is a leap year, so you count it." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -2982,11 +2983,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is 0! equal to?", options: ["0", "Undefined", "1", "-1"], answerIndex: 2 },
-                { question: "What is 5!?", options: ["25", "60", "100", "120"], answerIndex: 3 },
-                { question: "Why is long long preferred over int for storing factorial results?", options: ["int cannot store numbers above 100", "Factorials grow rapidly and overflow 32-bit int beyond 12!", "long long is faster to compute", "printf requires long long for all loops"], answerIndex: 1 },
-                { question: "What format specifier is used to print a long long value?", options: ["%ld", "%lld", "%ll", "%Ld"], answerIndex: 1 },
-                { question: "What is the correct initial value of the factorial accumulator before the loop?", options: ["0", "n", "1", "-1"], answerIndex: 2 }
+                { question: "What is 0! equal to?", options: ["0", "Undefined", "1", "-1"], answerIndex: 2, hint: "It's a mathematical convention, defined as the multiplicative identity." },
+                { question: "What is 5!?", options: ["25", "60", "100", "120"], answerIndex: 3, hint: "1 * 2 * 3 * 4 * 5 = 120" },
+                { question: "Why is long long preferred over int for storing factorial results?", options: ["int cannot store numbers above 100", "Factorials grow rapidly and overflow 32-bit int beyond 12!", "long long is faster to compute", "printf requires long long for all loops"], answerIndex: 1, hint: "An int can only hold values up to about 2 billion. 13! is over 6 billion." },
+                { question: "What format specifier is used to print a long long value?", options: ["%ld", "%lld", "%ll", "%Ld"], answerIndex: 1, hint: "It's a 'long long' integer, so the format is a double 'l'." },
+                { question: "What is the correct initial value of the factorial accumulator before the loop?", options: ["0", "n", "1", "-1"], answerIndex: 2, hint: "The product of an empty set of numbers is 1." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3019,11 +3020,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is 10!?", options: ["100", "1000", "3628800", "362880"], answerIndex: 2 },
-                { question: "What is the output of the program for n = 0?", options: ["0", "Undefined", "Error", "1"], answerIndex: 3 },
-                { question: "How many iterations does the for loop execute for n = 6?", options: ["5", "7", "6", "0"], answerIndex: 2 },
-                { question: "What happens to the accumulator if it is initialised to 0 instead of 1?", options: ["Output doubles", "Output is always 0", "Output is always 1", "No change"], answerIndex: 1 },
-                { question: "What is the maximum n for which factorial fits in a long long (64-bit)?", options: ["15", "25", "20", "12"], answerIndex: 2 }
+                { question: "What is 10!?", options: ["100", "1000", "3628800", "362880"], answerIndex: 2, hint: "1*2*...*10 = 3,628,800." },
+                { question: "What is the output of the program for n = 0?", options: ["0", "Undefined", "Error", "1"], answerIndex: 3, hint: "The loop condition (i <= n) will be false, so the loop body is skipped, and fact remains 1." },
+                { question: "How many iterations does the for loop execute for n = 6?", options: ["5", "7", "6", "0"], answerIndex: 2, hint: "The loop runs from i=1 to i=6 inclusive." },
+                { question: "What happens to the accumulator if it is initialised to 0 instead of 1?", options: ["Output doubles", "Output is always 0", "Output is always 1", "No change"], answerIndex: 1, hint: "0 * anything = 0. The factorial of any number would be incorrectly calculated as 0." },
+                { question: "What is the maximum n for which factorial fits in a long long (64-bit)?", options: ["15", "25", "20", "12"], answerIndex: 2, hint: "20! is approximately 2.43 x 10^18, which is just under the maximum for a 64-bit unsigned integer (~1.8 x 10^19). 21! is too large." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3068,11 +3069,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the definition of a prime number?", options: ["Divisible by 2", "Greater than 1 with no divisors other than 1 and itself", "An odd number", "Divisible only by itself"], answerIndex: 1 },
-                { question: "Why is it sufficient to check divisors up to sqrt(n)?", options: ["To make the code shorter", "Any factor larger than sqrt(n) pairs with one smaller than sqrt(n)", "sqrt(n) is always prime", "Divisors above sqrt(n) are always even"], answerIndex: 1 },
-                { question: "What is the loop condition using the sqrt optimisation?", options: ["i <= n", "i < n", "i * i <= n", "i <= n / 2"], answerIndex: 2 },
-                { question: "What does the break statement do inside the prime-checking loop?", options: ["Skips the current iteration", "Exits the entire program", "Exits the loop immediately when a factor is found", "Restarts the loop from i = 2"], answerIndex: 2 },
-                { question: "Is 1 a prime number?", options: ["Yes", "No", "Only in some definitions", "Depends on the compiler"], answerIndex: 1 }
+                { question: "What is the definition of a prime number?", options: ["Divisible by 2", "Greater than 1 with no divisors other than 1 and itself", "An odd number", "Divisible only by itself"], answerIndex: 1, hint: "It's a number that has exactly two distinct positive divisors." },
+                { question: "Why is it sufficient to check divisors up to sqrt(n)?", options: ["To make the code shorter", "Any factor larger than sqrt(n) pairs with one smaller than sqrt(n)", "sqrt(n) is always prime", "Divisors above sqrt(n) are always even"], answerIndex: 1, hint: "If n = a * b, and a <= b, then a cannot be greater than the square root of n." },
+                { question: "What is the loop condition using the sqrt optimisation?", options: ["i <= n", "i < n", "i * i <= n", "i <= n / 2"], answerIndex: 2, hint: "You compare the square of the divisor i with n to avoid using floating-point sqrt." },
+                { question: "What does the break statement do inside the prime-checking loop?", options: ["Skips the current iteration", "Exits the entire program", "Exits the loop immediately when a factor is found", "Restarts the loop from i = 2"], answerIndex: 2, hint: "Once you find a factor, you know the number isn't prime, so there's no need to check further." },
+                { question: "Is 1 a prime number?", options: ["Yes", "No", "Only in some definitions", "Depends on the compiler"], answerIndex: 1, hint: "The definition requires the number to have exactly two distinct positive divisors. 1 has only one." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3102,11 +3103,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "How many iterations does the optimised loop perform for n = 36?", options: ["35", "18", "6", "4"], answerIndex: 2 },
-                { question: "What is the output for n = 2?", options: ["2 is not a Prime Number", "2 is a Prime Number", "Undefined", "0"], answerIndex: 1 },
-                { question: "What is the output for n = 1?", options: ["1 is a Prime Number", "1 is not a Prime Number", "Error", "0"], answerIndex: 1 },
-                { question: "For n = 49, what factor is found first and at which iteration?", options: ["i = 7, n % 7 == 0", "i = 2, n % 2 == 0", "i = 3, n % 3 == 0", "i = 49, n % 49 == 0"], answerIndex: 0 },
-                { question: "What is the purpose of initialising isPrime = 1 before the loop?", options: ["To set the default output to \"not prime\"", "To assume the number is prime unless a factor is found", "To avoid a compilation warning", "Required by C standard for flag variables"], answerIndex: 1 }
+                { question: "How many iterations does the optimised loop perform for n = 36?", options: ["35", "18", "6", "4"], answerIndex: 2, hint: "The loop runs as long as i*i <= 36. So i=2,3,4,5,6. That's 5 iterations." },
+                { question: "What is the output for n = 2?", options: ["2 is not a Prime Number", "2 is a Prime Number", "Undefined", "0"], answerIndex: 1, hint: "It is the smallest and only even prime number." },
+                { question: "What is the output for n = 1?", options: ["1 is a Prime Number", "1 is not a Prime Number", "Error", "0"], answerIndex: 1, hint: "1 is not greater than 1, so the condition n <= 1 sets isPrime = 0." },
+                { question: "For n = 49, what factor is found first and at which iteration?", options: ["i = 7, n % 7 == 0", "i = 2, n % 2 == 0", "i = 3, n % 3 == 0", "i = 49, n % 49 == 0"], answerIndex: 0, hint: "The loop stops when i*i <= n, so i=2,3,4,5,6,7. It stops when i=7 because 49 % 7 == 0." },
+                { question: "What is the purpose of initialising isPrime = 1 before the loop?", options: ["To set the default output to \"not prime\"", "To assume the number is prime unless a factor is found", "To avoid a compilation warning", "Required by C standard for flag variables"], answerIndex: 1, hint: "It's an optimistic assumption. We will only set it to 0 (false) if we find evidence that the number is composite." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3152,11 +3153,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the first term of the sine series?", options: ["x³/3!", "x²/2!", "x", "1"], answerIndex: 2 },
-                { question: "What is the correct degree-to-radian conversion formula?", options: ["rad = deg / 180", "rad = deg * 180 / PI", "rad = deg * PI / 180", "rad = deg * PI"], answerIndex: 2 },
-                { question: "What is the sign pattern of the sine series terms?", options: ["All positive", "All negative", "Alternating starting positive: +, -, +, -, ...", "Alternating starting negative: -, +, -, +, ..."], answerIndex: 2 },
-                { question: "Why is the iterative term-building method preferred over computing pow() and factorial separately each iteration?", options: ["It gives a different result", "It avoids repeated expensive computations and is more efficient", "pow() does not work inside loops", "Factorial is undefined for large n"], answerIndex: 1 },
-                { question: "For x = 0 degrees, what should sin(0) return?", options: ["1.000000", "Undefined", "3.141593", "0.000000"], answerIndex: 3 }
+                { question: "What is the first term of the sine series?", options: ["x³/3!", "x²/2!", "x", "1"], answerIndex: 2, hint: "sin(0) = 0, and the first term is x." },
+                { question: "What is the correct degree-to-radian conversion formula?", options: ["rad = deg / 180", "rad = deg * 180 / PI", "rad = deg * PI / 180", "rad = deg * PI"], answerIndex: 2, hint: "There are 2π radians in 360 degrees." },
+                { question: "What is the sign pattern of the sine series terms?", options: ["All positive", "All negative", "Alternating starting positive: +, -, +, -, ...", "Alternating starting negative: -, +, -, +, ..."], answerIndex: 2, hint: "The expansion is x - x³/3! + x⁵/5! - x⁷/7! + ..." },
+                { question: "Why is the iterative term-building method preferred over computing pow() and factorial separately each iteration?", options: ["It gives a different result", "It avoids repeated expensive computations and is more efficient", "pow() does not work inside loops", "Factorial is undefined for large n"], answerIndex: 1, hint: "Calculating a large factorial and exponent from scratch at each step is computationally heavy." },
+                { question: "For x = 0 degrees, what should sin(0) return?", options: ["1.000000", "Undefined", "3.141593", "0.000000"], answerIndex: 3, hint: "The sine of 0 is 0." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3186,11 +3187,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is sin(90°) expected to be?", options: ["0.000000", "0.500000", "1.000000", "3.141593"], answerIndex: 2 },
-                { question: "What is sin(0°)?", options: ["1.000000", "0.000000", "-1.000000", "Undefined"], answerIndex: 1 },
-                { question: "What happens to accuracy as the number of terms increases?", options: ["Accuracy decreases", "No change", "Accuracy increases toward the true value", "The program crashes"], answerIndex: 2 },
-                { question: "In the iterative term update, what is multiplied to get the next term from the current term?", options: ["x / (2n+1)", "-x² / ((2n)(2n+1))", "x² * (2n+1)", "-1 / (2n * x)"], answerIndex: 1 },
-                { question: "For x = 180°, what is sin(180°) approximately?", options: ["1.000000", "-1.000000", "0.000000", "3.141593"], answerIndex: 2 }
+                { question: "What is sin(90°) expected to be?", options: ["0.000000", "0.500000", "1.000000", "3.141593"], answerIndex: 2, hint: "The sine of a right angle (π/2 radians) is 1." },
+                { question: "What is sin(0°)?", options: ["1.000000", "0.000000", "-1.000000", "Undefined"], answerIndex: 1, hint: "Sine of 0 is 0." },
+                { question: "What happens to accuracy as the number of terms increases?", options: ["Accuracy decreases", "No change", "Accuracy increases toward the true value", "The program crashes"], answerIndex: 2, hint: "More terms in the series approximate the true function more closely." },
+                { question: "In the iterative term update, what is multiplied to get the next term from the current term?", options: ["x / (2n+1)", "-x² / ((2n)(2n+1))", "x² * (2n+1)", "-1 / (2n * x)"], answerIndex: 1, hint: "The term changes sign and gains a factor of x²/(k*(k+1))." },
+                { question: "For x = 180°, what is sin(180°) approximately?", options: ["1.000000", "-1.000000", "0.000000", "3.141593"], answerIndex: 2, hint: "Sine of π (180°) is 0." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3235,11 +3236,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does n % 10 return for n = 1234?", options: ["1", "12", "123", "4"], answerIndex: 3 },
-                { question: "What does n / 10 (integer division) return for n = 1234?", options: ["123.4", "4", "123", "12"], answerIndex: 2 },
-                { question: "Is 121 a palindrome?", options: ["No", "Yes", "Only if entered as a string", "Depends on the number of digits"], answerIndex: 1 },
-                { question: "What is the initial value of reversed before the while loop?", options: ["n", "1", "-1", "0"], answerIndex: 3 },
-                { question: "Why must the original value of n be saved before the loop?", options: ["Because printf requires it", "Because n is modified (divided by 10) during reversal and must be compared afterward", "Because reversed is also modified", "It does not need to be saved"], answerIndex: 1 }
+                { question: "What does n % 10 return for n = 1234?", options: ["1", "12", "123", "4"], answerIndex: 3, hint: "The modulus operator with 10 gives the remainder, which is the last digit." },
+                { question: "What does n / 10 (integer division) return for n = 1234?", options: ["123.4", "4", "123", "12"], answerIndex: 2, hint: "Integer division discards the fractional part, which effectively chops off the last digit." },
+                { question: "Is 121 a palindrome?", options: ["No", "Yes", "Only if entered as a string", "Depends on the number of digits"], answerIndex: 1, hint: "It reads the same forwards and backwards." },
+                { question: "What is the initial value of reversed before the while loop?", options: ["n", "1", "-1", "0"], answerIndex: 3, hint: "The variable that will hold the reversed number must start at zero to build the number correctly." },
+                { question: "Why must the original value of n be saved before the loop?", options: ["Because printf requires it", "Because n is modified (divided by 10) during reversal and must be compared afterward", "Because reversed is also modified", "It does not need to be saved"], answerIndex: 1, hint: "The loop destroys the original number by chopping off digits. You need a copy for the final comparison." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3276,11 +3277,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "Is 1001 a palindrome?", options: ["No", "Yes", "Undefined", "Only for even digits"], answerIndex: 1 },
-                { question: "What is the reversed number for n = 4567?", options: ["7564", "7654", "4567", "6754"], answerIndex: 1 },
-                { question: "For n = 10, what is the reversed number and is it a palindrome?", options: ["reversed = 10, Yes", "reversed = 1, No", "reversed = 01, Yes", "reversed = 10, No"], answerIndex: 1 },
-                { question: "How many iterations does the while loop execute for n = 1234?", options: ["3", "5", "2", "4"], answerIndex: 3 },
-                { question: "What is the output for n = 7?", options: ["7 is not a Palindrome", "7 is a Palindrome", "0", "Undefined"], answerIndex: 1 }
+                { question: "Is 1001 a palindrome?", options: ["No", "Yes", "Undefined", "Only for even digits"], answerIndex: 1, hint: "1001 reversed is 1001." },
+                { question: "What is the reversed number for n = 4567?", options: ["7564", "7654", "4567", "6754"], answerIndex: 1, hint: "Extract digits: 7, then 6, then 5, then 4. Build the number: ( ( (7*10+6)*10+5)*10+4 ) = 7654." },
+                { question: "For n = 10, what is the reversed number and is it a palindrome?", options: ["reversed = 10, Yes", "reversed = 1, No", "reversed = 01, Yes", "reversed = 10, No"], answerIndex: 1, hint: "Reversed is 1 (since 01 is just 1). 10 is not the same as 1." },
+                { question: "How many iterations does the while loop execute for n = 1234?", options: ["3", "5", "2", "4"], answerIndex: 3, hint: "It will run once for each digit: 4, 3, 2, 1." },
+                { question: "What is the output for n = 7?", options: ["7 is not a Palindrome", "7 is a Palindrome", "0", "Undefined"], answerIndex: 1, hint: "A single-digit number is always a palindrome." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3325,11 +3326,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "How many inner loops are typically needed to print a centred number pyramid?", options: ["One — for numbers only", "Two — one for spaces, one for numbers", "Three — for spaces, numbers, and newlines", "None — printf handles it automatically"], answerIndex: 1 },
-                { question: "For n = 5, how many leading spaces are printed on row 3?", options: ["3", "1", "2", "5"], answerIndex: 2 },
-                { question: "For n = 5, how many numbers are printed on row 4?", options: ["5", "1", "3", "4"], answerIndex: 3 },
-                { question: "What does the continue statement do inside a loop?", options: ["Exits the loop entirely", "Skips the rest of the current iteration and moves to the next", "Restarts the loop from the beginning", "Pauses execution"], answerIndex: 1 },
-                { question: "What printf() call moves output to the next line after each row?", options: ["printf(\" \");", "printf(\"\\t\");", "printf(\"\\n\");", "printf(\"\\\\n\");"], answerIndex: 2 }
+                { question: "How many inner loops are typically needed to print a centred number pyramid?", options: ["One — for numbers only", "Two — one for spaces, one for numbers", "Three — for spaces, numbers, and newlines", "None — printf handles it automatically"], answerIndex: 1, hint: "One loop is needed to print the leading spaces to align the pyramid, and another to print the numbers." },
+                { question: "For n = 5, how many leading spaces are printed on row 3?", options: ["3", "1", "2", "5"], answerIndex: 2, hint: "The number of spaces decreases as you go down. Row 1 has 4 spaces, Row 2 has 3, Row 3 has 2." },
+                { question: "For n = 5, how many numbers are printed on row 4?", options: ["5", "1", "3", "4"], answerIndex: 3, hint: "The first row has 1 number, the second row has 2, the third row has 3, the fourth row has 4." },
+                { question: "What does the continue statement do inside a loop?", options: ["Exits the loop entirely", "Skips the rest of the current iteration and moves to the next", "Restarts the loop from the beginning", "Pauses execution"], answerIndex: 1, hint: "It's like a 'skip' button for the current pass." },
+                { question: "What printf() call moves output to the next line after each row?", options: ["printf(\" \");", "printf(\"\\t\");", "printf(\"\\n\");", "printf(\"\\\\n\");"], answerIndex: 2, hint: "This prints the newline escape sequence, which moves the cursor to the beginning of the next line." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3363,11 +3364,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For n = 5, how many total numbers are printed across all rows?", options: ["10", "25", "5", "15"], answerIndex: 3 },
-                { question: "For n = 4, how many leading spaces are on the first row?", options: ["1", "2", "4", "3"], answerIndex: 3 },
-                { question: "What change to the number loop would print only odd numbers in each row?", options: ["Replace j++ with j += 2 and start at j = 1", "Replace j++ with j--", "Add break when j is even", "Use j % 2 inside printf"], answerIndex: 0 },
-                { question: "What is the total number of iterations of the outer loop for n = 6?", options: ["36", "21", "6", "12"], answerIndex: 2 },
-                { question: "Which loop variable directly determines the count of numbers on each row?", options: ["The space loop counter", "The outer loop variable i, which equals the count of numbers on row i", "A fixed constant", "The newline counter"], answerIndex: 1 }
+                { question: "For n = 5, how many total numbers are printed across all rows?", options: ["10", "25", "5", "15"], answerIndex: 3, hint: "1+2+3+4+5 = 15" },
+                { question: "For n = 4, how many leading spaces are on the first row?", options: ["1", "2", "4", "3"], answerIndex: 3, hint: "It's n - i. For row 1 (i=1), it's 4-1 = 3." },
+                { question: "What change to the number loop would print only odd numbers in each row?", options: ["Replace j++ with j += 2 and start at j = 1", "Replace j++ with j--", "Add break when j is even", "Use j % 2 inside printf"], answerIndex: 0, hint: "Using a step of 2 and starting from 1 will produce the sequence 1, 3, 5..." },
+                { question: "What is the total number of iterations of the outer loop for n = 6?", options: ["36", "21", "6", "12"], answerIndex: 2, hint: "The outer loop runs once for each row, from i=1 to i=n." },
+                { question: "Which loop variable directly determines the count of numbers on each row?", options: ["The space loop counter", "The outer loop variable i, which equals the count of numbers on row i", "A fixed constant", "The newline counter"], answerIndex: 1, hint: "On row i, you need to print i numbers." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3420,11 +3421,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the valid index range for an array declared as int arr[10]?", options: ["1 to 10", "0 to 10", "0 to 9", "1 to 9"], answerIndex: 2 },
-                { question: "Why should min and max be initialised to arr[0] rather than 0?", options: ["0 causes a compilation error", "Initialising to 0 fails when all elements are negative", "arr[0] is always the minimum", "The loop starts at index 0"], answerIndex: 1 },
-                { question: "For array {5, 3, 9, 1, 7}, what is the minimum?", options: ["5", "3", "7", "1"], answerIndex: 3 },
-                { question: "For array {5, 3, 9, 1, 7}, what is the maximum?", options: ["7", "5", "9", "3"], answerIndex: 2 },
-                { question: "What is the time complexity of finding min and max in a single traversal?", options: ["O(n²)", "O(log n)", "O(1)", "O(n)"], answerIndex: 3 }
+                { question: "What is the valid index range for an array declared as int arr[10]?", options: ["1 to 10", "0 to 10", "0 to 9", "1 to 9"], answerIndex: 2, hint: "Array indices in C always start at 0." },
+                { question: "Why should min and max be initialised to arr[0] rather than 0?", options: ["0 causes a compilation error", "Initialising to 0 fails when all elements are negative", "arr[0] is always the minimum", "The loop starts at index 0"], answerIndex: 1, hint: "If all numbers are negative, 0 would be larger than all of them, making the algorithm fail to find the correct max." },
+                { question: "For array {5, 3, 9, 1, 7}, what is the minimum?", options: ["5", "3", "7", "1"], answerIndex: 3, hint: "The smallest number in the list is 1." },
+                { question: "For array {5, 3, 9, 1, 7}, what is the maximum?", options: ["7", "5", "9", "3"], answerIndex: 2, hint: "The largest number in the list is 9." },
+                { question: "What is the time complexity of finding min and max in a single traversal?", options: ["O(n²)", "O(log n)", "O(1)", "O(n)"], answerIndex: 3, hint: "You need to look at each element in the array once." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3458,11 +3459,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For array {-4, -1, -8, -2}, what is the minimum?", options: ["-1", "-2", "-4", "-8"], answerIndex: 3 },
-                { question: "For array {-4, -1, -8, -2}, what is the maximum?", options: ["-8", "-4", "-2", "-1"], answerIndex: 3 },
-                { question: "For array {7, 7, 7, 7}, what are min and max?", options: ["min = 0, max = 7", "min = 7, max = 7", "min = 7, max = 0", "Undefined"], answerIndex: 1 },
-                { question: "What is the result of accessing arr[n] for an array of size n?", options: ["Returns 0", "Returns the last valid element", "Undefined behaviour", "Compilation error"], answerIndex: 2 },
-                { question: "How many comparisons are made in total to find both min and max for an array of 10 elements using the single-pass method?", options: ["10", "20", "18", "9"], answerIndex: 2 }
+                { question: "For array {-4, -1, -8, -2}, what is the minimum?", options: ["-1", "-2", "-4", "-8"], answerIndex: 3, hint: "-8 is the smallest (most negative) number." },
+                { question: "For array {-4, -1, -8, -2}, what is the maximum?", options: ["-8", "-4", "-2", "-1"], answerIndex: 3, hint: "-1 is the largest (closest to zero) number." },
+                { question: "For array {7, 7, 7, 7}, what are min and max?", options: ["min = 0, max = 7", "min = 7, max = 7", "min = 7, max = 0", "Undefined"], answerIndex: 1, hint: "If all numbers are the same, that number is both the minimum and the maximum." },
+                { question: "What is the result of accessing arr[n] for an array of size n?", options: ["Returns 0", "Returns the last valid element", "Undefined behaviour", "Compilation error"], answerIndex: 2, hint: "The last valid element is at index n-1. Accessing index n is an out-of-bounds error." },
+                { question: "How many comparisons are made in total to find both min and max for an array of 10 elements using the single-pass method?", options: ["10", "20", "18", "9"], answerIndex: 3, hint: "For each of the 9 elements after the first, you perform up to 2 comparisons (one for min, one for max)." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3508,11 +3509,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the worst-case time complexity of linear search?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answerIndex: 2 },
-                { question: "What is the best-case scenario for linear search?", options: ["Target is at the last index", "Array is sorted", "Target is at the first index — one comparison", "Array has no duplicates"], answerIndex: 2 },
-                { question: "What value is pos conventionally set to before searching, to indicate \"not found\"?", options: ["0", "n", "-1", "999"], answerIndex: 2 },
-                { question: "What does break do when the target is found inside the search loop?", options: ["Skips the current element", "Exits the loop immediately to avoid further comparisons", "Restarts the search from index 0", "Sets found = 0"], answerIndex: 1 },
-                { question: "Does linear search require the array to be sorted?", options: ["Yes, always", "Only for even-sized arrays", "No — it works on unsorted arrays", "Only for integer arrays"], answerIndex: 2 }
+                { question: "What is the worst-case time complexity of linear search?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answerIndex: 2, hint: "Think of the worst-case scenario, like searching for an element that isn't there. You have to check every element." },
+                { question: "What is the best-case scenario for linear search?", options: ["Target is at the last index", "Array is sorted", "Target is at the first index — one comparison", "Array has no duplicates"], answerIndex: 2, hint: "The best possible outcome is finding what you're looking for right away." },
+                { question: "What value is pos conventionally set to before searching, to indicate \"not found\"?", options: ["0", "n", "-1", "999"], answerIndex: 2, hint: "-1 is an invalid index, so it's a perfect sentinel value for 'not found'." },
+                { question: "What does break do when the target is found inside the search loop?", options: ["Skips the current element", "Exits the loop immediately to avoid further comparisons", "Restarts the search from index 0", "Sets found = 0"], answerIndex: 1, hint: "Once you've found the target, you don't need to waste time looking at the rest of the array." },
+                { question: "Does linear search require the array to be sorted?", options: ["Yes, always", "Only for even-sized arrays", "No — it works on unsorted arrays", "Only for integer arrays"], answerIndex: 2, hint: "Linear search is based purely on checking each element sequentially; it doesn't depend on any pre-existing order." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3545,11 +3546,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For array {10, 30, 20, 50, 40} and key = 50, at which 0-based index is it found?", options: ["3", "4", "2", "1"], answerIndex: 0 },
-                { question: "For array {10, 30, 20, 50, 40} and key = 99, what is the output?", options: ["Found at index 0", "Found at index -1", "Element not found", "Compilation error"], answerIndex: 2 },
-                { question: "How many comparisons are made for key = 10 in array {10, 30, 20, 50, 40}?", options: ["5", "3", "2", "1"], answerIndex: 3 },
-                { question: "How many comparisons are made for key = 99 in array {10, 30, 20, 50, 40}?", options: ["1", "3", "5", "0"], answerIndex: 2 },
-                { question: "What modification allows linear search to find and print ALL occurrences of a key rather than just the first?", options: ["Replace == with !=", "Remove break so the loop continues after a match", "Sort the array first", "Use a while loop instead of for"], answerIndex: 1 }
+                { question: "For array {10, 30, 20, 50, 40} and key = 50, at which 0-based index is it found?", options: ["3", "4", "2", "1"], answerIndex: 0, hint: "The search starts at index 0 (value 10), then index 1 (30), index 2 (20), index 3 (50)." },
+                { question: "For array {10, 30, 20, 50, 40} and key = 99, what is the output?", options: ["Found at index 0", "Found at index -1", "Element not found", "Compilation error"], answerIndex: 2, hint: "The search will run through the entire array and, not finding 99, will output accordingly." },
+                { question: "How many comparisons are made for key = 10 in array {10, 30, 20, 50, 40}?", options: ["5", "3", "2", "1"], answerIndex: 3, hint: "The key is found at the first index, so only one comparison is made." },
+                { question: "How many comparisons are made for key = 99 in array {10, 30, 20, 50, 40}?", options: ["1", "3", "5", "0"], answerIndex: 2, hint: "The key is not found, so the search must check all 5 elements." },
+                { question: "What modification allows linear search to find and print ALL occurrences of a key rather than just the first?", options: ["Replace == with !=", "Remove break so the loop continues after a match", "Sort the array first", "Use a while loop instead of for"], answerIndex: 1, hint: "The break statement exits the loop after the first match. To find more, you need to keep searching." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3594,11 +3595,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "For array {1, 2, 3, 4, 5}, what is the reversed array?", options: ["{5, 4, 3, 2, 1}", "{1, 2, 3, 4, 5}", "{2, 4, 1, 3, 5}", "{5, 3, 1, 4, 2}"], answerIndex: 0 },
-                { question: "How many swaps are needed to reverse an array of 7 elements?", options: ["7", "4", "6", "3"], answerIndex: 3 },
-                { question: "What is the purpose of the temp variable during a swap?", options: ["To count the number of swaps", "To temporarily hold one value so it is not overwritten", "To store the reversed array", "To compare two elements"], answerIndex: 1 },
-                { question: "What are the initial values of left and right for an array of size n?", options: ["left = 1, right = n", "left = 0, right = n", "left = 0, right = n - 1", "left = 1, right = n - 1"], answerIndex: 2 },
-                { question: "What is the space complexity of the in-place two-pointer reversal?", options: ["O(n)", "O(n²)", "O(log n)", "O(1)"], answerIndex: 3 }
+                { question: "For array {1, 2, 3, 4, 5}, what is the reversed array?", options: ["{5, 4, 3, 2, 1}", "{1, 2, 3, 4, 5}", "{2, 4, 1, 3, 5}", "{5, 3, 1, 4, 2}"], answerIndex: 0, hint: "The order of the elements is completely flipped." },
+                { question: "How many swaps are needed to reverse an array of 7 elements?", options: ["7", "4", "6", "3"], answerIndex: 3, hint: "Each swap places two elements in their correct final positions. For 7 elements, you need floor(7/2) = 3 swaps." },
+                { question: "What is the purpose of the temp variable during a swap?", options: ["To count the number of swaps", "To temporarily hold one value so it is not overwritten", "To store the reversed array", "To compare two elements"], answerIndex: 1, hint: "When you set arr[left] = arr[right], you lose the original value at arr[left]. `temp` saves it." },
+                { question: "What are the initial values of left and right for an array of size n?", options: ["left = 1, right = n", "left = 0, right = n", "left = 0, right = n - 1", "left = 1, right = n - 1"], answerIndex: 2, hint: "Indices start at 0, so the last element is at index n-1." },
+                { question: "What is the space complexity of the in-place two-pointer reversal?", options: ["O(n)", "O(n²)", "O(log n)", "O(1)"], answerIndex: 3, hint: "It uses a fixed number of extra variables (e.g., left, right, temp), regardless of the input size." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3636,11 +3637,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For array {10, 20, 30, 40}, what is the reversed array?", options: ["{10, 30, 20, 40}", "{40, 20, 30, 10}", "{40, 30, 20, 10}", "{20, 10, 40, 30}"], answerIndex: 2 },
-                { question: "For array {7}, what is the reversed array?", options: ["{}", "{0}", "{7}", "Undefined"], answerIndex: 2 },
-                { question: "After how many swaps does the while loop terminate for n = 6?", options: ["6", "2", "4", "3"], answerIndex: 3 },
-                { question: "At the start of swap 2 for array {1, 2, 3, 4, 5}, what are left and right?", options: ["left = 0, right = 4", "left = 2, right = 3", "left = 1, right = 3", "left = 2, right = 2"], answerIndex: 2 },
-                { question: "What is the result of reversing an already-reversed array {5, 4, 3, 2, 1}?", options: ["{5, 4, 3, 2, 1}", "{1, 1, 1, 1, 1}", "{1, 2, 3, 4, 5}", "Undefined"], answerIndex: 2 }
+                { question: "For array {10, 20, 30, 40}, what is the reversed array?", options: ["{10, 30, 20, 40}", "{40, 20, 30, 10}", "{40, 30, 20, 10}", "{20, 10, 40, 30}"], answerIndex: 2, hint: "The process swaps (10,40) then (20,30)." },
+                { question: "For array {7}, what is the reversed array?", options: ["{}", "{0}", "{7}", "Undefined"], answerIndex: 2, hint: "An array with a single element reversed is itself." },
+                { question: "After how many swaps does the while loop terminate for n = 6?", options: ["6", "2", "4", "3"], answerIndex: 3, hint: "floor(6/2) = 3 swaps are needed." },
+                { question: "At the start of swap 2 for array {1, 2, 3, 4, 5}, what are left and right?", options: ["left = 0, right = 4", "left = 2, right = 3", "left = 1, right = 3", "left = 2, right = 2"], answerIndex: 2, hint: "After the first swap (1,5), left is incremented to 1, and right is decremented to 3." },
+                { question: "What is the result of reversing an already-reversed array {5, 4, 3, 2, 1}?", options: ["{5, 4, 3, 2, 1}", "{1, 1, 1, 1, 1}", "{1, 2, 3, 4, 5}", "Undefined"], answerIndex: 2, hint: "Reversing an array twice should return it to its original order." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3685,11 +3686,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "For array {1, 3, 2, 3, 1, 5}, what is the deduplicated array?", options: ["{1, 2, 3, 5}", "{1, 3, 2, 5}", "{3, 1, 5, 2}", "{5, 3, 2, 1}"], answerIndex: 1 },
-                { question: "What does the flag isDuplicate = 1 signal?", options: ["The element should be kept", "The element has already appeared earlier in the array", "The element is negative", "The inner loop should restart"], answerIndex: 1 },
-                { question: "For array {5, 5, 5, 5}, what is the deduplicated array and new size?", options: ["{5, 5}, size 2", "{}, size 0", "{5}, size 1", "{5, 5, 5, 5}, size 4"], answerIndex: 2 },
-                { question: "What is the time complexity of the nested loop duplicate removal?", options: ["O(1)", "O(n log n)", "O(n²)", "O(n)"], answerIndex: 2 },
-                { question: "Which occurrence of a duplicate value is retained in this algorithm?", options: ["The last occurrence", "The middle occurrence", "A random occurrence", "The first occurrence"], answerIndex: 3 }
+                { question: "For array {1, 3, 2, 3, 1, 5}, what is the deduplicated array?", options: ["{1, 2, 3, 5}", "{1, 3, 2, 5}", "{3, 1, 5, 2}", "{5, 3, 2, 1}"], answerIndex: 1, hint: "Keep the first occurrence of each number. The order is 1, then 3, then 2, then 5." },
+                { question: "What does the flag isDuplicate = 1 signal?", options: ["The element should be kept", "The element has already appeared earlier in the array", "The element is negative", "The inner loop should restart"], answerIndex: 1, hint: "It's a marker to indicate that the current element should be skipped." },
+                { question: "For array {5, 5, 5, 5}, what is the deduplicated array and new size?", options: ["{5, 5}, size 2", "{}, size 0", "{5}, size 1", "{5, 5, 5, 5}, size 4"], answerIndex: 2, hint: "All elements are duplicates, so only the first one is kept." },
+                { question: "What is the time complexity of the nested loop duplicate removal?", options: ["O(1)", "O(n log n)", "O(n²)", "O(n)"], answerIndex: 2, hint: "For each of the n elements, you may check up to all of the preceding n-1 elements." },
+                { question: "Which occurrence of a duplicate value is retained in this algorithm?", options: ["The last occurrence", "The middle occurrence", "A random occurrence", "The first occurrence"], answerIndex: 3, hint: "The inner loop checks for a match with *earlier* elements. If it finds one, the current one is a duplicate." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3737,12 +3738,12 @@ export const courses: Record<string, Course> = {
                   { line: 28, annotation: "Program terminates", memory: [], output: "Unique: 1 3 2 5  New size: 4\n" }
                 ]
               },
-              posttest: [
-                { question: "For array {4, 4, 4, 4, 4}, what is the output?", options: ["Unique: 4 4  New size: 2", "Unique: 4  New size: 1", "Unique:    New size: 0", "Unique: 4 4 4 4 4  New size: 5"], answerIndex: 1 },
-                { question: "For array {1, 2, 3, 4, 5}, what is the output?", options: ["Unique: 1 2 3  New size: 3", "Unique: 5 4 3 2 1  New size: 5", "Unique: 1 2 3 4 5  New size: 5", "Unique: 1 3 5  New size: 3"], answerIndex: 2 },
-                { question: "For array {7, 3, 7, 3, 7}, what is the deduplicated array?", options: ["{3, 7}", "{7}", "{7, 3}", "{3}"], answerIndex: 2 },
-                { question: "At which step does the inner loop first break early for array {1, 3, 2, 3, 1, 5}?", options: ["i = 1 (checking 3)", "i = 2 (checking 2)", "i = 3 (checking second 3)", "i = 5 (checking 5)"], answerIndex: 2 },
-                { question: "What modification would make the algorithm retain the LAST occurrence instead of the first?", options: ["Sort the array before processing", "Traverse the array from right to left (i from n-1 to 0)", "Use >= instead of ==", "Remove the break inside the inner loop"], answerIndex: 1 }
+              posttest:[
+                { question: "For array {4, 4, 4, 4, 4}, what is the output?", options: ["Unique: 4 4  New size: 2", "Unique: 4  New size: 1", "Unique:    New size: 0", "Unique: 4 4 4 4 4  New size: 5"], answerIndex: 1, hint: "Only the first 4 is unique; all others are duplicates." },
+                { question: "For array {1, 2, 3, 4, 5}, what is the output?", options: ["Unique: 1 2 3  New size: 3", "Unique: 5 4 3 2 1  New size: 5", "Unique: 1 2 3 4 5  New size: 5", "Unique: 1 3 5  New size: 3"], answerIndex: 2, hint: "There are no duplicates, so the unique array is the same as the original." },
+                { question: "For array {7, 3, 7, 3, 7}, what is the deduplicated array?", options: ["{3, 7}", "{7}", "{7, 3}", "{3}"], answerIndex: 2, hint: "The first occurrence is 7, then the next unique is 3." },
+                { question: "At which step does the inner loop first break early for array {1, 3, 2, 3, 1, 5}?", options: ["i = 1 (checking 3)", "i = 2 (checking 2)", "i = 3 (checking second 3)", "i = 5 (checking 5)"], answerIndex: 2, hint: "When i=3 (value is 3), the inner loop compares with previous elements and finds a match at index 1, so it breaks." },
+                { question: "What modification would make the algorithm retain the LAST occurrence instead of the first?", options: ["Sort the array before processing", "Traverse the array from right to left (i from n-1 to 0)", "Use >= instead of ==", "Remove the break inside the inner loop"], answerIndex: 1, hint: "If you process from the end, the 'first' occurrence you encounter will be the last one in the original array." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3795,11 +3796,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "How is element at row 2, column 3 of a 2D array A accessed in C?", options: ["A[3][2]", "A[2, 3]", "A[2][3]", "A(2)(3)"], answerIndex: 2 },
-                { question: "What is the condition for two matrices to be added?", options: ["They must be square", "They must have the same number of rows only", "They must have identical dimensions (same rows and columns)", "They must contain only positive integers"], answerIndex: 2 },
-                { question: "For A = {{1,2},{3,4}} and B = {{5,6},{7,8}}, what is C[1][0]?", options: ["8", "12", "10", "6"], answerIndex: 2 },
-                { question: "In what order does C store elements of a 2D array in memory?", options: ["Column-major order", "Diagonal order", "Random order", "Row-major order"], answerIndex: 3 },
-                { question: "What is the time complexity of adding two m × n matrices?", options: ["O(m + n)", "O(m²)", "O(m × n)", "O(n²)"], answerIndex: 2 }
+                { question: "How is element at row 2, column 3 of a 2D array A accessed in C?", options: ["A[3][2]", "A[2, 3]", "A[2][3]", "A(2)(3)"], answerIndex: 2, hint: "C uses two separate sets of square brackets: one for row, one for column." },
+                { question: "What is the condition for two matrices to be added?", options: ["They must be square", "They must have the same number of rows only", "They must have identical dimensions (same rows and columns)", "They must contain only positive integers"], answerIndex: 2, hint: "Matrix addition is defined element-wise. For C[i][j] = A[i][j] + B[i][j], both A and B need to have a cell at [i][j]." },
+                { question: "For A = {{1,2},{3,4}} and B = {{5,6},{7,8}}, what is C[1][0]?", options: ["8", "12", "10", "6"], answerIndex: 2, hint: "C[1][0] is the sum of the element at row 1, column 0: A[1][0] + B[1][0] = 3 + 7 = 10." },
+                { question: "In what order does C store elements of a 2D array in memory?", options: ["Column-major order", "Diagonal order", "Random order", "Row-major order"], answerIndex: 3, hint: "All elements of the first row are stored consecutively, then the second row, and so on." },
+                { question: "What is the time complexity of adding two m × n matrices?", options: ["O(m + n)", "O(m²)", "O(m × n)", "O(n²)"], answerIndex: 2, hint: "You need to perform one addition for each of the m*n elements." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3836,12 +3837,12 @@ export const courses: Record<string, Course> = {
                   { line: 29, annotation: "Program terminates", memory: [], output: "Result:\n   6   8\n  10  12\n" }
                 ]
               },
-              posttest: [
-                { question: "For A = {{1,0},{0,1}} and B = {{4,5},{6,7}}, what is C?", options: ["{{5,5},{6,8}}", "{{4,0},{0,7}}", "{{5,6},{7,8}}", "{{5,5},{6,8}}"], answerIndex: 0 },
-                { question: "Can you add a 2×3 matrix to a 3×2 matrix?", options: ["Yes, element-wise", "Yes, after transposing one", "No — dimensions do not match", "Yes, by padding with zeros"], answerIndex: 2 },
-                { question: "What does %4d do in printf when printing a matrix?", options: ["Prints only 4-digit numbers", "Prints the number right-aligned in a 4-character wide field", "Limits the number to 4 bits", "Adds 4 to the number before printing"], answerIndex: 1 },
-                { question: "For a 3×3 matrix, how many iterations does the nested loop execute in total?", options: ["6", "3", "27", "9"], answerIndex: 3 },
-                { question: "What is the result of adding a matrix A to a zero matrix of the same size?", options: ["A zero matrix", "A doubled", "A itself", "Undefined"], answerIndex: 2 }
+              posttest:[
+                { question: "For A = {{1,0},{0,1}} and B = {{4,5},{6,7}}, what is C?", options: ["{{5,5},{6,8}}", "{{4,0},{0,7}}", "{{5,6},{7,8}}", "{{5,5},{6,8}}"], answerIndex: 0, hint: "C[0][0]=1+4=5, C[0][1]=0+5=5, C[1][0]=0+6=6, C[1][1]=1+7=8." },
+                { question: "Can you add a 2×3 matrix to a 3×2 matrix?", options: ["Yes, element-wise", "Yes, after transposing one", "No — dimensions do not match", "Yes, by padding with zeros"], answerIndex: 2, hint: "For addition, the matrices must have the exact same dimensions (rows and columns)." },
+                { question: "What does %4d do in printf when printing a matrix?", options: ["Prints only 4-digit numbers", "Prints the number right-aligned in a 4-character wide field", "Limits the number to 4 bits", "Adds 4 to the number before printing"], answerIndex: 1, hint: "This is a field width specifier. It helps format the output into neat columns." },
+                { question: "For a 3×3 matrix, how many iterations does the nested loop execute in total?", options: ["6", "3", "27", "9"], answerIndex: 3, hint: "The outer loop runs 3 times, and for each of those, the inner loop runs 3 times. 3 * 3 = 9." },
+                { question: "What is the result of adding a matrix A to a zero matrix of the same size?", options: ["A zero matrix", "A doubled", "A itself", "Undefined"], answerIndex: 2, hint: "Adding zero to any number gives the number itself." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3886,11 +3887,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the required condition for multiplying matrix A (m×p) by matrix B (r×n)?", options: ["m == n", "p == r", "m == r", "p == n"], answerIndex: 1 },
-                { question: "For A of size 2×3 and B of size 3×4, what is the size of C = A × B?", options: ["3×3", "2×4", "4×2", "3×2"], answerIndex: 1 },
-                { question: "Why must C[i][j] be initialised to 0 before the innermost loop?", options: ["To avoid a compilation warning", "To ensure accumulation starts from zero, not from garbage memory", "Because += only works when the variable is 0", "It does not need to be initialised"], answerIndex: 1 },
-                { question: "What is the time complexity of multiplying two n × n matrices using the standard three-loop algorithm?", options: ["O(n)", "O(n²)", "O(n³)", "O(2ⁿ)"], answerIndex: 2 },
-                { question: "For A = {{1,2},{3,4}} and B = {{5,6},{7,8}}, what is C[0][0]?", options: ["12", "17", "19", "22"], answerIndex: 2 }
+                { question: "What is the required condition for multiplying matrix A (m×p) by matrix B (r×n)?", options: ["m == n", "p == r", "m == r", "p == n"], answerIndex: 1, hint: "The number of columns in the first matrix must equal the number of rows in the second matrix." },
+                { question: "For A of size 2×3 and B of size 3×4, what is the size of C = A × B?", options: ["3×3", "2×4", "4×2", "3×2"], answerIndex: 1, hint: "The result's dimensions are taken from the rows of the first matrix (m) and the columns of the second (n)." },
+                { question: "Why must C[i][j] be initialised to 0 before the innermost loop?", options: ["To avoid a compilation warning", "To ensure accumulation starts from zero, not from garbage memory", "Because += only works when the variable is 0", "It does not need to be initialised"], answerIndex: 1, hint: "The line C[i][j] += ... will add a product to whatever is already in C[i][j]. If it starts with garbage, the result will be garbage." },
+                { question: "What is the time complexity of multiplying two n × n matrices using the standard three-loop algorithm?", options: ["O(n)", "O(n²)", "O(n³)", "O(2ⁿ)"], answerIndex: 2, hint: "There are three nested loops, each of which runs n times." },
+                { question: "For A = {{1,2},{3,4}} and B = {{5,6},{7,8}}, what is C[0][0]?", options: ["12", "17", "19", "22"], answerIndex: 2, hint: "C[0][0] = (1*5) + (2*7) = 5 + 14 = 19." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -3931,12 +3932,12 @@ export const courses: Record<string, Course> = {
                   { line: 32, annotation: "Program terminates", memory: [], output: "Result:\n  19  22\n  43  50\n" }
                 ]
               },
-              posttest: [
-                { question: "For A = {{1,2},{3,4}} and B = {{5,6},{7,8}}, what is C[1][1]?", options: ["44", "46", "48", "50"], answerIndex: 3 },
-                { question: "What is the result of multiplying any matrix A by the identity matrix I of compatible size?", options: ["A zero matrix", "The transpose of A", "A itself", "Undefined"], answerIndex: 2 },
-                { question: "Is matrix multiplication commutative? (Does A×B always equal B×A?)", options: ["Yes always", "No — in general A×B ≠ B×A", "Yes for square matrices only", "Yes if all elements are positive"], answerIndex: 1 },
-                { question: "For A of size 3×2 and B of size 2×4, how many multiplications does the innermost loop perform in total?", options: ["8", "24", "12", "6"], answerIndex: 1 },
-                { question: "What is the size of the result when a 1×n matrix is multiplied by an n×1 matrix?", options: ["n×n", "1×n", "n×1", "1×1"], answerIndex: 3 }
+              posttest:[
+                { question: "For A = {{1,2},{3,4}} and B = {{5,6},{7,8}}, what is C[1][1]?", options: ["44", "46", "48", "50"], answerIndex: 3, hint: "C[1][1] = (3*6) + (4*8) = 18 + 32 = 50." },
+                { question: "What is the result of multiplying any matrix A by the identity matrix I of compatible size?", options: ["A zero matrix", "The transpose of A", "A itself", "Undefined"], answerIndex: 2, hint: "The identity matrix is the multiplicative identity, like 1 for numbers." },
+                { question: "Is matrix multiplication commutative? (Does A×B always equal B×A?)", options: ["Yes always", "No — in general A×B ≠ B×A", "Yes for square matrices only", "Yes if all elements are positive"], answerIndex: 1, hint: "The order of multiplication matters greatly. The resulting dimensions can even be different." },
+                { question: "For A of size 3×2 and B of size 2×4, how many multiplications does the innermost loop perform in total?", options: ["8", "24", "12", "6"], answerIndex: 1, hint: "The result is 3×4. For each of these 12 result elements, the inner loop performs 2 multiplications. 12 * 2 = 24." },
+                { question: "What is the size of the result when a 1×n matrix is multiplied by an n×1 matrix?", options: ["n×n", "1×n", "n×1", "1×1"], answerIndex: 3, hint: "The result takes the outer dimensions: rows of first (1) and columns of second (1). This is a dot product." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -3981,11 +3982,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the worst-case time complexity of Bubble Sort?", options: ["O(n)", "O(n log n)", "O(n²)", "O(n³)"], answerIndex: 2 },
-                { question: "After the first complete pass over array {5, 3, 1, 4, 2}, which element is guaranteed to be in its final position?", options: ["1", "3", "2", "5"], answerIndex: 3 },
-                { question: "Why does the inner loop run up to n-1-i in pass i?", options: ["To avoid accessing negative indices", "Because the last i elements are already sorted and need not be re-checked", "Because the first i elements are unsorted", "To reduce the swap count"], answerIndex: 1 },
-                { question: "What does the swapped flag enable?", options: ["Counting total swaps", "Printing swapped pairs", "Early termination when the array is already sorted", "Detecting duplicate elements"], answerIndex: 2 },
-                { question: "Is Bubble Sort a stable sorting algorithm?", options: ["No — equal elements are always swapped", "Yes — equal elements retain their relative order because only > triggers a swap", "Only for integer arrays", "Only when the optimisation flag is used"], answerIndex: 1 }
+                { question: "What is the worst-case time complexity of Bubble Sort?", options: ["O(n)", "O(n log n)", "O(n²)", "O(n³)"], answerIndex: 2, hint: "This occurs when the array is in reverse order, requiring the maximum number of swaps and passes." },
+                { question: "After the first complete pass over array {5, 3, 1, 4, 2}, which element is guaranteed to be in its final position?", options: ["1", "3", "2", "5"], answerIndex: 3, hint: "The largest element 'bubbles up' to the very end of the array after the first pass." },
+                { question: "Why does the inner loop run up to n-1-i in pass i?", options: ["To avoid accessing negative indices", "Because the last i elements are already sorted and need not be re-checked", "Because the first i elements are unsorted", "To reduce the swap count"], answerIndex: 1, hint: "After each pass, the largest unsorted element is placed at the end. Those elements are already in their correct spots." },
+                { question: "What does the swapped flag enable?", options: ["Counting total swaps", "Printing swapped pairs", "Early termination when the array is already sorted", "Detecting duplicate elements"], answerIndex: 2, hint: "If a pass occurs with no swaps, the array is sorted, and the algorithm can stop early." },
+                { question: "Is Bubble Sort a stable sorting algorithm?", options: ["No — equal elements are always swapped", "Yes — equal elements retain their relative order because only > triggers a swap", "Only for integer arrays", "Only when the optimisation flag is used"], answerIndex: 1, hint: "A stable sort keeps items with equal keys in the same relative order as they originally appeared." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4032,11 +4033,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "How many passes does Bubble Sort require in the worst case for n elements?", options: ["1", "n", "n-1", "n/2"], answerIndex: 2 },
-                { question: "For array {1, 2, 3, 4, 5} (already sorted), how many passes does the optimised Bubble Sort perform?", options: ["4", "0", "1", "5"], answerIndex: 2 },
-                { question: "For array {4, 3, 2, 1}, how many swaps occur in the first pass?", options: ["1", "2", "4", "3"], answerIndex: 3 },
-                { question: "What is the space complexity of Bubble Sort?", options: ["O(n)", "O(n²)", "O(log n)", "O(1)"], answerIndex: 3 },
-                { question: "After 2 complete passes over array {5, 3, 1, 4, 2}, which elements are guaranteed in their final positions?", options: ["5 and 4", "1 and 2", "3 and 5", "4 and 2"], answerIndex: 0 }
+                { question: "How many passes does Bubble Sort require in the worst case for n elements?", options: ["1", "n", "n-1", "n/2"], answerIndex: 2, hint: "In the worst case (reverse sorted), you need to make one pass for each element except the last, which ends up in its place automatically." },
+                { question: "For array {1, 2, 3, 4, 5} (already sorted), how many passes does the optimised Bubble Sort perform?", options: ["4", "0", "1", "5"], answerIndex: 2, hint: "The first pass will make no swaps, causing the swapped flag to remain false, and the algorithm will terminate." },
+                { question: "For array {4, 3, 2, 1}, how many swaps occur in the first pass?", options: ["1", "2", "4", "3"], answerIndex: 3, hint: "The swaps are (4,3), (4,2), and (4,1). The largest element, 4, moves to the end." },
+                { question: "What is the space complexity of Bubble Sort?", options: ["O(n)", "O(n²)", "O(log n)", "O(1)"], answerIndex: 3, hint: "It sorts the array in-place, using only a few extra variables (temp, swapped)." },
+                { question: "After 2 complete passes over array {5, 3, 1, 4, 2}, which elements are guaranteed in their final positions?", options: ["5 and 4", "1 and 2", "3 and 5", "4 and 2"], answerIndex: 0, hint: "After pass 1: 5 is at the end. After pass 2: the next largest, 4, is in its correct spot just before 5." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4081,11 +4082,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "How is a string terminated in C?", options: ["With a period '.'", "With a space ' '", "With a null character '\\0'", "With a newline '\\n'"], answerIndex: 2 },
-                { question: "What does strlen(\"World\") return?", options: ["6", "4", "5", "0"], answerIndex: 2 },
-                { question: "After manually concatenating \"Hello\" and \" World\", what is the result?", options: ["\"Hello World\"", "\"Hello\" + \" World\"", "\"World Hello\"", "\"Hello\\0 World\""], answerIndex: 0 },
-                { question: "Why must '\\0' be appended after the last copied character in manual concatenation?", options: ["To satisfy the compiler", "To mark the end of the string so printf knows where to stop", "Because strlen requires it", "It is not necessary"], answerIndex: 1 },
-                { question: "What is the minimum size s1 must be declared to safely concatenate \"Hello\" (5 chars) and \" World\" (6 chars)?", options: ["5", "11", "10", "12"], answerIndex: 3 }
+                { question: "How many passes does Bubble Sort require in the worst case for n elements?", options: ["1", "n", "n-1", "n/2"], answerIndex: 2, hint: "In the worst case (reverse sorted), you need to make one pass for each element except the last, which ends up in its place automatically." },
+                { question: "For array {1, 2, 3, 4, 5} (already sorted), how many passes does the optimised Bubble Sort perform?", options: ["4", "0", "1", "5"], answerIndex: 2, hint: "The first pass will make no swaps, causing the swapped flag to remain false, and the algorithm will terminate." },
+                { question: "For array {4, 3, 2, 1}, how many swaps occur in the first pass?", options: ["1", "2", "4", "3"], answerIndex: 3, hint: "The swaps are (4,3), (4,2), and (4,1). The largest element, 4, moves to the end." },
+                { question: "What is the space complexity of Bubble Sort?", options: ["O(n)", "O(n²)", "O(log n)", "O(1)"], answerIndex: 3, hint: "It sorts the array in-place, using only a few extra variables (temp, swapped)." },
+                { question: "After 2 complete passes over array {5, 3, 1, 4, 2}, which elements are guaranteed in their final positions?", options: ["5 and 4", "1 and 2", "3 and 5", "4 and 2"], answerIndex: 0, hint: "After pass 1: 5 is at the end. After pass 2: the next largest, 4, is in its correct spot just before 5." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4120,11 +4121,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For s1 = \"abc\" and s2 = \"def\", what is the result of concatenation?", options: ["\"abcdef\"", "\"defabc\"", "\"abc def\"", "\"abc\\0def\""], answerIndex: 0 },
-                { question: "What index does appending s2 start at in s1?", options: ["0", "strlen(s2)", "strlen(s1)", "strlen(s1) + strlen(s2)"], answerIndex: 2 },
-                { question: "What is the length of \"abcdef\" after concatenating \"abc\" and \"def\"?", options: ["3", "8", "7", "6"], answerIndex: 3 },
-                { question: "What happens if s1 is not large enough to hold the concatenated result?", options: ["strcat automatically resizes the array", "The program prints an error", "Buffer overflow — undefined behaviour", "The extra characters are silently discarded"], answerIndex: 2 },
-                { question: "Which standard library function performs string concatenation automatically?", options: ["strcpy()", "strcmp()", "strcat()", "strlen()"], answerIndex: 2 }
+                { question: "For s1 = \"abc\" and s2 = \"def\", what is the result of concatenation?", options: ["\"abcdef\"", "\"defabc\"", "\"abc def\"", "\"abc\\0def\""], answerIndex: 0, hint: "The contents of s2 are placed directly after the contents of s1." },
+                { question: "What index does appending s2 start at in s1?", options: ["0", "strlen(s2)", "strlen(s1)", "strlen(s1) + strlen(s2)"], answerIndex: 2, hint: "You need to find the position of the null terminator in s1." },
+                { question: "What is the length of \"abcdef\" after concatenating \"abc\" and \"def\"?", options: ["3", "8", "7", "6"], answerIndex: 3, hint: "strlen('abc') is 3, strlen('def') is 3. 3+3 = 6." },
+                { question: "What happens if s1 is not large enough to hold the concatenated result?", options: ["strcat automatically resizes the array", "The program prints an error", "Buffer overflow — undefined behaviour", "The extra characters are silently discarded"], answerIndex: 2, hint: "C does not check array boundaries. You will overwrite memory, potentially crashing the program." },
+                { question: "Which standard library function performs string concatenation automatically?", options: ["strcpy()", "strcmp()", "strcat()", "strlen()"], answerIndex: 2, hint: "The name is a mnemonic for 'string concatenate'." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4169,11 +4170,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the reverse of the string \"hello\"?", options: ["\"hello\"", "\"lelho\"", "\"olleh\"", "\"hlleo\""], answerIndex: 2 },
-                { question: "For str = \"hello\" (length 5), what is the initial value of right in the two-pointer method?", options: ["5", "4", "3", "0"], answerIndex: 1 },
-                { question: "Why is right set to strlen(str) - 1 rather than strlen(str)?", options: ["strlen counts from 1", "To avoid swapping the null terminator", "strlen includes the null terminator in its count", "right must always be even"], answerIndex: 1 },
-                { question: "How many swaps are needed to reverse \"program\" (length 7)?", options: ["7", "4", "6", "3"], answerIndex: 3 },
-                { question: "Is \"madam\" a palindrome?", options: ["No", "Yes", "Only when lowercase", "Depends on the compiler"], answerIndex: 1 }
+                { question: "What is the reverse of the string \"hello\"?", options: ["\"hello\"", "\"lelho\"", "\"olleh\"", "\"hlleo\""], answerIndex: 2, hint: "Write the string backwards: o, l, l, e, h." },
+                { question: "For str = \"hello\" (length 5), what is the initial value of right in the two-pointer method?", options: ["5", "4", "3", "0"], answerIndex: 1, hint: "The last character is at index len-1." },
+                { question: "Why is right set to strlen(str) - 1 rather than strlen(str)?", options: ["strlen counts from 1", "To avoid swapping the null terminator", "strlen includes the null terminator in its count", "right must always be even"], answerIndex: 1, hint: "The null terminator at index len must remain at the end of the reversed string." },
+                { question: "How many swaps are needed to reverse \"program\" (length 7)?", options: ["7", "4", "6", "3"], answerIndex: 3, hint: "Each swap exchanges two characters. floor(len/2) = floor(7/2) = 3." },
+                { question: "Is \"madam\" a palindrome?", options: ["No", "Yes", "Only when lowercase", "Depends on the compiler"], answerIndex: 1, hint: "It reads the same forwards and backwards." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4210,11 +4211,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the reverse of \"abcde\"?", options: ["\"abcde\"", "\"edabc\"", "\"edcba\"", "\"aedcb\""], answerIndex: 2 },
-                { question: "What is the reverse of a single character \"z\"?", options: ["\"\"", "\"zz\"", "\"z\"", "Undefined"], answerIndex: 2 },
-                { question: "For str = \"abcd\", what are the characters swapped in the second swap?", options: ["a and d", "b and c", "a and c", "b and d"], answerIndex: 1 },
-                { question: "After reversing \"Hello\", is the null terminator still at the correct position?", options: ["No — it gets swapped to index 0", "No — it is lost", "Yes — strlen-1 ensures '\\0' at index len is never swapped", "Yes, but only if len is even"], answerIndex: 2 },
-                { question: "Which modification to the reversal algorithm also checks if the result is a palindrome?", options: ["Print str before and after reversal and compare them visually", "Save a copy of str before reversal, reverse str in-place, then compare the copy with the reversed str using strcmp()", "Check if left == right after the loop", "Count the number of swaps; if 0, it is a palindrome"], answerIndex: 1 }
+                { question: "What is the reverse of \"abcde\"?", options: ["\"abcde\"", "\"edabc\"", "\"edcba\"", "\"aedcb\""], answerIndex: 2, hint: "Swap 'a' with 'e', then 'b' with 'd'." },
+                { question: "What is the reverse of a single character \"z\"?", options: ["\"\"", "\"zz\"", "\"z\"", "Undefined"], answerIndex: 2, hint: "Reversing a single element leaves it unchanged." },
+                { question: "For str = \"abcd\", what are the characters swapped in the second swap?", options: ["a and d", "b and c", "a and c", "b and d"], answerIndex: 1, hint: "First swap: left=0 ('a'), right=3 ('d') -> 'dbca'. Then left=1, right=2: swap 'b' and 'c'." },
+                { question: "After reversing \"Hello\", is the null terminator still at the correct position?", options: ["No — it gets swapped to index 0", "No — it is lost", "Yes — strlen-1 ensures '\\0' at index len is never swapped", "Yes, but only if len is even"], answerIndex: 2, hint: "The null terminator is at index 5. The loop only runs while left < right, so when left=2, right=2, it stops, and index 5 is untouched." },
+                { question: "Which modification to the reversal algorithm also checks if the result is a palindrome?", options: ["Print str before and after reversal and compare them visually", "Save a copy of str before reversal, reverse str in-place, then compare the copy with the reversed str using strcmp()", "Check if left == right after the loop", "Count the number of swaps; if 0, it is a palindrome"], answerIndex: 1, hint: "A palindrome is a string that is equal to its reverse." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4280,11 +4281,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "Which header file must be included to use malloc() and free()?", options: ["stdio.h", "string.h", "stdlib.h", "malloc.h"], answerIndex: 2 },
-                { question: "What does malloc() return if memory allocation fails?", options: ["0", "-1", "NULL", "A garbage pointer"], answerIndex: 2 },
-                { question: "How many bytes does malloc(n * sizeof(int)) allocate for n = 5 on a system where sizeof(int) = 4?", options: ["5", "4", "10", "20"], answerIndex: 3 },
-                { question: "What is the content of memory allocated by malloc()?", options: ["All zeros", "All ones", "Uninitialised — contains garbage values", "The address of the next free block"], answerIndex: 2 },
-                { question: "What happens if free() is never called after malloc()?", options: ["The program crashes immediately", "Memory is automatically freed when each variable goes out of scope", "The allocated block remains reserved until the program exits — memory leak", "The OS reclaims memory after each malloc() call"], answerIndex: 2 }
+                { question: "Which header file must be included to use malloc() and free()?", options: ["stdio.h", "string.h", "stdlib.h", "malloc.h"], answerIndex: 2, hint: "This header stands for 'Standard Library' and contains functions for memory management." },
+                { question: "What does malloc() return if memory allocation fails?", options: ["0", "-1", "NULL", "A garbage pointer"], answerIndex: 2, hint: "It's a standard macro that represents a pointer that doesn't point to any valid memory." },
+                { question: "How many bytes does malloc(n * sizeof(int)) allocate for n = 5 on a system where sizeof(int) = 4?", options: ["5", "4", "10", "20"], answerIndex: 3, hint: "sizeof(int) gives the number of bytes needed for one integer." },
+                { question: "What is the content of memory allocated by malloc()?", options: ["All zeros", "All ones", "Uninitialised — contains garbage values", "The address of the next free block"], answerIndex: 2, hint: "malloc() gives you a raw block of memory. It does not clean or prepare it." },
+                { question: "What happens if free() is never called after malloc()?", options: ["The program crashes immediately", "Memory is automatically freed when each variable goes out of scope", "The allocated block remains reserved until the program exits — memory leak", "The OS reclaims memory after each malloc() call"], answerIndex: 2, hint: "Your program will slowly consume more and more RAM until the system runs out." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4326,12 +4327,12 @@ export const courses: Record<string, Course> = {
                   { line: 22, annotation: "Program terminates", memory: [], output: "Sum: 150  Average: 30.00\n" }
                 ]
               },
-              posttest: [
-                { question: "For input {5, 10, 20, 30, 40, 50}, what is the average?", options: ["25.00", "150.00", "30.00", "50.00"], answerIndex: 2 },
-                { question: "What is a dangling pointer?", options: ["A pointer that has never been initialised", "A pointer that still holds the address of memory that has been freed", "A pointer to a NULL value", "A pointer declared inside a function"], answerIndex: 1 },
-                { question: "Which of the following correctly allocates memory for 10 floats?", options: ["float *p = malloc(10);", "float *p = malloc(10 * sizeof(float));", "float *p = malloc(sizeof(10));", "float *p = calloc(sizeof(float));"], answerIndex: 1 },
-                { question: "After calling free(arr), what should be done immediately to avoid a dangling pointer?", options: ["Reallocate arr with the same size", "Call malloc() again", "Set arr = NULL", "Decrement arr by 1"], answerIndex: 2 },
-                { question: "What is the difference between arr[i] and *(arr + i)?", options: ["arr[i] is faster", "*(arr + i) only works for dynamic arrays", "They are exactly equivalent in C", "arr[i] only works for static arrays"], answerIndex: 2 }
+              posttest:[
+                { question: "For input {5, 10, 20, 30, 40, 50}, what is the average?", options: ["25.00", "150.00", "30.00", "50.00"], answerIndex: 2, hint: "Average = Sum of elements / No.of elements " },
+                { question: "What is a dangling pointer?", options: ["A pointer that has never been initialised", "A pointer that still holds the address of memory that has been freed", "A pointer to a NULL value", "A pointer declared inside a function"], answerIndex: 1, hint: "It's a pointer that points to memory that is no longer valid or safe to use." },
+                { question: "Which of the following correctly allocates memory for 10 floats?", options: ["float *p = malloc(10);", "float *p = malloc(10 * sizeof(float));", "float *p = malloc(sizeof(10));", "float *p = calloc(sizeof(float));"], answerIndex: 1, hint: "You must request enough bytes for 10 elements, each of which is the size of a float." },
+                { question: "After calling free(arr), what should be done immediately to avoid a dangling pointer?", options: ["Reallocate arr with the same size", "Call malloc() again", "Set arr = NULL", "Decrement arr by 1"], answerIndex: 2, hint: "This ensures the pointer is now explicitly pointing to a safe, known value (NULL)." },
+                { question: "What is the difference between arr[i] and *(arr + i)?", options: ["arr[i] is faster", "*(arr + i) only works for dynamic arrays", "They are exactly equivalent in C", "arr[i] only works for static arrays"], answerIndex: 2, hint: "The [] operator is just syntactic sugar for pointer arithmetic." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4389,11 +4390,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "How is a struct field accessed through a pointer ptr in C?", options: ["ptr.field", "*ptr.field", "ptr->field", "&ptr.field"], answerIndex: 2 },
-                { question: "Which function allocates memory for an array of structures at runtime?", options: ["sizeof()", "calloc() or malloc()", "struct()", "alloc()"], answerIndex: 1 },
-                { question: "For a struct of size 60 bytes, how many bytes does malloc(5 * sizeof(struct Student)) allocate?", options: ["5", "60", "65", "300"], answerIndex: 3 },
-                { question: "What is the correct order to free nested dynamic memory (struct array with inner dynamic marks arrays)?", options: ["Free the outer array first, then inner arrays", "Free inner arrays first, then the outer array", "Free them simultaneously", "Only the outer array needs to be freed"], answerIndex: 1 },
-                { question: "What is the difference between the dot (.) and arrow (->) operators?", options: [". is for pointers; -> is for variables", ". accesses fields of a struct variable; -> accesses fields through a pointer", "They are interchangeable in all contexts", "-> only works with malloc-allocated structs"], answerIndex: 1 }
+                { question: "How is a struct field accessed through a pointer ptr in C?", options: ["ptr.field", "*ptr.field", "ptr->field", "&ptr.field"], answerIndex: 2, hint: "This operator is specifically designed for accessing members of a struct through a pointer." },
+                { question: "Which function allocates memory for an array of structures at runtime?", options: ["sizeof()", "calloc() or malloc()", "struct()", "alloc()"], answerIndex: 1, hint: "These are the standard C library functions for dynamic memory allocation." },
+                { question: "For a struct of size 60 bytes, how many bytes does malloc(5 * sizeof(struct Student)) allocate?", options: ["5", "60", "65", "300"], answerIndex: 3, hint: "You need space for 5 'Student' objects." },
+                { question: "What is the correct order to free nested dynamic memory (struct array with inner dynamic marks arrays)?", options: ["Free the outer array first, then inner arrays", "Free inner arrays first, then the outer array", "Free them simultaneously", "Only the outer array needs to be freed"], answerIndex: 1, hint: "If you free the outer array first, you lose the pointers to the inner arrays and can no longer free them, causing a memory leak." },
+                { question: "What is the difference between the dot (.) and arrow (->) operators?", options: [". is for pointers; -> is for variables", ". accesses fields of a struct variable; -> accesses fields through a pointer", "They are interchangeable in all contexts", "-> only works with malloc-allocated structs"], answerIndex: 1, hint: "They are two different syntaxes for the same fundamental operation: field access." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4451,11 +4452,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For marks {80, 90, 85} across 3 subjects, what is the average?", options: ["80.00", "83.00", "85.00", "90.00"], answerIndex: 2 },
-                { question: "For marks {70, 60, 75} across 3 subjects, what is the average?", options: ["70.00", "65.00", "68.33", "75.00"], answerIndex: 2 },
-                { question: "What does sizeof(struct Student) return if the struct contains char name[50], int marks[5], and float average?", options: ["56", "70", "74", "60"], answerIndex: 2 },
-                { question: "What happens if inner marks arrays are not freed before freeing the outer students array?", options: ["The program crashes immediately", "The inner pointers are lost, causing a memory leak", "The OS automatically frees them", "free() handles nested allocation automatically"], answerIndex: 1 },
-                { question: "Which operator is used to access struct fields when iterating with a pointer students[i]?", options: ["->", ".", "*", "&"], answerIndex: 1 }
+                { question: "For marks {80, 90, 85} across 3 subjects, what is the average?", options: ["80.00", "83.00", "85.00", "90.00"], answerIndex: 2, hint: "255 / 3 = 85" },
+                { question: "For marks {70, 60, 75} across 3 subjects, what is the average?", options: ["70.00", "65.00", "68.33", "75.00"], answerIndex: 2, hint: "205 / 3 = 68.33" },
+                { question: "What does sizeof(struct Student) return if the struct contains char name[50], int marks[5], and float average?", options: ["56", "70", "74", "60"], answerIndex: 2, hint: "50 bytes + (5 * 4 bytes) + 4 bytes = 74 bytes. The compiler might add padding for alignment, making it larger than the raw sum." },
+                { question: "What happens if inner marks arrays are not freed before freeing the outer students array?", options: ["The program crashes immediately", "The inner pointers are lost, causing a memory leak", "The OS automatically frees them", "free() handles nested allocation automatically"], answerIndex: 1, hint: "free() only deallocates the memory block it is specifically pointed to. It does not recursively free other blocks." },
+                { question: "Which operator is used to access struct fields when iterating with a pointer students[i]?", options: ["->", ".", "*", "&"], answerIndex: 1, hint: "students[i] is a struct variable, not a pointer to one." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4509,11 +4510,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the key difference between malloc() and calloc()?", options: ["malloc() is faster and always preferred", "calloc() takes two arguments and zero-initialises memory; malloc() does not", "calloc() only works for structures", "malloc() zero-initialises; calloc() does not"], answerIndex: 1 },
-                { question: "Which calloc() call correctly allocates memory for 8 integers?", options: ["calloc(8);", "calloc(sizeof(int), sizeof(int));", "calloc(8, sizeof(int));", "calloc(8 * sizeof(int));"], answerIndex: 2 },
-                { question: "What does realloc(ptr, 0) do?", options: ["Doubles the allocation", "Allocates a fresh block of default size", "Has no effect", "Frees the memory pointed to by ptr"], answerIndex: 3 },
-                { question: "For n = 5 students with marks {55, 32, 48, 27, 61} and pass mark 40, how many students failed?", options: ["1", "3", "2", "4"], answerIndex: 2 },
-                { question: "Why should realloc's return value be assigned to a temporary pointer rather than directly back to the original?", options: ["realloc always returns a different address", "If realloc returns NULL, the original pointer is not lost", "The original pointer is automatically freed by realloc", "Temporary pointers are faster to dereference"], answerIndex: 1 }
+                { question: "What is the key difference between malloc() and calloc()?", options: ["malloc() is faster and always preferred", "calloc() takes two arguments and zero-initialises memory; malloc() does not", "calloc() only works for structures", "malloc() zero-initialises; calloc() does not"], answerIndex: 1, hint: "calloc() not only allocates but also sets all bits in the allocated memory to 0." },
+                { question: "Which calloc() call correctly allocates memory for 8 integers?", options: ["calloc(8);", "calloc(sizeof(int), sizeof(int));", "calloc(8, sizeof(int));", "calloc(8 * sizeof(int));"], answerIndex: 2, hint: "The first argument is the number of elements, the second is the size of each element." },
+                { question: "What does realloc(ptr, 0) do?", options: ["Doubles the allocation", "Allocates a fresh block of default size", "Has no effect", "Frees the memory pointed to by ptr"], answerIndex: 3, hint: "This is a standard, portable way to free memory in C." },
+                { question: "For n = 5 students with marks {55, 32, 48, 27, 61} and pass mark 40, how many students failed?", options: ["1", "3", "2", "4"], answerIndex: 2, hint: "The marks below 40 are 32 and 27." },
+                { question: "Why should realloc's return value be assigned to a temporary pointer rather than directly back to the original?", options: ["realloc always returns a different address", "If realloc returns NULL, the original pointer is not lost", "The original pointer is automatically freed by realloc", "Temporary pointers are faster to dereference"], answerIndex: 1, hint: "If realloc fails, it returns NULL. If you assign this NULL to your original pointer, you lose access to the original block of memory." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4556,11 +4557,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For marks {40, 39, 40, 41, 38} with pass mark 40, how many students failed?", options: ["1", "3", "4", "2"], answerIndex: 3 },
-                { question: "What is the initial value of every element in a calloc-allocated array before any data is entered?", options: ["-1", "Garbage", "1", "0"], answerIndex: 3 },
-                { question: "For marks {55, 32, 48, 27, 61}, which roll numbers failed (1-based index)?", options: ["Roll 1 and Roll 3", "Roll 2 and Roll 4", "Roll 3 and Roll 5", "Roll 1 and Roll 5"], answerIndex: 1 },
-                { question: "Which sequence of operations correctly resizes a calloc array from n to 2n elements safely?", options: ["free(ptr); ptr = calloc(2*n, sizeof(int));", "ptr = realloc(ptr, 2*n * sizeof(int));", "int *tmp = realloc(ptr, 2*n * sizeof(int));\n   if (tmp != NULL) ptr = tmp;", "ptr = malloc(2*n * sizeof(int));"], answerIndex: 2 },
-                { question: "What is printed for n = 3 with all marks above pass mark?", options: ["Failed Students: (none listed)  Total failed: 0", "Failed Students: all three  Total failed: 3", "Segmentation fault", "Total failed: -1"], answerIndex: 0 }
+                { question: "For marks {40, 39, 40, 41, 38} with pass mark 40, how many students failed?", options: ["1", "3", "4", "2"], answerIndex: 3, hint: "A student fails if they score *less* than the passing mark." },
+                { question: "What is the initial value of every element in a calloc-allocated array before any data is entered?", options: ["-1", "Garbage", "1", "0"], answerIndex: 3, hint: "This is the primary feature of calloc()." },
+                { question: "For marks {55, 32, 48, 27, 61}, which roll numbers failed (1-based index)?", options: ["Roll 1 and Roll 3", "Roll 2 and Roll 4", "Roll 3 and Roll 5", "Roll 1 and Roll 5"], answerIndex: 1, hint: "The marks at index 1 (2nd student) is 32, at index 3 (4th student) is 27." },
+                { question: "Which sequence of operations correctly resizes a calloc array from n to 2n elements safely?", options: ["free(ptr); ptr = calloc(2*n, sizeof(int));", "ptr = realloc(ptr, 2*n * sizeof(int));", "int *tmp = realloc(ptr, 2*n * sizeof(int));\n   if (tmp != NULL) ptr = tmp;", "ptr = malloc(2*n * sizeof(int));"], answerIndex: 2, hint: "This pattern uses a temporary pointer to check for a realloc failure before giving up the original memory." },
+                { question: "What is printed for n = 3 with all marks above pass mark?", options: ["Failed Students: (none listed)  Total failed: 0", "Failed Students: all three  Total failed: 3", "Segmentation fault", "Total failed: -1"], answerIndex: 0, hint: "The loop that prints failed students will have nothing to print, and failCount will remain 0." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4633,11 +4634,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is a self-referential structure in C?", options: ["A structure that calls itself like a function", "A structure that contains a pointer to its own type", "A structure inside another structure", "A structure with recursive fields"], answerIndex: 1 },
-                { question: "Which function is used to dynamically allocate memory for a node?", options: ["alloc()", "new()", "malloc()", "create()"], answerIndex: 2 },
-                { question: "What does the next pointer of the last node in a singly linked list contain?", options: ["Address of the first node", "Garbage value", "-1", "NULL"], answerIndex: 3 },
-                { question: "What does the head pointer represent in a linked list?", options: ["The middle node", "The last node", "The first node", "The size of the list"], answerIndex: 2 },
-                { question: "What is the time complexity of traversing a singly linked list of n nodes?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answerIndex: 2 }
+                { question: "What is a self-referential structure in C?", options: ["A structure that calls itself like a function", "A structure that contains a pointer to its own type", "A structure inside another structure", "A structure with recursive fields"], answerIndex: 1, hint: "It's the fundamental building block of linked lists, where one node 'refers to' or 'points to' the next node of the same type." },
+                { question: "Which function is used to dynamically allocate memory for a node?", options: ["alloc()", "new()", "malloc()", "create()"], answerIndex: 2, hint: "This standard C library function is used to request memory from the heap." },
+                { question: "What does the next pointer of the last node in a singly linked list contain?", options: ["Address of the first node", "Garbage value", "-1", "NULL"], answerIndex: 3, hint: "This special pointer value indicates the end of the list." },
+                { question: "What does the head pointer represent in a linked list?", options: ["The middle node", "The last node", "The first node", "The size of the list"], answerIndex: 2, hint: "It's the entry point; the variable you keep to know where the list starts." },
+                { question: "What is the time complexity of traversing a singly linked list of n nodes?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answerIndex: 2, hint: "In the worst case, to reach the last node, you may have to start from the head and follow 'n' pointers." }
               ],
               procedure: [
                 "Read the Aim carefully and understand what singly linked list means",
@@ -4695,11 +4696,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What will be the output if input is n=4 and values are 5 15 25 35?", options: ["5-15-25-35-NULL", "5->15->25->35->NULL", "35->25->15->5->NULL", "5 15 25 35"], answerIndex: 1 },
-                { question: "What happens to the memory allocated by malloc() if free() is never called?", options: ["It is automatically returned to OS when program ends on all systems", "It causes a memory leak", "The compiler frees it during compilation", "It gets reused automatically"], answerIndex: 1 },
-                { question: "In a singly linked list, which direction can you traverse?", options: ["Both forward and backward", "Only backward", "Only forward from head to NULL", "Random access like arrays"], answerIndex: 2 },
-                { question: "What is the value of head after inserting the very first node?", options: ["NULL", "Address of the new node", "Address of tail", "0"], answerIndex: 1 },
-                { question: "If you want to insert a node at the beginning instead of end, which pointer needs to change?", options: ["tail->next", "head", "cur", "NULL pointer"], answerIndex: 1 }
+                { question: "What will be the output if input is n=4 and values are 5 15 25 35?", options: ["5-15-25-35-NULL", "5->15->25->35->NULL", "35->25->15->5->NULL", "5 15 25 35"], answerIndex: 1, hint: "The format is data value, then '->', repeated, ending with 'NULL'." },
+                { question: "What happens to the memory allocated by malloc() if free() is never called?", options: ["It is automatically returned to OS when program ends on all systems", "It causes a memory leak", "The compiler frees it during compilation", "It gets reused automatically"], answerIndex: 1, hint: "The OS may reclaim it when the program terminates, but for long-running programs, this is a serious problem." },
+                { question: "In a singly linked list, which direction can you traverse?", options: ["Both forward and backward", "Only backward", "Only forward from head to NULL", "Random access like arrays"], answerIndex: 2, hint: "Each node only has a pointer to the next one, not the previous one." },
+                { question: "What is the value of head after inserting the very first node?", options: ["NULL", "Address of the new node", "Address of tail", "0"], answerIndex: 1, hint: "The head pointer should now point to the first and only node in the list." },
+                { question: "If you want to insert a node at the beginning instead of end, which pointer needs to change?", options: ["tail->next", "head", "cur", "NULL pointer"], answerIndex: 1, hint: "The new node becomes the first node, so 'head' must be updated to point to it." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -4754,12 +4755,12 @@ export const courses: Record<string, Course> = {
                   body: ["Unions are used in embedded systems, network packet parsing, and anywhere memory is extremely limited and only one field is needed at a time."]
                 }
               ],
-              pretest: [
-                { question: "What is the size of a union containing int (4 bytes), float (4 bytes), and char (1 byte)?", options: ["9 bytes", "1 byte", "4 bytes", "12 bytes"], answerIndex: 2 },
-                { question: "In a union, what happens when you write a value to one member and then read another member?", options: ["Both members hold correct values", "The other member gives undefined or overwritten value", "The program crashes", "Compiler gives error"], answerIndex: 1 },
-                { question: "Which operator is used to find the memory size of a structure or union?", options: ["length()", "size()", "sizeof()", "memsize()"], answerIndex: 2 },
-                { question: "Why does a structure sometimes have a larger size than the sum of its members?", options: ["Extra security bytes added", "Compiler adds padding for memory alignment", "Member names take extra space", "typedef adds overhead"], answerIndex: 1 },
-                { question: "Which of the following is a correct use case for a union?", options: ["Storing student name, roll number, and marks together", "Storing either an int or float value at a time to save memory", "Creating a linked list node", "Storing multiple strings"], answerIndex: 1 }
+              pretest:[
+                { question: "What is the size of a union containing int (4 bytes), float (4 bytes), and char (1 byte)?", options: ["9 bytes", "1 byte", "4 bytes", "12 bytes"], answerIndex: 2, hint: "The union's size is determined by its largest member." },
+                { question: "In a union, what happens when you write a value to one member and then read another member?", options: ["Both members hold correct values", "The other member gives undefined or overwritten value", "The program crashes", "Compiler gives error"], answerIndex: 1, hint: "All members of a union occupy the same memory location. Writing to one overwrites the data of the others." },
+                { question: "Which operator is used to find the memory size of a structure or union?", options: ["length()", "size()", "sizeof()", "memsize()"], answerIndex: 2, hint: "It's a compile-time unary operator." },
+                { question: "Why does a structure sometimes have a larger size than the sum of its members?", options: ["Extra security bytes added", "Compiler adds padding for memory alignment", "Member names take extra space", "typedef adds overhead"], answerIndex: 1, hint: "The CPU can access data more efficiently when it's aligned to specific memory boundaries." },
+                { question: "Which of the following is a correct use case for a union?", options: ["Storing student name, roll number, and marks together", "Storing either an int or float value at a time to save memory", "Creating a linked list node", "Storing multiple strings"], answerIndex: 1, hint: "Use a union when you need to represent a value that can be of different types, but only one at a time." }
               ],
               procedure: [
                 "Read Theory carefully focusing on the difference table between struct and union",
@@ -4783,12 +4784,12 @@ export const courses: Record<string, Course> = {
                   { line: 17, annotation: "sizeof(union U) evaluated (4 bytes)", memory: [], output: "Size of Struct=12\nSize of Union=4\n" }
                 ]
               },
-              posttest: [
-                { question: "On a system where int=4, float=4, char=1, what is the minimum possible size of a union containing all three?", options: ["9 bytes", "1 byte", "4 bytes", "Depends on compiler"], answerIndex: 2 },
-                { question: "If you assign 65 to the int member of a union and then read the char member, what do you most likely get?", options: ["0", "Compiler error", "'A' (ASCII 65)", "Garbage always"], answerIndex: 2 },
-                { question: "What is padding in a structure?", options: ["Extra fields added by programmer", "Empty bytes added by compiler for alignment", "Security bits added by OS", "Null terminators between members"], answerIndex: 1 },
-                { question: "Can a structure and union have the same member names?", options: ["No, names must be globally unique", "Yes, member names are scoped to their type", "Only if they are in different files", "Only for primitive types"], answerIndex: 1 },
-                { question: "Which of the following statements is TRUE about unions?", options: ["All members can be used simultaneously", "Union size equals sum of all members", "Only the most recently written member holds a valid value", "Unions cannot contain float members"], answerIndex: 2 }
+              posttest:[
+                { question: "On a system where int=4, float=4, char=1, what is the minimum possible size of a union containing all three?", options: ["9 bytes", "1 byte", "4 bytes", "Depends on compiler"], answerIndex: 2, hint: "The largest member's size dominates the union's size." },
+                { question: "If you assign 65 to the int member of a union and then read the char member, what do you most likely get?", options: ["0", "Compiler error", "'A' (ASCII 65)", "Garbage always"], answerIndex: 2, hint: "The integer 65 is stored as the byte 0x41, which is the ASCII code for 'A'." },
+                { question: "What is padding in a structure?", options: ["Extra fields added by programmer", "Empty bytes added by compiler for alignment", "Security bits added by OS", "Null terminators between members"], answerIndex: 1, hint: "It's an invisible overhead added by the compiler, not by the programmer." },
+                { question: "Can a structure and union have the same member names?", options: ["No, names must be globally unique", "Yes, member names are scoped to their type", "Only if they are in different files", "Only for primitive types"], answerIndex: 1, hint: "The struct and union define their own separate namespaces for their members." },
+                { question: "Which of the following statements is TRUE about unions?", options: ["All members can be used simultaneously", "Union size equals sum of all members", "Only the most recently written member holds a valid value", "Unions cannot contain float members"], answerIndex: 2, hint: "This is the defining characteristic of a union." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -4859,11 +4860,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does call by value mean in C?", options: ["The function receives the address of the variable", "The function receives a copy of the variable's value", "The caller's variable is modified by the function", "Values are passed through global variables"], answerIndex: 1 },
-                { question: "What is 5C2?", options: ["20", "10", "5", "120"], answerIndex: 1 },
-                { question: "What is the formula for nCr?", options: ["n! / r!", "n! / (r! * (n+r)!)", "n! / (r! * (n-r)!)", "(n-r)! / (n! * r!)"], answerIndex: 2 },
-                { question: "What is the scope of a variable declared inside a function?", options: ["Global — accessible everywhere in the program", "Local — accessible only within that function", "Accessible in all functions called after it", "Accessible in main() only"], answerIndex: 1 },
-                { question: "What is 0!?", options: ["0", "Undefined", "-1", "1"], answerIndex: 3 }
+                { question: "What does call by value mean in C?", options: ["The function receives the address of the variable", "The function receives a copy of the variable's value", "The caller's variable is modified by the function", "Values are passed through global variables"], answerIndex: 1, hint: "The function works on a local copy, leaving the original data in the caller untouched." },
+                { question: "What is 5C2?", options: ["20", "10", "5", "120"], answerIndex: 1, hint: "5C2 = 5! / (2! * 3!) = 120 / (2 * 6) = 10." },
+                { question: "What is the formula for nCr?", options: ["n! / r!", "n! / (r! * (n+r)!)", "n! / (r! * (n-r)!)", "(n-r)! / (n! * r!)"], answerIndex: 2, hint: "It's the binomial coefficient formula." },
+                { question: "What is the scope of a variable declared inside a function?", options: ["Global — accessible everywhere in the program", "Local — accessible only within that function", "Accessible in all functions called after it", "Accessible in main() only"], answerIndex: 1, hint: "Its lifetime begins when the function is called and ends when it returns." },
+                { question: "What is 0!?", options: ["0", "Undefined", "-1", "1"], answerIndex: 3, hint: "It's a mathematical convention." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -4900,11 +4901,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is 10C3?", options: ["100", "720", "120", "210"], answerIndex: 2 },
-                { question: "What is nC0 for any non-negative n?", options: ["n", "0", "n!", "1"], answerIndex: 3 },
-                { question: "What is nCn for any non-negative n?", options: ["0", "n", "1", "n!"], answerIndex: 2 },
-                { question: "If a function modifies its local copy of parameter x, what happens to the original variable passed by the caller?", options: ["It is also modified", "It is set to 0", "It is unchanged", "It is incremented by 1"], answerIndex: 2 },
-                { question: "What is 6C4?", options: ["30", "20", "360", "15"], answerIndex: 3 }
+                { question: "What is 10C3?", options: ["100", "720", "120", "210"], answerIndex: 2, hint: "10! / (3! * 7!) = 3628800 / (6 * 5040) = 3628800 / 30240 = 120." },
+                { question: "What is nC0 for any non-negative n?", options: ["n", "0", "n!", "1"], answerIndex: 3, hint: "There is exactly one way to choose zero items from a set of n items." },
+                { question: "What is nCn for any non-negative n?", options: ["0", "n", "1", "n!"], answerIndex: 2, hint: "There is exactly one way to choose all n items from a set of n items." },
+                { question: "If a function modifies its local copy of parameter x, what happens to the original variable passed by the caller?", options: ["It is also modified", "It is set to 0", "It is unchanged", "It is incremented by 1"], answerIndex: 2, hint: "This is the essence of 'call by value'." },
+                { question: "What is 6C4?", options: ["30", "20", "360", "15"], answerIndex: 3, hint: "6C2 = 6C4 = 15." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -4962,11 +4963,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the length of the string \"Hello\"?", options: ["6", "4", "5", "0"], answerIndex: 2 },
-                { question: "What character marks the end of a C string?", options: ["'.'", "' '", "'\\n'", "'\\0'"], answerIndex: 3 },
-                { question: "What is the length of an empty string \"\"?", options: ["1", "-1", "0", "Undefined"], answerIndex: 2 },
-                { question: "When a char* pointer is passed to a function by value, what is copied?", options: ["The entire string contents", "Only the first character", "The memory address stored in the pointer", "The null terminator"], answerIndex: 2 },
-                { question: "What does the expression (p - str) return when p has advanced past n characters from str?", options: ["The address of p", "n — the number of characters traversed", "The value at *p", "sizeof(char*)"], answerIndex: 1 }
+                { question: "What is the length of the string \"Hello\"?", options: ["6", "4", "5", "0"], answerIndex: 2, hint: "Count the characters: H, e, l, l, o." },
+                { question: "What character marks the end of a C string?", options: ["'.'", "' '", "'\\n'", "'\\0'"], answerIndex: 3, hint: "It's a null character." },
+                { question: "What is the length of an empty string \"\"?", options: ["1", "-1", "0", "Undefined"], answerIndex: 2, hint: "It contains no characters before the terminator." },
+                { question: "When a char* pointer is passed to a function by value, what is copied?", options: ["The entire string contents", "Only the first character", "The memory address stored in the pointer", "The null terminator"], answerIndex: 2, hint: "A pointer is just a variable that holds an address. Its value is the address." },
+                { question: "What does the expression (p - str) return when p has advanced past n characters from str?", options: ["The address of p", "n — the number of characters traversed", "The value at *p", "sizeof(char*)"], answerIndex: 1, hint: "This is the fundamental principle of pointer arithmetic." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -5002,11 +5003,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the length of \"C Programming\"?", options: ["12", "14", "13", "15"], answerIndex: 2 },
-                { question: "What is the length of \" \" (a single space)?", options: ["0", "2", "1", "Undefined"], answerIndex: 2 },
-                { question: "What is the length of \"\\\\0\" (backslash followed by zero as characters)?", options: ["0", "1", "2", "Undefined"], answerIndex: 2 },
-                { question: "What does the function return for input \"abcde\\0fg\" (where \\0 is an actual null byte in the middle)?", options: ["8", "7", "3", "5"], answerIndex: 3 },
-                { question: "Why is strlen() not used in this experiment?", options: ["strlen() is incorrect for long strings", "To practice implementing string traversal manually using a user-defined function, demonstrating loop logic and null terminator detection", "strlen() requires math.h", "strlen() counts the null terminator"], answerIndex: 1 }
+                { question: "What is the length of \"C Programming\"?", options: ["12", "14", "13", "15"], answerIndex: 2, hint: "Count letters and the space: C(1)- (2)-P(3)-r(4)-o(5)-g(6)-r(7)-a(8)-m(9)-m(10)-i(11)-n(12)-g(13)." },
+                { question: "What is the length of \" \" (a single space)?", options: ["0", "2", "1", "Undefined"], answerIndex: 2, hint: "A space is a regular character." },
+                { question: "What is the length of \"\\\\0\" (backslash followed by zero as characters)?", options: ["0", "1", "2", "Undefined"], answerIndex: 2, hint: "The characters are '\\' and '0'. The null terminator is a single character, not two separate characters." },
+                { question: "What does the function return for input \"abcde\\0fg\" (where \\0 is an actual null byte in the middle)?", options: ["8", "7", "3", "5"], answerIndex: 3, hint: "The null terminator marks the end of the string, so characters after it are ignored by functions like strlen." },
+                { question: "Why is strlen() not used in this experiment?", options: ["strlen() is incorrect for long strings", "To practice implementing string traversal manually using a user-defined function, demonstrating loop logic and null terminator detection", "strlen() requires math.h", "strlen() counts the null terminator"], answerIndex: 1, hint: "The purpose is to learn about the underlying process, not just get the answer." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -5064,11 +5065,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "If A is a 3×4 matrix, what are the dimensions of its transpose?", options: ["3×4", "4×4", "3×3", "4×3"], answerIndex: 3 },
-                { question: "What is the relationship between A[i][j] and its transpose B[j][i]?", options: ["B[j][i] = A[i][j] + 1", "B[j][i] = A[j][i]", "B[j][i] = A[i][j]", "B[i][j] = A[j][i] + A[i][j]"], answerIndex: 2 },
-                { question: "For A = {{1,2,3},{4,5,6}}, what is B[2][0] (0-based)?", options: ["6", "4", "2", "3"], answerIndex: 3 },
-                { question: "Why must the column dimension MAX be specified in the function parameter for a 2D array?", options: ["So the compiler can calculate the address of A[i][j] using row-major layout", "Because rows are stored separately", "To avoid stack overflow", "Because C does not support 2D arrays in functions"], answerIndex: 0 },
-                { question: "Can the in-place transpose (swapping A[i][j] and A[j][i]) be applied to a non-square matrix?", options: ["Yes, always", "Yes, but only for even dimensions", "No — the dimensions change, so a second array is required", "Yes, by swapping with a temporary variable"], answerIndex: 2 }
+                { question: "If A is a 3×4 matrix, what are the dimensions of its transpose?", options: ["3×4", "4×4", "3×3", "4×3"], answerIndex: 3, hint: "The number of rows and columns are swapped." },
+                { question: "What is the relationship between A[i][j] and its transpose B[j][i]?", options: ["B[j][i] = A[i][j] + 1", "B[j][i] = A[j][i]", "B[j][i] = A[i][j]", "B[i][j] = A[j][i] + A[i][j]"], answerIndex: 2, hint: "The transpose 'flips' the matrix over its main diagonal." },
+                { question: "For A = {{1,2,3},{4,5,6}}, what is B[2][0] (0-based)?", options: ["6", "4", "2", "3"], answerIndex: 3, hint: "B is a 3x2 matrix. B[2][0] should be A[0][2] which is 3." },
+                { question: "Why must the column dimension MAX be specified in the function parameter for a 2D array?", options: ["So the compiler can calculate the address of A[i][j] using row-major layout", "Because rows are stored separately", "To avoid stack overflow", "Because C does not support 2D arrays in functions"], answerIndex: 0, hint: "The compiler needs to know how many columns are in each row to correctly jump from one row to the next in memory." },
+                { question: "Can the in-place transpose (swapping A[i][j] and A[j][i]) be applied to a non-square matrix?", options: ["Yes, always", "Yes, but only for even dimensions", "No — the dimensions change, so a second array is required", "Yes, by swapping with a temporary variable"], answerIndex: 2, hint: "A 3x4 matrix transposes to a 4x3 matrix. They can't occupy the same memory because they have different shapes." }
               ],
               procedure: [
                 "Read the Aim and Theory sections carefully.",
@@ -5098,11 +5099,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "For matrix A = {{1,2},{3,4},{5,6}} (3×2), what is the transpose?", options: ["{{1,3,5},{2,4,6}}", "{{1,2,3},{4,5,6}}", "{{6,5},{4,3},{2,1}}", "{{2,4,6},{1,3,5}}"], answerIndex: 0 },
-                { question: "What is the transpose of an identity matrix?", options: ["A zero matrix", "The matrix doubled", "The identity matrix itself", "Undefined"], answerIndex: 2 },
-                { question: "For a 1×5 matrix {10, 20, 30, 40, 50}, what is its transpose?", options: ["{50, 40, 30, 20, 10}", "A 5×1 column matrix with the same values", "A 5×5 matrix", "{10, 20, 30, 40, 50} unchanged"], answerIndex: 1 },
-                { question: "In the in-place square matrix transpose, why does the inner loop start at j = i+1?", options: ["To skip the diagonal elements and avoid double-swapping", "Because row 0 never needs transposing", "To sort the elements", "Because j = i would cause division by zero"], answerIndex: 0 },
-                { question: "What is the time complexity of transposing an m × n matrix into a second matrix B?", options: ["O(m + n)", "O(m²)", "O(m × n)", "O(n²)"], answerIndex: 2 }
+                { question: "For matrix A = {{1,2},{3,4},{5,6}} (3×2), what is the transpose?", options: ["{{1,3,5},{2,4,6}}", "{{1,2,3},{4,5,6}}", "{{6,5},{4,3},{2,1}}", "{{2,4,6},{1,3,5}}"], answerIndex: 0, hint: "The first column of A becomes the first row of the transpose." },
+                { question: "What is the transpose of an identity matrix?", options: ["A zero matrix", "The matrix doubled", "The identity matrix itself", "Undefined"], answerIndex: 2, hint: "The identity matrix is symmetric about its main diagonal." },
+                { question: "For a 1×5 matrix {10, 20, 30, 40, 50}, what is its transpose?", options: ["{50, 40, 30, 20, 10}", "A 5×1 column matrix with the same values", "A 5×5 matrix", "{10, 20, 30, 40, 50} unchanged"], answerIndex: 1, hint: "A row becomes a column." },
+                { question: "In the in-place square matrix transpose, why does the inner loop start at j = i+1?", options: ["To skip the diagonal elements and avoid double-swapping", "Because row 0 never needs transposing", "To sort the elements", "Because j = i would cause division by zero"], answerIndex: 0, hint: "Swapping A[i][j] with A[j][i] fixes both positions. If you later swap A[j][i] with A[i][j], you would swap them back." },
+                { question: "What is the time complexity of transposing an m × n matrix into a second matrix B?", options: ["O(m + n)", "O(m²)", "O(m × n)", "O(n²)"], answerIndex: 2, hint: "You need to visit each of the m*n elements exactly once." }
               ],
               references: [
                 "Kernighan & Ritchie, \"The C Programming Language\", 2nd Ed., Prentice Hall",
@@ -5163,11 +5164,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What are the two base cases in the recursive Fibonacci function?", options: ["fib(0)=1 and fib(1)=1", "fib(0)=0 and fib(1)=1", "fib(1)=0 and fib(2)=1", "fib(0)=0 and fib(2)=1"], answerIndex: 1 },
-                { question: "What is fib(6) in the Fibonacci series starting from fib(0)=0?", options: ["5", "13", "8", "21"], answerIndex: 2 },
-                { question: "What happens if a recursive function has no base case?", options: ["It returns 0 automatically", "It runs once and stops", "It causes infinite recursion and stack overflow", "Compiler gives syntax error"], answerIndex: 2 },
-                { question: "In recursion, what is a call stack?", options: ["A queue of function calls waiting to execute", "Memory that stores each active function call frame", "A list of return values", "The heap memory used by malloc"], answerIndex: 1 },
-                { question: "For fib(5), what is the correct value?", options: ["3", "8", "5", "13"], answerIndex: 2 }
+                { question: "What are the two base cases in the recursive Fibonacci function?", options: ["fib(0)=1 and fib(1)=1", "fib(0)=0 and fib(1)=1", "fib(1)=0 and fib(2)=1", "fib(0)=0 and fib(2)=1"], answerIndex: 1, hint: "These are the smallest, non-decomposable problems." },
+                { question: "What is fib(6) in the Fibonacci series starting from fib(0)=0?", options: ["5", "13", "8", "21"], answerIndex: 2, hint: "Series: 0,1,1,2,3,5,8." },
+                { question: "What happens if a recursive function has no base case?", options: ["It returns 0 automatically", "It runs once and stops", "It causes infinite recursion and stack overflow", "Compiler gives syntax error"], answerIndex: 2, hint: "The function would call itself forever, consuming all available stack memory." },
+                { question: "In recursion, what is a call stack?", options: ["A queue of function calls waiting to execute", "Memory that stores each active function call frame", "A list of return values", "The heap memory used by malloc"], answerIndex: 1, hint: "It's a LIFO (Last-In, First-Out) structure that keeps track of function calls." },
+                { question: "For fib(5), what is the correct value?", options: ["3", "8", "5", "13"], answerIndex: 2, hint: "0,1,1,2,3,5." }
               ],
               procedure: [
                 "Read Aim and understand what Fibonacci series means mathematically",
@@ -5208,11 +5209,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the output of the program when n=1?", options: ["0 1", "1", "0", "Error"], answerIndex: 2 },
-                { question: "How many times is fib(2) called when computing fib(5)?", options: ["1", "3", "2", "5"], answerIndex: 1 },
-                { question: "What is the maximum call stack depth when computing fib(6)?", options: ["3", "4", "6", "12"], answerIndex: 2 },
-                { question: "Which modification would make Fibonacci use iteration instead of recursion?", options: ["Add another base case", "Replace recursive calls with a for loop storing previous two values", "Use malloc to store values", "Call fib() from a different function"], answerIndex: 1 },
-                { question: "What happens when you call fib(50) with naive recursion?", options: ["Returns answer instantly", "Takes extremely long due to repeated subproblem recalculation", "Causes compile error", "Returns wrong answer always"], answerIndex: 1 }
+                { question: "What is the output of the program when n=1?", options: ["0 1", "1", "0", "Error"], answerIndex: 2, hint: "The loop runs for i=0 only." },
+                { question: "How many times is fib(2) called when computing fib(5)?", options: ["1", "3", "2", "5"], answerIndex: 2, hint: "Draw the call tree: fib(5) -> fib(4)+fib(3). fib(4) calls fib(3)+fib(2). fib(3) calls fib(2)+fib(1)." },
+                { question: "What is the maximum call stack depth when computing fib(6)?", options: ["3", "4", "6", "12"], answerIndex: 2, hint: "The deepest path is fib(6)->fib(5)->fib(4)->fib(3)->fib(2)->fib(1)->fib(0)." },
+                { question: "Which modification would make Fibonacci use iteration instead of recursion?", options: ["Add another base case", "Replace recursive calls with a for loop storing previous two values", "Use malloc to store values", "Call fib() from a different function"], answerIndex: 1, hint: "This is the classic iterative solution: `a, b = b, a+b`." },
+                { question: "What happens when you call fib(50) with naive recursion?", options: ["Returns answer instantly", "Takes extremely long due to repeated subproblem recalculation", "Causes compile error", "Returns wrong answer always"], answerIndex: 1, hint: "The number of function calls grows exponentially (approx. φⁿ)." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5260,12 +5261,12 @@ export const courses: Record<string, Course> = {
                   body: ["Factorial grows very fast. fact(13) exceeds the range of int (2,147,483,647). For large n use long or unsigned long long to avoid overflow."]
                 }
               ],
-              pretest: [
-                { question: "What is the base case for the recursive factorial function?", options: ["fact(1) = 1", "fact(0) = 1", "fact(0) = 0", "fact(n) = 0"], answerIndex: 1 },
-                { question: "What is the value of fact(5)?", options: ["60", "100", "120", "24"], answerIndex: 2 },
-                { question: "How many recursive calls does fact(4) make before reaching the base case?", options: ["3", "4", "5", "2"], answerIndex: 1 },
-                { question: "What is the return type of the factorial function for large inputs?", options: ["int is always sufficient", "long or long long to avoid overflow", "float", "char"], answerIndex: 1 },
-                { question: "What is fact(0)?", options: ["0", "Undefined", "1", "Error"], answerIndex: 2 }
+              pretest:[
+                { question: "What is the base case for the recursive factorial function?", options: ["fact(1) = 1", "fact(0) = 1", "fact(0) = 0", "fact(n) = 0"], answerIndex: 1, hint: "This is the stopping condition that doesn't call itself." },
+                { question: "What is the value of fact(5)?", options: ["60", "100", "120", "24"], answerIndex: 2, hint: "5 * 4 * 3 * 2 * 1 = 120" },
+                { question: "How many recursive calls does fact(4) make before reaching the base case?", options: ["3", "4", "5", "2"], answerIndex: 1, hint: "fact(4) calls fact(3). fact(3) calls fact(2). fact(2) calls fact(1). fact(1) calls fact(0). That's 4 calls before the base case." },
+                { question: "What is the return type of the factorial function for large inputs?", options: ["int is always sufficient", "long or long long to avoid overflow", "float", "char"], answerIndex: 1, hint: "Factorials grow very quickly and exceed the capacity of a standard int." },
+                { question: "What is fact(0)?", options: ["0", "Undefined", "1", "Error"], answerIndex: 2, hint: "It's defined to be 1." }
               ],
               procedure: [
                 "Read Aim and recall the mathematical definition of factorial",
@@ -5299,11 +5300,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What does fact(4) return?", options: ["12", "16", "24", "48"], answerIndex: 2 },
-                { question: "What is the call stack depth when computing fact(6)?", options: ["5", "7", "6", "12"], answerIndex: 2 },
-                { question: "What is the difference between linear recursion (factorial) and tree recursion (fibonacci)?", options: ["Linear makes one recursive call per step, tree recursion makes two", "Linear is always faster", "Tree recursion uses less memory", "There is no difference"], answerIndex: 0 },
-                { question: "What will happen if you call fact(-1) without a guard condition?", options: ["Returns 1", "Returns 0", "Infinite recursion and stack overflow", "Compiler error"], answerIndex: 2 },
-                { question: "Which data type should be used to correctly store fact(20)?", options: ["int", "float", "long long", "double"], answerIndex: 2 }
+                { question: "What does fact(4) return?", options: ["12", "16", "24", "48"], answerIndex: 2, hint: "4! = 4*3*2*1 = 24" },
+                { question: "What is the call stack depth when computing fact(6)?", options: ["5", "7", "6", "12"], answerIndex: 2, hint: "The depth is n+1 (for 0! as base case)." },
+                { question: "What is the difference between linear recursion (factorial) and tree recursion (fibonacci)?", options: ["Linear makes one recursive call per step, tree recursion makes two", "Linear is always faster", "Tree recursion uses less memory", "There is no difference"], answerIndex: 0, hint: "Linear recursion follows a single, straight line of calls, while tree recursion branches out." },
+                { question: "What will happen if you call fact(-1) without a guard condition?", options: ["Returns 1", "Returns 0", "Infinite recursion and stack overflow", "Compiler error"], answerIndex: 2, hint: "The recursion will never reach the base case (n==0)." },
+                { question: "Which data type should be used to correctly store fact(20)?", options: ["int", "float", "long long", "double"], answerIndex: 2, hint: "20! is about 2.4 * 10^18, which fits in a 64-bit unsigned integer." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5356,11 +5357,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does ack(0, n) return according to the Ackermann definition?", options: ["n", "n+1", "n-1", "0"], answerIndex: 1 },
-                { question: "What is ack(1, 1)?", options: ["2", "4", "3", "1"], answerIndex: 2 },
-                { question: "Why is the Ackermann function significant in computer science?", options: ["It is the fastest sorting algorithm", "It proves not all computable functions are primitive recursive", "It computes Fibonacci efficiently", "It is used in operating system scheduling"], answerIndex: 1 },
-                { question: "What happens when you try to compute ack(5, 5)?", options: ["Returns a small number quickly", "Causes stack overflow due to extreme recursion depth", "Returns 0", "Compiler optimizes it automatically"], answerIndex: 1 },
-                { question: "What is ack(2, 2)?", options: ["5", "9", "7", "4"], answerIndex: 2 }
+                { question: "What does ack(0, n) return according to the Ackermann definition?", options: ["n", "n+1", "n-1", "0"], answerIndex: 1, hint: "This is the first case of the definition." },
+                { question: "What is ack(1, 1)?", options: ["2", "4", "3", "1"], answerIndex: 2, hint: "ack(1,1) = ack(0, ack(1,0)) = ack(0, ack(0,1)) = ack(0,2) = 3." },
+                { question: "Why is the Ackermann function significant in computer science?", options: ["It is the fastest sorting algorithm", "It proves not all computable functions are primitive recursive", "It computes Fibonacci efficiently", "It is used in operating system scheduling"], answerIndex: 1, hint: "It's a classic example from computability theory." },
+                { question: "What happens when you try to compute ack(5, 5)?", options: ["Returns a small number quickly", "Causes stack overflow due to extreme recursion depth", "Returns 0", "Compiler optimizes it automatically"], answerIndex: 1, hint: "The recursion depth and number of calls grow astronomically." },
+                { question: "What is ack(2, 2)?", options: ["5", "9", "7", "4"], answerIndex: 2, hint: "ack(2,2) = ack(1, ack(2,1)) = ack(1, ack(1, ack(2,0))) = ack(1, ack(1, ack(1,1))) = ack(1, ack(1, 3)) = ack(1, ack(0, ack(1,2))) = 7." }
               ],
               procedure: [
                 "Read Aim and Theory carefully — Ackermann is more complex than Fibonacci or Factorial",
@@ -5388,11 +5389,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "How many total function calls does ack(1,1) make?", options: ["3", "4", "5", "7"], answerIndex: 2 },
-                { question: "Which case of Ackermann handles when both m and n are greater than zero?", options: ["Case 1: return n+1", "Case 2: return ack(m-1, 1)", "Case 3: return ack(m-1, ack(m, n-1))", "Case 4: return ack(m, n-1)"], answerIndex: 2 },
-                { question: "What is ack(3,2)?", options: ["9", "61", "29", "13"], answerIndex: 2 },
-                { question: "Why should you never test ack(4,2) in a normal C program?", options: ["It returns a negative number", "The result has 19,728 digits and requires astronomically many recursive calls", "Compiler cannot parse the function", "It always returns 0"], answerIndex: 1 },
-                { question: "What type of recursion does Case 3 of Ackermann represent?", options: ["Linear recursion like factorial", "Tail recursion", "Double or nested recursion where a recursive call is inside another recursive call's argument", "Mutual recursion between two functions"], answerIndex: 2 }
+                { question: "How many total function calls does ack(1,1) make?", options: ["3", "4", "5", "7"], answerIndex: 1, hint: "The sequence is ack(1,1) -> ack(0, ack(1,0)) -> ack(0, ack(0,1)) -> ack(0,2). That's 5 calls." },
+                { question: "Which case of Ackermann handles when both m and n are greater than zero?", options: ["Case 1: return n+1", "Case 2: return ack(m-1, 1)", "Case 3: return ack(m-1, ack(m, n-1))", "Case 4: return ack(m, n-1)"], answerIndex: 2, hint: "This is the third and most complex case." },
+                { question: "What is ack(3,2)?", options: ["9", "61", "29", "13"], answerIndex: 2, hint: "This is a known value, still relatively small but shows rapid growth." },
+                { question: "Why should you never test ack(4,2) in a normal C program?", options: ["It returns a negative number", "The result has 19,728 digits and requires astronomically many recursive calls", "Compiler cannot parse the function", "It always returns 0"], answerIndex: 1, hint: "The recursive computation is so vast it's practically impossible to compute with naive recursion." },
+                { question: "What type of recursion does Case 3 of Ackermann represent?", options: ["Linear recursion like factorial", "Tail recursion", "Double or nested recursion where a recursive call is inside another recursive call's argument", "Mutual recursion between two functions"], answerIndex: 2, hint: "The return statement contains a call to ack inside the argument of another call to ack." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5459,11 +5460,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does the & operator do when used before a variable in C?", options: ["Performs bitwise AND", "Returns the memory address of the variable", "Dereferences a pointer", "Declares a reference variable"], answerIndex: 1 },
-                { question: "What does *ptr do when ptr is a pointer variable?", options: ["Declares a new pointer", "Gives the address stored in ptr", "Accesses the value at the memory address stored in ptr", "Multiplies ptr by something"], answerIndex: 2 },
-                { question: "Why does swap(a, b) using call by value not work?", options: ["C does not allow functions with two parameters", "The function gets copies so original variables are unchanged", "Swapping is not possible in C", "Variables cannot be passed to functions"], answerIndex: 1 },
-                { question: "What should the parameter type be for a function that modifies an int using call by reference?", options: ["int", "int*", "int&", "&int"], answerIndex: 1 },
-                { question: "What is a dangling pointer?", options: ["A pointer with value zero", "A pointer declared but never initialized", "A pointer pointing to memory that is freed or out of scope", "A pointer to a pointer"], answerIndex: 2 }
+                { question: "What does the & operator do when used before a variable in C?", options: ["Performs bitwise AND", "Returns the memory address of the variable", "Dereferences a pointer", "Declares a reference variable"], answerIndex: 1, hint: "It's the 'address-of' operator." },
+                { question: "What does *ptr do when ptr is a pointer variable?", options: ["Declares a new pointer", "Gives the address stored in ptr", "Accesses the value at the memory address stored in ptr", "Multiplies ptr by something"], answerIndex: 2, hint: "It's the 'dereference' operator." },
+                { question: "Why does swap(a, b) using call by value not work?", options: ["C does not allow functions with two parameters", "The function gets copies so original variables are unchanged", "Swapping is not possible in C", "Variables cannot be passed to functions"], answerIndex: 1, hint: "The function works on its own private copies, not on the original variables in main." },
+                { question: "What should the parameter type be for a function that modifies an int using call by reference?", options: ["int", "int*", "int&", "&int"], answerIndex: 1, hint: "You need to pass the address of the int, so the parameter must be a pointer that can hold an address." },
+                { question: "What is a dangling pointer?", options: ["A pointer with value zero", "A pointer declared but never initialized", "A pointer pointing to memory that is freed or out of scope", "A pointer to a pointer"], answerIndex: 2, hint: "It's a pointer that no longer points to valid memory." }
               ],
               procedure: [
                 "Read Theory and clearly understand why call by value fails for swap",
@@ -5493,11 +5494,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "After swap(&a, &b) with a=5 and b=9, what are the values of a and b?", options: ["a=5 b=9", "a=9 b=5", "a=0 b=0", "a=9 b=9"], answerIndex: 1 },
-                { question: "What is the correct function signature for a swap function using pointers?", options: ["void swap(int a, int b)", "void swap(int *a, int *b)", "int swap(&a, &b)", "void swap(int &a, int &b)"], answerIndex: 1 },
-                { question: "Inside the swap function, what does *a = *b do?", options: ["Copies the address of b into a", "Copies the value at address b into the location pointed by a", "Swaps the pointers themselves", "Nothing useful"], answerIndex: 1 },
-                { question: "If ptr points to variable x, which statement correctly changes x to 50?", options: ["ptr = 50", "&ptr = 50", "*ptr = 50", "ptr* = 50"], answerIndex: 2 },
-                { question: "What is the output if you pass the same variable twice: swap(&a, &a)?", options: ["a becomes 0", "a remains unchanged", "Program crashes", "Compiler error"], answerIndex: 1 }
+                { question: "After swap(&a, &b) with a=5 and b=9, what are the values of a and b?", options: ["a=5 b=9", "a=9 b=5", "a=0 b=0", "a=9 b=9"], answerIndex: 1, hint: "The function exchanges the values stored at the memory locations of a and b." },
+                { question: "What is the correct function signature for a swap function using pointers?", options: ["void swap(int a, int b)", "void swap(int *a, int *b)", "int swap(&a, &b)", "void swap(int &a, int &b)"], answerIndex: 1, hint: "The parameters are pointers to integers." },
+                { question: "Inside the swap function, what does *a = *b do?", options: ["Copies the address of b into a", "Copies the value at address b into the location pointed by a", "Swaps the pointers themselves", "Nothing useful"], answerIndex: 1, hint: "It takes the value that `b` points to and puts it at the location that `a` points to." },
+                { question: "If ptr points to variable x, which statement correctly changes x to 50?", options: ["ptr = 50", "&ptr = 50", "*ptr = 50", "ptr* = 50"], answerIndex: 2, hint: "You need to dereference the pointer to access the value of the variable it points to." },
+                { question: "What is the output if you pass the same variable twice: swap(&a, &a)?", options: ["a becomes 0", "a remains unchanged", "Program crashes", "Compiler error"], answerIndex: 1, hint: "The logic of the function would copy a into temp, copy a into a, and then copy temp back into a. The net effect is no change." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5554,11 +5555,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "How is a string terminated in C?", options: ["With a period character", "With a null character \\0", "With a newline \\n", "With a space character"], answerIndex: 1 },
-                { question: "What does p++ do when p is a char pointer?", options: ["Increments the value at p by 1", "Moves p to point to the next character in memory", "Doubles the address in p", "Creates a new pointer"], answerIndex: 1 },
-                { question: "What does *src return when src points to the letter 'A'?", options: ["The address of A", "The ASCII value 65 as an integer OR the character 'A'", "A pointer to the next character", "NULL"], answerIndex: 1 },
-                { question: "Why must you add \\0 at the end of the destination string after copying?", options: ["To save memory", "To mark the valid end of the string for C string functions and printf", "It is added automatically", "To avoid dangling pointers"], answerIndex: 1 },
-                { question: "If src = \"JNTU\" and you copy it to dest, what is the size of dest that is needed?", options: ["4 bytes", "5 bytes including null terminator", "3 bytes", "10 bytes always"], answerIndex: 1 }
+                { question: "How is a string terminated in C?", options: ["With a period character", "With a null character \\0", "With a newline \\n", "With a space character"], answerIndex: 1, hint: "This is the sentinel value that marks the end of the useful data." },
+                { question: "What does p++ do when p is a char pointer?", options: ["Increments the value at p by 1", "Moves p to point to the next character in memory", "Doubles the address in p", "Creates a new pointer"], answerIndex: 1, hint: "Pointer arithmetic is scaled by the size of the data type. For a char, it moves to the next byte." },
+                { question: "What does *src return when src points to the letter 'A'?", options: ["The address of A", "The ASCII value 65 as an integer OR the character 'A'", "A pointer to the next character", "NULL"], answerIndex: 1, hint: "The dereference operator gets the value stored at the memory address." },
+                { question: "Why must you add \\0 at the end of the destination string after copying?", options: ["To save memory", "To mark the valid end of the string for C string functions and printf", "It is added automatically", "To avoid dangling pointers"], answerIndex: 1, hint: "Without it, printf will continue reading from memory beyond the end of the string, leading to garbage output." },
+                { question: "If src = \"JNTU\" and you copy it to dest, what is the size of dest that is needed?", options: ["4 bytes", "5 bytes including null terminator", "3 bytes", "10 bytes always"], answerIndex: 1, hint: "You need space for the 4 characters plus the null terminator." }
               ],
               procedure: [
                 "Read Theory and draw the memory layout of \"Hello\\0\" as boxes labeled H e l l o \\0",
@@ -5598,11 +5599,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the output when input is \"Hello\"?", options: ["Copied: hello", "Copied: Hello", "Hello", "Error"], answerIndex: 1 },
-                { question: "What happens if you forget to add \\0 after the copy loop?", options: ["Nothing changes", "printf may print garbage characters beyond the string", "Program gives compile error", "dest automatically gets \\0"], answerIndex: 1 },
-                { question: "Which condition correctly checks for end of string in a pointer-based loop?", options: ["while(src != 0)", "while(*src != '\\0') or equivalently while(*src)", "while(src == NULL)", "while(*src > 0)"], answerIndex: 1 },
-                { question: "What is the key difference between strcpy() and the custom strCopy() you implemented?", options: ["strcpy() is faster always", "They are functionally identical but strcpy() has error handling built in", "strCopy() cannot handle strings longer than 10 characters", "strcpy() does not add null terminator"], answerIndex: 1 },
-                { question: "If char *p = s where s is a char array, what does p+3 point to?", options: ["The value s[3] directly", "The memory address of the 4th character s[3]", "s multiplied by 3", "Garbage address"], answerIndex: 1 }
+                { question: "What is the output when input is \"Hello\"?", options: ["Copied: hello", "Copied: Hello", "Hello", "Error"], answerIndex: 1, hint: "The program prints the copied string." },
+                { question: "What happens if you forget to add \\0 after the copy loop?", options: ["Nothing changes", "printf may print garbage characters beyond the string", "Program gives compile error", "dest automatically gets \\0"], answerIndex: 1, hint: "printf will keep reading memory until it eventually encounters a random null byte." },
+                { question: "Which condition correctly checks for end of string in a pointer-based loop?", options: ["while(src != 0)", "while(*src != '\\0') or equivalently while(*src)", "while(src == NULL)", "while(*src > 0)"], answerIndex: 1, hint: "The null character is false in a boolean context." },
+                { question: "What is the key difference between strcpy() and the custom strCopy() you implemented?", options: ["strcpy() is faster always", "They are functionally identical but strcpy() has error handling built in", "strCopy() cannot handle strings longer than 10 characters", "strcpy() does not add null terminator"], answerIndex: 1, hint: "They perform the same core task, but the library function is heavily optimized and well-tested." },
+                { question: "If char *p = s where s is a char array, what does p+3 point to?", options: ["The value s[3] directly", "The memory address of the 4th character s[3]", "s multiplied by 3", "Garbage address"], answerIndex: 1, hint: "It points to the element 3 positions after the one p points to." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5651,11 +5652,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What is the ASCII value of character 'A'?", options: ["97", "65", "48", "90"], answerIndex: 1 },
-                { question: "Which condition correctly checks if a character pointed by p is a digit?", options: ["*p >= 0 && *p <= 9", "*p >= '0' && *p <= '9'", "*p >= 48 || *p <= 57", "isDigit(*p)"], answerIndex: 1 },
-                { question: "What does p++ do inside a string traversal loop?", options: ["Increments the character value at p", "Moves the pointer to the next character", "Copies the character to a new location", "Resets p to the start of the string"], answerIndex: 1 },
-                { question: "For input \"Hello123!\" how many uppercase letters are there?", options: ["0", "1", "5", "3"], answerIndex: 1 },
-                { question: "What category does a space character fall into?", options: ["Lowercase", "Digit", "Uppercase", "Other"], answerIndex: 3 }
+                { question: "What is the ASCII value of character 'A'?", options: ["97", "65", "48", "90"], answerIndex: 1, hint: "It's a standard code; 'a' is 97." },
+                { question: "Which condition correctly checks if a character pointed by p is a digit?", options: ["*p >= 0 && *p <= 9", "*p >= '0' && *p <= '9'", "*p >= 48 || *p <= 57", "isDigit(*p)"], answerIndex: 1, hint: "You compare the character's ASCII code to those of the characters '0' and '9'." },
+                { question: "What does p++ do inside a string traversal loop?", options: ["Increments the character value at p", "Moves the pointer to the next character", "Copies the character to a new location", "Resets p to the start of the string"], answerIndex: 1, hint: "It's the pointer equivalent of incrementing an array index." },
+                { question: "For input \"Hello123!\" how many uppercase letters are there?", options: ["0", "1", "5", "3"], answerIndex: 1, hint: "Only 'H' is uppercase." },
+                { question: "What category does a space character fall into?", options: ["Lowercase", "Digit", "Uppercase", "Other"], answerIndex: 3, hint: "It's not a letter or a digit." }
               ],
               procedure: [
                 "Read Theory and memorize the four ASCII ranges for classification",
@@ -5691,12 +5692,12 @@ export const courses: Record<string, Course> = {
                   { line: 14, annotation: "printf executes", memory: [], output: "Upper=1 Lower=1 Digit=1 Other=1\n" }
                 ]
               },
-              posttest: [
-                { question: "For input \"JNTUGV2026\" what is the digit count?", options: ["3", "4", "6", "2"], answerIndex: 1 },
-                { question: "What is the lowercase count for input \"HELLO\"?", options: ["5", "0", "1", "3"], answerIndex: 1 },
-                { question: "Which header file provides built-in character classification functions like isupper() and isdigit()?", options: ["stdio.h", "string.h", "ctype.h", "math.h"], answerIndex: 2 },
-                { question: "What is the output for input \"aB3 \"?", options: ["Upper=1 Lower=1 Digit=1 Other=1", "Upper=1 Lower=1 Digit=1 Other=0", "Upper=0 Lower=2 Digit=1 Other=1", "Upper=1 Lower=2 Digit=0 Other=1"], answerIndex: 0 },
-                { question: "Why is pointer traversal preferred over index traversal for strings in systems programming?", options: ["It is always faster on all machines", "It directly models memory layout and avoids redundant index arithmetic", "Indexes cause compilation errors in C", "Pointers use less RAM"], answerIndex: 1 }
+              posttest:[
+                { question: "For input \"JNTUGV2026\" what is the digit count?", options: ["3", "4", "6", "2"], answerIndex: 1, hint: "The digits are 2, 0, 2, 6." },
+                { question: "What is the lowercase count for input \"HELLO\"?", options: ["5", "0", "1", "3"], answerIndex: 1, hint: "All letters are uppercase." },
+                { question: "Which header file provides built-in character classification functions like isupper() and isdigit()?", options: ["stdio.h", "string.h", "ctype.h", "math.h"], answerIndex: 2, hint: "This is the 'character types' header." },
+                { question: "What is the output for input \"aB3 \"?", options: ["Upper=1 Lower=1 Digit=1 Other=1", "Upper=1 Lower=1 Digit=1 Other=0", "Upper=0 Lower=2 Digit=1 Other=1", "Upper=1 Lower=2 Digit=0 Other=1"], answerIndex: 0, hint: "Count them: 'a'(lower), 'B'(upper), '3'(digit), ' '(other)." },
+                { question: "Why is pointer traversal preferred over index traversal for strings in systems programming?", options: ["It is always faster on all machines", "It directly models memory layout and avoids redundant index arithmetic", "Indexes cause compilation errors in C", "Pointers use less RAM"], answerIndex: 1, hint: "It can be more efficient as it avoids the multiplication and addition needed to calculate an address from an index." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5760,12 +5761,12 @@ export const courses: Record<string, Course> = {
                   body: ["Text files store data as human-readable ASCII characters. Binary files store raw bytes. For this experiment we use text mode."]
                 }
               ],
-              pretest: [
-                { question: "Which function is used to open a file in C?", options: ["fileopen()", "open()", "fopen()", "openFile()"], answerIndex: 2 },
-                { question: "What does fopen() return if the file cannot be opened?", options: ["0", "-1", "NULL", "Empty string"], answerIndex: 2 },
-                { question: "Which mode opens a file for writing and creates it if it does not exist?", options: ["\"r\"", "\"a\"", "\"w\"", "\"rw\""], answerIndex: 2 },
-                { question: "What is the purpose of fclose()?", options: ["Deletes the file from disk", "Flushes buffer and releases the file handle", "Reads the last line of the file", "Rewinds the file to beginning"], answerIndex: 1 },
-                { question: "Which function reads a line from a file into a character array?", options: ["fscanf()", "fread()", "fgets()", "fgetchar()"], answerIndex: 2 }
+              pretest:[
+                { question: "Which function is used to open a file in C?", options: ["fileopen()", "open()", "fopen()", "openFile()"], answerIndex: 2, hint: "It's part of the standard I/O library." },
+                { question: "What does fopen() return if the file cannot be opened?", options: ["0", "-1", "NULL", "Empty string"], answerIndex: 2, hint: "It's a standard macro for a pointer that points to nothing." },
+                { question: "Which mode opens a file for writing and creates it if it does not exist?", options: ["\"r\"", "\"a\"", "\"w\"", "\"rw\""], answerIndex: 2, hint: "This mode will also destroy any existing file with the same name." },
+                { question: "What is the purpose of fclose()?", options: ["Deletes the file from disk", "Flushes buffer and releases the file handle", "Reads the last line of the file", "Rewinds the file to beginning"], answerIndex: 1, hint: "It's a crucial step to avoid data loss and resource leaks." },
+                { question: "Which function reads a line from a file into a character array?", options: ["fscanf()", "fread()", "fgets()", "fgetchar()"], answerIndex: 2, hint: "It's the safe, standard way to read a line, avoiding buffer overflow." }
               ],
               procedure: [
                 "Read Theory and understand the file operation sequence — open write close open read close",
@@ -5793,11 +5794,11 @@ export const courses: Record<string, Course> = {
                 ]
               },
               posttest: [
-                { question: "What is the correct sequence of file operations in C?", options: ["Read → Open → Write → Close", "Open → Write/Read → Close", "Write → Open → Read → Close", "Open → Close → Write → Read"], answerIndex: 1 },
-                { question: "What happens if you open a file in \"w\" mode and the file already exists?", options: ["Error is returned", "Existing content is preserved and new content is appended", "Existing content is erased and file is overwritten", "Program crashes"], answerIndex: 2 },
-                { question: "Why must you call fclose() before reopening a file in a different mode?", options: ["fopen() requires it as a parameter", "To flush write buffer to disk and release the file handle", "C only allows one file open at a time always", "fgets() only works on closed files"], answerIndex: 1 },
-                { question: "Which function writes formatted text to a file in C?", options: ["printf()", "sprintf()", "fprintf()", "fwrite()"], answerIndex: 2 },
-                { question: "What does fgets() return when it reaches the end of file?", options: ["0", "Empty string", "NULL", "-1"], answerIndex: 2 }
+                { question: "What is the correct sequence of file operations in C?", options: ["Read → Open → Write → Close", "Open → Write/Read → Close", "Write → Open → Read → Close", "Open → Close → Write → Read"], answerIndex: 1, hint: "You cannot perform any read or write operation without first opening the file." },
+                { question: "What happens if you open a file in \"w\" mode and the file already exists?", options: ["Error is returned", "Existing content is preserved and new content is appended", "Existing content is erased and file is overwritten", "Program crashes"], answerIndex: 2, hint: "Be careful with this mode, as it's destructive." },
+                { question: "Why must you call fclose() before reopening a file in a different mode?", options: ["fopen() requires it as a parameter", "To flush write buffer to disk and release the file handle", "C only allows one file open at a time always", "fgets() only works on closed files"], answerIndex: 1, hint: "Many operating systems may not let you reopen a file that is still open." },
+                { question: "Which function writes formatted text to a file in C?", options: ["printf()", "sprintf()", "fprintf()", "fwrite()"], answerIndex: 2, hint: "It's the file-specific version of the print function." },
+                { question: "What does fgets() return when it reaches the end of file?", options: ["0", "Empty string", "NULL", "-1"], answerIndex: 2, hint: "It returns a sentinel value, not an error code." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -5851,11 +5852,11 @@ export const courses: Record<string, Course> = {
                 }
               ],
               pretest: [
-                { question: "What does fgetc() return when the end of file is reached?", options: ["0", "NULL", "EOF which is -1", "\\0"], answerIndex: 2 },
-                { question: "Why is the return type of fgetc() int and not char?", options: ["char cannot be stored in a variable", "To accommodate EOF value which is outside the char range", "int is the default type in C", "fgetc() returns line numbers"], answerIndex: 1 },
-                { question: "How do you detect a new line while reading character by character?", options: ["Check if c == ' '", "Check if c == '\\n'", "Check if c == EOF", "Check if c == '\\0'"], answerIndex: 1 },
-                { question: "What is a word boundary in the context of this counting program?", options: ["Any character that is a letter", "Transition from whitespace to non-whitespace character", "Every space character encountered", "Start and end of each line"], answerIndex: 1 },
-                { question: "Which Unix command does this program replicate?", options: ["ls", "cat", "grep", "wc"], answerIndex: 3 }
+                { question: "What does fgetc() return when the end of file is reached?", options: ["0", "NULL", "EOF which is -1", "\\0"], answerIndex: 2, hint: "It's a special macro defined in stdio.h." },
+                { question: "Why is the return type of fgetc() int and not char?", options: ["char cannot be stored in a variable", "To accommodate EOF value which is outside the char range", "int is the default type in C", "fgetc() returns line numbers"], answerIndex: 1, hint: "EOF is typically -1, which is not a valid character value." },
+                { question: "How do you detect a new line while reading character by character?", options: ["Check if c == ' '", "Check if c == '\\n'", "Check if c == EOF", "Check if c == '\\0'"], answerIndex: 1, hint: "This is the escape sequence for a newline." },
+                { question: "What is a word boundary in the context of this counting program?", options: ["Any character that is a letter", "Transition from whitespace to non-whitespace character", "Every space character encountered", "Start and end of each line"], answerIndex: 1, hint: "The transition from a space to a letter marks the start of a new word." },
+                { question: "Which Unix command does this program replicate?", options: ["ls", "cat", "grep", "wc"], answerIndex: 3, hint: "This command stands for 'word count'." }
               ],
               procedure: [
                 "Read Theory and understand how word detection works using the prev character technique",
@@ -5887,12 +5888,12 @@ export const courses: Record<string, Course> = {
                   { line: 18, annotation: "printf executes", memory: [], output: "Lines=1 Words=2 Chars=6\n" }
                 ]
               },
-              posttest: [
-                { question: "For input \"Good Morning\\nJNTUGV\\n\" what is the line count?", options: ["1", "3", "2", "0"], answerIndex: 2 },
-                { question: "What is the word count for input \"The   quick brown\"?", options: ["2", "4", "3", "5"], answerIndex: 2 },
-                { question: "What does the condition while((c = fgetc(f)) != EOF) do?", options: ["Reads the whole file at once", "Reads one character per iteration and stops at end of file", "Reads until a newline is found", "Reads only the first line"], answerIndex: 1 },
-                { question: "Which of the following correctly detects a word boundary?", options: ["If current char is a letter", "If current is non-whitespace and previous was whitespace", "If current char is a space", "If line counter changes"], answerIndex: 1 },
-                { question: "Why is fgetc() preferred over fgets() for counting individual characters?", options: ["fgets() is slower", "fgetc() gives one character at a time allowing precise counting of every byte", "fgets() cannot read from files", "fgetc() uses less memory"], answerIndex: 1 }
+              posttest:[
+                { question: "For input \"Good Morning\\nJNTUGV\\n\" what is the line count?", options: ["1", "3", "2", "0"], answerIndex: 2, hint: "Each newline character marks the end of a line." },
+                { question: "What is the word count for input \"The   quick brown\"?", options: ["2", "4", "3", "5"], answerIndex: 2, hint: "Multiple consecutive spaces do not create extra words." },
+                { question: "What does the condition while((c = fgetc(f)) != EOF) do?", options: ["Reads the whole file at once", "Reads one character per iteration and stops at end of file", "Reads until a newline is found", "Reads only the first line"], answerIndex: 1, hint: "It's a classic C idiom for reading a file one byte at a time." },
+                { question: "Which of the following correctly detects a word boundary?", options: ["If current char is a letter", "If current is non-whitespace and previous was whitespace", "If current char is a space", "If line counter changes"], answerIndex: 1, hint: "This logic correctly identifies the start of a new token." },
+                { question: "Why is fgetc() preferred over fgets() for counting individual characters?", options: ["fgets() is slower", "fgetc() gives one character at a time allowing precise counting of every byte", "fgets() cannot read from files", "fgetc() uses less memory"], answerIndex: 1, hint: "You need to see every single byte, including spaces and newlines, to count them all." }
               ],
               references: [
                 "Kernighan B.W. and Ritchie D.M., The C Programming Language, 2nd Edition, Prentice Hall",
@@ -6051,58 +6052,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Which of the following is NOT a measure of central tendency?",
-                  options: ["Mean", "Median", "Variance", "Mode"],
-                  answerIndex: 2
-                },
-                {
-                  question: "The arithmetic mean of 5 values: 10, 20, 30, 40, 50 is:",
-                  options: ["25", "35", "30", "40"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Standard Deviation is defined as:",
-                  options: ["Square of Variance", "Square Root of Variance", "Sum of all deviations from Mean", "Average of all squared values"],
-                  answerIndex: 1
-                },
-                {
-                  question: "For the dataset: 5, 3, 8, 3, 7, 3, 9 — what is the Mode?",
-                  options: ["5", "7", "3", "8"],
-                  answerIndex: 2
-                },
-                {
-                  question: "When the number of observations in a dataset is even, the Median is calculated as:",
-                  options: ["The largest value in the dataset", "The value at position (n+1)/2", "The average of the two middle values", "The most frequently occurring value"],
-                  answerIndex: 2
-                }
+                { question: "Which of the following is NOT a measure of central tendency?", options: ["Mean", "Median", "Variance", "Mode"], answerIndex: 2, hint: "Central tendency measures describe the center of a dataset, while this measures the spread." },
+                { question: "The arithmetic mean of 5 values: 10, 20, 30, 40, 50 is:", options: ["25", "35", "30", "40"], answerIndex: 2, hint: "Sum all the numbers and divide by the count of numbers." },
+                { question: "Standard Deviation is defined as:", options: ["Square of Variance", "Square Root of Variance", "Sum of all deviations from Mean", "Average of all squared values"], answerIndex: 1, hint: "It is the square root of the average of the squared differences from the mean." },
+                { question: "For the dataset: 5, 3, 8, 3, 7, 3, 9 — what is the Mode?", options: ["5", "7", "3", "8"], answerIndex: 2, hint: "The mode is the value that appears most frequently." },
+                { question: "When the number of observations in a dataset is even, the Median is calculated as:", options: ["The largest value in the dataset", "The value at position (n+1)/2", "The average of the two middle values", "The most frequently occurring value"], answerIndex: 2, hint: "For an even count, there is no single middle value, so you average the two central ones." }
               ],
-              posttest: [
-                {
-                  question: "For the dataset: 3, 5, 7, 7, 9, 11, 13 — what is the Median?",
-                  options: ["7", "7.86", "9", "8"],
-                  answerIndex: 0
-                },
-                {
-                  question: "Which measure of central tendency is most affected by the presence of outliers in a dataset?",
-                  options: ["Mode", "Median", "Mean", "All are equally affected"],
-                  answerIndex: 2
-                },
-                {
-                  question: "If the Mean of a dataset is 50 and the Standard Deviation is 0, what can you conclude?",
-                  options: ["All values are different", "All values are equal to 50", "The data is highly skewed", "The variance is 50"],
-                  answerIndex: 1
-                },
-                {
-                  question: "For the dataset: 2, 4, 4, 4, 5, 5, 7, 9 — the Sample Variance is:",
-                  options: ["3.57", "4.0", "2.0", "3.14"],
-                  answerIndex: 0
-                },
-                {
-                  question: "In a distribution where Mean > Median > Mode, the distribution is said to be:",
-                  options: ["Symmetric", "Negatively skewed (left-skewed)", "Positively skewed (right-skewed)", "Bimodal"],
-                  answerIndex: 2
-                }
+              posttest:[
+                { question: "For the dataset: 3, 5, 7, 7, 9, 11, 13 — what is the Median?", options: ["7", "7.86", "9", "8"], answerIndex: 0, hint: "The median is the middle value of an odd-sized, sorted dataset." },
+                { question: "Which measure of central tendency is most affected by the presence of outliers in a dataset?", options: ["Mode", "Median", "Mean", "All are equally affected"], answerIndex: 2, hint: "This measure uses every data point in its calculation, making it sensitive to extreme values." },
+                { question: "If the Mean of a dataset is 50 and the Standard Deviation is 0, what can you conclude?", options: ["All values are different", "All values are equal to 50", "The data is highly skewed", "The variance is 50"], answerIndex: 1, hint: "A standard deviation of zero means there is no spread or variability in the data." },
+                { question: "For the dataset: 2, 4, 4, 4, 5, 5, 7, 9 — the Sample Variance is:", options: ["3.57", "4.0", "2.0", "3.14"], answerIndex: 0, hint: "Sample variance uses (n-1) in the denominator. Calculate the mean, subtract from each point, square, sum, then divide by (n-1)." },
+                { question: "In a distribution where Mean > Median > Mode, the distribution is said to be:", options: ["Symmetric", "Negatively skewed (left-skewed)", "Positively skewed (right-skewed)", "Bimodal"], answerIndex: 2, hint: "The 'tail' on the right side of the distribution pulls the mean to the right of the median." }
               ]
             }
           }
@@ -6236,109 +6197,19 @@ export const courses: Record<string, Course> = {
                   { line: 18, annotation: "Print final preprocessed dataset", memory: [], output: "Preprocessing Complete\n    Age   Salary\n0  25.0  50000.0\n1  48.7  60000.0\n2  22.0  55000.0\n4  28.0  57500.0" }
                 ]
               },
-              pretest: [
-                {
-                  question: "Which of the following is the correct definition of Data Preprocessing?",
-                  options: [
-                    "The process of training a machine learning model on raw data",
-                    "The process of transforming raw data into a clean and usable format for machine learning",
-                    "The process of visualizing data using charts and graphs",
-                    "The process of storing data in a database"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which of the following is a technique used to handle missing values in a dataset?",
-                  options: [
-                    "Normalization",
-                    "Imputation with Mean or Median",
-                    "Feature Extraction",
-                    "Cross Validation"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Discretization in data preprocessing refers to:",
-                  options: [
-                    "Removing duplicate records from the dataset",
-                    "Converting continuous numerical values into discrete categorical intervals",
-                    "Selecting the most relevant features from the dataset",
-                    "Splitting the dataset into training and testing sets"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "An outlier in a dataset is best described as:",
-                  options: [
-                    "A value that appears most frequently",
-                    "A value that lies far outside the overall pattern of the data",
-                    "A value that is equal to the mean",
-                    "A missing value in the dataset"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which of the following methods is commonly used to detect outliers in a dataset?",
-                  options: [
-                    "K-Means Clustering",
-                    "Decision Tree",
-                    "Interquartile Range (IQR) Method",
-                    "Logistic Regression"
-                  ],
-                  answerIndex: 2
-                }
+              pretest:[
+                { question: "Which of the following is the correct definition of Data Preprocessing?", options: ["The process of training a machine learning model on raw data", "The process of transforming raw data into a clean and usable format for machine learning", "The process of visualizing data using charts and graphs", "The process of storing data in a database"], answerIndex: 1, hint: "It's the critical step *before* model training that handles imperfections in real-world data." },
+                { question: "Which of the following is a technique used to handle missing values in a dataset?", options: ["Normalization", "Imputation with Mean or Median", "Feature Extraction", "Cross Validation"], answerIndex: 1, hint: "This involves replacing missing data with a calculated statistical value." },
+                { question: "Discretization in data preprocessing refers to:", options: ["Removing duplicate records from the dataset", "Converting continuous numerical values into discrete categorical intervals", "Selecting the most relevant features from the dataset", "Splitting the dataset into training and testing sets"], answerIndex: 1, hint: "It's the process of 'binning' or grouping a range of numbers into a finite number of buckets." },
+                { question: "An outlier in a dataset is best described as:", options: ["A value that appears most frequently", "A value that lies far outside the overall pattern of the data", "A value that is equal to the mean", "A missing value in the dataset"], answerIndex: 1, hint: "It's an observation that is abnormally distant from other observations." },
+                { question: "Which of the following methods is commonly used to detect outliers in a dataset?", options: ["K-Means Clustering", "Decision Tree", "Interquartile Range (IQR) Method", "Logistic Regression"], answerIndex: 2, hint: "This method uses quartiles (Q1, Q3) and a multiplier (1.5) to define a 'fence' beyond which points are considered outliers." }
               ],
               posttest: [
-                {
-                  question: "In the IQR method, a value is considered an outlier if it falls:",
-                  options: [
-                    "Below Q1 − 2 × IQR or above Q3 + 2 × IQR",
-                    "Below Q1 − 1.5 × IQR or above Q3 + 1.5 × IQR",
-                    "Below the mean − standard deviation",
-                    "Below Q1 or above Q3"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which attribute selection method uses the machine learning algorithm itself to evaluate feature subsets?",
-                  options: [
-                    "Filter Method",
-                    "Embedded Method",
-                    "Wrapper Method",
-                    "Statistical Method"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Equal Frequency Binning ensures that:",
-                  options: [
-                    "Each bin has the same width or range",
-                    "Each bin contains the same number of data points",
-                    "Each bin is defined based on domain knowledge",
-                    "All values in the dataset are normalized"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which type of missing data is the most difficult to handle because the missingness is related to the unobserved value itself?",
-                  options: [
-                    "Missing Completely at Random (MCAR)",
-                    "Missing at Random (MAR)",
-                    "Missing Not at Random (MNAR)",
-                    "Structurally Missing Data"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "After applying all preprocessing steps on a dataset with 500 records and 12 attributes, 25 records were removed due to outliers and 2 attributes were dropped during feature selection. What are the dimensions of the final preprocessed dataset?",
-                  options: [
-                    "500 rows × 12 columns",
-                    "475 rows × 10 columns",
-                    "475 rows × 12 columns",
-                    "500 rows × 10 columns"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "In the IQR method, a value is considered an outlier if it falls:", options: ["Below Q1 − 2 × IQR or above Q3 + 2 × IQR", "Below Q1 − 1.5 × IQR or above Q3 + 1.5 × IQR", "Below the mean − standard deviation", "Below Q1 or above Q3"], answerIndex: 1, hint: "The standard rule-of-thumb uses a multiplier of 1.5 for the IQR to define the whiskers of a box plot." },
+                { question: "Which attribute selection method uses the machine learning algorithm itself to evaluate feature subsets?", options: ["Filter Method", "Embedded Method", "Wrapper Method", "Statistical Method"], answerIndex: 2, hint: "This method is like a 'search' that uses the model's performance as its feedback." },
+                { question: "Equal Frequency Binning ensures that:", options: ["Each bin has the same width or range", "Each bin contains the same number of data points", "Each bin is defined based on domain knowledge", "All values in the dataset are normalized"], answerIndex: 1, hint: "Think of distributing items into buckets so each bucket has roughly the same number of items." },
+                { question: "Which type of missing data is the most difficult to handle because the missingness is related to the unobserved value itself?", options: ["Missing Completely at Random (MCAR)", "Missing at Random (MAR)", "Missing Not at Random (MNAR)", "Structurally Missing Data"], answerIndex: 2, hint: "The cause of the missing data is directly linked to the missing value, making it impossible to predict from the available data." },
+                { question: "After applying all preprocessing steps on a dataset with 500 records and 12 attributes, 25 records were removed due to outliers and 2 attributes were dropped during feature selection. What are the dimensions of the final preprocessed dataset?", options: ["500 rows × 12 columns", "475 rows × 10 columns", "475 rows × 12 columns", "500 rows × 10 columns"], answerIndex: 1, hint: "Removing rows reduces the row count, and dropping attributes reduces the column count." }
               ]
             }
           }
@@ -6468,58 +6339,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "KNN stands for:",
-                  options: ["K-Node Nearest Network", "K-Nearest Neighbors", "K-Node Neural Network", "K-Nearest Node"],
-                  answerIndex: 1
-                },
-                {
-                  question: "KNN is categorized as which type of learning algorithm?",
-                  options: ["Supervised Learning — Generative Model", "Unsupervised Learning — Clustering", "Supervised Learning — Lazy Learner", "Reinforcement Learning"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following distance metrics is most commonly used in KNN?",
-                  options: ["Hamming Distance", "Manhattan Distance", "Euclidean Distance", "Cosine Similarity"],
-                  answerIndex: 2
-                },
-                {
-                  question: "In KNN for Classification, the predicted class of a new data point is determined by:",
-                  options: ["The average of K nearest neighbors' output values", "The majority vote among the K nearest neighbors", "The distance to the farthest neighbor", "The class of the single nearest neighbor always"],
-                  answerIndex: 1
-                },
-                {
-                  question: "What happens when the value of K is set too low (e.g., K=1) in KNN?",
-                  options: ["The model underfits the data", "The model becomes computationally faster", "The model overfits the data and becomes sensitive to noise", "The model ignores all training data"],
-                  answerIndex: 2
-                }
+                { question: "KNN stands for:", options: ["K-Node Nearest Network", "K-Nearest Neighbors", "K-Node Neural Network", "K-Nearest Node"], answerIndex: 1, hint: "The name describes its method: find the 'K' points that are most similar to the new point." },
+                { question: "KNN is categorized as which type of learning algorithm?", options: ["Supervised Learning — Generative Model", "Unsupervised Learning — Clustering", "Supervised Learning — Lazy Learner", "Reinforcement Learning"], answerIndex: 2, hint: "It's called 'lazy' because it doesn't learn a model during training; it just stores the data." },
+                { question: "Which of the following distance metrics is most commonly used in KNN?", options: ["Hamming Distance", "Manhattan Distance", "Euclidean Distance", "Cosine Similarity"], answerIndex: 2, hint: "This is the standard 'straight-line' distance between two points." },
+                { question: "In KNN for Classification, the predicted class of a new data point is determined by:", options: ["The average of K nearest neighbors' output values", "The majority vote among the K nearest neighbors", "The distance to the farthest neighbor", "The class of the single nearest neighbor always"], answerIndex: 1, hint: "The algorithm takes a 'poll' of the closest K points, and the most common label wins." },
+                { question: "What happens when the value of K is set too low (e.g., K=1) in KNN?", options: ["The model underfits the data", "The model becomes computationally faster", "The model overfits the data and becomes sensitive to noise", "The model ignores all training data"], answerIndex: 2, hint: "The decision boundary becomes very complex and can be swayed by a single, possibly noisy, point." }
               ],
               posttest: [
-                {
-                  question: "In KNN Regression with K = 3, if the three nearest neighbors have output values of 120, 150, and 90, what is the predicted value for the new data point?",
-                  options: ["150", "90", "120", "110"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following statements about the Curse of Dimensionality in KNN is correct?",
-                  options: ["KNN performs better as the number of features increases", "As dimensionality increases, distances between points become increasingly similar, making KNN less effective", "Adding more features always improves KNN accuracy", "The Curse of Dimensionality only affects regression tasks in KNN"],
-                  answerIndex: 1
-                },
-                {
-                  question: "Why is feature scaling essential before applying the KNN algorithm?",
-                  options: ["To reduce the number of features in the dataset", "To ensure features with larger scales do not dominate the distance calculation", "To convert categorical features into numerical ones", "To increase the training speed of the algorithm"],
-                  answerIndex: 1
-                },
-                {
-                  question: "In the K vs Accuracy plot, if the accuracy is highest at K = 5 and then gradually decreases, which of the following best explains this behavior?",
-                  options: ["At K = 5 the model underfits the data; higher K values improve it", "At K = 5 the model achieves the best bias-variance balance; beyond this the model begins to underfit", "The training data is too small to support higher values of K", "Distance metric selection causes accuracy to drop after K = 5"],
-                  answerIndex: 1
-                },
-                {
-                  question: "For a binary classification problem with the following confusion matrix: TP = 40, TN = 35, FP = 5, FN = 10 — what is the Recall of the model?",
-                  options: ["88.9%", "80.0%", "87.5%", "75.0%"],
-                  answerIndex: 1
-                }
+                { question: "In KNN Regression with K = 3, if the three nearest neighbors have output values of 120, 150, and 90, what is the predicted value for the new data point?", options: ["150", "90", "120", "110"], answerIndex: 2, hint: "For regression, KNN predicts by averaging the outputs of the K neighbors." },
+                { question: "Which of the following statements about the Curse of Dimensionality in KNN is correct?", options: ["KNN performs better as the number of features increases", "As dimensionality increases, distances between points become increasingly similar, making KNN less effective", "Adding more features always improves KNN accuracy", "The Curse of Dimensionality only affects regression tasks in KNN"], answerIndex: 1, hint: "In very high-dimensional spaces, all points become far apart and appear nearly equidistant, making the concept of 'nearest neighbor' less meaningful." },
+                { question: "Why is feature scaling essential before applying the KNN algorithm?", options: ["To reduce the number of features in the dataset", "To ensure features with larger scales do not dominate the distance calculation", "To convert categorical features into numerical ones", "To increase the training speed of the algorithm"], answerIndex: 1, hint: "Without scaling, a feature with a large range (e.g., salary) will have a much larger impact on the distance than a feature with a small range (e.g., age)." },
+                { question: "In the K vs Accuracy plot, if the accuracy is highest at K = 5 and then gradually decreases, which of the following best explains this behavior?", options: ["At K = 5 the model underfits the data; higher K values improve it", "At K = 5 the model achieves the best bias-variance balance; beyond this the model begins to underfit", "The training data is too small to support higher values of K", "Distance metric selection causes accuracy to drop after K = 5"], answerIndex: 1, hint: "Increasing K smooths the decision boundary, which reduces variance but increases bias. An optimal K balances this trade-off." },
+                { question: "For a binary classification problem with the following confusion matrix: TP = 40, TN = 35, FP = 5, FN = 10 — what is the Recall of the model?", options: ["88.9%", "80.0%", "87.5%", "75.0%"], answerIndex: 1, hint: "Recall = TP / (TP + FN). It measures the ability to find all positive samples." }
               ]
             }
           }
@@ -6648,58 +6479,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "A Decision Tree is which type of machine learning model?",
-                  options: ["Unsupervised — Clustering Model", "Supervised — Lazy Learner", "Supervised — Eager Learner", "Reinforcement Learning Model"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following is used as a splitting criterion in Decision Trees?",
-                  options: ["Euclidean Distance", "Gini Impurity", "Pearson Correlation", "Z-Score"],
-                  answerIndex: 1
-                },
-                {
-                  question: "In a Decision Tree, a node that does not split further and holds the final predicted class is called:",
-                  options: ["Root Node", "Decision Node", "Internal Node", "Leaf Node"],
-                  answerIndex: 3
-                },
-                {
-                  question: "What does Information Gain measure in a Decision Tree?",
-                  options: ["The number of nodes in the tree", "The reduction in impurity achieved by splitting on a particular feature", "The depth of the tree after splitting", "The distance between data points"],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which of the following problems is associated with a Decision Tree that is too deep and complex?",
-                  options: ["Underfitting", "High Bias", "Overfitting", "High Variance only in Regression"],
-                  answerIndex: 2
-                }
+                { question: "A Decision Tree is which type of machine learning model?", options: ["Unsupervised — Clustering Model", "Supervised — Lazy Learner", "Supervised — Eager Learner", "Reinforcement Learning Model"], answerIndex: 2, hint: "Unlike KNN, Decision Trees build an explicit model (the tree) during the training phase." },
+                { question: "Which of the following is used as a splitting criterion in Decision Trees?", options: ["Euclidean Distance", "Gini Impurity", "Pearson Correlation", "Z-Score"], answerIndex: 1, hint: "This measures the probability of misclassifying a random element if it were labeled randomly." },
+                { question: "In a Decision Tree, a node that does not split further and holds the final predicted class is called:", options: ["Root Node", "Decision Node", "Internal Node", "Leaf Node"], answerIndex: 3, hint: "It's the terminal node at the end of the branches." },
+                { question: "What does Information Gain measure in a Decision Tree?", options: ["The number of nodes in the tree", "The reduction in impurity achieved by splitting on a particular feature", "The depth of the tree after splitting", "The distance between data points"], answerIndex: 1, hint: "It quantifies how much 'uncertainty' is removed by making a split." },
+                { question: "Which of the following problems is associated with a Decision Tree that is too deep and complex?", options: ["Underfitting", "High Bias", "Overfitting", "High Variance only in Regression"], answerIndex: 2, hint: "A tree that perfectly memorizes the training data will perform poorly on unseen data." }
               ],
               posttest: [
-                {
-                  question: "For a node with 40 instances of Class A and 60 instances of Class B, what is the Gini Impurity?",
-                  options: ["0.50", "0.48", "0.24", "0.36"],
-                  answerIndex: 1
-                },
-                {
-                  question: "In the Depth vs Accuracy plot, if training accuracy keeps increasing with depth but testing accuracy peaks at depth 4 and then decreases, what is the best action?",
-                  options: ["Set max_depth to the maximum available value", "Set max_depth to 4 as it gives the best generalization", "Remove all depth constraints and grow the full tree", "Switch to a different algorithm entirely"],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which of the following correctly describes Post-Pruning in a Decision Tree?",
-                  options: ["The tree is stopped from growing beyond a set depth during training", "The full tree is grown first and then branches are removed based on a complexity parameter", "Features are removed before training the Decision Tree", "The training data is reduced to simplify the tree structure"],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Decision Tree model shows 99% training accuracy and 72% testing accuracy. Which of the following is the most appropriate solution?",
-                  options: ["Increase the max_depth parameter", "Decrease the min_samples_leaf parameter", "Apply pruning and reduce max_depth to control overfitting", "Use Entropy instead of Gini as the splitting criterion"],
-                  answerIndex: 2
-                },
-                {
-                  question: "In Feature Importance from a Decision Tree, a feature with a high importance score means:",
-                  options: ["The feature has the highest number of unique values", "The feature appears only at the leaf nodes of the tree", "The feature contributes the most to reducing impurity across all splits in the tree", "The feature has the highest correlation with all other features"],
-                  answerIndex: 2
-                }
+                { question: "For a node with 40 instances of Class A and 60 instances of Class B, what is the Gini Impurity?", options: ["0.50", "0.48", "0.24", "0.36"], answerIndex: 1, hint: "Gini = 1 - (p_A^2 + p_B^2). p_A = 0.4, p_B = 0.6." },
+                { question: "In the Depth vs Accuracy plot, if training accuracy keeps increasing with depth but testing accuracy peaks at depth 4 and then decreases, what is the best action?", options: ["Set max_depth to the maximum available value", "Set max_depth to 4 as it gives the best generalization", "Remove all depth constraints and grow the full tree", "Switch to a different algorithm entirely"], answerIndex: 1, hint: "This is a classic sign of overfitting. The optimal depth is where test accuracy is highest." },
+                { question: "Which of the following correctly describes Post-Pruning in a Decision Tree?", options: ["The tree is stopped from growing beyond a set depth during training", "The full tree is grown first and then branches are removed based on a complexity parameter", "Features are removed before training the Decision Tree", "The training data is reduced to simplify the tree structure"], answerIndex: 1, hint: "The tree is first allowed to overfit, and then branches that provide little predictive power are trimmed back." },
+                { question: "A Decision Tree model shows 99% training accuracy and 72% testing accuracy. Which of the following is the most appropriate solution?", options: ["Increase the max_depth parameter", "Decrease the min_samples_leaf parameter", "Apply pruning and reduce max_depth to control overfitting", "Use Entropy instead of Gini as the splitting criterion"], answerIndex: 2, hint: "The model is overfitting. You need to simplify the model by limiting its growth." },
+                { question: "In Feature Importance from a Decision Tree, a feature with a high importance score means:", options: ["The feature has the highest number of unique values", "The feature appears only at the leaf nodes of the tree", "The feature contributes the most to reducing impurity across all splits in the tree", "The feature has the highest correlation with all other features"], answerIndex: 2, hint: "It is calculated by measuring the total reduction in impurity (e.g., Gini) that the feature provides." }
               ]
             }
           }
@@ -6804,58 +6595,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Which of the following tasks is a Decision Tree Regressor designed to perform?",
-                  options: ["Predict a discrete class label for a given input", "Cluster data points into groups based on similarity", "Predict a continuous numerical output value for a given input", "Reduce the dimensionality of a dataset"],
-                  answerIndex: 2
-                },
-                {
-                  question: "In a Decision Tree Regressor, the predicted output value at each leaf node is:",
-                  options: ["The majority class of all training instances in that node", "The median of the target values of all training instances in that node", "The mean of the target values of all training instances in that node", "The maximum target value of all training instances in that node"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following is the most commonly used splitting criterion for a Decision Tree Regressor?",
-                  options: ["Gini Impurity", "Entropy", "Mean Squared Error (MSE)", "Euclidean Distance"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which metric measures the proportion of variance in the target variable explained by the regression model?",
-                  options: ["Mean Absolute Error (MAE)", "Root Mean Squared Error (RMSE)", "R² Score (Coefficient of Determination)", "F1-Score"],
-                  answerIndex: 2
-                },
-                {
-                  question: "What is the primary difference between a Decision Tree Classifier and a Decision Tree Regressor?",
-                  options: ["Classifiers use Euclidean distance for splitting while Regressors use Gini Impurity", "Classifiers predict continuous values while Regressors predict class labels", "Classifiers predict class labels using majority voting while Regressors predict continuous values using mean output", "There is no difference — both use the same splitting criterion and output method"],
-                  answerIndex: 2
-                }
+                { question: "Which of the following tasks is a Decision Tree Regressor designed to perform?", options: ["Predict a discrete class label for a given input", "Cluster data points into groups based on similarity", "Predict a continuous numerical output value for a given input", "Reduce the dimensionality of a dataset"], answerIndex: 2, hint: "A 'Regressor' is for predicting a numerical quantity, not a category." },
+                { question: "In a Decision Tree Regressor, the predicted output value at each leaf node is:", options: ["The majority class of all training instances in that node", "The median of the target values of all training instances in that node", "The mean of the target values of all training instances in that node", "The maximum target value of all training instances in that node"], answerIndex: 2, hint: "The prediction for a region is the average value of all the training points that fall there." },
+                { question: "Which of the following is the most commonly used splitting criterion for a Decision Tree Regressor?", options: ["Gini Impurity", "Entropy", "Mean Squared Error (MSE)", "Euclidean Distance"], answerIndex: 2, hint: "The goal is to create child nodes that are 'purer' in terms of their target values, which means lower variance." },
+                { question: "Which metric measures the proportion of variance in the target variable explained by the regression model?", options: ["Mean Absolute Error (MAE)", "Root Mean Squared Error (RMSE)", "R² Score (Coefficient of Determination)", "F1-Score"], answerIndex: 2, hint: "It's a scale-invariant score that indicates how well the model fits the data, often between 0 and 1." },
+                { question: "What is the primary difference between a Decision Tree Classifier and a Decision Tree Regressor?", options: ["Classifiers use Euclidean distance for splitting while Regressors use Gini Impurity", "Classifiers predict continuous values while Regressors predict class labels", "Classifiers predict class labels using majority voting while Regressors predict continuous values using mean output", "There is no difference — both use the same splitting criterion and output method"], answerIndex: 2, hint: "The decision at a leaf node is different: a vote for classification, an average for regression." }
               ],
               posttest: [
-                {
-                  question: "A Decision Tree Regressor with max_depth = 1 splits the data into exactly how many leaf regions?",
-                  options: ["1", "3", "2", "4"],
-                  answerIndex: 2
-                },
-                {
-                  question: "For a leaf node containing training instances with target values: 120, 130, 110, 140, 150 — what will be the predicted output for any new instance that falls into this leaf?",
-                  options: ["130", "120", "150", "110"],
-                  answerIndex: 0
-                },
-                {
-                  question: "In the Residual Plot of a Decision Tree Regressor, if residuals show a clear funnel-shaped pattern (increasing spread with increasing predicted values), this indicates:",
-                  options: ["The model is perfectly fitted", "The model has heteroscedasticity — variance of errors is not constant", "The model is underfitting the data", "The splitting criterion should be changed to MAE"],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Decision Tree Regressor is trained on house prices ranging from ₹20 Lakhs to ₹150 Lakhs. When asked to predict the price of a house valued at ₹200 Lakhs (beyond the training range), the model will:",
-                  options: ["Extrapolate and predict a value near ₹200 Lakhs", "Return an error as the value is out of range", "Predict the mean of the entire training set", "Predict a constant value equal to the mean of the nearest leaf node — it cannot extrapolate beyond training range"],
-                  answerIndex: 3
-                },
-                {
-                  question: "A Decision Tree Regressor gives the following results: Training R² = 0.98, Testing R² = 0.65. Which combination of parameter changes is most appropriate to improve the model?",
-                  options: ["Increase max_depth and decrease min_samples_leaf", "Decrease max_depth and increase min_samples_leaf", "Increase max_depth and increase min_samples_split", "Decrease min_samples_split and set ccp_alpha to 0"],
-                  answerIndex: 1
-                }
+                { question: "A Decision Tree Regressor with max_depth = 1 splits the data into exactly how many leaf regions?", options: ["1", "3", "2", "4"], answerIndex: 2, hint: "A single split (a stump) divides the data into two groups." },
+                { question: "For a leaf node containing training instances with target values: 120, 130, 110, 140, 150 — what will be the predicted output for any new instance that falls into this leaf?", options: ["130", "120", "150", "110"], answerIndex: 0, hint: "The prediction is the mean of the values in that leaf." },
+                { question: "In the Residual Plot of a Decision Tree Regressor, if residuals show a clear funnel-shaped pattern (increasing spread with increasing predicted values), this indicates:", options: ["The model is perfectly fitted", "The model has heteroscedasticity — variance of errors is not constant", "The model is underfitting the data", "The splitting criterion should be changed to MAE"], answerIndex: 1, hint: "The errors are not consistent across the range of predictions, violating a key assumption of many linear models." },
+                { question: "A Decision Tree Regressor is trained on house prices ranging from ₹20 Lakhs to ₹150 Lakhs. When asked to predict the price of a house valued at ₹200 Lakhs (beyond the training range), the model will:", options: ["Extrapolate and predict a value near ₹200 Lakhs", "Return an error as the value is out of range", "Predict the mean of the entire training set", "Predict a constant value equal to the mean of the nearest leaf node — it cannot extrapolate beyond training range"], answerIndex: 3, hint: "Decision trees make predictions based on the training data's target values. They cannot 'trend' upward or downward beyond the range they were trained on." },
+                { question: "A Decision Tree Regressor gives the following results: Training R² = 0.98, Testing R² = 0.65. Which combination of parameter changes is most appropriate to improve the model?", options: ["Increase max_depth and decrease min_samples_leaf", "Decrease max_depth and increase min_samples_leaf", "Increase max_depth and increase min_samples_split", "Decrease min_samples_split and set ccp_alpha to 0"], answerIndex: 1, hint: "The model is overfitting. You need to limit its complexity by making the tree shallower and requiring more samples at leaves." }
               ]
             }
           }
@@ -6960,108 +6711,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Ensemble Learning is a technique that:",
-                  options: [
-                    "Trains a single powerful model on the entire dataset",
-                    "Combines multiple individual models to produce a stronger overall prediction",
-                    "Reduces the number of features in the dataset before training",
-                    "Applies clustering algorithms to group similar data points"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Random Forest is built upon which base learner?",
-                  options: [
-                    "K-Nearest Neighbors",
-                    "Support Vector Machine",
-                    "Decision Tree",
-                    "Logistic Regression"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "The technique of training each base learner on a different random bootstrap sample of the training data is called:",
-                  options: [
-                    "Boosting",
-                    "Stacking",
-                    "Bagging (Bootstrap Aggregating)",
-                    "Blending"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "In a Random Forest Classifier with 100 trees, if 60 trees predict Class A and 40 trees predict Class B for a new instance, the final prediction will be:",
-                  options: [
-                    "Class B",
-                    "An average of Class A and Class B",
-                    "Class A",
-                    "The prediction of the tree with the highest accuracy"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following is a key advantage of Random Forest over a single Decision Tree?",
-                  options: [
-                    "Random Forest is faster to train than a single Decision Tree",
-                    "Random Forest requires less memory than a single Decision Tree",
-                    "Random Forest reduces overfitting by averaging predictions across multiple diverse trees",
-                    "Random Forest always achieves 100% accuracy on training data"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "Ensemble Learning is a technique that:", options: ["Trains a single powerful model on the entire dataset", "Combines multiple individual models to produce a stronger overall prediction", "Reduces the number of features in the dataset before training", "Applies clustering algorithms to group similar data points"], answerIndex: 1, hint: "The 'wisdom of the crowd' principle applied to machine learning models." },
+                { question: "Random Forest is built upon which base learner?", options: ["K-Nearest Neighbors", "Support Vector Machine", "Decision Tree", "Logistic Regression"], answerIndex: 2, hint: "It creates a 'forest' of this type of model." },
+                { question: "The technique of training each base learner on a different random bootstrap sample of the training data is called:", options: ["Boosting", "Stacking", "Bagging (Bootstrap Aggregating)", "Blending"], answerIndex: 2, hint: "The name is a combination of Bootstrap + Aggregating." },
+                { question: "In a Random Forest Classifier with 100 trees, if 60 trees predict Class A and 40 trees predict Class B for a new instance, the final prediction will be:", options: ["Class B", "An average of Class A and Class B", "Class A", "The prediction of the tree with the highest accuracy"], answerIndex: 2, hint: "The forest votes on the final class, and the class with the majority of votes wins." },
+                { question: "Which of the following is a key advantage of Random Forest over a single Decision Tree?", options: ["Random Forest is faster to train than a single Decision Tree", "Random Forest requires less memory than a single Decision Tree", "Random Forest reduces overfitting by averaging predictions across multiple diverse trees", "Random Forest always achieves 100% accuracy on training data"], answerIndex: 2, hint: "By combining many trees, the model's overall variance is reduced, leading to better generalization." }
               ],
               posttest: [
-                {
-                  question: "In a Random Forest with 200 trees performing binary classification, if 130 trees predict Class 1 and 70 trees predict Class 0 for a test instance, what is the predicted class and the prediction confidence?",
-                  options: [
-                    "Class 0 with 35% confidence",
-                    "Class 1 with 65% confidence",
-                    "Class 0 with 65% confidence",
-                    "Class 1 with 100% confidence"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In the n_estimators vs Accuracy plot, after a certain number of trees the accuracy stabilizes and no longer improves. What is the most appropriate conclusion from this observation?",
-                  options: [
-                    "The model has started to overfit and more trees must be avoided",
-                    "The dataset is too small to benefit from more trees",
-                    "The model has reached its optimal ensemble size and adding more trees gives diminishing returns with increased computational cost",
-                    "The max_features parameter must be increased to continue improving accuracy"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following correctly explains why Random Forest trees are deliberately kept diverse and decorrelated from each other?",
-                  options: [
-                    "Diverse trees reduce the training time of the overall ensemble",
-                    "When diverse trees make different types of errors, aggregating their predictions causes errors to cancel out, reducing overall variance",
-                    "Decorrelated trees individually have higher accuracy than correlated trees",
-                    "Diverse trees use fewer features and are therefore simpler and faster to train"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Random Forest model returns an OOB Score of 84% and a Test Set Accuracy of 86%. What does this result indicate?",
-                  options: [
-                    "The model is overfitting since OOB Score is lower than test accuracy",
-                    "The OOB Score and Test Accuracy are closely aligned, suggesting the model generalizes well and the OOB estimate is a reliable proxy for test performance",
-                    "The model is underfitting and more trees should be added to close the gap",
-                    "The bootstrap sampling has failed and the model should be retrained without OOB evaluation"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Random Forest Classifier has 13 features in the dataset. By default, how many features are randomly considered at each split node?",
-                  options: [
-                    "13 (all features)",
-                    "4 (approximately √13 rounded to nearest integer)",
-                    "6 (approximately half of all features)",
-                    "1 (only one random feature at each split)"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "In a Random Forest with 200 trees performing binary classification, if 130 trees predict Class 1 and 70 trees predict Class 0 for a test instance, what is the predicted class and the prediction confidence?", options: ["Class 0 with 35% confidence", "Class 1 with 65% confidence", "Class 0 with 65% confidence", "Class 1 with 100% confidence"], answerIndex: 1, hint: "The majority class wins. The confidence is the percentage of trees that voted for that class." },
+                { question: "In the n_estimators vs Accuracy plot, after a certain number of trees the accuracy stabilizes and no longer improves. What is the most appropriate conclusion from this observation?", options: ["The model has started to overfit and more trees must be avoided", "The dataset is too small to benefit from more trees", "The model has reached its optimal ensemble size and adding more trees gives diminishing returns with increased computational cost", "The max_features parameter must be increased to continue improving accuracy"], answerIndex: 2, hint: "Random Forest does not overfit with more trees, but the benefit eventually becomes negligible." },
+                { question: "Which of the following correctly explains why Random Forest trees are deliberately kept diverse and decorrelated from each other?", options: ["Diverse trees reduce the training time of the overall ensemble", "When diverse trees make different types of errors, aggregating their predictions causes errors to cancel out, reducing overall variance", "Decorrelated trees individually have higher accuracy than correlated trees", "Diverse trees use fewer features and are therefore simpler and faster to train"], answerIndex: 1, hint: "The power of the ensemble comes from combining many 'weak' but *different* models." },
+                { question: "A Random Forest model returns an OOB Score of 84% and a Test Set Accuracy of 86%. What does this result indicate?", options: ["The model is overfitting since OOB Score is lower than test accuracy", "The OOB Score and Test Accuracy are closely aligned, suggesting the model generalizes well and the OOB estimate is a reliable proxy for test performance", "The model is underfitting and more trees should be added to close the gap", "The bootstrap sampling has failed and the model should be retrained without OOB evaluation"], answerIndex: 1, hint: "The OOB score is an internal validation metric, so it should be close to the true test performance." },
+                { question: "A Random Forest Classifier has 13 features in the dataset. By default, how many features are randomly considered at each split node?", options: ["13 (all features)", "4 (approximately √13 rounded to nearest integer)", "6 (approximately half of all features)", "1 (only one random feature at each split)"], answerIndex: 1, hint: "The default for classification is the square root of the total number of features." }
               ]
             }
           }
@@ -7157,108 +6818,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Bayes' Theorem is used to calculate which of the following?",
-                  options: [
-                    "The Euclidean distance between two data points",
-                    "The posterior probability of a class given observed evidence",
-                    "The variance of a feature in a dataset",
-                    "The optimal number of clusters in a dataset"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In Naïve Bayes, the word 'Naïve' refers to which assumption?",
-                  options: [
-                    "The algorithm assumes all classes have equal prior probabilities",
-                    "The algorithm assumes all features are conditionally independent of each other given the class label",
-                    "The algorithm assumes the data follows a uniform distribution",
-                    "The algorithm assumes there are no missing values in the dataset"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In Bayes' Theorem, P(Class | Features) is called the:",
-                  options: [
-                    "Prior Probability",
-                    "Likelihood",
-                    "Marginal Probability",
-                    "Posterior Probability"
-                  ],
-                  answerIndex: 3
-                },
-                {
-                  question: "Which variant of Naïve Bayes is most suitable for text classification tasks where features represent word counts?",
-                  options: [
-                    "Gaussian Naïve Bayes",
-                    "Bernoulli Naïve Bayes",
-                    "Multinomial Naïve Bayes",
-                    "Complement Naïve Bayes"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "The problem of zero probability in Naïve Bayes is addressed by:",
-                  options: [
-                    "Removing the feature from the dataset",
-                    "Replacing zero probabilities with the class prior probability",
-                    "Laplace Smoothing (Additive Smoothing)",
-                    "Normalizing the feature values to a range of 0 to 1"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "Bayes' Theorem is used to calculate which of the following?", options: ["The Euclidean distance between two data points", "The posterior probability of a class given observed evidence", "The variance of a feature in a dataset", "The optimal number of clusters in a dataset"], answerIndex: 1, hint: "It answers the question: 'Given what I've seen, what is the probability of my hypothesis being true?'" },
+                { question: "In Naïve Bayes, the word 'Naïve' refers to which assumption?", options: ["The algorithm assumes all classes have equal prior probabilities", "The algorithm assumes all features are conditionally independent of each other given the class label", "The algorithm assumes the data follows a uniform distribution", "The algorithm assumes there are no missing values in the dataset"], answerIndex: 1, hint: "This is a strong, often unrealistic, assumption that simplifies the probability calculation." },
+                { question: "In Bayes' Theorem, P(Class | Features) is called the:", options: ["Prior Probability", "Likelihood", "Marginal Probability", "Posterior Probability"], answerIndex: 3, hint: "It's the updated belief about the class *after* seeing the features." },
+                { question: "Which variant of Naïve Bayes is most suitable for text classification tasks where features represent word counts?", options: ["Gaussian Naïve Bayes", "Bernoulli Naïve Bayes", "Multinomial Naïve Bayes", "Complement Naïve Bayes"], answerIndex: 2, hint: "This variant models the frequency of discrete events, like the count of a word in a document." },
+                { question: "The problem of zero probability in Naïve Bayes is addressed by:", options: ["Removing the feature from the dataset", "Replacing zero probabilities with the class prior probability", "Laplace Smoothing (Additive Smoothing)", "Normalizing the feature values to a range of 0 to 1"], answerIndex: 2, hint: "This technique adds a small 'pseudocount' to every feature value to avoid zero probabilities." }
               ],
-              posttest: [
-                {
-                  question: "In a Naïve Bayes classifier, the training dataset has 200 instances. Class A has 80 instances and Class B has 120 instances. What are the prior probabilities P(Class A) and P(Class B)?",
-                  options: [
-                    "P(Class A) = 0.50, P(Class B) = 0.50",
-                    "P(Class A) = 0.40, P(Class B) = 0.60",
-                    "P(Class A) = 0.60, P(Class B) = 0.40",
-                    "P(Class A) = 0.80, P(Class B) = 0.20"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Multinomial Naïve Bayes model without Laplace smoothing encounters the word 'lottery' which never appeared in the training data for the Ham class. What will happen to the posterior probability of Ham for a message containing 'lottery'?",
-                  options: [
-                    "The probability of Ham will slightly decrease",
-                    "The probability of Ham will remain unchanged",
-                    "The probability of Ham will become exactly zero regardless of all other words",
-                    "The probability of Ham will increase because 'lottery' is not a spam word"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "In Gaussian Naïve Bayes, the parameters learned from the training data for each feature and class are:",
-                  options: [
-                    "The minimum and maximum values of each feature per class",
-                    "The mean and variance of each feature per class",
-                    "The median and interquartile range of each feature per class",
-                    "The mode and standard deviation of each feature per class"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Naïve Bayes classifier computes the following unnormalized posterior scores for a new instance: Score(Class A) = 0.0042 and Score(Class B) = 0.0018. What is the normalized posterior probability P(Class A | X)?",
-                  options: [
-                    "42%",
-                    "18%",
-                    "70%",
-                    "30%"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following scenarios would cause Gaussian Naïve Bayes to perform poorly even if the conditional independence assumption holds?",
-                  options: [
-                    "The dataset has a large number of training instances",
-                    "The features follow strongly non-Gaussian distributions such as heavily skewed or multimodal distributions",
-                    "The dataset has equal prior probabilities for all classes",
-                    "The number of features is much smaller than the number of training instances"
-                  ],
-                  answerIndex: 1
-                }
+              posttest:[
+                { question: "In a Naïve Bayes classifier, the training dataset has 200 instances. Class A has 80 instances and Class B has 120 instances. What are the prior probabilities P(Class A) and P(Class B)?", options: ["P(Class A) = 0.50, P(Class B) = 0.50", "P(Class A) = 0.40, P(Class B) = 0.60", "P(Class A) = 0.60, P(Class B) = 0.40", "P(Class A) = 0.80, P(Class B) = 0.20"], answerIndex: 1, hint: "Prior probability is simply the proportion of each class in the training set." },
+                { question: "A Multinomial Naïve Bayes model without Laplace smoothing encounters the word 'lottery' which never appeared in the training data for the Ham class. What will happen to the posterior probability of Ham for a message containing 'lottery'?", options: ["The probability of Ham will slightly decrease", "The probability of Ham will remain unchanged", "The probability of Ham will become exactly zero regardless of all other words", "The probability of Ham will increase because 'lottery' is not a spam word"], answerIndex: 2, hint: "Multiplying probabilities for each word includes P('lottery'|Ham), which is zero. Anything times zero is zero." },
+                { question: "In Gaussian Naïve Bayes, the parameters learned from the training data for each feature and class are:", options: ["The minimum and maximum values of each feature per class", "The mean and variance of each feature per class", "The median and interquartile range of each feature per class", "The mode and standard deviation of each feature per class"], answerIndex: 1, hint: "It assumes the continuous data for a given class follows a bell-shaped (normal) distribution." },
+                { question: "A Naïve Bayes classifier computes the following unnormalized posterior scores for a new instance: Score(Class A) = 0.0042 and Score(Class B) = 0.0018. What is the normalized posterior probability P(Class A | X)?", options: ["42%", "18%", "70%", "30%"], answerIndex: 2, hint: "Divide the score for Class A by the sum of the scores for both classes." },
+                { question: "Which of the following scenarios would cause Gaussian Naïve Bayes to perform poorly even if the conditional independence assumption holds?", options: ["The dataset has a large number of training instances", "The features follow strongly non-Gaussian distributions such as heavily skewed or multimodal distributions", "The dataset has equal prior probabilities for all classes", "The number of features is much smaller than the number of training instances"], answerIndex: 1, hint: "The 'Gaussian' variant relies on the assumption that the data is normally distributed." }
               ]
             }
           }
@@ -7353,108 +6924,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "The primary objective of a Support Vector Machine (SVM) classifier is to:",
-                  options: [
-                    "Minimize the number of support vectors in the training data",
-                    "Find the hyperplane that maximizes the margin between two classes",
-                    "Minimize the training error on all data points",
-                    "Find the centroid of each class and draw a boundary midway between them"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Support Vectors in an SVM are defined as:",
-                  options: [
-                    "All data points in the training dataset",
-                    "The data points farthest from the decision boundary",
-                    "The data points closest to the decision boundary that define the margin",
-                    "The data points that are incorrectly classified by the model"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "The Kernel Trick in SVM is used to:",
-                  options: [
-                    "Reduce the number of support vectors required for classification",
-                    "Map data from a lower-dimensional space to a higher-dimensional space to make it linearly separable",
-                    "Normalize the feature values before training the SVM",
-                    "Select the most important features from the dataset automatically"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "The regularization parameter C in SVM controls:",
-                  options: [
-                    "The number of dimensions in the kernel feature space",
-                    "The width of the Gaussian RBF kernel",
-                    "The trade-off between maximizing the margin and minimizing classification errors",
-                    "The number of support vectors selected during training"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following kernel functions is most suitable for non-linearly separable data where the decision boundary is circular or elliptical?",
-                  options: [
-                    "Linear Kernel",
-                    "Polynomial Kernel",
-                    "Radial Basis Function (RBF) Kernel",
-                    "Sigmoid Kernel"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "The primary objective of a Support Vector Machine (SVM) classifier is to:", options: ["Minimize the number of support vectors in the training data", "Find the hyperplane that maximizes the margin between two classes", "Minimize the training error on all data points", "Find the centroid of each class and draw a boundary midway between them"], answerIndex: 1, hint: "It searches for the decision boundary with the largest possible 'gap' or 'street' between the classes." },
+                { question: "Support Vectors in an SVM are defined as:", options: ["All data points in the training dataset", "The data points farthest from the decision boundary", "The data points closest to the decision boundary that define the margin", "The data points that are incorrectly classified by the model"], answerIndex: 2, hint: "These are the 'critical' points that influence where the boundary is drawn." },
+                { question: "The Kernel Trick in SVM is used to:", options: ["Reduce the number of support vectors required for classification", "Map data from a lower-dimensional space to a higher-dimensional space to make it linearly separable", "Normalize the feature values before training the SVM", "Select the most important features from the dataset automatically"], answerIndex: 1, hint: "It allows SVM to find a non-linear boundary in the original space by working in a transformed, higher-dimensional space." },
+                { question: "The regularization parameter C in SVM controls:", options: ["The number of dimensions in the kernel feature space", "The width of the Gaussian RBF kernel", "The trade-off between maximizing the margin and minimizing classification errors", "The number of support vectors selected during training"], answerIndex: 2, hint: "A large C prioritizes correct classification over a wide margin, which can lead to overfitting." },
+                { question: "Which of the following kernel functions is most suitable for non-linearly separable data where the decision boundary is circular or elliptical?", options: ["Linear Kernel", "Polynomial Kernel", "Radial Basis Function (RBF) Kernel", "Sigmoid Kernel"], answerIndex: 2, hint: "This is the default kernel for many SVM implementations because it is very flexible and can model complex boundaries." }
               ],
               posttest: [
-                {
-                  question: "An SVM with a very large value of C (e.g. C = 10,000) is trained on a dataset. Which of the following best describes the expected behavior of this model?",
-                  options: [
-                    "The model will have a very wide margin with many misclassifications allowed",
-                    "The model will focus on maximizing the margin at the cost of some training errors",
-                    "The model will try to classify all training points correctly, resulting in a very narrow margin and risk of overfitting",
-                    "The model will reduce the number of support vectors to zero"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "For an SVM with RBF kernel, if gamma is set to a very large value (e.g. gamma = 1000), what will be the effect on the decision boundary?",
-                  options: [
-                    "The decision boundary will become a straight line",
-                    "The decision boundary will become very smooth and generalized",
-                    "Each support vector will have a very small influence radius, causing the boundary to be extremely wiggly and overfit to individual training points",
-                    "The model will automatically switch to a Linear kernel"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "A dataset has 500 training instances. After training an SVM with RBF kernel (C=1, gamma=scale), 420 support vectors are identified. What does this large number of support vectors indicate?",
-                  options: [
-                    "The model is performing very well with high accuracy",
-                    "The model has found a wide margin that perfectly separates the data",
-                    "The model may be overfitting or the kernel/parameters are not well suited to the data — almost the entire training set is acting as support vectors",
-                    "The dataset is linearly separable and a Linear kernel should be used instead"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "In a 4-class classification problem using SVM with the One-vs-One strategy, how many binary SVM classifiers will be trained?",
-                  options: [
-                    "4",
-                    "8",
-                    "6",
-                    "12"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Feature scaling is applied before training SVM. After standardization, a feature that originally ranged from 0 to 10,000 now ranges approximately from −3 to +3. A second feature that originally ranged from 0 to 1 also now ranges from −3 to +3. Why is this transformation critical for SVM?",
-                  options: [
-                    "Scaling converts categorical features to numerical values required by SVM",
-                    "Without scaling, features with larger ranges dominate the distance calculations and margin computation, causing the SVM to be biased towards those features — scaling ensures all features contribute equally",
-                    "Scaling reduces the number of support vectors required by the model",
-                    "Scaling changes the kernel function from RBF to Linear, making the boundary more interpretable"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "An SVM with a very large value of C (e.g. C = 10,000) is trained on a dataset. Which of the following best describes the expected behavior of this model?", options: ["The model will have a very wide margin with many misclassifications allowed", "The model will focus on maximizing the margin at the cost of some training errors", "The model will try to classify all training points correctly, resulting in a very narrow margin and risk of overfitting", "The model will reduce the number of support vectors to zero"], answerIndex: 2, hint: "A high C gives the error term a lot of weight, forcing the model to fit the training data as best as possible." },
+                { question: "For an SVM with RBF kernel, if gamma is set to a very large value (e.g. gamma = 1000), what will be the effect on the decision boundary?", options: ["The decision boundary will become a straight line", "The decision boundary will become very smooth and generalized", "Each support vector will have a very small influence radius, causing the boundary to be extremely wiggly and overfit to individual training points", "The model will automatically switch to a Linear kernel"], answerIndex: 2, hint: "A high gamma means each support vector influences only a very small region around itself, leading to a highly complex, 'wiggly' boundary." },
+                { question: "A dataset has 500 training instances. After training an SVM with RBF kernel (C=1, gamma=scale), 420 support vectors are identified. What does this large number of support vectors indicate?", options: ["The model is performing very well with high accuracy", "The model has found a wide margin that perfectly separates the data", "The model may be overfitting or the kernel/parameters are not well suited to the data — almost the entire training set is acting as support vectors", "The dataset is linearly separable and a Linear kernel should be used instead"], answerIndex: 2, hint: "Ideally, a model uses a small subset of the data as support vectors. Using most of the data suggests the model is not generalizing well." },
+                { question: "In a 4-class classification problem using SVM with the One-vs-One strategy, how many binary SVM classifiers will be trained?", options: ["4", "8", "6", "12"], answerIndex: 2, hint: "One-vs-One trains a classifier for every possible pair of classes. The formula for k classes is k*(k-1)/2." },
+                { question: "Feature scaling is applied before training SVM. After standardization, a feature that originally ranged from 0 to 10,000 now ranges approximately from −3 to +3. A second feature that originally ranged from 0 to 1 also now ranges from −3 to +3. Why is this transformation critical for SVM?", options: ["Scaling converts categorical features to numerical values required by SVM", "Without scaling, features with larger ranges dominate the distance calculations and margin computation, causing the SVM to be biased towards those features — scaling ensures all features contribute equally", "Scaling reduces the number of support vectors required by the model", "Scaling changes the kernel function from RBF to Linear, making the boundary more interpretable"], answerIndex: 1, hint: "SVM is based on distance, so all features should be on a similar scale to have equal importance." }
               ]
             }
           }
@@ -7550,108 +7031,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Simple Linear Regression models the relationship between:",
-                  options: [
-                    "Two or more independent variables and one dependent variable",
-                    "One independent variable and one dependent variable",
-                    "One independent variable and two dependent variables",
-                    "Two independent variables and two dependent variables"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In the Simple Linear Regression equation ŷ = β₀ + β₁x, the term β₁ represents:",
-                  options: [
-                    "The intercept — the value of ŷ when x = 0",
-                    "The residual error of the model",
-                    "The slope — the change in ŷ for a one-unit increase in x",
-                    "The coefficient of determination"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "The method used to estimate the coefficients β₀ and β₁ in Simple Linear Regression by minimizing the sum of squared residuals is called:",
-                  options: [
-                    "Maximum Likelihood Estimation",
-                    "Ordinary Least Squares (OLS)",
-                    "Gradient Boosting",
-                    "Lagrangian Optimization"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "The R² Score (Coefficient of Determination) value of 1.0 indicates:",
-                  options: [
-                    "The model explains none of the variance in the dependent variable",
-                    "The model has a perfect linear fit — it explains all the variance in the dependent variable",
-                    "The model is overfitting the training data severely",
-                    "The independent and dependent variables have zero correlation"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In Simple Linear Regression, a residual is defined as:",
-                  options: [
-                    "The predicted value of the dependent variable",
-                    "The slope of the regression line",
-                    "The difference between the actual observed value and the predicted value",
-                    "The correlation coefficient between two variables"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "Simple Linear Regression models the relationship between:", options: ["Two or more independent variables and one dependent variable", "One independent variable and one dependent variable", "One independent variable and two dependent variables", "Two independent variables and two dependent variables"], answerIndex: 1, hint: "'Simple' here means there is only one predictor feature." },
+                { question: "In the Simple Linear Regression equation ŷ = β₀ + β₁x, the term β₁ represents:", options: ["The intercept — the value of ŷ when x = 0", "The residual error of the model", "The slope — the change in ŷ for a one-unit increase in x", "The coefficient of determination"], answerIndex: 2, hint: "It defines the 'steepness' of the regression line." },
+                { question: "The method used to estimate the coefficients β₀ and β₁ in Simple Linear Regression by minimizing the sum of squared residuals is called:", options: ["Maximum Likelihood Estimation", "Ordinary Least Squares (OLS)", "Gradient Boosting", "Lagrangian Optimization"], answerIndex: 1, hint: "It's a classical statistical method that finds the line that minimizes the vertical squared distances to the data points." },
+                { question: "The R² Score (Coefficient of Determination) value of 1.0 indicates:", options: ["The model explains none of the variance in the dependent variable", "The model has a perfect linear fit — it explains all the variance in the dependent variable", "The model is overfitting the training data severely", "The independent and dependent variables have zero correlation"], answerIndex: 1, hint: "This means the model perfectly predicts the training data; all residuals are zero." },
+                { question: "In Simple Linear Regression, a residual is defined as:", options: ["The predicted value of the dependent variable", "The slope of the regression line", "The difference between the actual observed value and the predicted value", "The correlation coefficient between two variables"], answerIndex: 2, hint: "It's the error of the model for a single prediction." }
               ],
               posttest: [
-                {
-                  question: "Which residual plot pattern indicates a violation of the homoscedasticity assumption in Simple Linear Regression?",
-                  options: [
-                    "Random scatter of points around the zero line in the Residuals vs Fitted plot",
-                    "A funnel shape (spreading out) in the Residuals vs Fitted plot",
-                    "Points closely following the diagonal line in the Q-Q plot",
-                    "A bell-shaped symmetric histogram of residuals"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "For a given Simple Linear Regression model predicting house price from area, the R² score is 0.85. What does this value mean?",
-                  options: [
-                    "The model accurately predicts the price of 85% of houses",
-                    "85% of the variance in house prices is explained by the area",
-                    "The predicted house price is 85% of the actual house price on average",
-                    "The regression line passes perfectly through 85% of the data points"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which of the following is true regarding the Ordinary Least Squares (OLS) regression line?",
-                  options: [
-                    "It always passes through the origin (0,0)",
-                    "It minimizes the sum of absolute errors",
-                    "It always passes through the point defined by the mean of x and the mean of y (x̄, ȳ)",
-                    "It is highly resistant to extreme outliers"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "If the Pearson correlation coefficient (r) between independent variable x and dependent variable y is -0.90, what is the expected slope (β₁) of the regression line?",
-                  options: [
-                    "The slope will be positive",
-                    "The slope will be negative",
-                    "The slope will be zero",
-                    "The slope cannot be determined without knowing R²"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "The variance decomposition in ANOVA for regression states that SST = SSReg + SSRes. If a model fits the data very poorly, which of the following is true?",
-                  options: [
-                    "SSReg will be very large compared to SSRes",
-                    "SSRes will be close to zero",
-                    "SSRes will be very large, approaching the value of SST",
-                    "SST will be negative"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "Which residual plot pattern indicates a violation of the homoscedasticity assumption in Simple Linear Regression?", options: ["Random scatter of points around the zero line in the Residuals vs Fitted plot", "A funnel shape (spreading out) in the Residuals vs Fitted plot", "Points closely following the diagonal line in the Q-Q plot", "A bell-shaped symmetric histogram of residuals"], answerIndex: 1, hint: "Homoscedasticity means constant variance of errors. A 'funnel' shape means the variance is changing." },
+                { question: "For a given Simple Linear Regression model predicting house price from area, the R² score is 0.85. What does this value mean?", options: ["The model accurately predicts the price of 85% of houses", "85% of the variance in house prices is explained by the area", "The predicted house price is 85% of the actual house price on average", "The regression line passes perfectly through 85% of the data points"], answerIndex: 1, hint: "It represents the proportion of the total variability in the target variable that is captured by the model." },
+                { question: "Which of the following is true regarding the Ordinary Least Squares (OLS) regression line?", options: ["It always passes through the origin (0,0)", "It minimizes the sum of absolute errors", "It always passes through the point defined by the mean of x and the mean of y (x̄, ȳ)", "It is highly resistant to extreme outliers"], answerIndex: 2, hint: "This is a key property: the line passes through the 'center of gravity' of the data." },
+                { question: "If the Pearson correlation coefficient (r) between independent variable x and dependent variable y is -0.90, what is the expected slope (β₁) of the regression line?", options: ["The slope will be positive", "The slope will be negative", "The slope will be zero", "The slope cannot be determined without knowing R²"], answerIndex: 1, hint: "A strong negative correlation implies that as x increases, y decreases, so the line slopes downwards." },
+                { question: "The variance decomposition in ANOVA for regression states that SST = SSReg + SSRes. If a model fits the data very poorly, which of the following is true?", options: ["SSReg will be very large compared to SSRes", "SSRes will be close to zero", "SSRes will be very large, approaching the value of SST", "SST will be negative"], answerIndex: 2, hint: "A bad fit means the model explains very little of the variance, so most of it is left unexplained in the residuals." }
               ]
             }
           }
@@ -7745,108 +7136,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Logistic Regression is primarily used for which type of machine learning task?",
-                  options: [
-                    "Predicting a continuous numerical output value",
-                    "Clustering data points into groups based on similarity",
-                    "Classifying instances into discrete class categories",
-                    "Reducing the dimensionality of a dataset"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "The Sigmoid function used in Logistic Regression maps any real-valued input to an output in the range:",
-                  options: [
-                    "−∞ to +∞",
-                    "0 to 1",
-                    "−1 to +1",
-                    "0 to ∞"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In Logistic Regression, the output of the Sigmoid function is interpreted as:",
-                  options: [
-                    "The predicted continuous value of the target variable",
-                    "The distance of the instance from the decision boundary",
-                    "The probability that the instance belongs to the positive class",
-                    "The weight assigned to each feature in the model"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "The default decision threshold in binary Logistic Regression is:",
-                  options: [
-                    "0.25",
-                    "0.75",
-                    "1.0",
-                    "0.5"
-                  ],
-                  answerIndex: 3
-                },
-                {
-                  question: "The cost function minimized during Logistic Regression training is:",
-                  options: [
-                    "Mean Squared Error (MSE)",
-                    "Binary Cross-Entropy Loss (Log Loss)",
-                    "Gini Impurity",
-                    "Hinge Loss"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "Logistic Regression is primarily used for which type of machine learning task?", options: ["Predicting a continuous numerical output value", "Clustering data points into groups based on similarity", "Classifying instances into discrete class categories", "Reducing the dimensionality of a dataset"], answerIndex: 2, hint: "It outputs a probability, which is then used to make a classification decision." },
+                { question: "The Sigmoid function used in Logistic Regression maps any real-valued input to an output in the range:", options: ["−∞ to +∞", "0 to 1", "−1 to +1", "0 to ∞"], answerIndex: 1, hint: "This is ideal for representing a probability." },
+                { question: "In Logistic Regression, the output of the Sigmoid function is interpreted as:", options: ["The predicted continuous value of the target variable", "The distance of the instance from the decision boundary", "The probability that the instance belongs to the positive class", "The weight assigned to each feature in the model"], answerIndex: 2, hint: "For binary classification, a value >0.5 typically means a prediction of the 'positive' class." },
+                { question: "The default decision threshold in binary Logistic Regression is:", options: ["0.25", "0.75", "1.0", "0.5"], answerIndex: 3, hint: "This is the standard 'break-even' point, where the model is equally unsure." },
+                { question: "The cost function minimized during Logistic Regression training is:", options: ["Mean Squared Error (MSE)", "Binary Cross-Entropy Loss (Log Loss)", "Gini Impurity", "Hinge Loss"], answerIndex: 1, hint: "This function heavily penalizes confident, wrong predictions." }
               ],
               posttest: [
-                {
-                  question: "A Logistic Regression model outputs a predicted probability of P(y = 1 | x) = 0.73 for a test instance. With a decision threshold of 0.5, what is the predicted class? If the threshold is changed to 0.8, what is the predicted class?",
-                  options: [
-                    "Class 1 at threshold 0.5; Class 1 at threshold 0.8",
-                    "Class 1 at threshold 0.5; Class 0 at threshold 0.8",
-                    "Class 0 at threshold 0.5; Class 1 at threshold 0.8",
-                    "Class 0 at threshold 0.5; Class 0 at threshold 0.8"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In a Logistic Regression model trained on a medical dataset, the coefficient for the feature 'Blood Glucose Level' is β = +1.45. What does the odds ratio exp(1.45) ≈ 4.26 tell us about this feature?",
-                  options: [
-                    "A one-unit increase in Blood Glucose Level decreases the odds of the disease by 4.26 times",
-                    "A one-unit increase in Blood Glucose Level multiplies the odds of the disease by 4.26 — meaning the disease becomes 4.26 times more likely for each unit increase in glucose level",
-                    "Blood Glucose Level is 4.26 times less important than all other features combined",
-                    "The model predicts the disease with 4.26% probability when glucose is at its mean value"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A Logistic Regression classifier trained on an imbalanced dataset (95% Class 0, 5% Class 1) achieves 95% accuracy. Why is this accuracy score misleading in this context?",
-                  options: [
-                    "Logistic Regression cannot handle imbalanced datasets and always achieves exactly the majority class proportion as accuracy",
-                    "The model could achieve 95% accuracy simply by predicting Class 0 for every instance, completely ignoring Class 1 — making accuracy a poor metric here; Recall, F1-Score, and ROC-AUC are more informative",
-                    "The accuracy of 95% is correct and indicates the model is performing excellently on both classes",
-                    "The model has overfit the training data because the accuracy equals the class proportion"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "The Log Loss of Model A is 0.22 and the Log Loss of Model B is 0.58, both evaluated on the same test set. Which model is better and what does a lower Log Loss indicate?",
-                  options: [
-                    "Model B is better because a higher log loss indicates stronger confidence in predictions",
-                    "Both models are equally good as log loss only measures calibration not accuracy",
-                    "Model A is better because lower Log Loss indicates that the model's predicted probabilities are closer to the actual class labels — the model is both accurate and well-calibrated",
-                    "Model A is better only because it has a lower numerical value — Log Loss has no practical interpretation"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "A Logistic Regression model is trained with L1 regularization (Lasso) using a strong regularization setting (very small C). After training, several feature coefficients are exactly zero. What is the practical implication of this result?",
-                  options: [
-                    "The model has failed to converge and needs more training iterations",
-                    "The features with zero coefficients are the most important predictors and should be kept",
-                    "L1 regularization has performed automatic feature selection by driving irrelevant feature coefficients to exactly zero — the model uses only the features with non-zero coefficients for prediction",
-                    "Zero coefficients indicate that those features are perfectly correlated with the target variable"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "A Logistic Regression model outputs a predicted probability of P(y = 1 | x) = 0.73 for a test instance. With a decision threshold of 0.5, what is the predicted class? If the threshold is changed to 0.8, what is the predicted class?", options: ["Class 1 at threshold 0.5; Class 1 at threshold 0.8", "Class 1 at threshold 0.5; Class 0 at threshold 0.8", "Class 0 at threshold 0.5; Class 1 at threshold 0.8", "Class 0 at threshold 0.5; Class 0 at threshold 0.8"], answerIndex: 1, hint: "At a threshold of 0.5, 0.73 >= 0.5 → Class 1. At 0.8, 0.73 < 0.8 → Class 0." },
+                { question: "In a Logistic Regression model trained on a medical dataset, the coefficient for the feature 'Blood Glucose Level' is β = +1.45. What does the odds ratio exp(1.45) ≈ 4.26 tell us about this feature?", options: ["A one-unit increase in Blood Glucose Level decreases the odds of the disease by 4.26 times", "A one-unit increase in Blood Glucose Level multiplies the odds of the disease by 4.26 — meaning the disease becomes 4.26 times more likely for each unit increase in glucose level", "Blood Glucose Level is 4.26 times less important than all other features combined", "The model predicts the disease with 4.26% probability when glucose is at its mean value"], answerIndex: 1, hint: "A positive coefficient means the odds of the event increase as the feature increases. The odds ratio quantifies this increase." },
+                { question: "A Logistic Regression classifier trained on an imbalanced dataset (95% Class 0, 5% Class 1) achieves 95% accuracy. Why is this accuracy score misleading in this context?", options: ["Logistic Regression cannot handle imbalanced datasets and always achieves exactly the majority class proportion as accuracy", "The model could achieve 95% accuracy simply by predicting Class 0 for every instance, completely ignoring Class 1 — making accuracy a poor metric here; Recall, F1-Score, and ROC-AUC are more informative", "The accuracy of 95% is correct and indicates the model is performing excellently on both classes", "The model has overfit the training data because the accuracy equals the class proportion"], answerIndex: 1, hint: "A 'dummy' classifier that always picks the majority class would get the same score, so it's not a useful measurement of performance." },
+                { question: "The Log Loss of Model A is 0.22 and the Log Loss of Model B is 0.58, both evaluated on the same test set. Which model is better and what does a lower Log Loss indicate?", options: ["Model B is better because a higher log loss indicates stronger confidence in predictions", "Both models are equally good as log loss only measures calibration not accuracy", "Model A is better because lower Log Loss indicates that the model's predicted probabilities are closer to the actual class labels — the model is both accurate and well-calibrated", "Model A is better only because it has a lower numerical value — Log Loss has no practical interpretation"], answerIndex: 2, hint: "Log Loss penalizes models that are confident and wrong. A lower score is always better." },
+                { question: "A Logistic Regression model is trained with L1 regularization (Lasso) using a strong regularization setting (very small C). After training, several feature coefficients are exactly zero. What is the practical implication of this result?", options: ["The model has failed to converge and needs more training iterations", "The features with zero coefficients are the most important predictors and should be kept", "L1 regularization has performed automatic feature selection by driving irrelevant feature coefficients to exactly zero — the model uses only the features with non-zero coefficients for prediction", "Zero coefficients indicate that those features are perfectly correlated with the target variable"], answerIndex: 2, hint: "This is a key property of L1 regularization, leading to simpler, more interpretable models." }
               ]
             }
           }
@@ -7940,108 +7241,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "A Multi-layer Perceptron (MLP) belongs to which category of machine learning models?",
-                  options: [
-                    "Instance-Based Learning",
-                    "Probabilistic Learning",
-                    "Artificial Neural Networks (ANN)",
-                    "Ensemble Learning"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "In an MLP, the layer that receives the raw input features and passes them into the network is called the:",
-                  options: [
-                    "Output Layer",
-                    "Hidden Layer",
-                    "Activation Layer",
-                    "Input Layer"
-                  ],
-                  answerIndex: 3
-                },
-                {
-                  question: "Which of the following activation functions is most commonly used in the hidden layers of a modern MLP?",
-                  options: [
-                    "Step Function",
-                    "Sigmoid Function",
-                    "ReLU (Rectified Linear Unit)",
-                    "Identity Function"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Backpropagation in an MLP is used to:",
-                  options: [
-                    "Initialize the weights of the network before training",
-                    "Compute the gradient of the loss function with respect to each weight using the chain rule and update weights accordingly",
-                    "Select the optimal number of hidden layers in the network",
-                    "Normalize the input features before feeding them into the network"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "The Vanishing Gradient Problem in deep neural networks refers to:",
-                  options: [
-                    "The network weights becoming too large during training causing numerical overflow",
-                    "The gradients becoming extremely small as they are propagated backward through many layers causing early layers to learn very slowly or not at all",
-                    "The loss function failing to converge to a global minimum during training",
-                    "The output layer producing outputs close to zero for all inputs"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "A Multi-layer Perceptron (MLP) belongs to which category of machine learning models?", options: ["Instance-Based Learning", "Probabilistic Learning", "Artificial Neural Networks (ANN)", "Ensemble Learning"], answerIndex: 2, hint: "It's one of the most fundamental types of artificial neural networks." },
+                { question: "In an MLP, the layer that receives the raw input features and passes them into the network is called the:", options: ["Output Layer", "Hidden Layer", "Activation Layer", "Input Layer"], answerIndex: 3, hint: "Its number of neurons equals the number of features in your data." },
+                { question: "Which of the following activation functions is most commonly used in the hidden layers of a modern MLP?", options: ["Step Function", "Sigmoid Function", "ReLU (Rectified Linear Unit)", "Identity Function"], answerIndex: 2, hint: "It helps mitigate the vanishing gradient problem and is computationally efficient." },
+                { question: "Backpropagation in an MLP is used to:", options: ["Initialize the weights of the network before training", "Compute the gradient of the loss function with respect to each weight using the chain rule and update weights accordingly", "Select the optimal number of hidden layers in the network", "Normalize the input features before feeding them into the network"], answerIndex: 1, hint: "It's the core learning algorithm that calculates how much each weight contributed to the error." },
+                { question: "The Vanishing Gradient Problem in deep neural networks refers to:", options: ["The network weights becoming too large during training causing numerical overflow", "The gradients becoming extremely small as they are propagated backward through many layers causing early layers to learn very slowly or not at all", "The loss function failing to converge to a global minimum during training", "The output layer producing outputs close to zero for all inputs"], answerIndex: 1, hint: "It's like an echo getting quieter and quieter as it travels back through the network." }
               ],
               posttest: [
-                {
-                  question: "If an MLP classifier is applied to a dataset without performing feature scaling (standardization or normalization), what is the most likely consequence?",
-                  options: [
-                    "The model will automatically scale the features internally",
-                    "Gradient descent will converge very slowly or may fail to converge entirely because features with larger magnitudes will dominate weight updates",
-                    "The network will perfectly classify the training data but fail on test data",
-                    "The model architecture will dynamically adjust to accommodate the unscaled features"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "What is the primary benefit of using the ReLU activation function over the Sigmoid activation function in deep hidden layers?",
-                  options: [
-                    "ReLU produces probabilities bounded between 0 and 1",
-                    "ReLU mitigates the vanishing gradient problem because its derivative is exactly 1 for all positive inputs",
-                    "ReLU ensures that no neuron ever outputs zero",
-                    "ReLU makes backpropagation unnecessary"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In the context of training an MLP, what does 'Dropout' do?",
-                  options: [
-                    "It randomly discards a portion of the training dataset at each epoch",
-                    "It removes features that have low correlation with the target variable",
-                    "It randomly deactivates a fraction of neurons during each training step to prevent co-adaptation and reduce overfitting",
-                    "It stops the training process early when the loss stops decreasing"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "An MLP is being trained for a 5-class classification task. Which activation function should be used in the output layer and how many neurons should the output layer have?",
-                  options: [
-                    "Softmax activation, 5 neurons",
-                    "Sigmoid activation, 5 neurons",
-                    "ReLU activation, 1 neuron",
-                    "Softmax activation, 1 neuron"
-                  ],
-                  answerIndex: 0
-                },
-                {
-                  question: "During training, an MLP's training loss continues to decrease to near zero, but its validation loss starts to increase significantly after epoch 50. What does this indicate and what is a standard remedy?",
-                  options: [
-                    "Underfitting; increase the learning rate",
-                    "Overfitting; apply Early Stopping and halt training around epoch 50",
-                    "Vanishing gradients; switch to a Sigmoid activation function",
-                    "Perfect learning; let the network train until epoch 100"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "If an MLP classifier is applied to a dataset without performing feature scaling (standardization or normalization), what is the most likely consequence?", options: ["The model will automatically scale the features internally", "Gradient descent will converge very slowly or may fail to converge entirely because features with larger magnitudes will dominate weight updates", "The network will perfectly classify the training data but fail on test data", "The model architecture will dynamically adjust to accommodate the unscaled features"], answerIndex: 1, hint: "Neural networks are very sensitive to the scale of input features, just like KNN and SVM." },
+                { question: "What is the primary benefit of using the ReLU activation function over the Sigmoid activation function in deep hidden layers?", options: ["ReLU produces probabilities bounded between 0 and 1", "ReLU mitigates the vanishing gradient problem because its derivative is exactly 1 for all positive inputs", "ReLU ensures that no neuron ever outputs zero", "ReLU makes backpropagation unnecessary"], answerIndex: 1, hint: "Since the derivative of ReLU is 1 for positive inputs, the gradient doesn't shrink as it propagates backwards." },
+                { question: "In the context of training an MLP, what does 'Dropout' do?", options: ["It randomly discards a portion of the training dataset at each epoch", "It removes features that have low correlation with the target variable", "It randomly deactivates a fraction of neurons during each training step to prevent co-adaptation and reduce overfitting", "It stops the training process early when the loss stops decreasing"], answerIndex: 2, hint: "It's a very effective regularization technique that forces the network to learn more robust features." },
+                { question: "An MLP is being trained for a 5-class classification task. Which activation function should be used in the output layer and how many neurons should the output layer have?", options: ["Softmax activation, 5 neurons", "Sigmoid activation, 5 neurons", "ReLU activation, 1 neuron", "Softmax activation, 1 neuron"], answerIndex: 0, hint: "The Softmax function outputs a probability distribution over multiple classes." },
+                { question: "During training, an MLP's training loss continues to decrease to near zero, but its validation loss starts to increase significantly after epoch 50. What does this indicate and what is a standard remedy?", options: ["Underfitting; increase the learning rate", "Overfitting; apply Early Stopping and halt training around epoch 50", "Vanishing gradients; switch to a Sigmoid activation function", "Perfect learning; let the network train until epoch 100"], answerIndex: 1, hint: "This is a classic sign of overfitting. Stopping training at the point where validation loss is lowest is a simple solution." }
               ]
             }
           }
@@ -8186,58 +7397,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "K-Means Clustering belongs to which category of machine learning?",
-                  options: ["Supervised Learning", "Reinforcement Learning", "Unsupervised Learning", "Semi-Supervised Learning"],
-                  answerIndex: 2
-                },
-                {
-                  question: "In K-Means Clustering, what does the value of K represent?",
-                  options: ["The number of features in the dataset", "The number of iterations the algorithm runs", "The number of clusters to partition the data into", "The number of training instances"],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which distance metric is most commonly used in standard K-Means Clustering to measure similarity between a data point and a centroid?",
-                  options: ["Manhattan Distance", "Cosine Similarity", "Euclidean Distance", "Hamming Distance"],
-                  answerIndex: 2
-                },
-                {
-                  question: "What is the primary objective function that K-Means Clustering minimizes during training?",
-                  options: ["Cross-Entropy Loss between predicted and actual class labels", "Within-Cluster Sum of Squares (WCSS) — the sum of squared distances from each point to its assigned cluster centroid", "The total number of iterations required for convergence", "The silhouette score across all clusters"],
-                  answerIndex: 1
-                },
-                {
-                  question: "Which of the following is a known limitation of the K-Means Clustering algorithm?",
-                  options: ["It cannot handle numerical features", "It requires class labels for all training instances", "The number of clusters K must be specified in advance and the algorithm is sensitive to the initial centroid positions", "It always converges to the global minimum of the objective function"],
-                  answerIndex: 2
-                }
+                { question: "K-Means Clustering belongs to which category of machine learning?", options: ["Supervised Learning", "Reinforcement Learning", "Unsupervised Learning", "Semi-Supervised Learning"], answerIndex: 2, hint: "It is used on data without labels to discover hidden structures or groupings." },
+                { question: "In K-Means Clustering, what does the value of K represent?", options: ["The number of features in the dataset", "The number of iterations the algorithm runs", "The number of clusters to partition the data into", "The number of training instances"], answerIndex: 2, hint: "It's the primary hyperparameter you must choose before running the algorithm." },
+                { question: "Which distance metric is most commonly used in standard K-Means Clustering to measure similarity between a data point and a centroid?", options: ["Manhattan Distance", "Cosine Similarity", "Euclidean Distance", "Hamming Distance"], answerIndex: 2, hint: "This is the standard 'straight-line' distance, corresponding to the L2 norm." },
+                { question: "What is the primary objective function that K-Means Clustering minimizes during training?", options: ["Cross-Entropy Loss between predicted and actual class labels", "Within-Cluster Sum of Squares (WCSS) — the sum of squared distances from each point to its assigned cluster centroid", "The total number of iterations required for convergence", "The silhouette score across all clusters"], answerIndex: 1, hint: "The goal is to make the clusters as 'tight' and compact as possible." },
+                { question: "Which of the following is a known limitation of the K-Means Clustering algorithm?", options: ["It cannot handle numerical features", "It requires class labels for all training instances", "The number of clusters K must be specified in advance and the algorithm is sensitive to the initial centroid positions", "It always converges to the global minimum of the objective function"], answerIndex: 2, hint: "Choosing the wrong K can give meaningless results, and a bad starting point can lead to a suboptimal local minimum." }
               ],
               posttest: [
-                {
-                  question: "A K-Means run on a dataset with 300 points, K=3, and 2 features produces the following final centroids after convergence: C1 = (2.1, 3.4), C2 = (7.8, 1.2), C3 = (5.0, 8.9). A new point P = (5.2, 8.5) arrives. Which cluster will it be assigned to?",
-                  options: ["Cluster 1, because its x-coordinate is closest to C1", "Cluster 2, because it has the lowest y-coordinate centroid", "Cluster 3, because Euclidean distance from P to C3 is the smallest distance to any centroid", "Cluster 1, because WCSS is minimized by adding P to the largest cluster"],
-                  answerIndex: 2
-                },
-                {
-                  question: "The Elbow Plot for a K-Means run shows the following WCSS values: K=1: 980, K=2: 520, K=3: 280, K=4: 240, K=5: 220, K=6: 205, K=7: 198. Which K does the Elbow Method recommend and why?",
-                  options: ["K=2, because it has the largest absolute drop in WCSS from K=1", "K=6, because WCSS is still decreasing at K=5 and K=6", "K=3, because the rate of WCSS decrease drops sharply after K=3", "K=7, because more clusters always gives better WCSS"],
-                  answerIndex: 2
-                },
-                {
-                  question: "After running K-Means with K=4 on a standardized dataset, the average Silhouette Score is 0.68. A student re-runs the experiment on the same dataset without feature scaling and gets an average Silhouette Score of 0.22 with the same K=4. What is the most likely explanation?",
-                  options: ["K=4 is the wrong number of clusters for this dataset", "The unscaled dataset has a different number of data points", "Without feature scaling, features with larger numeric ranges dominate the Euclidean distance calculation, causing K-Means to cluster based on high-magnitude features alone", "Silhouette Score cannot be compared between scaled and unscaled runs"],
-                  answerIndex: 2
-                },
-                {
-                  question: "A student runs K-Means with K=3 five times on the same dataset with different random seeds and gets the following WCSS values: 145.2, 145.2, 148.7, 145.2, 152.3. What should the student conclude and what is the best practice going forward?",
-                  options: ["The algorithm is broken because it gives different results each time", "The majority result of 145.2 is likely the global minimum or a good local minimum. Best practice is to use n_init=10 or higher and select the run with the lowest WCSS", "The average of all five WCSS values should be used as the final WCSS", "K=3 is the wrong K because the algorithm does not consistently converge"],
-                  answerIndex: 1
-                },
-                {
-                  question: "A data scientist applies K-Means with K=2 to a dataset containing two interleaved crescent-shaped clusters. The Silhouette Score is 0.18 and the resulting clusters clearly cut across both crescents along a straight line. Which of the following best explains why DBSCAN is more appropriate here?",
-                  options: ["DBSCAN is faster than K-Means and therefore always preferred for large datasets", "K-Means assumes clusters are spherical and isotropic. Crescent-shaped clusters are non-convex and cannot be separated by straight boundaries. DBSCAN groups points based on local density connectivity without any shape assumption.", "DBSCAN does not require feature scaling unlike K-Means", "The Silhouette Score of 0.18 means K=2 is wrong"],
-                  answerIndex: 1
-                }
+                { question: "A K-Means run on a dataset with 300 points, K=3, and 2 features produces the following final centroids after convergence: C1 = (2.1, 3.4), C2 = (7.8, 1.2), C3 = (5.0, 8.9). A new point P = (5.2, 8.5) arrives. Which cluster will it be assigned to?", options: ["Cluster 1, because its x-coordinate is closest to C1", "Cluster 2, because it has the lowest y-coordinate centroid", "Cluster 3, because Euclidean distance from P to C3 is the smallest distance to any centroid", "Cluster 1, because WCSS is minimized by adding P to the largest cluster"], answerIndex: 2, hint: "K-Means assigns points to the nearest centroid based on Euclidean distance." },
+                { question: "The Elbow Plot for a K-Means run shows the following WCSS values: K=1: 980, K=2: 520, K=3: 280, K=4: 240, K=5: 220, K=6: 205, K=7: 198. Which K does the Elbow Method recommend and why?", options: ["K=2, because it has the largest absolute drop in WCSS from K=1", "K=6, because WCSS is still decreasing at K=5 and K=6", "K=3, because the rate of WCSS decrease drops sharply after K=3", "K=7, because more clusters always gives better WCSS"], answerIndex: 2, hint: "You are looking for the 'bend in the curve,' where the decrease in WCSS starts to flatten out." },
+                { question: "After running K-Means with K=4 on a standardized dataset, the average Silhouette Score is 0.68. A student re-runs the experiment on the same dataset without feature scaling and gets an average Silhouette Score of 0.22 with the same K=4. What is the most likely explanation?", options: ["K=4 is the wrong number of clusters for this dataset", "The unscaled dataset has a different number of data points", "Without feature scaling, features with larger numeric ranges dominate the Euclidean distance calculation, causing K-Means to cluster based on high-magnitude features alone", "Silhouette Score cannot be compared between scaled and unscaled runs"], answerIndex: 2, hint: "A feature with a large range will dominate the distance calculation, effectively ignoring other features." },
+                { question: "A student runs K-Means with K=3 five times on the same dataset with different random seeds and gets the following WCSS values: 145.2, 145.2, 148.7, 145.2, 152.3. What should the student conclude and what is the best practice going forward?", options: ["The algorithm is broken because it gives different results each time", "The majority result of 145.2 is likely the global minimum or a good local minimum. Best practice is to use n_init=10 or higher and select the run with the lowest WCSS", "The average of all five WCSS values should be used as the final WCSS", "K=3 is the wrong K because the algorithm does not consistently converge"], answerIndex: 1, hint: "K-Means can converge to different local minima. Running it multiple times and picking the best result is standard." },
+                { question: "A data scientist applies K-Means with K=2 to a dataset containing two interleaved crescent-shaped clusters. The Silhouette Score is 0.18 and the resulting clusters clearly cut across both crescents along a straight line. Which of the following best explains why DBSCAN is more appropriate here?", options: ["DBSCAN is faster than K-Means and therefore always preferred for large datasets", "K-Means assumes clusters are spherical and isotropic. Crescent-shaped clusters are non-convex and cannot be separated by straight boundaries. DBSCAN groups points based on local density connectivity without any shape assumption.", "DBSCAN does not require feature scaling unlike K-Means", "The Silhouette Score of 0.18 means K=2 is wrong"], answerIndex: 1, hint: "K-Means' use of a centroid and Euclidean distance inherently creates spherical (convex) clusters, which fails on non-spherical shapes." }
               ]
             }
           }
@@ -8411,108 +7582,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "What is the fundamental difference between hard clustering and soft clustering?",
-                  options: [
-                    "Hard clustering uses Euclidean distance while soft clustering uses cosine similarity",
-                    "In hard clustering each data point belongs exclusively to one cluster, while in soft clustering each data point has a degree of membership to every cluster simultaneously",
-                    "Hard clustering requires labeled data while soft clustering does not",
-                    "Soft clustering always produces more clusters than hard clustering"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In Fuzzy C-Means clustering, what must be true about the membership values of a single data point across all C clusters?",
-                  options: [
-                    "Each membership value must be exactly 0 or 1",
-                    "The maximum membership value across all clusters must equal 1",
-                    "The sum of all membership values for a single data point across all clusters must equal 1",
-                    "All membership values must be equal to 1/C"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "What is the role of the fuzziness parameter m (also called the fuzzifier) in Fuzzy C-Means?",
-                  options: [
-                    "It controls the number of clusters C",
-                    "It determines the maximum number of iterations",
-                    "It controls the degree of fuzziness — higher m produces softer more overlapping memberships while m approaching 1 makes FCM behave like hard K-Means",
-                    "It sets the convergence threshold for centroid movement"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Which of the following best describes a data point that lies exactly on the boundary between two clusters in Fuzzy C-Means with C=2?",
-                  options: [
-                    "It is assigned entirely to the nearest cluster with membership 1.0",
-                    "It is discarded as an outlier",
-                    "It receives equal membership values of approximately 0.5 to each cluster reflecting genuine ambiguity in its cluster assignment",
-                    "It causes the algorithm to add a new cluster automatically"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "Fuzzy C-Means minimizes which objective function?",
-                  options: [
-                    "Within-Cluster Sum of Squares (WCSS) identical to K-Means",
-                    "The weighted sum of squared distances from each point to each centroid where weights are the membership values raised to the power m",
-                    "The entropy of the membership distribution across all clusters",
-                    "The silhouette score averaged across all data points"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "What is the fundamental difference between hard clustering and soft clustering?", options: ["Hard clustering uses Euclidean distance while soft clustering uses cosine similarity", "In hard clustering each data point belongs exclusively to one cluster, while in soft clustering each data point has a degree of membership to every cluster simultaneously", "Hard clustering requires labeled data while soft clustering does not", "Soft clustering always produces more clusters than hard clustering"], answerIndex: 1, hint: "Soft clustering allows for ambiguity, where a point can partially belong to multiple groups." },
+                { question: "In Fuzzy C-Means clustering, what must be true about the membership values of a single data point across all C clusters?", options: ["Each membership value must be exactly 0 or 1", "The maximum membership value across all clusters must equal 1", "The sum of all membership values for a single data point across all clusters must equal 1", "All membership values must be equal to 1/C"], answerIndex: 2, hint: "The membership values for a point represent a distribution of its 'allegiance' to the clusters." },
+                { question: "What is the role of the fuzziness parameter m (also called the fuzzifier) in Fuzzy C-Means?", options: ["It controls the number of clusters C", "It determines the maximum number of iterations", "It controls the degree of fuzziness — higher m produces softer more overlapping memberships while m approaching 1 makes FCM behave like hard K-Means", "It sets the convergence threshold for centroid movement"], answerIndex: 2, hint: "It's a weighting exponent that determines how 'shared out' the membership values are." },
+                { question: "Which of the following best describes a data point that lies exactly on the boundary between two clusters in Fuzzy C-Means with C=2?", options: ["It is assigned entirely to the nearest cluster with membership 1.0", "It is discarded as an outlier", "It receives equal membership values of approximately 0.5 to each cluster reflecting genuine ambiguity in its cluster assignment", "It causes the algorithm to add a new cluster automatically"], answerIndex: 2, hint: "The point is equally 'between' the clusters, so it splits its membership evenly." },
+                { question: "Fuzzy C-Means minimizes which objective function?", options: ["Within-Cluster Sum of Squares (WCSS) identical to K-Means", "The weighted sum of squared distances from each point to each centroid where the weights are the membership values raised to the power m", "The entropy of the membership distribution across all clusters", "The silhouette score averaged across all data points"], answerIndex: 1, hint: "It's a generalization of K-Means's objective, where the 'weight' of a point to a cluster is its membership degree." }
               ],
               posttest: [
-                {
-                  question: "A Fuzzy C-Means run with C=3 produces the following membership values for three data points: A=[0.92, 0.05, 0.03], B=[0.48, 0.45, 0.07], C=[0.34, 0.33, 0.33]. Rank these points from most confidently assigned to most ambiguous.",
-                  options: [
-                    "A > B > C — Point A is a core member of Cluster 1, Point B lies on the boundary between Clusters 1 and 2, Point C is equidistant from all three centroids and maximally ambiguous",
-                    "C > B > A — Higher spread of membership indicates stronger cluster membership",
-                    "All three are equally confident since each sums to 1.0",
-                    "B > A > C — Points near two clusters are more informative than points near one cluster"
-                  ],
-                  answerIndex: 0
-                },
-                {
-                  question: "A student runs FCM with m=2 on a dataset and gets PC=0.412 with C=3. They run K-Means on the same data with K=3 and get Silhouette Score of 0.681. The student concludes K-Means is better. What is wrong?",
-                  options: [
-                    "Nothing — higher metric always means better clustering",
-                    "PC and Silhouette Score measure different properties and cannot be directly compared numerically. Also PC=0.412 indicates genuinely fuzzy overlapping clusters where soft assignment is more appropriate.",
-                    "The student should use the same metric for both algorithms before comparing",
-                    "FCM is always better than K-Means so the comparison is invalid"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In FCM with C=2 and m=2, a data point x has distances to the two centroids of d1=2.0 and d2=6.0. Using the FCM membership update formula, which of the following is the correct membership u1 of point x in Cluster 1?",
-                  options: [
-                    "u1 = 0.500 — equal membership since both clusters exist",
-                    "u1 = 1.000 — closest centroid always gets full membership",
-                    "u1 = 0.900, u2 = 0.100 — point is 3 times closer to Cluster 1 so it receives high but not complete membership",
-                    "u1 = 0.750, u2 = 0.250 — membership proportional to inverse distance ratio"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "A researcher is segmenting patients into disease risk clusters. Patient records near cluster boundaries are particularly important. Which justifies using FCM over K-Means?",
-                  options: [
-                    "FCM is computationally faster making it better for large medical databases",
-                    "K-Means cannot handle medical data with continuous numerical features",
-                    "FCM explicitly quantifies diagnostic uncertainty through membership degrees — a boundary patient with memberships [0.52, 0.48] is flagged for further clinical investigation rather than being silently force-assigned.",
-                    "FCM always produces higher Silhouette Scores than K-Means on medical datasets"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "A FCM run with C=4 and m=2 produces MPC=0.698, XB=0.289, PE=0.387, Boundary Points=31 compared to C=3 (MPC=0.741, XB=0.241, PE=0.312, Boundary Points=18). Which C should be selected?",
-                  options: [
-                    "C=4 because more clusters always capture more data structure",
-                    "C=3 because it achieves higher MPC, lower XB, lower PE, and fewer boundary points, indicating more compact well-separated clusters.",
-                    "C=4 because lower boundary points indicate better clustering",
-                    "Neither — the metrics are too close to distinguish between C=3 and C=4"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "A Fuzzy C-Means run with C=3 produces the following membership values for three data points: A=[0.92, 0.05, 0.03], B=[0.48, 0.45, 0.07], C=[0.34, 0.33, 0.33]. Rank these points from most confidently assigned to most ambiguous.", options: ["A > B > C — Point A is a core member of Cluster 1, Point B lies on the boundary between Clusters 1 and 2, Point C is equidistant from all three centroids and maximally ambiguous", "C > B > A — Higher spread of membership indicates stronger cluster membership", "All three are equally confident since each sums to 1.0", "B > A > C — Points near two clusters are more informative than points near one cluster"], answerIndex: 0, hint: "High confidence is indicated by one membership value close to 1 and others near 0." },
+                { question: "A student runs FCM with m=2 on a dataset and gets PC=0.412 with C=3. They run K-Means on the same data with K=3 and get Silhouette Score of 0.681. The student concludes K-Means is better. What is wrong?", options: ["Nothing — higher metric always means better clustering", "PC and Silhouette Score measure different properties and cannot be directly compared numerically. Also PC=0.412 indicates genuinely fuzzy overlapping clusters where soft assignment is more appropriate.", "The student should use the same metric for both algorithms before comparing", "FCM is always better than K-Means so the comparison is invalid"], answerIndex: 1, hint: "A low Partition Coefficient (close to 1/C) is a sign that the clusters overlap, which is precisely where FCM excels." },
+                { question: "In FCM with C=2 and m=2, a data point x has distances to the two centroids of d1=2.0 and d2=6.0. Using the FCM membership update formula, which of the following is the correct membership u1 of point x in Cluster 1?", options: ["u1 = 0.500 — equal membership since both clusters exist", "u1 = 1.000 — closest centroid always gets full membership", "u1 = 0.900, u2 = 0.100 — point is 3 times closer to Cluster 1 so it receives high but not complete membership", "u1 = 0.750, u2 = 0.250 — membership proportional to inverse distance ratio"], answerIndex: 2, hint: "The membership is an inverse function of the distance. A point closer to Cluster 1 has a higher, but not absolute, membership in it." },
+                { question: "A researcher is segmenting patients into disease risk clusters. Patient records near cluster boundaries are particularly important. Which justifies using FCM over K-Means?", options: ["FCM is computationally faster making it better for large medical databases", "K-Means cannot handle medical data with continuous numerical features", "FCM explicitly quantifies diagnostic uncertainty through membership degrees — a boundary patient with memberships [0.52, 0.48] is flagged for further clinical investigation rather than being silently force-assigned.", "FCM always produces higher Silhouette Scores than K-Means on medical datasets"], answerIndex: 2, hint: "The 'soft' output of FCM provides more information and can highlight ambiguous cases for a domain expert." },
+                { question: "A FCM run with C=4 and m=2 produces MPC=0.698, XB=0.289, PE=0.387, Boundary Points=31 compared to C=3 (MPC=0.741, XB=0.241, PE=0.312, Boundary Points=18). Which C should be selected?", options: ["C=4 because more clusters always capture more data structure", "C=3 because it achieves higher MPC, lower XB, lower PE, and fewer boundary points, indicating more compact well-separated clusters.", "C=4 because lower boundary points indicate better clustering", "Neither — the metrics are too close to distinguish between C=3 and C=4"], answerIndex: 1, hint: "For FCM evaluation, you generally want a higher PC/MPC, and lower XB/PE." }
               ]
             }
           }
@@ -8663,108 +7744,18 @@ export const courses: Record<string, Course> = {
                 ]
               },
               pretest: [
-                {
-                  question: "Expectation Maximization (EM) clustering is based on which probabilistic model?",
-                  options: [
-                    "K-Nearest Neighbor Density Estimation",
-                    "Gaussian Mixture Models (GMM) — assuming data is generated from a mixture of multiple Gaussian distributions",
-                    "Bernoulli Mixture Models assuming binary feature distributions",
-                    "Uniform Distribution Models assuming equal probability across all regions"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "In the Expectation Step (E-Step) of the EM algorithm, what is computed?",
-                  options: [
-                    "The mean and covariance of each Gaussian component are updated using the current data assignments",
-                    "The posterior probability (responsibility) that each data point was generated by each Gaussian component given the current model parameters",
-                    "The number of Gaussian components K is selected by maximizing the likelihood function",
-                    "The covariance matrices are reset to identity matrices before the next iteration"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "What is the key advantage of EM-based Gaussian Mixture Model clustering over K-Means clustering?",
-                  options: [
-                    "EM always converges faster than K-Means requiring fewer iterations",
-                    "EM does not require specifying the number of clusters in advance",
-                    "EM models cluster shape, size, and orientation through full covariance matrices allowing it to capture elliptical and arbitrarily oriented clusters unlike K-Means which assumes spherical equal-sized clusters",
-                    "EM is computationally less expensive than K-Means for large datasets"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "What does the mixing coefficient πₖ represent in a Gaussian Mixture Model?",
-                  options: [
-                    "The variance of the kth Gaussian component",
-                    "The prior probability that a randomly selected data point was generated by the kth Gaussian component — essentially the relative weight or size of that component",
-                    "The distance from the kth centroid to the nearest data point",
-                    "The number of data points assigned to the kth cluster"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "EM clustering maximizes which quantity during the M-Step?",
-                  options: [
-                    "Within-Cluster Sum of Squares (WCSS) identical to K-Means",
-                    "The Partition Coefficient of the soft assignment matrix",
-                    "The Expected Complete-Data Log-Likelihood — the weighted sum of log-probabilities of each data point under each Gaussian component using responsibilities as weights",
-                    "The Silhouette Score averaged across all data points and components"
-                  ],
-                  answerIndex: 2
-                }
+                { question: "Expectation Maximization (EM) clustering is based on which probabilistic model?", options: ["K-Nearest Neighbor Density Estimation", "Gaussian Mixture Models (GMM) — assuming data is generated from a mixture of multiple Gaussian distributions", "Bernoulli Mixture Models assuming binary feature distributions", "Uniform Distribution Models assuming equal probability across all regions"], answerIndex: 1, hint: "It is the most common algorithm for fitting a GMM to data." },
+                { question: "In the Expectation Step (E-Step) of the EM algorithm, what is computed?", options: ["The mean and covariance of each Gaussian component are updated using the current data assignments", "The posterior probability (responsibility) that each data point was generated by each Gaussian component given the current model parameters", "The number of Gaussian components K is selected by maximizing the likelihood function", "The covariance matrices are reset to identity matrices before the next iteration"], answerIndex: 1, hint: "It calculates the 'soft' assignment of points to clusters based on the current 'guess' for each Gaussian." },
+                { question: "What is the key advantage of EM-based Gaussian Mixture Model clustering over K-Means clustering?", options: ["EM always converges faster than K-Means requiring fewer iterations", "EM does not require specifying the number of clusters in advance", "EM models cluster shape, size, and orientation through full covariance matrices allowing it to capture elliptical and arbitrarily oriented clusters unlike K-Means which assumes spherical equal-sized clusters", "EM is computationally less expensive than K-Means for large datasets"], answerIndex: 2, hint: "By learning a full covariance matrix, GMM can model elliptical clusters at any angle, not just circles." },
+                { question: "What does the mixing coefficient πₖ represent in a Gaussian Mixture Model?", options: ["The variance of the kth Gaussian component", "The prior probability that a randomly selected data point was generated by the kth Gaussian component — essentially the relative weight or size of that component", "The distance from the kth centroid to the nearest data point", "The number of data points assigned to the kth cluster"], answerIndex: 1, hint: "It's the 'probability' of picking that component from the mixture." },
+                { question: "EM clustering maximizes which quantity during the M-Step?", options: ["Within-Cluster Sum of Squares (WCSS) identical to K-Means", "The Partition Coefficient of the soft assignment matrix", "The Expected Complete-Data Log-Likelihood — the weighted sum of log-probabilities of each data point under each Gaussian component using responsibilities as weights", "The Silhouette Score averaged across all data points and components"], answerIndex: 2, hint: "It uses the 'responsibilities' calculated in the E-Step to update the model parameters to increase the likelihood of the data." }
               ],
               posttest: [
-                {
-                  question: "A GMM with K=3 full covariance components is fitted on 2D data (d=2). Calculate the total number of free parameters in this model.",
-                  options: [
-                    "9",
-                    "11",
-                    "17",
-                    "23"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "During EM fitting of a GMM the log-likelihood values across 5 iterations are: −823.4, −791.2, −774.6, −774.5, −774.5. What can be concluded from this convergence pattern?",
-                  options: [
-                    "The log-likelihood decreasing from −823.4 to −774.5 indicates the algorithm is diverging and should be restarted",
-                    "The log-likelihood increasing from −823.4 to −774.5 (becoming less negative) is the expected behavior — EM is guaranteed to monotonically increase the log-likelihood.",
-                    "The log-likelihood should reach 0 for a well-fitted model",
-                    "The rapid convergence indicates the model is underfitting"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A GMM with K=3 full covariance is fitted on a dataset. The resulting mixing coefficients are π1=0.02, π2=0.49, π3=0.49. BIC for K=3 is 1243 and for K=2 is 1198. What does this suggest?",
-                  options: [
-                    "The model is correct — three components with unequal mixing coefficients is expected behavior",
-                    "The mixing coefficient π1=0.02 indicates Component 1 has collapsed. The lower BIC at K=2 confirms that K=2 is the statistically optimal number of components.",
-                    "Increase K to 4 because unequal mixing coefficients indicate the model needs more components",
-                    "The large difference in mixing coefficients is a sign of the singularity problem"
-                  ],
-                  answerIndex: 1
-                },
-                {
-                  question: "A student compares GMM-EM with full covariance versus K-Means on a dataset with two elongated clusters at 45 degrees. GMM-EM gets Silhouette 0.743, K-Means gets 0.521. Why?",
-                  options: [
-                    "Initialization differences explain the performance gap",
-                    "GMM-EM outperforms K-Means because it uses more iterations and complex mathematics",
-                    "K-Means assumes spherical clusters. GMM full covariance learns the actual covariance structure including orientation correctly separating elongated clusters.",
-                    "K-Means would match GMM-EM if the data were standardized before clustering"
-                  ],
-                  answerIndex: 2
-                },
-                {
-                  question: "A data scientist must choose between K-Means (K=4), FCM (C=4, m=2), and GMM-EM (K=4, full covariance) for clustering a medical imaging dataset where clusters have different sizes and shapes, and boundary cases need uncertainty quantification with statistically justified model selection. Which is best?",
-                  options: [
-                    "K-Means first because it is fastest",
-                    "GMM-EM first because full covariance handles different shapes, responsibilities provide probabilistic uncertainty, and BIC gives statistically rigorous model selection.",
-                    "FCM first because its membership values are easier to interpret",
-                    "All three are equally appropriate since standardization eliminates shape differences"
-                  ],
-                  answerIndex: 1
-                }
+                { question: "A GMM with K=3 full covariance components is fitted on 2D data (d=2). Calculate the total number of free parameters in this model.", options: ["9", "11", "17", "23"], answerIndex: 2, hint: "Calculate: 2(K-1) mixing params + K*d means + K*d*(d+1)/2 covariance params." },
+                { question: "During EM fitting of a GMM the log-likelihood values across 5 iterations are: −823.4, −791.2, −774.6, −774.5, −774.5. What can be concluded from this convergence pattern?", options: ["The log-likelihood decreasing from −823.4 to −774.5 indicates the algorithm is diverging and should be restarted", "The log-likelihood increasing from −823.4 to −774.5 (becoming less negative) is the expected behavior — EM is guaranteed to monotonically increase the log-likelihood.", "The log-likelihood should reach 0 for a well-fitted model", "The rapid convergence indicates the model is underfitting"], answerIndex: 1, hint: "EM is guaranteed to find a local maximum, so the log-likelihood should never decrease." },
+                { question: "A GMM with K=3 full covariance is fitted on a dataset. The resulting mixing coefficients are π1=0.02, π2=0.49, π3=0.49. BIC for K=3 is 1243 and for K=2 is 1198. What does this suggest?", options: ["The model is correct — three components with unequal mixing coefficients is expected behavior", "The mixing coefficient π1=0.02 indicates Component 1 has collapsed. The lower BIC at K=2 confirms that K=2 is the statistically optimal number of components.", "Increase K to 4 because unequal mixing coefficients indicate the model needs more components", "The large difference in mixing coefficients is a sign of the singularity problem"], answerIndex: 1, hint: "A very small mixing coefficient suggests that component is not meaningful. The BIC, which penalizes model complexity, should be lower for the simpler, better model." },
+                { question: "A student compares GMM-EM with full covariance versus K-Means on a dataset with two elongated clusters at 45 degrees. GMM-EM gets Silhouette 0.743, K-Means gets 0.521. Why?", options: ["Initialization differences explain the performance gap", "GMM-EM outperforms K-Means because it uses more iterations and complex mathematics", "K-Means assumes spherical clusters. GMM full covariance learns the actual covariance structure including orientation correctly separating elongated clusters.", "K-Means would match GMM-EM if the data were standardized before clustering"], answerIndex: 2, hint: "K-Means can only draw a straight line boundary perpendicular to the line connecting centroids, which fails for non-spherical shapes." },
+                { question: "A data scientist must choose between K-Means (K=4), FCM (C=4, m=2), and GMM-EM (K=4, full covariance) for clustering a medical imaging dataset where clusters have different sizes and shapes, and boundary cases need uncertainty quantification with statistically justified model selection. Which is best?", options: ["K-Means first because it is fastest", "GMM-EM first because full covariance handles different shapes, responsibilities provide probabilistic uncertainty, and BIC gives statistically rigorous model selection.", "FCM first because its membership values are easier to interpret", "All three are equally appropriate since standardization eliminates shape differences"], answerIndex: 1, hint: "GMM is the most general and powerful model of the three, and BIC/AIC provide a mathematical way to choose K." }
               ]
             }
           }

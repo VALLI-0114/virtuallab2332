@@ -333,6 +333,39 @@ function TTSSection({ heading, textContent, renderContent }: { heading: string, 
   );
 }
 
+function HintTooltip({ hint }: { hint: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="relative flex-shrink-0">
+      <button
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+        onClick={() => setOpen(o => !o)}
+        className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-secondary border border-border text-muted-foreground hover:bg-purple-500/10 hover:border-purple-400/50 hover:text-purple-400 transition-colors"
+        aria-label="Show hint"
+      >
+        <HelpCircle className="size-4" />
+      </button>
+
+      {open && (
+        <div
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+          className="absolute right-0 top-9 w-72 z-50 bg-card border border-purple-400/40 rounded-lg p-4 shadow-lg text-sm leading-relaxed"
+        >
+          <div className="absolute -top-[5px] right-2.5 w-2.5 h-2.5 bg-card border-l border-t border-purple-400/40 rotate-45" />
+          <div className="flex items-center gap-1.5 mb-2 text-purple-400 text-[11px] font-medium uppercase tracking-wider">
+            <Lightbulb className="size-3.5" />
+            Hint
+          </div>
+          <p className="text-foreground/80 text-[13px]">{hint}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Workspace() {
   const { exp } = Route.useSearch();
   const details = getExperimentDetails(exp);
@@ -1058,10 +1091,15 @@ ORDER  BY grade DESC;`,
                       <h2 className="text-3xl font-bold font-display mb-6">{WORKSPACE_STEPS[activeStepIndex]}</h2>
                       {content[step].map((mcq: any, i: number) => (
                         <div key={i} className="p-6 rounded-xl border border-border bg-card space-y-4">
-                          <div className="font-medium text-foreground">
-                            <span className="text-cyan mr-2">Q{i+1}.</span>
-                            {mcq.question}
-                          </div>
+                          <div className="font-medium text-foreground flex items-start justify-between gap-3">
+  <div>
+    <span className="text-cyan mr-2">Q{i+1}.</span>
+    {mcq.question}
+  </div>
+  {!isReviewed && mcq.hint && (
+    <HintTooltip hint={mcq.hint} />
+  )}
+</div>
                           <div className="space-y-2 pl-6">
                             {mcq.options.map((opt: string, j: number) => {
                               const isCorrect = j === mcq.answerIndex;
