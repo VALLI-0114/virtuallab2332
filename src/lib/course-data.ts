@@ -1,4 +1,5 @@
 import { dbmsCourse } from './dbms-data';
+import { adsCourse } from './ads-data';
 import { dsCourse } from './ds-data';
 import { aiCourse } from './ai-data';
 export type MCQ = {
@@ -5909,6 +5910,7 @@ export const courses: Record<string, Course> = {
     ],
   },
   "dbms": dbmsCourse,
+  "advanced-data-structures": adsCourse,
   "machine-learning": {
     id: "machine-learning",
     title: "Machine Learning Lab",

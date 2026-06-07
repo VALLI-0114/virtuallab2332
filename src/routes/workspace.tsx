@@ -457,7 +457,10 @@ ORDER  BY grade DESC;`,
       setLanguage("sql");
     } else if (details?.course.id === "machine-learning") {
       setLanguage("python");
-    } else {
+    } else if (details?.course.id === "advanced-data-structures") {
+      setLanguage("java");
+    } 
+    else {
       setLanguage("c");
     }
   }, [exp]);
@@ -502,37 +505,46 @@ ORDER  BY grade DESC;`,
     setIsLoading(true);
     setOutput("Executing...");
     setIsError(false);
-
+  
     try {
       const compilerMap: Record<string, string> = {
         c: "gcc-head-c",
         java: "openjdk-jdk-22+36",
         python: "cpython-head",
       };
-
+  
+      let finalCode = code;
+  
+      // Fix for Java compilation on Wandbox
+      if (language === "java") {
+        // Strips the "public" keyword from "public class Main" or "public class AnyName"
+        // This allows it to compile successfully inside Wandbox's default 'prog.java' file!
+        finalCode = code.replace(/public\s+class\s+/, "class ");
+      }
+  
       const bodyPayload: any = {
         compiler: compilerMap[language] || "gcc-head",
-        code,
+        code: finalCode, // Send the treated code directly here
         stdin,
-        options: "warning",
+        options: language === "c" ? "warning" : "",
       };
-
+  
       if (language === "c") {
         bodyPayload["compiler-option-raw"] = "-lm";
       }
-
+  
       const response = await fetch("https://wandbox.org/api/compile.json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyPayload),
       });
-
+  
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Wandbox HTTP ${response.status}: ${errorText}`);
       }
       const data = await response.json();
-
+  
       if (data.compiler_error) {
         setIsError(true);
         setOutput(data.compiler_error);
@@ -550,7 +562,6 @@ ORDER  BY grade DESC;`,
       setIsLoading(false);
     }
   };
-
   const handleRun = () => {
     if (language === "sql") handleRunSql();
     else handleRunCode();
