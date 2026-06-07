@@ -241,7 +241,7 @@ export const courses: Record<string, Course> = {
                     "Cosine Similarity measures the angle between two vectors rather than their spatial magnitude. A score of 1.0 means perfect alignment, 0.0 means orthogonal (unrelated), and -1.0 means diametrically opposed."
                   ]
                 }
-              ]
+              ],
               simulation: "/vector_space_sim.html",
               pretest: [
                 {
