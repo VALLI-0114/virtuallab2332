@@ -1,6 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { branches } from "@/lib/lab-data";
-import { BookOpen } from "lucide-react";
+import { BookOpen, GitBranch, Code, Workflow, Monitor, Database, Brain, Sparkles, Bot } from "lucide-react";
+
+function getTopicIcon(topic: string) {
+  if (topic === "C Programming") return <Code className="size-5 shrink-0" />;
+  if (topic === "Python") return <i className="fab fa-python text-[1.25rem] shrink-0"></i>;
+  if (topic === "Java") return <i className="fab fa-java text-[1.25rem] shrink-0"></i>;
+  if (topic.includes("Data Structures")) return <GitBranch className="size-5 shrink-0" />;
+  if (topic === "OS" || topic === "Operating Systems") return <Monitor className="size-5 shrink-0 text-cyan" />;
+  if (topic === "DBMS") return <Database className="size-5 shrink-0 text-cyan" />;
+  if (topic === "Machine Learning") return <Brain className="size-5 shrink-0 text-cyan" />;
+  if (topic === "AI Tools") return <Sparkles className="size-5 shrink-0 text-cyan" />;
+  if (topic === "LLMs") return <Bot className="size-5 shrink-0 text-cyan" />;
+  if (topic === "Algorithms") return <Workflow className="size-5 shrink-0 text-cyan" />;
+  return null;
+}
 
 export const Route = createFileRoute("/courses")({
   head: () => ({ meta: [{ title: "Courses — VLMS" }, { name: "description", content: "Technical courses for the curriculum." }] }),
@@ -37,7 +51,10 @@ function CoursesPage() {
                 className="group flex flex-col justify-between p-6 rounded-xl border border-border bg-card hover:border-foreground/30 hover:shadow-sm transition-all"
               >
                 <div>
-                  <h3 className="font-display text-xl font-semibold group-hover:text-cyan transition-colors">{t}</h3>
+                  <h3 className="font-display text-xl font-semibold group-hover:text-cyan transition-colors flex items-center gap-2.5">
+                    {getTopicIcon(t)}
+                    <span>{t}</span>
+                  </h3>
                   <p className="text-sm text-muted-foreground mt-2">View complete syllabus and experiment workspace for this course.</p>
                 </div>
                 <div className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-foreground">

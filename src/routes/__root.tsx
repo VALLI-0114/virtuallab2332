@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 import { LayoutDashboard, Database, FlaskConical, BookOpen, Beaker } from "lucide-react";
 import { Loader } from "@/components/Loader";
+import { ErrorGraphic } from "@/components/ErrorGraphic";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -18,10 +19,15 @@ import { Toaster } from "@/components/ui/sonner";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Route not found in sandbox registry.</p>
-        <Link to="/" className="mt-6 inline-flex rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Return to Dashboard</Link>
+      <div className="max-w-md text-center flex flex-col items-center">
+        <ErrorGraphic />
+        <h1 className="text-3xl font-bold text-foreground font-display mt-4">Route Not Found</h1>
+        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+          The requested experiment or page could not be found in the registry. Check your connection or return to the main dashboard.
+        </p>
+        <Link to="/" className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan px-6 py-2.5 text-sm font-semibold text-cyan-foreground hover:bg-cyan/90 transition-all shadow-lg hover:scale-105">
+          Return to Dashboard
+        </Link>
       </div>
     </div>
   );
@@ -32,10 +38,15 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => { reportLovableError(error, { boundary: "tanstack_root_error_component" }); }, [error]);
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold">Runtime fault</h1>
-        <p className="mt-2 text-sm text-muted-foreground">The sandbox encountered an unexpected exception.</p>
-        <button onClick={() => { router.invalidate(); reset(); }} className="mt-6 rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">Re-initialize</button>
+      <div className="max-w-md text-center flex flex-col items-center">
+        <ErrorGraphic />
+        <h1 className="text-3xl font-bold text-foreground font-display mt-4">Runtime Fault</h1>
+        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+          The sandbox encountered an unexpected exception. Our systems have logged this issue.
+        </p>
+        <button onClick={() => { router.invalidate(); reset(); }} className="mt-8 inline-flex items-center gap-2 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 px-6 py-2.5 text-sm font-semibold hover:bg-red-500/20 transition-all shadow-lg hover:scale-105">
+          Re-initialize System
+        </button>
       </div>
     </div>
   );
@@ -62,6 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" },
+      { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" },
     ],
   }),
   shellComponent: RootShell,

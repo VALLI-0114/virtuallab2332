@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Beaker, HelpCircle, Database, Book, Volume2, Square } from "lucide-react";
+import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Beaker, HelpCircle, Database, Book, Volume2, Square, Sparkles, ExternalLink } from "lucide-react";
 import { courses } from "@/lib/course-data";
 import Editor from "@monaco-editor/react";
 import { toast } from "sonner";
@@ -19,20 +19,45 @@ export const Route = createFileRoute("/workspace")({
   component: Workspace,
 });
 
-// Helper to find experiment details
 function getExperimentDetails(expId?: string) {
   if (!expId) return null;
   for (const course of Object.values(courses)) {
-    for (let wIdx = 0; wIdx < course.weeks.length; wIdx++) {
-      const week = course.weeks[wIdx];
-      const expIdx = week.experiments.findIndex(e => e.id === expId);
-      if (expIdx !== -1) {
-        return { course, week, experiment: week.experiments[expIdx] };
+    for (const week of course.weeks) {
+      for (const exp of week.experiments) {
+        if (exp.id === expId) return { course, week, experiment: exp };
       }
     }
   }
   return null;
 }
+
+const getAILogoUrl = (expId?: string) => {
+  if (!expId) return null;
+  const map: Record<string, string> = {
+    "ai-m1-1": "/Logos/googlegemini.svg", 
+    "ai-m1-2": "/Logos/chatgpt-4.svg", 
+    "ai-m1-3": "/Logos/leonardo-ai-seeklogo.svg", 
+    "ai-m1-4": "/Logos/midjourney-seeklogo.svg", 
+    "ai-m2-1": "/Logos/chatgpt-4.svg", 
+    "ai-m2-2": "/Logos/claude-seeklogo.svg", 
+    "ai-m2-3": "/Logos/googlegemini.svg", 
+    "ai-m2-4": "https://logo.clearbit.com/perplexity.ai", 
+    "ai-m3-1": "/Logos/claudecode.svg", 
+    "ai-m3-2": "/Logos/cursor.svg", 
+    "ai-m3-3": "/Logos/githubcopilot.svg", 
+    "ai-m3-4": "/Logos/replit-seeklogo.svg", 
+    "ai-m4-1": "/Logos/lovable-color.svg", 
+    "ai-m4-2": "https://logo.clearbit.com/stackblitz.com", 
+    "ai-m4-3": "/Logos/v0-seeklogo.svg", 
+    "ai-m4-4": "/Logos/figma.svg", 
+    "ai-m5-1": "/Logos/notebooklm.svg", 
+    "ai-m5-2": "https://tse3.mm.bing.net/th/id/OIP.Efys2NIOKWykw5OUjsUjkAHaFj?pid=Api&P=0&h=180", 
+    "ai-m5-3": "https://logo.clearbit.com/napkin.ai", 
+    "ai-m5-4": "https://logo.clearbit.com/elicit.com" 
+  };
+  return map[expId];
+};
+
 
 // ── SQL execution via sql.js (SQLite WASM, loaded from CDN) ──────────────────
 let sqlJsPromise: Promise<any> | null = null;
@@ -499,8 +524,11 @@ ORDER  BY grade DESC;`,
   };
 
   const isSql = language === "sql";
+  const isAITools = details?.course.id === "ai-tools";
 
-  const WORKSPACE_STEPS = ["Aim", "Theory", "Pretest", "Procedure", "Simulation", "Code Test", "Posttest", "References"];
+  const WORKSPACE_STEPS = isAITools 
+    ? ["Aim", "Theory", "Pretest", "Procedure", "Solve", "Posttest", "References"]
+    : ["Aim", "Theory", "Pretest", "Procedure", "Simulation", "Code Test", "Posttest", "References"];
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   
   const [pretestAnswers, setPretestAnswers] = useState<Record<number, number>>({});
@@ -615,16 +643,23 @@ ORDER  BY grade DESC;`,
       </div>
 
       <div className="flex-1 overflow-hidden">
-        {activeStepIndex === 5 ? (
-          // SIMULATION VIEW (Existing Split Pane for Code Test)
+        {currentStepName === "code test" || currentStepName === "solve" ? (
+          // SIMULATION VIEW (Existing Split Pane for Code Test) OR AI LAB SOLVE VIEW
           <div className="h-full grid lg:grid-cols-[1fr_1fr] divide-x divide-border">
             {/* ── Left Pane: Problem Description ─────────────────────────── */}
             <div className="h-full flex flex-col overflow-y-auto bg-card relative pb-20">
-              <div className="p-6 border-b border-border bg-secondary/20">
-                <h1 className="text-2xl font-bold font-display leading-tight">{title}</h1>
-                <div className="mt-4 flex gap-2">
-                  <span className="px-2 py-1 rounded text-[10px] font-mono uppercase tracking-wider bg-mint/20 text-mint border border-mint/30">Easy</span>
-                  <span className="px-2 py-1 rounded text-[10px] font-mono uppercase tracking-wider bg-secondary text-foreground border border-border">Core</span>
+              <div className="p-6 border-b border-border bg-secondary/20 flex items-center gap-4">
+                {isAITools && getAILogoUrl(details?.experiment.id) && (
+                  <div className="size-16 rounded-xl bg-white border border-border flex items-center justify-center p-2 shadow-sm overflow-hidden shrink-0">
+                    <img src={getAILogoUrl(details?.experiment.id)!} alt="Tool Logo" className="w-full h-full object-contain" onError={(e) => e.currentTarget.style.display = 'none'} />
+                  </div>
+                )}
+                <div>
+                  <h1 className="text-2xl font-bold font-display leading-tight">{title}</h1>
+                  <div className="mt-4 flex gap-2">
+                    <span className="px-2 py-1 rounded text-[10px] font-mono uppercase tracking-wider bg-mint/20 text-mint border border-mint/30">Easy</span>
+                    <span className="px-2 py-1 rounded text-[10px] font-mono uppercase tracking-wider bg-secondary text-foreground border border-border">Core</span>
+                  </div>
                 </div>
               </div>
 
@@ -678,9 +713,59 @@ ORDER  BY grade DESC;`,
               </div>
             </div>
 
-            {/* ── Right Pane: Editor & Console ────────────────────────────── */}
+            {/* ── Right Pane: Editor & Console OR Tool Launch ────────────────────────────── */}
             <div className="h-full flex flex-col bg-[#0f111a]">
-              {/* Toolbar */}
+              {isAITools ? (
+                <div className="h-full flex flex-col items-center justify-center p-10 bg-card/50 text-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan/5 to-fuchsia-400/5" />
+                  <div className="relative z-10 flex flex-col items-center max-w-md">
+                    <div className="size-20 rounded-2xl bg-secondary/80 border border-border flex items-center justify-center mb-6 shadow-xl">
+                      <Sparkles className="size-10 text-cyan animate-pulse" />
+                    </div>
+                    <h2 className="text-2xl font-bold font-display mb-3">AI Tool Workspace</h2>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-8">
+                      This experiment requires you to use an external AI tool. Click the button below to launch the tool in a new secure tab. Keep this virtual lab open to refer to the procedure and complete the posttest.
+                    </p>
+                    <button
+                      onClick={() => {
+                        const links: Record<string, string> = {
+                          "ai-m1-1": "https://gemini.google.com/advanced",
+                          "ai-m1-2": "https://chatgpt.com",
+                          "ai-m1-3": "https://leonardo.ai",
+                          "ai-m1-4": "https://midjourney.com",
+                          "ai-m2-1": "https://chatgpt.com",
+                          "ai-m2-2": "https://claude.ai",
+                          "ai-m2-3": "https://gemini.google.com",
+                          "ai-m2-4": "https://perplexity.ai",
+                          "ai-m3-1": "https://claude.ai",
+                          "ai-m3-2": "https://cursor.sh",
+                          "ai-m3-3": "https://github.com/features/copilot",
+                          "ai-m3-4": "https://replit.com",
+                          "ai-m4-1": "https://lovable.dev",
+                          "ai-m4-2": "https://bolt.new",
+                          "ai-m4-3": "https://v0.dev",
+                          "ai-m4-4": "https://figma.com",
+                          "ai-m5-1": "https://notebooklm.google.com",
+                          "ai-m5-2": "https://gamma.app",
+                          "ai-m5-3": "https://napkin.ai",
+                          "ai-m5-4": "https://elicit.com"
+                        };
+                        const url = details?.experiment.id ? links[details.experiment.id] : null;
+                        if (url) {
+                          window.open(url, "_blank");
+                        } else {
+                          toast.error("Tool link not found for this experiment.");
+                        }
+                      }}
+                      className="px-6 py-3 rounded-full bg-cyan text-cyan-foreground font-semibold text-sm hover:bg-cyan/90 transition-all hover:scale-105 shadow-lg flex items-center gap-2"
+                    >
+                      <ExternalLink className="size-4" /> Launch External Tool
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* Toolbar */}
               <div className="flex items-center justify-between p-3 border-b border-border/10 bg-black/20">
                 <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground ml-2">
                   <span className="size-2 rounded-full bg-destructive/70" />
@@ -797,12 +882,26 @@ ORDER  BY grade DESC;`,
                   </div>
                 )}
               </div>
+                </>
+              )}
             </div>
           </div>
         ) : (
           // CONTENT VIEWS FOR OTHER MODULES
           <div className="h-full flex flex-col max-w-4xl mx-auto">
             <div className="flex-1 overflow-y-auto p-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              {isAITools && getAILogoUrl(details?.experiment.id) && currentStepName !== "pretest" && currentStepName !== "posttest" && (
+                <div className="mb-8 flex justify-center">
+                  <div className="size-24 rounded-2xl bg-white border border-border/50 flex items-center justify-center p-4 shadow-xl overflow-hidden animate-in zoom-in-95 duration-500">
+                    <img 
+                      src={getAILogoUrl(details?.experiment.id)!} 
+                      alt="Tool Logo" 
+                      className="w-full h-full object-contain drop-shadow-md" 
+                      onError={(e) => e.currentTarget.style.display = 'none'} 
+                    />
+                  </div>
+                </div>
+              )}
               {(() => {
                 const step = WORKSPACE_STEPS[activeStepIndex].toLowerCase();
                 // @ts-ignore - content is dynamically added

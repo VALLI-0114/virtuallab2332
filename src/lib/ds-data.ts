@@ -2,6 +2,12 @@ import type { Course } from "./course-data";
 import { dsExercise1 } from "./ds-e1";
 import { dsExercise2 } from "./ds-e2";
 import { dsExercise3 } from "./ds-e3";
+import { dsExercise4 } from "./ds-e4";
+import { dsExercise5 } from "./ds-e5";
+import { dsExercise6 } from "./ds-e6";
+import { dsExercise7 } from "./ds-e7";
+import { dsExercise8 } from "./ds-e8";
+import { dsExercise9 } from "./ds-e9";
 
 export const dsCourse: Course = {
   id: "data-structures-using-c-programming",
@@ -66,70 +72,11 @@ export const dsCourse: Course = {
     dsExercise1,
     dsExercise2,
     dsExercise3,
-    {
-      title: "EXERCISE 4",
-      objective: "Double Linked List Implementation including doubly linked list operations with forward and backward traversal and circular linked list implementation with insertion, deletion, and traversal.",
-      tutorial: "Tutorial 4: Doubly and Circular Linked Lists",
-      labTitle: "Lab 4: Double Linked List Implementation",
-      experiments: [
-        { id: "ds-e4-1", title: "Doubly Linked List Operations", desc: "Implement a doubly linked list with various operations.", expected: "List elements forward and backward" },
-        { id: "ds-e4-2", title: "Circular Linked List Operations", desc: "Implement a circular linked list with various operations.", expected: "List elements" }
-      ]
-    },
-    {
-      title: "EXERCISE 5",
-      objective: "Stack Operations including array-based and linked list-based stack implementation, postfix expression evaluation, and balanced parenthesis checking as classical stack applications.",
-      tutorial: "Tutorial 5: Stacks",
-      labTitle: "Lab 5: Stack Operations",
-      experiments: [
-        { id: "ds-e5-1", title: "Stack using Array", desc: "Implement stack operations (push, pop, peek) using an array.", expected: "Stack elements" },
-        { id: "ds-e5-2", title: "Stack using Linked List", desc: "Implement stack operations using a linked list.", expected: "Stack elements" },
-        { id: "ds-e5-3", title: "Postfix Expression Evaluation", desc: "Evaluate a postfix expression using a stack.", expected: "Evaluated result" },
-        { id: "ds-e5-4", title: "Balanced Parenthesis Check", desc: "Check if parentheses in an expression are balanced.", expected: "Balanced / Not Balanced" }
-      ]
-    },
-    {
-      title: "EXERCISE 6",
-      objective: "Queue Operations including array-based and linked list-based queue implementation, printer queue simulation as a real-world application, and circular queue implementation for memory-efficient operation.",
-      tutorial: "Tutorial 6: Queues",
-      labTitle: "Lab 6: Queue Operations",
-      experiments: [
-        { id: "ds-e6-1", title: "Queue using Array", desc: "Implement queue operations (enqueue, dequeue) using an array.", expected: "Queue elements" },
-        { id: "ds-e6-2", title: "Queue using Linked List", desc: "Implement queue operations using a linked list.", expected: "Queue elements" },
-        { id: "ds-e6-3", title: "Printer Queue Simulation", desc: "Simulate a printer queue using a queue data structure.", expected: "Simulation output" },
-        { id: "ds-e6-4", title: "Circular Queue", desc: "Implement a circular queue.", expected: "Queue elements" }
-      ]
-    },
-    {
-      title: "EXERCISE 7",
-      objective: "Stack and Queue Applications including infix to postfix conversion using stack, palindrome checking, and symmetry checking demonstrating combined stack and queue usage.",
-      tutorial: "Tutorial 7: Applications of Stacks and Queues",
-      labTitle: "Lab 7: Stack and Queue Applications",
-      experiments: [
-        { id: "ds-e7-1", title: "Infix to Postfix Conversion", desc: "Convert an infix expression to a postfix expression.", expected: "Postfix expression" },
-        { id: "ds-e7-2", title: "Palindrome Check using Stack or Queue", desc: "Check if a string is a palindrome using a stack or queue.", expected: "Is a palindrome / Not a palindrome" },
-        { id: "ds-e7-3", title: "Symmetry Check", desc: "Perform a symmetry check.", expected: "Symmetry output" }
-      ]
-    },
-    {
-      title: "EXERCISE 8",
-      objective: "Binary Search Tree including linked list-based BST implementation with insertion and deletion and all three standard traversals — inorder, preorder, and postorder.",
-      tutorial: "Tutorial 8: Trees",
-      labTitle: "Lab 8: Binary Search Tree",
-      experiments: [
-        { id: "ds-e8-1", title: "BST Implementation using Linked List", desc: "Implement a Binary Search Tree with insertion and deletion.", expected: "Tree structure" },
-        { id: "ds-e8-2", title: "BST Traversals — Inorder Preorder Postorder", desc: "Implement inorder, preorder, and postorder traversals for a BST.", expected: "Traversal outputs" }
-      ]
-    },
-    {
-      title: "EXERCISE 9",
-      objective: "Hashing including hash table implementation with collision resolution techniques and a simple cache implementation using hashing for fast data retrieval.",
-      tutorial: "Tutorial 9: Hashing",
-      labTitle: "Lab 9: Hashing",
-      experiments: [
-        { id: "ds-e9-1", title: "Hash Table with Collision Resolution", desc: "Implement a hash table with collision resolution (e.g., chaining or open addressing).", expected: "Hash table contents" },
-        { id: "ds-e9-2", title: "Simple Cache using Hashing", desc: "Implement a simple cache mechanism using hashing.", expected: "Cache hit/miss output" }
-      ]
-    }
+    dsExercise4,
+    dsExercise5,
+    dsExercise6,
+    dsExercise7,
+    dsExercise8,
+    dsExercise9
   ]
 };

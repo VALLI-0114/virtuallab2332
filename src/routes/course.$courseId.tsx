@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses } from "@/lib/course-data";
 import { ArrowLeft, Book, Code, List, Info, Target, LayoutTemplate, Beaker, MessageSquare, Star } from "lucide-react";
 import { toast } from "sonner";
+import { ErrorGraphic } from "@/components/ErrorGraphic";
 
 export const Route = createFileRoute("/course/$courseId")({
   component: CoursePage,
@@ -12,27 +13,37 @@ function CoursePage() {
   const { courseId } = Route.useParams();
   const course = courses[courseId];
   
-  const [activeTab, setActiveTab] = useState("Introduction");
-  const [rating, setRating] = useState(0);
-
   if (!course) {
     return (
-      <div className="p-10 text-center">
-        <h1 className="text-2xl font-bold">Course Not Found</h1>
-        <Link to="/courses" className="text-cyan hover:underline mt-4 inline-block">Return to Courses</Link>
+      <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
+        <ErrorGraphic />
+        <h1 className="text-4xl font-bold font-display mt-4">Course Not Found</h1>
+        <p className="text-muted-foreground mt-2 max-w-md">The course you are looking for does not exist in the registry.</p>
+        <Link to="/courses" className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan px-6 py-2.5 text-sm font-semibold text-cyan-foreground hover:bg-cyan/90 transition-all shadow-lg hover:scale-105">
+          Back to Courses
+        </Link>
       </div>
     );
   }
+  
+  const tabs = useMemo(() => {
+    const t = [];
+    if (course.introduction) t.push({ id: "Introduction", icon: Info });
+    t.push({ id: "Objective", icon: Target });
+    if (course.targetAudience) t.push({ id: "Target Audience", icon: List });
+    if (course.alignment) t.push({ id: "Course Alignment", icon: LayoutTemplate });
+    t.push({ id: "List of Experiments", icon: Beaker });
+    t.push({ id: "Feedback", icon: MessageSquare });
+    return t;
+  }, [course]);
 
-  const tabs = [];
-  if (course.introduction) tabs.push({ id: "Introduction", icon: Info });
-  tabs.push({ id: "Objective", icon: Target });
-  if (course.targetAudience) tabs.push({ id: "Target Audience", icon: List });
-  if (course.alignment) tabs.push({ id: "Course Alignment", icon: LayoutTemplate });
-  tabs.push({ id: "List of Experiments", icon: Beaker });
-  tabs.push({ id: "Feedback", icon: MessageSquare });
+  const [activeTab, setActiveTab] = useState(tabs[0]?.id);
+  const [rating, setRating] = useState(0);
 
-  const currentTab = tabs.find(t => t.id === activeTab) ? activeTab : tabs[0].id;
+  const currentTabIndex = tabs.findIndex(t => t.id === activeTab);
+  const currentTab = tabs[currentTabIndex] ? activeTab : tabs[0].id;
+  const prevTab = currentTabIndex > 0 ? tabs[currentTabIndex - 1] : null;
+  const nextTab = currentTabIndex < tabs.length - 1 ? tabs[currentTabIndex + 1] : null;
 
   return (
     <div className="px-6 lg:px-10 py-12 max-w-6xl mx-auto">
@@ -48,15 +59,15 @@ function CoursePage() {
 
       <div className="grid lg:grid-cols-[250px_1fr] gap-10 items-start">
         {/* Sidebar */}
-        <div className="sticky top-24 flex flex-col gap-1 border-r border-border/50 pr-4">
+        <div className="sticky top-24 flex flex-col gap-1 border-r border-border/50 pr-4 h-fit">
           {tabs.map((tab) => {
             const Icon = tab.icon;
-            const isActive = currentTab === tab.id;
+            const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors text-left ${isActive ? "bg-secondary text-foreground shadow-sm" : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"}`}
+                className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all text-left ${isActive ? "bg-secondary text-cyan shadow-sm translate-x-1" : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground hover:translate-x-1"}`}
               >
                 <Icon className={`size-4 ${isActive ? "text-cyan" : ""}`} />
                 {tab.id}
@@ -66,35 +77,87 @@ function CoursePage() {
         </div>
 
         {/* Main Content */}
-        <div className="min-h-[500px]">
-          {currentTab === "Introduction" && course.introduction && (
-            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <h2 className="text-2xl font-bold mb-6">Introduction</h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                {course.introduction.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {currentTab === "Objective" && (
-            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <h2 className="text-2xl font-bold mb-6">Objective</h2>
-              {Array.isArray(course.objectives) ? (
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground leading-relaxed">
-                  {course.objectives.map((obj, i) => (
-                    <li key={i}>{obj}</li>
+        <div className="min-h-[500px] flex flex-col justify-between pb-16">
+          <div key={currentTab} className="animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-forwards">
+            {currentTab === "Introduction" && course.introduction && (
+              <section>
+                <h2 className="text-2xl font-bold mb-6">Introduction</h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  {course.introduction.map((p, i) => (
+                    <p key={i}>{p}</p>
                   ))}
-                </ul>
-              ) : (
-                <p className="text-muted-foreground leading-relaxed">{course.objectives}</p>
-              )}
-            </section>
-          )}
+                </div>
+              </section>
+            )}
 
-          {currentTab === "Target Audience" && course.targetAudience && (
-            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+            {currentTab === "Objective" && (
+              <section>
+            <h2 className="text-2xl font-bold mb-6">Objective</h2>
+            
+            {course.id === "ai-tools" && (
+              <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
+                <img 
+                  src="/ai-labs-flowchart.jpg" 
+                  alt="Top 5 AI Labs Hands-on Learning Journey" 
+                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
+                />
+              </div>
+            )}
+            
+            {course.id === "ml" && (
+              <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
+                <img 
+                  src="/ml-flowchart.jpg" 
+                  alt="Machine Learning Journey" 
+                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
+                />
+              </div>
+            )}
+            
+            {course.id === "c-programming" && (
+              <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
+                <img 
+                  src="/c-flowchart.jpg" 
+                  alt="C Programming Curriculum Flowchart" 
+                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
+                />
+              </div>
+            )}
+            
+            {course.id === "dbms" && (
+              <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
+                <img 
+                  src="/dbms-flowchart.jpg" 
+                  alt="DBMS Syllabus Journey" 
+                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
+                />
+              </div>
+            )}
+            
+            {course.id === "data-structures-using-c-programming" && (
+              <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
+                <img 
+                  src="/ds-flowchart.png" 
+                  alt="Data Structures Curriculum Flowchart" 
+                  className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
+                />
+              </div>
+            )}
+
+            {Array.isArray(course.objectives) ? (
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground leading-relaxed">
+                {course.objectives.map((obj, i) => (
+                  <li key={i}>{obj}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-muted-foreground leading-relaxed">{course.objectives}</p>
+            )}
+              </section>
+            )}
+
+            {currentTab === "Target Audience" && course.targetAudience && (
+              <section>
               <h2 className="text-2xl font-bold mb-6">Target Audience</h2>
               <div className="space-y-8 text-muted-foreground leading-relaxed">
                 <div>
@@ -115,10 +178,10 @@ function CoursePage() {
                 </div>
               </div>
             </section>
-          )}
+            )}
 
-          {currentTab === "Course Alignment" && course.alignment && (
-            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+            {currentTab === "Course Alignment" && course.alignment && (
+              <section>
               <h2 className="text-2xl font-bold mb-6">Course Alignment</h2>
               <div className="overflow-hidden rounded-xl border border-border">
                 <table className="w-full text-left text-sm text-muted-foreground">
@@ -157,11 +220,11 @@ function CoursePage() {
                 </div>
               )}
             </section>
-          )}
+            )}
 
-          {currentTab === "List of Experiments" && (
-            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <h2 className="text-2xl font-bold mb-6">List of Experiments</h2>
+            {currentTab === "List of Experiments" && (
+              <section>
+            <h2 className="text-2xl font-bold mb-6">List of Experiments</h2>
               <div className="space-y-8">
                 {course.weeks.map((week, index) => (
                   <div key={index} className="rounded-xl border border-border bg-card overflow-hidden">
@@ -202,12 +265,13 @@ function CoursePage() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </section>
-          )}
-          {currentTab === "Feedback" && (
-            <section className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-              <h2 className="text-2xl font-bold mb-6">Feedback</h2>
+                  </div>
+              </section>
+            )}
+
+            {currentTab === "Feedback" && (
+              <section>
+            <h2 className="text-2xl font-bold mb-6">Feedback</h2>
               <div className="bg-card border border-border rounded-xl p-8 max-w-3xl">
                 <p className="text-muted-foreground mb-8">We value your feedback. Please take a few minutes to share your experience using this virtual laboratory. Your responses will help us improve the quality, usability, and content of the experiments.</p>
                 
@@ -334,7 +398,35 @@ function CoursePage() {
                 </form>
               </div>
             </section>
-          )}
+            )}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="mt-16 pt-8 border-t border-border/50 flex items-center justify-between">
+            {prevTab ? (
+              <button
+                onClick={() => {
+                  setActiveTab(prevTab.id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              >
+                &larr; {prevTab.id}
+              </button>
+            ) : <div />}
+            
+            {nextTab && (
+              <button
+                onClick={() => {
+                  setActiveTab(nextTab.id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-secondary text-foreground hover:bg-secondary/80 transition-colors shadow-sm"
+              >
+                {nextTab.id} &rarr;
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

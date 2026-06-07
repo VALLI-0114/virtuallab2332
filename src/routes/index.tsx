@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Sparkles, Activity, Boxes, Send, Timer, ShieldCheck, GitBranch, FlaskConical } from "lucide-react";
+import { ArrowUpRight, Sparkles, Activity, Boxes, Send, Timer, ShieldCheck, GitBranch, FlaskConical, Code, Workflow, Monitor, Database, Brain } from "lucide-react";
 import { BranchCard } from "@/components/BranchCard";
 import { LearningJourney } from "@/components/LearningJourney";
 import { HeroAnimation } from "@/components/HeroAnimation";
@@ -14,6 +14,20 @@ export const Route = createFileRoute("/")({
   }),
   component: Dashboard,
 });
+
+function getTopicIcon(topic: string) {
+  if (topic === "C Programming") return <Code className="size-5 shrink-0 text-cyan" />;
+  if (topic === "Python") return <i className="fab fa-python text-[1.25rem] shrink-0 text-cyan"></i>;
+  if (topic === "Java") return <i className="fab fa-java text-[1.25rem] shrink-0 text-cyan"></i>;
+  if (topic.includes("Data Structures")) return <GitBranch className="size-5 shrink-0 text-cyan" />;
+  if (topic === "OS" || topic === "Operating Systems") return <Monitor className="size-5 shrink-0 text-cyan" />;
+  if (topic === "DBMS") return <Database className="size-5 shrink-0 text-cyan" />;
+  if (topic === "Machine Learning") return <Brain className="size-5 shrink-0 text-cyan" />;
+  if (topic === "AI Tools") return <Sparkles className="size-5 shrink-0 text-cyan" />;
+  if (topic === "Algorithms") return <Workflow className="size-5 shrink-0 text-cyan" />;
+  return null;
+}
+
 
 function Dashboard() {
   return (
@@ -81,7 +95,10 @@ function Dashboard() {
             <Link to={`/course/${t.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} key={t} className={`block group opacity-0 animate-fade-in-up`} style={{ animationDelay: `${400 + idx * 100}ms` }}>
               <div className="p-5 rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan/5 hover:border-cyan/30 relative overflow-hidden h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <h3 className="font-semibold text-lg relative z-10">{t}</h3>
+                <h3 className="font-semibold text-lg relative z-10 flex items-center gap-2.5">
+                  {getTopicIcon(t)}
+                  <span>{t}</span>
+                </h3>
                 <span className="text-sm text-cyan mt-3 inline-flex items-center gap-1 relative z-10">
                   Explore Course <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                 </span>
