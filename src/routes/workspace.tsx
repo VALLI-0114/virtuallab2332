@@ -5,6 +5,10 @@ import { courses } from "@/lib/course-data";
 import Editor from "@monaco-editor/react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import { MemoryManagerSim } from "@/components/simulations/MemoryManagerSim";
+import { MirrorPortalSim } from "@/components/simulations/MirrorPortalSim";
+import { LinearSearchSim } from "@/components/simulations/LinearSearchSim";
+import { BinarySearchSim } from "@/components/simulations/BinarySearchSim";
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -1108,6 +1112,35 @@ ORDER  BY grade DESC;`,
                 }
 
                 if (step === "simulation") {
+                  if (details?.experiment.id === "c-w1-2") {
+                    return (
+                      <div className="h-full">
+                        <MemoryManagerSim />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ds-e1-1") {
+                    return (
+                      <div className="h-full">
+                        <MirrorPortalSim />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ds-e1-2") {
+                    return (
+                      <div className="h-full">
+                        <LinearSearchSim />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ds-e1-3") {
+                    return (
+                      <div className="h-full">
+                        <BinarySearchSim />
+                      </div>
+                    );
+                  }
+                  
                   return (
                     <div className="h-full">
                       <SimulationPlayer data={content.simulation} />

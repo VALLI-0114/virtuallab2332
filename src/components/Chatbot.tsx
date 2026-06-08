@@ -99,7 +99,7 @@ export function Chatbot() {
           aria-label="Open Chat"
         >
           {lottieData ? (
-            <div className="w-32 h-32 drop-shadow-2xl">
+            <div className="w-48 h-48 drop-shadow-2xl">
               <Lottie animationData={lottieData} loop={true} />
             </div>
           ) : (
