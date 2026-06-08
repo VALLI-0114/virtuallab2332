@@ -58,8 +58,7 @@ export const aiM3Experiments: Experiment[] = [
             "GitHub Copilot can build complete projects while Claude Code only suggests single lines",
             "There is no meaningful difference"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Claude Code operates at the task level (reading files, executing commands, iterating) while Copilot" },
         {
           question: "Claude Code presents a plan before executing changes in an existing codebase. Why is reviewing this plan important?",
           options: [
@@ -68,8 +67,7 @@ export const aiM3Experiments: Experiment[] = [
             "Approving the plan faster leads to faster code generation",
             "The plan review step can always be skipped"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Reviewing it allows the developer to catch misunderstood requirements, unintended modifications to c..." },
         {
           question: "For which CSE task is Claude Code's agentic multi-step capability most directly advantageous over a standard autocomplete tool?",
           options: [
@@ -78,8 +76,7 @@ export const aiM3Experiments: Experiment[] = [
             "Suggesting variable names while typing",
             "Converting code comments into docstrings"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Scaffolding a complete multi-file project, installing dependencies, writing tests, running them, and..." }
       ],
       procedure: [
         "Read the Theory section and understand the distinction between agentic and autocomplete AI.",
@@ -101,8 +98,7 @@ export const aiM3Experiments: Experiment[] = [
             "The project will not run without reading the files first",
             "This workflow is ideal"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Unreviewed AI-generated code may contain security vulnerabilities, incorrect logic, or dependencies" },
         {
           question: "A student introduces a requirement change to switch databases, and Claude Code misses three places where previous syntax was used. What does this reveal?",
           options: [
@@ -111,8 +107,7 @@ export const aiM3Experiments: Experiment[] = [
             "PostgreSQL migration is impossible",
             "The missed changes were intentional"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Agentic AI tools can miss cascading changes required by a refactor, illustrating why the developer m..." }
       ],
       references: [
         "Anthropic Claude Code Documentation",
@@ -169,8 +164,7 @@ export const aiM3Experiments: Experiment[] = [
             "VS Code with Copilot is more powerful for all tasks",
             "Cursor cannot edit existing files"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Cursor is an AI-native editor with AI interaction built into every core editing action, while VS Cod..." },
         {
           question: "Which Cursor feature is best suited to understand how data flows from an API endpoint through to the database in an unfamiliar codebase?",
           options: [
@@ -179,8 +173,7 @@ export const aiM3Experiments: Experiment[] = [
             "Composer mode",
             "The VS Code file explorer"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Chat sidebar with codebase context" }
       ],
       procedure: [
         "Read the Theory section and understand Cursor's interaction modes.",
@@ -202,8 +195,7 @@ export const aiM3Experiments: Experiment[] = [
             "You should not use Cmd+K for complex functions",
             "Breakage is expected during refactoring"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Accepting a code change without reviewing the diff is a critical workflow failure; reviewing allows" },
         {
           question: "Cursor suggests extracting a single-use 5-line block into a helper function that adds indirection and makes the code harder to read. Should you accept?",
           options: [
@@ -212,8 +204,7 @@ export const aiM3Experiments: Experiment[] = [
             "No, all functions should be extracted",
             "Yes, if the student prefers longer functions"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: No, refactoring should improve code clarity; extracting a single-use function that adds indirection" }
       ],
       references: [
         "Cursor AI Documentation",
@@ -275,8 +266,7 @@ export const aiM3Experiments: Experiment[] = [
             "Copilot's SQL suggestions always use parameterized queries automatically",
             "It causes syntax errors"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: String concatenation of user input into SQL creates a SQL injection vulnerability — the suggestion s..." },
         {
           question: "What is the most likely gap in coverage if you rely solely on Copilot-generated unit tests?",
           options: [
@@ -285,8 +275,7 @@ export const aiM3Experiments: Experiment[] = [
             "Copilot only generates one test per function",
             "The tests will all fail"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Copilot-generated tests tend to cover happy-path cases but miss edge cases and boundary conditions;" }
       ],
       procedure: [
         "Read the Theory section.",
@@ -308,8 +297,7 @@ export const aiM3Experiments: Experiment[] = [
             "Copilot is only useful for beginners",
             "The measurement methodology is flawed"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Copilot is most effective for pattern-rich code well-represented in its training data, and less effe..." },
         {
           question: "If your Task B (Copilot) time was faster but you accepted unread vulnerabilities that represent significant technical debt, how should you interpret the productivity measurement?",
           options: [
@@ -318,8 +306,7 @@ export const aiM3Experiments: Experiment[] = [
             "Security is a separate concern",
             "The gain is still valid"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: The time saving is illusory because unread vulnerabilities require debugging and security review tha..." }
       ],
       references: [
         "Anthropic Claude Code Documentation",
@@ -378,8 +365,7 @@ export const aiM3Experiments: Experiment[] = [
             "It requires the developer to manually install all dependencies first",
             "It only works offline"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It operates as an autonomous agent that can manage the entire software lifecycle—writing code, insta..." },
         {
           question: "When acting as a 'product manager' for an AI coding agent, what is the developer's primary responsibility?",
           options: [
@@ -388,8 +374,7 @@ export const aiM3Experiments: Experiment[] = [
             "Designing the company logo",
             "Paying for the cloud hosting server"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Defining clear requirements, reviewing the agent's progress, and issuing corrective prompts to guide..." },
         {
           question: "What is a critical component of a good 'App Brief' when prompting an agent to build a full-stack application?",
           options: [
@@ -398,8 +383,7 @@ export const aiM3Experiments: Experiment[] = [
             "The exact color hex codes for every button",
             "A detailed history of the internet"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Explicit definitions of core functionality, data models to be stored, and the desired user interface..." }
       ],
       procedure: [
         "Review the theory behind autonomous coding agents and full-stack AI scaffolding.",
@@ -421,8 +405,7 @@ export const aiM3Experiments: Experiment[] = [
             "An instruction to use a larger font size",
             "An instruction to deploy the app"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: An explicit requirement to configure a database or persistent storage layer, as the agent likely sto..." },
         {
           question: "Why is an iterative prompting process necessary when building full-stack applications with AI agents?",
           options: [
@@ -431,8 +414,7 @@ export const aiM3Experiments: Experiment[] = [
             "Because it makes the code run faster",
             "Because the agent forgets the programming language halfway through"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Because initial generations often contain logical bugs or miss nuanced UI requirements, requiring th..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 3 — Coding Lab"

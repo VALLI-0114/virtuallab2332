@@ -51,8 +51,7 @@ export const aiM4Experiments: Experiment[] = [
             "A long introductory paragraph explaining company history",
             "An embedded database connection log window"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: A high-contrast H1 headline, an explicit value proposition subtext, and an obvious, accessible Call-..." },
         {
           question: "When an AI design platform like Lovable updates a page layout based on a text prompt, what is it modifying under the hood?",
           options: [
@@ -61,8 +60,7 @@ export const aiM4Experiments: Experiment[] = [
             "It reboots the virtual operating system hosting the server",
             "It changes the user's local monitor resolution"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It rewrites or patches the component code (e.g., React, Tailwind CSS classes) to re-render the live" },
         {
           question: "What does the term 'Responsive Web Design' mean in modern UI development?",
           options: [
@@ -71,8 +69,7 @@ export const aiM4Experiments: Experiment[] = [
             "The page plays a sound file whenever a user clicks a button",
             "The page limits the number of visitors to avoid crashes"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: The web page automatically adjusts its layout, spacing, and sizing to look correct on any screen siz..." }
       ],
       procedure: [
         "Review the theory behind high-converting landing page layouts and component anatomy.",
@@ -96,8 +93,7 @@ export const aiM4Experiments: Experiment[] = [
             "Remove all text from the mobile view entirely",
             "Tell the user to open the page on a desktop machine"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Ensure all font sizes, paddings, and flex layouts use mobile-responsive tailwind utility breakpoints..." },
         {
           question: "Why is a multi-turn prompt refinement strategy better than accepting the first static code layout from an AI generator?",
           options: [
@@ -106,8 +102,7 @@ export const aiM4Experiments: Experiment[] = [
             "It makes the final files smaller in storage size",
             "It converts the website into a standalone mobile application automatically"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: The first draft provides a structural baseline; subsequent focused prompts let you polish micro-inte..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 4 — Web Design Lab"
@@ -163,8 +158,7 @@ export const aiM4Experiments: Experiment[] = [
             "A web application cannot be viewed on mobile browsers",
             "A static page requires an internet connection but an application does not"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: A static page only displays fixed information, while a web application maintains active state memory..." },
         {
           question: "What technology enables systems like Bolt.new to run a full Node.js development server directly inside a normal web browser tab?",
           options: [
@@ -173,8 +167,7 @@ export const aiM4Experiments: Experiment[] = [
             "Converting all web elements into raw text documents",
             "High-speed satellite video streaming of a remote server computer"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: WebContainer technology that sandboxes an operating runtime inside the client-side browser engine" },
         {
           question: "If your web app state updates but the screen fails to refresh, what is the most likely root problem?",
           options: [
@@ -183,8 +176,7 @@ export const aiM4Experiments: Experiment[] = [
             "The browser needs to be uninstalled",
             "The user typed their name incorrectly"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: The UI component is not correctly tracking or binding to the dynamic state variable change" }
       ],
       procedure: [
         "Study the concept of reactive state handling and full-stack runtime compilation inside browser sandboxes.",
@@ -205,8 +197,7 @@ export const aiM4Experiments: Experiment[] = [
             "Change the page background color to hide the error",
             "Turn off the browser console view"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Type a short corrective prompt: 'Install the missing package lucide-react using npm and import the i..." },
         {
           question: "Why is managing components as separate, modular files an important engineering practice when building web applications?",
           options: [
@@ -215,8 +206,7 @@ export const aiM4Experiments: Experiment[] = [
             "It speeds up the typing speed of the AI model",
             "It stops human users from altering the website style sheet"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It breaks the code down into clean, isolated units, making it significantly easier to trace bugs, mo..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 4 — Web Design Lab"
@@ -271,8 +261,7 @@ export const aiM4Experiments: Experiment[] = [
             "It requires compiling backend databases to operate correctly",
             "It disables user interactions entirely"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It allows developers to style elements directly inside HTML tags using consistent, predetermined uti..." },
         {
           question: "What design practice does the term 'Atomic Design' refer to?",
           options: [
@@ -281,8 +270,7 @@ export const aiM4Experiments: Experiment[] = [
             "Designing black-and-white websites only",
             "Restricting website access exclusively to nuclear physicists"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Breaking down user interfaces into fundamental standalone pieces (atoms, molecules, organisms) that" },
         {
           question: "How does historical version tracking assist a designer using an AI engine like v0?",
           options: [
@@ -291,8 +279,7 @@ export const aiM4Experiments: Experiment[] = [
             "It changes the programming language of the component automatically",
             "It records the password credentials of the developer team"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It provides an incremental historical record of design iterations, allowing the engineer to instantl..." }
       ],
       procedure: [
         "Study the theory behind modular UI architecture and component-driven assembly lines.",
@@ -314,8 +301,7 @@ export const aiM4Experiments: Experiment[] = [
             "An encrypted data security algorithm execution block",
             "A permanent structural crash wrapper"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: A horizontal row alignment, centering items vertically, adding space between them, applying a curved..." },
         {
           question: "If you need to integrate a v0 component into a local standalone project setup, what is the proper engineering approach?",
           options: [
@@ -324,8 +310,7 @@ export const aiM4Experiments: Experiment[] = [
             "Paste the raw text into your terminal command window directly",
             "Rename your entire website project file to match the component title"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Copy the structured React source code, ensure your local workspace has the dependent utility imports..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 4 — Web Design Lab"
@@ -381,8 +366,7 @@ export const aiM4Experiments: Experiment[] = [
             "It handles database server installations automatically",
             "It reduces website data costs down to zero percent"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It creates an editable, highly flexible vector canvas workspace where designers can easily adjust sp..." },
         {
           question: "Which property configuration allows an Auto Layout element card to expand its width automatically when the main parent container frame is stretched out wider?",
           options: [
@@ -391,8 +375,7 @@ export const aiM4Experiments: Experiment[] = [
             "Hug Contents constraint model",
             "Hidden Layer lock property toggling"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Fill Container resizing property rule" },
         {
           question: "What does Figma's Dev Mode do to assist a software engineer working on a frontend development squad?",
           options: [
@@ -401,8 +384,7 @@ export const aiM4Experiments: Experiment[] = [
             "It compiles the UI design into an executable operating system desktop app",
             "It alerts the design team if their internet connections slow down"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It inspects selected canvas vector components and extracts exact CSS code values, typography details..." }
       ],
       procedure: [
         "Study the principles of design systems, spatial layout rules, and Figma Auto Layout constraints.",
@@ -425,8 +407,7 @@ export const aiM4Experiments: Experiment[] = [
             "Change the application background layer to a dark theme tone",
             "Move the text block layer completely outside the card frame boundary area"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Set the height parameter constraint of the parent card container component to Hug Contents instead o..." },
         {
           question: "When converting a visual design mockup over into modern frontend code, what core translation error should you look out for when using Dev Mode code outputs?",
           options: [
@@ -435,8 +416,7 @@ export const aiM4Experiments: Experiment[] = [
             "The color values might get converted into large text description blocks",
             "The text characters might get rearranged backwards completely"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The generated code strings might utilize absolute position points (position: absolute) instead of cl..." },
         {
           question: "How does using Figma's Auto Layout conceptually map to modern web development frameworks?",
           options: [
@@ -445,8 +425,7 @@ export const aiM4Experiments: Experiment[] = [
             "It converts vector paths directly into backend SQL databases",
             "It locks elements in place permanently so they cannot be resized"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It closely mirrors CSS Flexbox and CSS Grid paradigms, teaching designers to think in terms of flexi..." },
         {
           question: "What is the benefit of grouping elements properly in the layers panel when using Figma AI layout generation?",
           options: [
@@ -455,8 +434,7 @@ export const aiM4Experiments: Experiment[] = [
             "It makes the file size significantly smaller",
             "It hides the elements from developers in Dev Mode"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It ensures structural hierarchy, making it easier to apply Auto Layout rules to specific parent-chil..." },
         {
           question: "A student wants to extract the CSS for a specific button generated in the layout. What is the most efficient way to do this in Figma?",
           options: [
@@ -465,8 +443,7 @@ export const aiM4Experiments: Experiment[] = [
             "Export the button as a PNG and use an external code generator",
             "Right-click the button and select \"Convert to Code\""
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Use Dev Mode, select the button element, and copy the auto-generated CSS/Tailwind utility properties..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 4 — Web Design Lab"

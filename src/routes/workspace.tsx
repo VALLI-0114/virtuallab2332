@@ -4,7 +4,7 @@ import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Be
 import { courses } from "@/lib/course-data";
 import Editor from "@monaco-editor/react";
 import { toast } from "sonner";
-
+import { supabase } from "@/lib/supabase";
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -455,7 +455,7 @@ ORDER  BY grade DESC;`,
   useEffect(() => {
     if (details?.course.id === "dbms") {
       setLanguage("sql");
-    } else if (details?.course.id === "machine-learning") {
+    } else if (details?.course.id === "machine-learning" || details?.course.id === "llms") {
       setLanguage("python");
     } else if (details?.course.id === "advanced-data-structures") {
       setLanguage("java");
@@ -607,10 +607,17 @@ ORDER  BY grade DESC;`,
     }
   }
 
-  const handleSubmit = () => {
-    alert("Module Completed Successfully!");
+  const handleSubmit = async () => {
+    if (details?.experiment?.id) {
+      const solved = JSON.parse(localStorage.getItem('solved_experiments') || '{}');
+      solved[details.experiment.id] = true;
+      localStorage.setItem('solved_experiments', JSON.stringify(solved));
+    }
+    
+    toast.success("Experiment Completed Successfully!");
+
     if (details?.course?.id) {
-      window.location.href = `/course/${details.course.id}`;
+      window.location.href = `/course/${details.course.id}#experiments`;
     } else {
       window.location.href = "/courses";
     }

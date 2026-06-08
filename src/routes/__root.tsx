@@ -99,14 +99,67 @@ const navItems = [
   { to: "/resources", label: "Resources", icon: BookOpen },
 ] as const;
 
+import { useState } from "react";
+import { AuthModal } from "@/components/AuthModal";
+import { User } from "lucide-react";
+
+function ProfileNav() {
+  const [showAuth, setShowAuth] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    const profileStr = localStorage.getItem('currentUserProfile');
+    if (profileStr) {
+      try {
+        const profile = JSON.parse(profileStr);
+        if (profile.name) {
+          setIsLoggedIn(true);
+          setName(profile.name);
+        }
+      } catch (e) {}
+    }
+  }, [showAuth]);
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <Link to="/profile" className="flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full hover:bg-secondary transition-colors group">
+          <span className="hidden sm:block text-xs font-medium text-foreground">{name.split(' ')[0]}</span>
+          <div className="grid place-items-center size-7 rounded-full bg-cyan/20 text-cyan group-hover:bg-cyan/30 transition-colors">
+            <User className="size-3.5" />
+          </div>
+        </Link>
+      ) : (
+        <button onClick={() => setShowAuth(true)} className="flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full hover:bg-secondary transition-colors group text-muted-foreground hover:text-foreground">
+          <span className="hidden sm:block text-xs font-medium">Sign In</span>
+          <div className="grid place-items-center size-7 rounded-full bg-secondary text-foreground group-hover:bg-secondary/80 transition-colors">
+            <User className="size-3.5" />
+          </div>
+        </button>
+      )}
+
+      <AuthModal 
+        isOpen={showAuth} 
+        onClose={() => setShowAuth(false)} 
+        onAuthenticated={() => {
+          setShowAuth(false);
+          setIsLoggedIn(true);
+        }} 
+        courseId="" 
+      />
+    </>
+  );
+}
+
 function DynamicIsland() {
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[min(960px,calc(100vw-1.5rem))]">
       <div className="flex items-center gap-2 rounded-full border border-border/70 bg-background/70 backdrop-blur-xl px-2 py-2 shadow-[0_10px_40px_-12px_color-mix(in_oklab,var(--foreground)_35%,transparent)]">
         {/* Brand */}
         <Link to="/" className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full">
-          <div className="grid place-items-center size-7 rounded-full bg-primary text-primary-foreground">
-            <Beaker className="size-3.5" />
+          <div className="grid place-items-center size-8 rounded-full bg-white overflow-hidden shadow-sm">
+            <img src="/jntugvcev.b33bb43b07b2037ab043.svg" alt="JNTU GV" className="w-full h-full object-contain p-[2px]" />
           </div>
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="font-display font-bold text-[13px] tracking-tight">VLMS</span>
@@ -132,6 +185,10 @@ function DynamicIsland() {
           ))}
         </nav>
 
+        <span className="h-6 w-px bg-border" />
+
+        {/* Profile Nav */}
+        <ProfileNav />
       </div>
     </div>
   );

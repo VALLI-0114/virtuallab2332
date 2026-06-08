@@ -66,11 +66,11 @@ export const dsExercise9: Week = {
           }
         ],
         pretest: [
-          { question: "What is the average time complexity of search in a hash table?", options: ["O(n)", "O(log n)", "O(1)", "O(n²)"], answerIndex: 2 },
-          { question: "A collision occurs when:", options: ["Two keys are equal", "Two different keys map to the same index", "The hash table is full", "The hash function returns -1"], answerIndex: 1 },
-          { question: "In linear probing, if slot h(k) is occupied, the next slot tried is:", options: ["h(k) + k", "h(k) + 1² (wrapping with modulo)", "h(k) * 2", "A random slot"], answerIndex: 1 },
-          { question: "Chaining uses which data structure at each table slot?", options: ["Array", "Stack", "Linked list", "Tree"], answerIndex: 2 },
-          { question: "Load factor α = 0.9 means:", options: ["90% of keys collided", "90% of table slots are occupied", "10% of keys are missing", "Hash function failed"], answerIndex: 1 }
+          { question: "What is the average time complexity of search in a hash table?", options: ["O(n)", "O(log n)", "O(1)", "O(n²)"], answerIndex: 2, hint: "Think about why the correct answer involves: O(1)" },
+          { question: "A collision occurs when:", options: ["Two keys are equal", "Two different keys map to the same index", "The hash table is full", "The hash function returns -1"], answerIndex: 1, hint: "Think about why the correct answer involves: Two different keys map to the same index" },
+          { question: "In linear probing, if slot h(k) is occupied, the next slot tried is:", options: ["h(k) + k", "h(k) + 1² (wrapping with modulo)", "h(k) * 2", "A random slot"], answerIndex: 1, hint: "Think about why the correct answer involves: h(k) + 1² (wrapping with modulo)" },
+          { question: "Chaining uses which data structure at each table slot?", options: ["Array", "Stack", "Linked list", "Tree"], answerIndex: 2, hint: "Think about why the correct answer involves: Linked list" },
+          { question: "Load factor α = 0.9 means:", options: ["90% of keys collided", "90% of table slots are occupied", "10% of keys are missing", "Hash function failed"], answerIndex: 1, hint: "Think about why the correct answer involves: 90% of table slots are occupied" }
         ],
         procedure: [
           "Read Aim and Theory. Understand what a collision is and why it occurs.",
@@ -94,11 +94,11 @@ export const dsExercise9: Week = {
           ]
         },
         posttest: [
-          { question: "In chaining, worst case search time when all keys hash to same index is:", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answerIndex: 2 },
-          { question: "In linear probing, why is DELETED marked differently from EMPTY?", options: ["To save memory", "So that search does not stop prematurely at a deleted slot", "Compiler requirement", "To speed up insert"], answerIndex: 1 },
-          { question: "Primary clustering is a problem specific to:", options: ["Chaining", "Quadratic probing", "Linear probing", "Double hashing"], answerIndex: 2 },
-          { question: "For TABLE_SIZE=10 and key=35, h(35) =?", options: ["3", "5", "35", "0"], answerIndex: 1 },
-          { question: "Which technique allows load factor to exceed 1?", options: ["Linear probing", "Quadratic probing", "Chaining", "Open addressing"], answerIndex: 2 }
+          { question: "In chaining, worst case search time when all keys hash to same index is:", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], answerIndex: 2, hint: "Think about why the correct answer involves: O(n)" },
+          { question: "In linear probing, why is DELETED marked differently from EMPTY?", options: ["To save memory", "So that search does not stop prematurely at a deleted slot", "Compiler requirement", "To speed up insert"], answerIndex: 1, hint: "Think about why the correct answer involves: So that search does not stop prematurely at a deleted slot" },
+          { question: "Primary clustering is a problem specific to:", options: ["Chaining", "Quadratic probing", "Linear probing", "Double hashing"], answerIndex: 2, hint: "Think about why the correct answer involves: Linear probing" },
+          { question: "For TABLE_SIZE=10 and key=35, h(35) =?", options: ["3", "5", "35", "0"], answerIndex: 1, hint: "Think about why the correct answer involves: 5" },
+          { question: "Which technique allows load factor to exceed 1?", options: ["Linear probing", "Quadratic probing", "Chaining", "Open addressing"], answerIndex: 2, hint: "Think about why the correct answer involves: Chaining" }
         ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
@@ -168,11 +168,11 @@ export const dsExercise9: Week = {
           }
         ],
         pretest: [
-          { question: "A cache hit means:", options: ["The cache is full", "The requested key was found in the cache", "The hash function failed", "A collision occurred"], answerIndex: 1 },
-          { question: "Which data structure provides O(1) average lookup needed for a cache?", options: ["Array (unsorted)", "Linked list", "Hash table", "Binary search tree"], answerIndex: 2 },
-          { question: "What is the valid flag used for in the cache struct?", options: ["To count accesses", "To mark whether a slot holds a real entry", "To store the hash index", "To detect collisions"], answerIndex: 1 },
-          { question: "LRU eviction removes:", options: ["The most recently used item", "The item with the smallest key", "The least recently used item", "A random item"], answerIndex: 2 },
-          { question: "A cache miss results in:", options: ["Program termination", "Fetching from the original source and storing in cache", "Deleting the cache", "Hash table resize"], answerIndex: 1 }
+          { question: "A cache hit means:", options: ["The cache is full", "The requested key was found in the cache", "The hash function failed", "A collision occurred"], answerIndex: 1, hint: "Think about why the correct answer involves: The requested key was found in the cache" },
+          { question: "Which data structure provides O(1) average lookup needed for a cache?", options: ["Array (unsorted)", "Linked list", "Hash table", "Binary search tree"], answerIndex: 2, hint: "Think about why the correct answer involves: Hash table" },
+          { question: "What is the valid flag used for in the cache struct?", options: ["To count accesses", "To mark whether a slot holds a real entry", "To store the hash index", "To detect collisions"], answerIndex: 1, hint: "Think about why the correct answer involves: To mark whether a slot holds a real entry" },
+          { question: "LRU eviction removes:", options: ["The most recently used item", "The item with the smallest key", "The least recently used item", "A random item"], answerIndex: 2, hint: "Think about why the correct answer involves: The least recently used item" },
+          { question: "A cache miss results in:", options: ["Program termination", "Fetching from the original source and storing in cache", "Deleting the cache", "Hash table resize"], answerIndex: 1, hint: "Think about why the correct answer involves: Fetching from the original source and storing in cache" }
         ],
         procedure: [
           "Read Aim and Theory. Understand cache hit, cache miss, and eviction.",
@@ -195,11 +195,11 @@ export const dsExercise9: Week = {
           ]
         },
         posttest: [
-          { question: "For CACHE_SIZE=8, keys 5 and 13 both hash to index 5. What happens when get(13) is called after get(5)?", options: ["Both are stored at index 5", "13 is rejected", "Key 5 is evicted and key 13 takes index 5", "Cache resizes automatically"], answerIndex: 2 },
-          { question: "Hit rate = hits / (hits + misses). For 3 hits and 1 miss, hit rate is:", options: ["33%", "25%", "75%", "100%"], answerIndex: 2 },
-          { question: "Why is accessCount tracked per cache entry?", options: ["To compute the hash index", "To implement LRU — evict the entry with lowest access count", "Required by struct syntax", "To detect collisions"], answerIndex: 1 },
-          { question: "The compute() function in the program simulates:", options: ["A hash function", "An expensive operation whose result is worth caching", "A collision resolver", "A sort algorithm"], answerIndex: 1 },
-          { question: "A cache with 100% hit rate means:", options: ["The cache is full", "No evictions occurred", "Every requested key was already in the cache", "The hash function had no collisions"], answerIndex: 2 }
+          { question: "For CACHE_SIZE=8, keys 5 and 13 both hash to index 5. What happens when get(13) is called after get(5)?", options: ["Both are stored at index 5", "13 is rejected", "Key 5 is evicted and key 13 takes index 5", "Cache resizes automatically"], answerIndex: 2, hint: "Think about why the correct answer involves: Key 5 is evicted and key 13 takes index 5" },
+          { question: "Hit rate = hits / (hits + misses). For 3 hits and 1 miss, hit rate is:", options: ["33%", "25%", "75%", "100%"], answerIndex: 2, hint: "Think about why the correct answer involves: 75%" },
+          { question: "Why is accessCount tracked per cache entry?", options: ["To compute the hash index", "To implement LRU — evict the entry with lowest access count", "Required by struct syntax", "To detect collisions"], answerIndex: 1, hint: "Think about why the correct answer involves: To implement LRU — evict the entry with lowest access count" },
+          { question: "The compute() function in the program simulates:", options: ["A hash function", "An expensive operation whose result is worth caching", "A collision resolver", "A sort algorithm"], answerIndex: 1, hint: "Think about why the correct answer involves: An expensive operation whose result is worth caching" },
+          { question: "A cache with 100% hit rate means:", options: ["The cache is full", "No evictions occurred", "Every requested key was already in the cache", "The hash function had no collisions"], answerIndex: 2, hint: "Think about why the correct answer involves: Every requested key was already in the cache" }
         ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",

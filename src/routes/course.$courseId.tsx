@@ -1,9 +1,13 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses } from "@/lib/course-data";
 import { ArrowLeft, Book, Code, List, Info, Target, LayoutTemplate, Beaker, MessageSquare, Star } from "lucide-react";
 import { toast } from "sonner";
 import { ErrorGraphic } from "@/components/ErrorGraphic";
+import { CheckCircle2 } from "lucide-react";
+import { AuthModal } from "@/components/AuthModal";
+import { CertificateModal } from "@/components/Certificate";
+import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/course/$courseId")({
   component: CoursePage,
@@ -37,8 +41,59 @@ function CoursePage() {
     return t;
   }, [course]);
 
-  const [activeTab, setActiveTab] = useState(tabs[0]?.id);
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#experiments') {
+      return "List of Experiments";
+    }
+    return tabs[0]?.id;
+  });
   const [rating, setRating] = useState(0);
+
+  // Clear hash after initial load to avoid sticking to it unnecessarily
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#experiments') {
+      // Use replaceState to keep history clean
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
+
+  // Track solved status
+  const solvedExps = JSON.parse(localStorage.getItem('solved_experiments') || '{}');
+  const allExperiments = course.weeks.flatMap(w => w.experiments);
+  const allSolved = allExperiments.length > 0 && allExperiments.every(exp => solvedExps[exp.id]);
+
+  // Auth / Cert State
+  const [showAuth, setShowAuth] = useState(false);
+  const [showCert, setShowCert] = useState(false);
+  const [certName, setCertName] = useState('');
+
+  const handleClaimCertificate = async () => {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      const profileStr = localStorage.getItem('currentUserProfile');
+      if (profileStr) {
+        try {
+          const profile = JSON.parse(profileStr);
+          if (profile.name) setCertName(profile.name);
+        } catch (e) {}
+      }
+      setShowCert(true);
+    } else {
+      setShowAuth(true);
+    }
+  };
+
+  const handleAuthenticated = () => {
+    setShowAuth(false);
+    const profileStr = localStorage.getItem('currentUserProfile');
+    if (profileStr) {
+      try {
+        const profile = JSON.parse(profileStr);
+        if (profile.name) setCertName(profile.name);
+      } catch (e) {}
+    }
+    setShowCert(true);
+  };
 
   const currentTabIndex = tabs.findIndex(t => t.id === activeTab);
   const currentTab = tabs[currentTabIndex] ? activeTab : tabs[0].id;
@@ -56,6 +111,23 @@ function CoursePage() {
         </div>
         <h1 className="font-display text-4xl lg:text-5xl font-bold tracking-tight mb-12">{course.title}</h1>
       </div>
+
+      {allSolved && (
+        <div className="mb-12 p-8 rounded-2xl border border-mint/40 bg-gradient-to-r from-mint/10 to-transparent flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+          <div>
+            <h2 className="text-2xl font-bold font-display text-foreground flex items-center gap-2 mb-2">
+              <CheckCircle2 className="size-6 text-mint" /> Course Completed!
+            </h2>
+            <p className="text-muted-foreground">You have successfully solved all experiments in this course.</p>
+          </div>
+          <button 
+            onClick={handleClaimCertificate} 
+            className="shrink-0 px-6 py-3 rounded-xl bg-cyan text-cyan-foreground font-semibold hover:bg-cyan/90 transition-all shadow-md hover:shadow-lg active:scale-95"
+          >
+            Claim Certificate
+          </button>
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-[250px_1fr] gap-10 items-start">
         {/* Sidebar */}
@@ -224,48 +296,75 @@ function CoursePage() {
 
             {currentTab === "List of Experiments" && (
               <section>
-            <h2 className="text-2xl font-bold mb-6">List of Experiments</h2>
-              <div className="space-y-8">
-                {course.weeks.map((week, index) => (
-                  <div key={index} className="rounded-xl border border-border bg-card overflow-hidden">
-                    <div className="px-6 py-5 border-b border-border bg-secondary/30">
-                      <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0 grid place-items-center size-10 rounded-lg bg-primary/10 text-primary font-bold font-mono">
-                          W{index + 1}
-                        </div>
-                        <div>
-                          <h2 className="text-lg font-semibold">{week.title}</h2>
-                          <p className="text-sm text-muted-foreground mt-1">{week.objective}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <div className="mb-4">
-                        <h3 className="text-sm font-semibold mb-1 text-foreground/80">{week.tutorial}</h3>
-                        <p className="text-sm text-muted-foreground">{week.labTitle}</p>
-                      </div>
-                      <div className="space-y-2 mt-4">
-                        <h4 className="text-xs font-mono uppercase tracking-wider text-cyan mb-3">Experiments</h4>
-                        {week.experiments.map((exp, i) => (
-                          <div key={exp.id} className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-background/50 hover:border-border transition-colors">
-                            <div className="flex items-center gap-3">
-                              <span className="text-xs font-mono text-muted-foreground">{i + 1}.</span>
-                              <span className="text-sm font-medium">{exp.title}</span>
-                            </div>
-                            <Link 
-                              to="/workspace"
-                              search={{ exp: exp.id }}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
-                            >
-                              <Code className="size-3.5" /> Solve
-                            </Link>
+                <h2 className="text-2xl font-bold mb-6">List of Experiments</h2>
+                <div className="space-y-8">
+                  {course.weeks.map((week, index) => (
+                    <div key={index} className="rounded-xl border border-border bg-card overflow-hidden">
+                      <div className="px-6 py-5 border-b border-border bg-secondary/30">
+                        <div className="flex items-center gap-3">
+                          <div className="flex-shrink-0 grid place-items-center size-10 rounded-lg bg-primary/10 text-primary font-bold font-mono">
+                            W{index + 1}
                           </div>
-                        ))}
+                          <div>
+                            <h2 className="text-lg font-semibold">{week.title}</h2>
+                            <p className="text-sm text-muted-foreground mt-1">{week.objective}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="mb-4">
+                          <h3 className="text-sm font-semibold mb-1 text-foreground/80">{week.tutorial}</h3>
+                          <p className="text-sm text-muted-foreground">{week.labTitle}</p>
+                        </div>
+                        <div className="space-y-2 mt-4">
+                          <h4 className="text-xs font-mono uppercase tracking-wider text-cyan mb-3">Experiments</h4>
+                          {week.experiments.map((exp, i) => (
+                            <div key={exp.id} className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-background/50 hover:border-border transition-colors">
+                              <div className="flex items-center gap-3">
+                                <span className="text-xs font-mono text-muted-foreground">{i + 1}.</span>
+                                <span className="text-sm font-medium">{exp.title}</span>
+                                {solvedExps[exp.id] && <CheckCircle2 className="size-4 text-mint" />}
+                              </div>
+                              <Link 
+                                to="/workspace"
+                                search={{ exp: exp.id }}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
+                              >
+                                <Code className="size-3.5" /> Solve
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+
+                {/* Certificate Section at Bottom of Experiments */}
+                <div className={`mt-12 p-8 rounded-2xl border ${allSolved ? 'border-mint/40 bg-gradient-to-r from-mint/10 to-transparent shadow-sm' : 'border-border bg-secondary/20'} flex flex-col sm:flex-row items-center justify-between gap-6`}>
+                  <div>
+                    <h2 className={`text-2xl font-bold font-display flex items-center gap-2 mb-2 ${allSolved ? 'text-foreground' : 'text-muted-foreground'}`}>
+                      {allSolved ? <CheckCircle2 className="size-6 text-mint" /> : <Star className="size-6 opacity-50" />}
+                      Course Certificate
+                    </h2>
+                    <p className="text-muted-foreground">
+                      {allSolved 
+                        ? "You have successfully solved all experiments in this course!" 
+                        : "Complete all experiments in this course to unlock your certificate."}
+                    </p>
                   </div>
-                ))}
-                  </div>
+                  <button 
+                    onClick={handleClaimCertificate} 
+                    disabled={!allSolved}
+                    className={`shrink-0 px-6 py-3 rounded-xl font-semibold transition-all ${
+                      allSolved 
+                        ? "bg-cyan text-cyan-foreground hover:bg-cyan/90 shadow-md hover:shadow-lg active:scale-95" 
+                        : "bg-secondary text-muted-foreground cursor-not-allowed opacity-50"
+                    }`}
+                  >
+                    Claim Certificate
+                  </button>
+                </div>
               </section>
             )}
 
@@ -429,6 +528,20 @@ function CoursePage() {
           </div>
         </div>
       </div>
+
+      <AuthModal 
+        isOpen={showAuth} 
+        onClose={() => setShowAuth(false)} 
+        onAuthenticated={handleAuthenticated} 
+        courseId={course.id} 
+      />
+      
+      <CertificateModal 
+        isOpen={showCert} 
+        onClose={() => setShowCert(false)} 
+        courseId={course.id} 
+        userName={certName}
+      />
     </div>
   );
 }

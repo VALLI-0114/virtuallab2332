@@ -43,11 +43,11 @@ export const dsExercise6: Week = {
           }
         ],
         pretest: [
-          { question: "Which principle does a Queue follow?", options: ["LIFO", "FIFO", "FILO", "Random"], answerIndex: 1 },
-          { question: "In an array queue, insertion happens at:", options: ["FRONT", "REAR", "Middle", "Both ends"], answerIndex: 1 },
-          { question: "Queue underflow occurs when:", options: ["Dequeue on empty queue", "Enqueue on full queue", "front > MAX", "rear == 0"], answerIndex: 0 },
-          { question: "Advantage of linked list queue over array queue:", options: ["Faster enqueue", "No fixed size limit", "Less memory per element", "Simpler code"], answerIndex: 1 },
-          { question: "Initial values of front and rear in array queue are:", options: ["-1, -1", "0, 0", "0, -1", "-1, 0"], answerIndex: 0 }
+          { question: "Which principle does a Queue follow?", options: ["LIFO", "FIFO", "FILO", "Random"], answerIndex: 1, hint: "Think about why the correct answer involves: FIFO" },
+          { question: "In an array queue, insertion happens at:", options: ["FRONT", "REAR", "Middle", "Both ends"], answerIndex: 1, hint: "Think about why the correct answer involves: REAR" },
+          { question: "Queue underflow occurs when:", options: ["Dequeue on empty queue", "Enqueue on full queue", "front > MAX", "rear == 0"], answerIndex: 0, hint: "Think about why the correct answer involves: Dequeue on empty queue" },
+          { question: "Advantage of linked list queue over array queue:", options: ["Faster enqueue", "No fixed size limit", "Less memory per element", "Simpler code"], answerIndex: 1, hint: "Think about why the correct answer involves: No fixed size limit" },
+          { question: "Initial values of front and rear in array queue are:", options: ["-1, -1", "0, 0", "0, -1", "-1, 0"], answerIndex: 0, hint: "Think about why the correct answer involves: -1, -1" }
         ],
         procedure: [
           "Study the Aim and Theory sections. Understand FIFO and the roles of front/rear.",
@@ -71,11 +71,11 @@ export const dsExercise6: Week = {
           ]
         },
         posttest: [
-          { question: "After enqueue(10), enqueue(20), dequeue() — what is the front element?", options: ["10", "20", "-1", "Underflow"], answerIndex: 1 },
-          { question: "In linked list queue, rear always points to:", options: ["Last inserted node", "First inserted node", "NULL always", "Middle node"], answerIndex: 0 },
-          { question: "What is the drawback of an array queue (non-circular)?", options: ["Space wasted after dequeues — front memory unused", "Cannot store integers", "rear pointer missing", "No drawback"], answerIndex: 0 },
-          { question: "Which operation checks the front element without removing it?", options: ["dequeue()", "peek()", "display()", "isEmpty()"], answerIndex: 1 },
-          { question: "In linked list queue, after dequeue removes the last element, front and rear should be:", options: ["Both NULL", "front = NULL, rear unchanged", "Both -1", "rear = front = 0"], answerIndex: 0 }
+          { question: "After enqueue(10), enqueue(20), dequeue() — what is the front element?", options: ["10", "20", "-1", "Underflow"], answerIndex: 1, hint: "Think about why the correct answer involves: 20" },
+          { question: "In linked list queue, rear always points to:", options: ["Last inserted node", "First inserted node", "NULL always", "Middle node"], answerIndex: 0, hint: "Think about why the correct answer involves: Last inserted node" },
+          { question: "What is the drawback of an array queue (non-circular)?", options: ["Space wasted after dequeues — front memory unused", "Cannot store integers", "rear pointer missing", "No drawback"], answerIndex: 0, hint: "Think about why the correct answer involves: Space wasted after dequeues — front memory unused" },
+          { question: "Which operation checks the front element without removing it?", options: ["dequeue()", "peek()", "display()", "isEmpty()"], answerIndex: 1, hint: "Think about why the correct answer involves: peek()" },
+          { question: "In linked list queue, after dequeue removes the last element, front and rear should be:", options: ["Both NULL", "front = NULL, rear unchanged", "Both -1", "rear = front = 0"], answerIndex: 0, hint: "Think about why the correct answer involves: Both NULL" }
         ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
@@ -122,11 +122,11 @@ export const dsExercise6: Week = {
           }
         ],
         pretest: [
-          { question: "Which principle does a Queue follow?", options: ["LIFO", "FIFO", "FILO", "Random"], answerIndex: 1 },
-          { question: "In a linked list queue, insertion happens at:", options: ["FRONT", "REAR", "Middle", "Both ends"], answerIndex: 1 },
-          { question: "Queue underflow occurs when:", options: ["Dequeue on empty queue", "Enqueue on full queue", "front > MAX", "rear == 0"], answerIndex: 0 },
-          { question: "Advantage of linked list queue over array queue:", options: ["Faster enqueue", "No fixed size limit", "Less memory per element", "Simpler code"], answerIndex: 1 },
-          { question: "Initial values of front and rear in linked list queue are:", options: ["-1, -1", "0, 0", "NULL, NULL", "-1, 0"], answerIndex: 2 }
+          { question: "Which principle does a Queue follow?", options: ["LIFO", "FIFO", "FILO", "Random"], answerIndex: 1, hint: "Think about why the correct answer involves: FIFO" },
+          { question: "In a linked list queue, insertion happens at:", options: ["FRONT", "REAR", "Middle", "Both ends"], answerIndex: 1, hint: "Think about why the correct answer involves: REAR" },
+          { question: "Queue underflow occurs when:", options: ["Dequeue on empty queue", "Enqueue on full queue", "front > MAX", "rear == 0"], answerIndex: 0, hint: "Think about why the correct answer involves: Dequeue on empty queue" },
+          { question: "Advantage of linked list queue over array queue:", options: ["Faster enqueue", "No fixed size limit", "Less memory per element", "Simpler code"], answerIndex: 1, hint: "Think about why the correct answer involves: No fixed size limit" },
+          { question: "Initial values of front and rear in linked list queue are:", options: ["-1, -1", "0, 0", "NULL, NULL", "-1, 0"], answerIndex: 2, hint: "Think about why the correct answer involves: NULL, NULL" }
         ],
         procedure: [
           "Study the Aim and Theory sections. Understand FIFO and the roles of front/rear.",
@@ -149,11 +149,11 @@ export const dsExercise6: Week = {
           ]
         },
         posttest: [
-          { question: "After enqueue(10), enqueue(20), dequeue() — what is the front element?", options: ["10", "20", "-1", "Underflow"], answerIndex: 1 },
-          { question: "In linked list queue, rear always points to:", options: ["Last inserted node", "First inserted node", "NULL always", "Middle node"], answerIndex: 0 },
-          { question: "What is the drawback of an array queue (non-circular)?", options: ["Space wasted after dequeues — front memory unused", "Cannot store integers", "rear pointer missing", "No drawback"], answerIndex: 0 },
-          { question: "Which operation checks the front element without removing it?", options: ["dequeue()", "peek()", "display()", "isEmpty()"], answerIndex: 1 },
-          { question: "In linked list queue, after dequeue removes the last element, front and rear should be:", options: ["Both NULL", "front = NULL, rear unchanged", "Both -1", "rear = front = 0"], answerIndex: 0 }
+          { question: "After enqueue(10), enqueue(20), dequeue() — what is the front element?", options: ["10", "20", "-1", "Underflow"], answerIndex: 1, hint: "Think about why the correct answer involves: 20" },
+          { question: "In linked list queue, rear always points to:", options: ["Last inserted node", "First inserted node", "NULL always", "Middle node"], answerIndex: 0, hint: "Think about why the correct answer involves: Last inserted node" },
+          { question: "What is the drawback of an array queue (non-circular)?", options: ["Space wasted after dequeues — front memory unused", "Cannot store integers", "rear pointer missing", "No drawback"], answerIndex: 0, hint: "Think about why the correct answer involves: Space wasted after dequeues — front memory unused" },
+          { question: "Which operation checks the front element without removing it?", options: ["dequeue()", "peek()", "display()", "isEmpty()"], answerIndex: 1, hint: "Think about why the correct answer involves: peek()" },
+          { question: "In linked list queue, after dequeue removes the last element, front and rear should be:", options: ["Both NULL", "front = NULL, rear unchanged", "Both -1", "rear = front = 0"], answerIndex: 0, hint: "Think about why the correct answer involves: Both NULL" }
         ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
@@ -206,11 +206,11 @@ export const dsExercise6: Week = {
           }
         ],
         pretest: [
-          { question: "In a printer queue, which job gets printed first?", options: ["The job submitted earliest", "The job with fewest pages", "The job with most pages", "Random"], answerIndex: 0 },
-          { question: "The print spooler is an example of which data structure?", options: ["Stack", "Queue", "Tree", "Graph"], answerIndex: 1 },
-          { question: "Which C construct is best for grouping job_id, name, and pages together?", options: ["struct", "union", "enum", "array of ints"], answerIndex: 0 },
-          { question: "When the job queue is empty and processJob() is called:", options: ["Last job reruns", "Underflow — \"No jobs in queue\" printed", "Program crashes", "First job reprints"], answerIndex: 1 },
-          { question: "The OS technique of managing tasks one by one in order is called:", options: ["Paging", "Scheduling via FIFO queue", "Fragmentation", "Swapping"], answerIndex: 1 }
+          { question: "In a printer queue, which job gets printed first?", options: ["The job submitted earliest", "The job with fewest pages", "The job with most pages", "Random"], answerIndex: 0, hint: "Think about why the correct answer involves: The job submitted earliest" },
+          { question: "The print spooler is an example of which data structure?", options: ["Stack", "Queue", "Tree", "Graph"], answerIndex: 1, hint: "Think about why the correct answer involves: Queue" },
+          { question: "Which C construct is best for grouping job_id, name, and pages together?", options: ["struct", "union", "enum", "array of ints"], answerIndex: 0, hint: "Think about why the correct answer involves: struct" },
+          { question: "When the job queue is empty and processJob() is called:", options: ["Last job reruns", "Underflow — \"No jobs in queue\" printed", "Program crashes", "First job reprints"], answerIndex: 1, hint: "Think about why the correct answer involves: Underflow — \"No jobs in queue\" printed" },
+          { question: "The OS technique of managing tasks one by one in order is called:", options: ["Paging", "Scheduling via FIFO queue", "Fragmentation", "Swapping"], answerIndex: 1, hint: "Think about why the correct answer involves: Scheduling via FIFO queue" }
         ],
         procedure: [
           "Read Aim and Theory. Note the struct definition for a print job.",
@@ -233,11 +233,11 @@ export const dsExercise6: Week = {
           ]
         },
         posttest: [
-          { question: "Jobs added in order: Doc1, Report, Photo. Which is printed first?", options: ["Doc1", "Report", "Photo", "Depends on pages"], answerIndex: 0 },
-          { question: "What does strcpy() do in the addJob function?", options: ["Copies job name string into the struct field", "Compares two strings", "Returns string length", "Clears the name field"], answerIndex: 0 },
-          { question: "After all jobs are processed, front and rear are set to:", options: ["-1, -1", "0, 0", "MAX, MAX", "Unchanged"], answerIndex: 0 },
-          { question: "Why is jobCounter used in the program?", options: ["To assign a unique ID to each job", "To count pages", "To track front pointer", "To track rear pointer"], answerIndex: 0 },
-          { question: "Real-world systems that use a similar queue mechanism include:", options: ["File compression", "CPU process scheduling and web server request handling", "Binary search", "Bubble sort"], answerIndex: 1 }
+          { question: "Jobs added in order: Doc1, Report, Photo. Which is printed first?", options: ["Doc1", "Report", "Photo", "Depends on pages"], answerIndex: 0, hint: "Think about why the correct answer involves: Doc1" },
+          { question: "What does strcpy() do in the addJob function?", options: ["Copies job name string into the struct field", "Compares two strings", "Returns string length", "Clears the name field"], answerIndex: 0, hint: "Think about why the correct answer involves: Copies job name string into the struct field" },
+          { question: "After all jobs are processed, front and rear are set to:", options: ["-1, -1", "0, 0", "MAX, MAX", "Unchanged"], answerIndex: 0, hint: "Think about why the correct answer involves: -1, -1" },
+          { question: "Why is jobCounter used in the program?", options: ["To assign a unique ID to each job", "To count pages", "To track front pointer", "To track rear pointer"], answerIndex: 0, hint: "Think about why the correct answer involves: To assign a unique ID to each job" },
+          { question: "Real-world systems that use a similar queue mechanism include:", options: ["File compression", "CPU process scheduling and web server request handling", "Binary search", "Bubble sort"], answerIndex: 1, hint: "Think about why the correct answer involves: CPU process scheduling and web server request handling" }
         ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
@@ -295,11 +295,11 @@ export const dsExercise6: Week = {
           }
         ],
         pretest: [
-          { question: "Circular queue solves which problem of linear array queue?", options: ["Memory wastage due to unreachable front slots", "Slow enqueue", "LIFO ordering", "Pointer errors"], answerIndex: 0 },
-          { question: "How is the next rear index computed in a circular queue of size MAX?", options: ["rear + 1", "(rear + 1) % MAX", "rear - 1", "rear * 2"], answerIndex: 1 },
-          { question: "Circular queue is FULL when:", options: ["rear == MAX - 1", "(rear + 1) % MAX == front", "front == -1", "rear == front"], answerIndex: 1 },
-          { question: "Circular queue is EMPTY when:", options: ["rear == -1", "front == rear", "front == MAX", "rear == 0"], answerIndex: 1 },
-          { question: "For MAX = 5, what is (4 + 1) % 5?", options: ["0", "5", "1", "4"], answerIndex: 0 }
+          { question: "Circular queue solves which problem of linear array queue?", options: ["Memory wastage due to unreachable front slots", "Slow enqueue", "LIFO ordering", "Pointer errors"], answerIndex: 0, hint: "Think about why the correct answer involves: Memory wastage due to unreachable front slots" },
+          { question: "How is the next rear index computed in a circular queue of size MAX?", options: ["rear + 1", "(rear + 1) % MAX", "rear - 1", "rear * 2"], answerIndex: 1, hint: "Think about why the correct answer involves: (rear + 1) % MAX" },
+          { question: "Circular queue is FULL when:", options: ["rear == MAX - 1", "(rear + 1) % MAX == front", "front == -1", "rear == front"], answerIndex: 1, hint: "Think about why the correct answer involves: (rear + 1) % MAX == front" },
+          { question: "Circular queue is EMPTY when:", options: ["rear == -1", "front == rear", "front == MAX", "rear == 0"], answerIndex: 1, hint: "Think about why the correct answer involves: front == rear" },
+          { question: "For MAX = 5, what is (4 + 1) % 5?", options: ["0", "5", "1", "4"], answerIndex: 0, hint: "Think about why the correct answer involves: 0" }
         ],
         procedure: [
           "Study Aim and Theory. Pay close attention to the full/empty conditions.",
@@ -322,11 +322,11 @@ export const dsExercise6: Week = {
           ]
         },
         posttest: [
-          { question: "For MAX=6, after enqueue(10,20,30,40,50), is the queue full?", options: ["Yes — 5 elements fill the 5 usable slots", "No — one slot remains", "Only if rear == 5", "Depends on front"], answerIndex: 0 },
-          { question: "After two dequeues then enqueue(60, 70), rear wraps to:", options: ["Index 0 and 1 (wraps from 5 back to start)", "Stays at 5", "Goes to MAX", "Resets to -1"], answerIndex: 0 },
-          { question: "Why is one slot intentionally left empty in circular queue?", options: ["To distinguish between full and empty states", "Hardware requirement", "To store front pointer", "Simplifies modulo math"], answerIndex: 0 },
-          { question: "Time complexity of enqueue and dequeue in circular queue:", options: ["O(1) for both", "O(n) for enqueue", "O(log n)", "O(n²)"], answerIndex: 0 },
-          { question: "Circular queue is preferred over simple array queue in:", options: ["Linked list implementations", "Fixed memory scenarios where slots must be reused", "When priority ordering is needed", "When data size is unknown"], answerIndex: 1 }
+          { question: "For MAX=6, after enqueue(10,20,30,40,50), is the queue full?", options: ["Yes — 5 elements fill the 5 usable slots", "No — one slot remains", "Only if rear == 5", "Depends on front"], answerIndex: 0, hint: "Think about why the correct answer involves: Yes — 5 elements fill the 5 usable slots" },
+          { question: "After two dequeues then enqueue(60, 70), rear wraps to:", options: ["Index 0 and 1 (wraps from 5 back to start)", "Stays at 5", "Goes to MAX", "Resets to -1"], answerIndex: 0, hint: "Think about why the correct answer involves: Index 0 and 1 (wraps from 5 back to start)" },
+          { question: "Why is one slot intentionally left empty in circular queue?", options: ["To distinguish between full and empty states", "Hardware requirement", "To store front pointer", "Simplifies modulo math"], answerIndex: 0, hint: "Think about why the correct answer involves: To distinguish between full and empty states" },
+          { question: "Time complexity of enqueue and dequeue in circular queue:", options: ["O(1) for both", "O(n) for enqueue", "O(log n)", "O(n²)"], answerIndex: 0, hint: "Think about why the correct answer involves: O(1) for both" },
+          { question: "Circular queue is preferred over simple array queue in:", options: ["Linked list implementations", "Fixed memory scenarios where slots must be reused", "When priority ordering is needed", "When data size is unknown"], answerIndex: 1, hint: "Think about why the correct answer involves: Fixed memory scenarios where slots must be reused" }
         ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",

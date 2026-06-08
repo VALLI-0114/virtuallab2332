@@ -90,8 +90,7 @@ export const aiM1Experiments: Experiment[] = [
             "A GAN-based system where a discriminator filters out non-photorealistic outputs",
             "A transformer that autoregressively predicts pixel values left to right"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: A cascaded diffusion pipeline where a base model generates a low-resolution image and successive sup..." },
         {
           question: "Why does Imagen use T5 as its text encoder instead of CLIP?",
           options: [
@@ -100,8 +99,7 @@ export const aiM1Experiments: Experiment[] = [
             "T5 produces visual embeddings that directly encode pixel colors",
             "CLIP is not compatible with Google's infrastructure"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: T5 is a language model trained on text data that better understands complex sentence structures and" },
         {
           question: "Which prompt is most likely to produce the best photorealistic portrait result with Imagen?",
           options: [
@@ -110,8 +108,7 @@ export const aiM1Experiments: Experiment[] = [
             "\"A close-up portrait of a woman in her 30s with natural curly hair, soft window light from the left, shallow depth of field, shot on Canon 5D Mark IV\"",
             "\"woman, photo, real, detailed\""
           ],
-          answerIndex: 2
-        },
+          answerIndex: 2, hint: "Think about why the correct answer involves: \"A close-up portrait of a woman in her 30s with natural curly hair, soft window light from the left,..." },
         {
           question: "Which of the following is a known limitation of Gemini Imagen?",
           options: [
@@ -120,8 +117,7 @@ export const aiM1Experiments: Experiment[] = [
             "Inability to generate images larger than 256x256 pixels",
             "Requirement that prompts be written in a specific programming language"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Consistently inaccurate rendering of legible text and correct hand anatomy" },
         {
           question: "What is the most critical ethical obligation when building applications with the Imagen API?",
           options: [
@@ -130,8 +126,7 @@ export const aiM1Experiments: Experiment[] = [
             "Storing all generated images in a public database for transparency",
             "Limiting generation to black and white images to reduce realism risks"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Implementing content moderation to prevent generation of harmful or deceptive photorealistic content..." }
       ],
       procedure: [
         "Read the Theory section and understand the cascaded diffusion architecture and the role of T5 text conditioning in Imagen.",
@@ -156,8 +151,7 @@ export const aiM1Experiments: Experiment[] = [
             "Imagen counts the number of words and allocates more GPU memory to longer prompts",
             "Short prompts are automatically rejected by Imagen's safety filter"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The detailed prompt provides richer text embeddings that more precisely condition the diffusion deno..." },
         {
           question: "Why do diffusion models including Imagen struggle to reliably render legible text?",
           options: [
@@ -166,8 +160,7 @@ export const aiM1Experiments: Experiment[] = [
             "The student used an incorrect language in the prompt",
             "The safety filter blocked all text to prevent misinformation"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Text is a highly structured symbolic output that does not emerge naturally from spatial denoising" },
         {
           question: "What effect should adding a negative prompt like 'blurry, cartoon' produce?",
           options: [
@@ -176,8 +169,7 @@ export const aiM1Experiments: Experiment[] = [
             "The denoising process will steer away from those undesired visual features, producing a sharper and more photorealistic output",
             "The image will be converted to grayscale"
           ],
-          answerIndex: 2
-        },
+          answerIndex: 2, hint: "Think about why the correct answer involves: The denoising process will steer away from those undesired visual features, producing a sharper and" },
         {
           question: "What is the most critical risk that must be addressed before deployment of an Imagen-based app?",
           options: [
@@ -186,8 +178,7 @@ export const aiM1Experiments: Experiment[] = [
             "The API costs may be too high for mobile deployment",
             "Photorealistic images consume more storage than cartoon images"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Users could generate photorealistic fake images of real people, enabling identity fraud, non-consens..." },
         {
           question: "In Imagen's cascaded diffusion architecture, why does the system generate a low-resolution image first before upscaling?",
           options: [
@@ -196,8 +187,7 @@ export const aiM1Experiments: Experiment[] = [
             "Imagen's hardware cannot process high-resolution images in a single pass",
             "Generating at low resolution first reduces the prompt token count"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: The cascaded approach allows high-level semantic structure and composition to be established at low" }
       ],
       references: [
         "Saharia C. et al., Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding (Imagen Paper), Google Research, 2022",
@@ -282,8 +272,7 @@ export const aiM1Experiments: Experiment[] = [
             "Adding a separate discriminator network to filter low-quality outputs",
             "Reducing the number of diffusion steps to improve speed"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Training on a recaptioned dataset where synthetic detailed captions replaced the original captions" },
         {
           question: "Which prompt will most likely produce the best concept art result in DALL·E 3?",
           options: [
@@ -292,8 +281,7 @@ export const aiM1Experiments: Experiment[] = [
             "\"A futuristic AI research laboratory interior with holographic displays, rows of quantum computing servers, digital concept art, cinematic lighting\"",
             "\"a lab that looks like the future, make it good\""
           ],
-          answerIndex: 2
-        },
+          answerIndex: 2, hint: "Think about why the correct answer involves: \"A futuristic AI research laboratory interior with holographic displays, rows of quantum computing s..." },
         {
           question: "What makes DALL·E 3's integration with ChatGPT particularly useful?",
           options: [
@@ -302,8 +290,7 @@ export const aiM1Experiments: Experiment[] = [
             "ChatGPT compresses the generated images for faster download",
             "DALL·E only works through the ChatGPT interface and has no standalone access"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The conversational interface allows iterative refinement where follow-up instructions modify the ima..." },
         {
           question: "Which of the following prompt approaches is most appropriate given DALL·E's content policies?",
           options: [
@@ -312,8 +299,7 @@ export const aiM1Experiments: Experiment[] = [
             "\"Copy the exact style of a recent Marvel movie poster\"",
             "\"Replicate the visual style of a specific branded video game\""
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: \"In a Bauhaus-inspired geometric flat design style with primary colors and clean typography\"" },
         {
           question: "For which CSE use cases is DALL·E most immediately applicable?",
           options: [
@@ -322,8 +308,7 @@ export const aiM1Experiments: Experiment[] = [
             "Automatically generating SQL queries from database schemas",
             "Debugging segmentation faults in operating system kernel code"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Generating placeholder UI artwork, architecture diagram illustrations, and app concept screen mockup..." }
       ],
       procedure: [
         "Read the Theory section and understand DALL·E 3's recaptioning training approach, its conversational refinement capability, and its content policy.",
@@ -346,8 +331,7 @@ export const aiM1Experiments: Experiment[] = [
             "The image was generated using the wrong model version",
             "The prompt was too long for the model to process"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Attribute binding and spatial reasoning errors, a known weakness in earlier diffusion models that DA..." },
         {
           question: "What mechanism enables DALL·E to correctly interpret a follow-up instruction in ChatGPT?",
           options: [
@@ -356,8 +340,7 @@ export const aiM1Experiments: Experiment[] = [
             "DALL·E automatically detects sky regions and replaces them using computer vision",
             "The student must re-enter the full original prompt with the modification included"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The conversational context maintained in the ChatGPT session allows the follow-up instruction to be" },
         {
           question: "What is the correct understanding of the copyright status of AI-generated images?",
           options: [
@@ -366,8 +349,7 @@ export const aiM1Experiments: Experiment[] = [
             "Copyright status of AI-generated images is legally unsettled; courts hold that purely AI-generated works lack sufficient human authorship for copyright protection",
             "AI-generated images are automatically released into the public domain"
           ],
-          answerIndex: 2
-        },
+          answerIndex: 2, hint: "Think about why the correct answer involves: Copyright status of AI-generated images is legally unsettled; courts hold that purely AI-generated w..." },
         {
           question: "What happens when style and mood descriptors are removed from a detailed concept art prompt?",
           options: [
@@ -376,8 +358,7 @@ export const aiM1Experiments: Experiment[] = [
             "DALL·E requires style descriptors to function and should have produced a blank image",
             "The stripped prompt produced a better image because shorter prompts are processed more accurately"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The core subject and scene semantics are encoded, while style descriptors shape the aesthetic render..." },
         {
           question: "What is the most significant limitation of DALL·E 3 for generating consistent character sprites?",
           options: [
@@ -386,8 +367,7 @@ export const aiM1Experiments: Experiment[] = [
             "DALL·E 3 is limited to generating a maximum of 3 images per session",
             "DALL·E 3 cannot generate environments, only isolated characters"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: DALL·E 3 does not natively support character consistency across multiple generations" }
       ],
       references: [
         "OpenAI DALL·E 3 Technical Report, OpenAI, 2023",
@@ -461,8 +441,7 @@ export const aiM1Experiments: Experiment[] = [
             "LoRAs work only for photorealistic styles while fine-tuned models work only for anime",
             "There is no practical difference"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: A fine-tuned model involves retraining full weights, while a LoRA injects style information through" },
         {
           question: "A student wants to generate a fantasy RPG character in a painterly concept art style. Which Leonardo AI approach is most appropriate?",
           options: [
@@ -471,8 +450,7 @@ export const aiM1Experiments: Experiment[] = [
             "Set inference steps to 5 for speed and use a photorealism model",
             "Generate in landscape aspect ratio and crop afterward"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Select a fine-tuned model or LoRA optimized for fantasy concept art, set guidance scale 7-12, portra..." },
         {
           question: "Why does Leonardo AI's latent diffusion approach offer a computational advantage?",
           options: [
@@ -481,8 +459,7 @@ export const aiM1Experiments: Experiment[] = [
             "Latent diffusion generates lower resolution images which are then scaled up using simple interpolation",
             "Latent diffusion does not use a text encoder, reducing computation"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The diffusion process operates in a compressed latent space rather than full pixel space, making eac..." },
         {
           question: "Which Leonardo AI tool addresses a distorted face without regenerating the entire image?",
           options: [
@@ -491,8 +468,7 @@ export const aiM1Experiments: Experiment[] = [
             "Applying a sharpening filter to the entire image",
             "Increasing the inference steps and regenerating the full image"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Using the Canvas inpainting tool to select only the face region and regenerate it" },
         {
           question: "What is the expected effect of combining a 'cel shading' LoRA and a 'sci-fi armor' LoRA?",
           options: [
@@ -501,8 +477,7 @@ export const aiM1Experiments: Experiment[] = [
             "Only the higher-weighted LoRA will have any effect",
             "Combining LoRAs is not supported in Leonardo AI"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: The output will blend both style influences, producing a cel-shaded sci-fi armored character" }
       ],
       procedure: [
         "Read the Theory section and understand the Stable Diffusion foundation and Leonardo's tools.",
@@ -525,8 +500,7 @@ export const aiM1Experiments: Experiment[] = [
             "More steps always produce worse results due to over-processing",
             "Inference steps have no effect on output quality"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Output quality improves up to around 40-50 steps, beyond which additional steps produce marginal imp..." },
         {
           question: "What happens when guidance scale is set to 15 (very high)?",
           options: [
@@ -535,8 +509,7 @@ export const aiM1Experiments: Experiment[] = [
             "The character will have better anatomy than at lower guidance scales",
             "The background will be removed automatically"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The image will closely follow prompt semantics but may appear overly saturated, high-contrast, or un..." },
         {
           question: "If an inpainted hand does not match the lighting of the rest of the image, what caused this?",
           options: [
@@ -545,8 +518,7 @@ export const aiM1Experiments: Experiment[] = [
             "The student should increase inference steps to 100",
             "This is expected and cannot be corrected"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Inpainting regenerates the region independently; the student should extend the selection slightly an..." },
         {
           question: "What is the most significant workflow challenge in generating consistent character sprites across multiple poses?",
           options: [
@@ -555,8 +527,7 @@ export const aiM1Experiments: Experiment[] = [
             "Leonardo AI has a maximum of 10 images per project",
             "2D sprite art is not a supported style"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Maintaining visual consistency across multiple independent generations, as diffusion models do not n..." },
         {
           question: "What is the most technically appropriate method to blend cel-shading with realistic skin texture?",
           options: [
@@ -565,8 +536,7 @@ export const aiM1Experiments: Experiment[] = [
             "Generate two separate images and manually composite them",
             "Select the photorealism fine-tuned model only"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Apply two LoRAs simultaneously with balanced weights" }
       ],
       references: [
         "Rombach R. et al., High-Resolution Image Synthesis with Latent Diffusion Models, CVPR 2022",
@@ -633,8 +603,7 @@ export const aiM1Experiments: Experiment[] = [
             "It controls the number of images",
             "It controls aspect ratio"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It controls how strongly Midjourney's aesthetic training is applied — higher values produce more art..." }
       ],
       procedure: [
         "Read the Theory section and understand the Midjourney workflow and parameters.",

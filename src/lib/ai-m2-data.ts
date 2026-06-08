@@ -83,8 +83,7 @@ export const aiM2Experiments: Experiment[] = [
             "A separate memory module that stores previously generated paragraphs",
             "A fixed template library that the model fills in"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The self-attention mechanism in the transformer architecture which computes relationships between al..." },
         {
           question: "What is the most effective prompt engineering strategy to improve a generic AI-generated essay?",
           options: [
@@ -93,8 +92,7 @@ export const aiM2Experiments: Experiment[] = [
             "Increase the temperature setting to get more creative output",
             "Ask the same question multiple times until a better output appears"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Assign a role, specify the target audience, request a clear thesis, define the structure, and specif..." },
         {
           question: "What is the primary purpose of Reinforcement Learning from Human Feedback (RLHF) in ChatGPT's training?",
           options: [
@@ -103,8 +101,7 @@ export const aiM2Experiments: Experiment[] = [
             "To prevent the model from generating any text on controversial topics",
             "To reduce the size of the model so it runs faster on consumer hardware"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: To fine-tune the model to produce outputs that humans rate as more helpful, coherent, and appropriat..." },
         {
           question: "What change is most likely in the output if you assign the role 'Supreme Court advocate'?",
           options: [
@@ -113,8 +110,7 @@ export const aiM2Experiments: Experiment[] = [
             "ChatGPT will refuse to write persuasive content",
             "The role assignment has no effect"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The output will adopt a more formal, authoritative, and legally-framed rhetorical style with argumen..." },
         {
           question: "What is the primary ethical concern of submitting a ChatGPT-drafted essay unmodified?",
           options: [
@@ -123,8 +119,7 @@ export const aiM2Experiments: Experiment[] = [
             "ChatGPT holds copyright over the generated text",
             "The essay will be too well-written and arouse suspicion"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Submitting AI-generated text as original work without disclosure constitutes academic dishonesty and..." }
       ],
       procedure: [
         "Read the Theory section and understand the transformer architecture, RLHF training, and the multi-turn refinement workflow.",
@@ -147,8 +142,7 @@ export const aiM2Experiments: Experiment[] = [
             "The refined version is better because it is longer",
             "ChatGPT automatically improves its outputs after a delay"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The conversational context maintained across turns allowed targeted refinement instructions to build..." },
         {
           question: "What should a student do instead of instructing ChatGPT to 'make the essay more persuasive'?",
           options: [
@@ -157,8 +151,7 @@ export const aiM2Experiments: Experiment[] = [
             "Restart ChatGPT",
             "Accept the essay as maximally persuasive"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Identify specific weak elements and issue concrete instructions such as 'strengthen the thesis by ma..." },
         {
           question: "What does finding incorrect or unverifiable statistics in a ChatGPT essay illustrate?",
           options: [
@@ -167,8 +160,7 @@ export const aiM2Experiments: Experiment[] = [
             "The statistics are correct and fact-checking sources are wrong",
             "This only occurs at high temperature settings"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: ChatGPT can generate plausible-sounding but hallucinated statistics and citations — all factual clai..." },
         {
           question: "What is the ethically appropriate approach to use a ChatGPT-assisted essay for a conference submission?",
           options: [
@@ -177,8 +169,7 @@ export const aiM2Experiments: Experiment[] = [
             "Delete all traces of AI involvement before submission",
             "Add your name to the ChatGPT output without modification"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Use the ChatGPT draft as a structural scaffold, rewrite all arguments in your own voice, fact-check" },
         {
           question: "Which multi-turn prompting strategy is most effective for a hackathon proposal?",
           options: [
@@ -187,8 +178,7 @@ export const aiM2Experiments: Experiment[] = [
             "Ask ChatGPT to write the proposal ten times and select the best version",
             "Use the highest temperature setting"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Begin with a role assignment, request the proposal with explicit structural requirements, then issue..." }
       ],
       references: [
         "OpenAI GPT-4 Technical Report, OpenAI, 2023",
@@ -272,8 +262,7 @@ export const aiM2Experiments: Experiment[] = [
             "It removes the need for any human feedback",
             "It is a technique for generating structured JSON outputs"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It trains the model to critique and revise its own outputs against a set of guiding principles durin..." },
         {
           question: "Which prompt structure will most likely produce the most useful academic summary of a 40-page research paper?",
           options: [
@@ -282,8 +271,7 @@ export const aiM2Experiments: Experiment[] = [
             "\"Provide: (1) an abstract-level summary, (2) section-by-section breakdown, (3) top three contributions, (4) glossary of technical terms, and (5) follow-up research questions\"",
             "\"What is this paper about in one sentence\""
           ],
-          answerIndex: 2
-        },
+          answerIndex: 2, hint: "Think about why the correct answer involves: \"Provide: (1) an abstract-level summary, (2) section-by-section breakdown, (3) top three contributio..." },
         {
           question: "Why is Claude's 200,000-token context window particularly significant for research paper summarization?",
           options: [
@@ -292,8 +280,7 @@ export const aiM2Experiments: Experiment[] = [
             "A larger context window means faster generation speed",
             "It allows Claude to search the internet for related papers automatically"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It enables processing a full research paper in a single context, producing summaries that account fo..." },
         {
           question: "What type of error has occurred if Claude includes a specific accuracy percentage not found in the original paper?",
           options: [
@@ -302,8 +289,7 @@ export const aiM2Experiments: Experiment[] = [
             "Claude rounded the statistic",
             "The paper was updated after Claude's training cutoff"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Hallucination — Claude generated a plausible-sounding but fabricated statistic not present in the or..." },
         {
           question: "For which specific CSE research task is Claude most immediately valuable as an AI assistant?",
           options: [
@@ -312,8 +298,7 @@ export const aiM2Experiments: Experiment[] = [
             "Automatically generating citations in IEEE format",
             "Replacing the need to read primary research sources entirely"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Accelerating literature review by generating structured summaries, explaining terminology, and draft..." }
       ],
       procedure: [
         "Read the Theory section and understand Constitutional AI, Claude's context window, and critical summary assessment.",
@@ -337,8 +322,7 @@ export const aiM2Experiments: Experiment[] = [
             "Fidelity",
             "Hallucination risk"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Completeness — limitations are essential context, and omission produces a misleadingly positive repr..." },
         {
           question: "Which dimension of critical assessment does substituting 'competitive with state-of-the-art' with 'outperforming state-of-the-art' represent?",
           options: [
@@ -347,8 +331,7 @@ export const aiM2Experiments: Experiment[] = [
             "Hallucination",
             "Accuracy"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Fidelity — the summary substituted language that shifts the meaning of the original claim" },
         {
           question: "If Claude summarizes a 2024 paper not provided in its context, what is the most likely explanation for its confident-sounding summary?",
           options: [
@@ -357,8 +340,7 @@ export const aiM2Experiments: Experiment[] = [
             "It has access to all academic papers regardless of date",
             "It summarized a different paper with a similar title"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It likely hallucinated the content since it cannot have training knowledge of a post-cutoff publicat..." },
         {
           question: "What is the primary academic risk of writing a literature review based entirely on unverified AI summaries?",
           options: [
@@ -367,8 +349,7 @@ export const aiM2Experiments: Experiment[] = [
             "Claude will detect that the student is using its summaries",
             "There is no academic risk"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: AI summaries simplify and may omit nuances or hallucinate details, misrepresenting the field and und..." },
         {
           question: "What is the most effective follow-up prompt if an AI suggestion for an extension study is too trivial?",
           options: [
@@ -377,8 +358,7 @@ export const aiM2Experiments: Experiment[] = [
             "Accept the trivial suggestion",
             "Ask the same question again"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Issue a constrained refinement: 'suggest a project that modifies the model architecture to address a..." }
       ],
       references: [
         "Anthropic Claude Model Card and Constitutional AI Documentation",
@@ -451,8 +431,7 @@ export const aiM2Experiments: Experiment[] = [
             "GPT-4 is multimodal while Gemini only processes text",
             "Both models use identical multimodal architectures"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Gemini was designed as a natively multimodal model trained simultaneously across text, images, audio..." },
         {
           question: "Which Gemini feature makes it most suitable for writing about a recent machine learning breakthrough?",
           options: [
@@ -461,8 +440,7 @@ export const aiM2Experiments: Experiment[] = [
             "Gemini automatically generates images",
             "Gemini has a larger vocabulary"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Gemini's Google Search grounding capability allows it to retrieve and incorporate current informatio..." },
         {
           question: "Which prompt revision will most improve a generic blog post output?",
           options: [
@@ -471,8 +449,7 @@ export const aiM2Experiments: Experiment[] = [
             "Ask Gemini to write the post in a different language",
             "Ask for a shorter post"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Specify the target audience, tone, structure, and length" },
         {
           question: "Which tone instruction should be included for a newsletter accessible to non-technical readers but still accurate?",
           options: [
@@ -481,8 +458,7 @@ export const aiM2Experiments: Experiment[] = [
             "Write in the style of an academic research paper",
             "Use a conversational register assuming the reader is a CSE senior"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Use a journalistic register — factual, structured around a news hook, written for a general educated..." },
         {
           question: "For which CSE writing task is Gemini's native multimodality most directly useful?",
           options: [
@@ -491,8 +467,7 @@ export const aiM2Experiments: Experiment[] = [
             "Debugging a segmentation fault in C code",
             "Generating SQL queries from a natural language description"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Generating a blog post that analyzes and describes a system architecture diagram uploaded by the stu..." }
       ],
       procedure: [
         "Read the Theory section and understand Gemini's multimodal architecture, Search grounding, and writing registers.",
@@ -514,8 +489,7 @@ export const aiM2Experiments: Experiment[] = [
             "The number of subheadings",
             "Technical posts always include code while conversational posts never do"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Vocabulary choice, sentence complexity, assumed reader knowledge, use of first/second person, and pr..." },
         {
           question: "What is the most responsible course of action if you cannot verify a statistic cited by Gemini?",
           options: [
@@ -524,8 +498,7 @@ export const aiM2Experiments: Experiment[] = [
             "Remove all statistics from the post",
             "Ask Gemini to confirm its own statistic"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Independently verify the statistic through the original source before publishing, as AI models can m..." },
         {
           question: "What targeted refinement prompt will most effectively fix a generic conclusion?",
           options: [
@@ -534,8 +507,7 @@ export const aiM2Experiments: Experiment[] = [
             "Delete the conclusion and replace it with a summary",
             "Add more words to the conclusion"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Rewrite the conclusion to match the conversational tone of the introduction and end with a specific" },
         {
           question: "What accounts for Gemini referencing a specific recent product launch while ChatGPT does not?",
           options: [
@@ -544,8 +516,7 @@ export const aiM2Experiments: Experiment[] = [
             "ChatGPT filtered out product mentions",
             "Gemini generates more words per response"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Gemini's Google Search grounding retrieved current information at generation time, while ChatGPT (wi..." },
         {
           question: "What is the most effective and academically honest workflow for a CSE student using Gemini to write a blog post about their project?",
           options: [
@@ -554,8 +525,7 @@ export const aiM2Experiments: Experiment[] = [
             "Use Gemini only to generate the title",
             "Ask Gemini to write the entire codebase"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Provide Gemini with a detailed technical brief, review the output for accuracy, add personal reflect..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 2 — Writing Lab"
@@ -610,8 +580,7 @@ export const aiM2Experiments: Experiment[] = [
             "It only searches academic journals",
             "It requires you to write code to perform a search"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Instead of returning a list of hyperlinks, it retrieves multiple sources, reads them, and synthesize..." },
         {
           question: "What is the primary vulnerability of conversational search engines?",
           options: [
@@ -620,8 +589,7 @@ export const aiM2Experiments: Experiment[] = [
             "They cannot be used on mobile devices",
             "They only provide answers in a single language"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The synthesized answer is only as reliable as the sources the AI chooses to retrieve; if it retrieve..." },
         {
           question: "When evaluating an AI-generated research summary, what does 'citation fidelity' mean?",
           options: [
@@ -630,8 +598,7 @@ export const aiM2Experiments: Experiment[] = [
             "The aesthetic formatting of the bibliography",
             "Whether the sources used are older than ten years"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Whether the AI's generated claim accurately reflects the information actually present in the source" }
       ],
       procedure: [
         "Review the theory behind conversational search and RAG architecture.",
@@ -653,8 +620,7 @@ export const aiM2Experiments: Experiment[] = [
             "The source document was updated while you were reading it",
             "The AI is intentionally hiding the real source"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Citation hallucination or misattribution: the AI generated a claim and incorrectly attached a source..." },
         {
           question: "Why is it important to explicitly instruct a conversational search engine to prioritize certain types of sources (e.g., 'only cite peer-reviewed papers')?",
           options: [
@@ -663,8 +629,7 @@ export const aiM2Experiments: Experiment[] = [
             "It prevents the AI from using the internet",
             "It forces the AI to output responses in APA format automatically"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Because without constraints, the AI might prioritize SEO-optimized blogs or marketing materials over..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 2 — Writing Lab"

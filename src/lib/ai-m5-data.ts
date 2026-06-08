@@ -43,8 +43,7 @@ export const aiM5Experiments: Experiment[] = [
             "NotebookLM automatically translates the text into code",
             "NotebookLM converts the manual into an interactive video game"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: NotebookLM grounds its answers strictly in the documents you provide, generating direct inline citat..." },
         {
           question: "What happens if you ask a source-grounded notebook a question that is entirely missing from your uploaded files?",
           options: [
@@ -53,8 +52,7 @@ export const aiM5Experiments: Experiment[] = [
             "The AI crashes and deletes your browser history",
             "The AI searches the entire live dark web for the answer"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The AI states that it cannot find that information within the provided sources" },
         {
           question: "What is the purpose of clicking an inline citation number inside a NotebookLM response?",
           options: [
@@ -63,8 +61,7 @@ export const aiM5Experiments: Experiment[] = [
             "It redirects you to an online shopping store",
             "It copies the entire response text into your computer's clipboard"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It brings up a panel highlighting the exact paragraph and document source from which the AI extracte..." }
       ],
       procedure: [
         "Review the theory behind source grounding and retrieval-focused context structures.",
@@ -87,8 +84,7 @@ export const aiM5Experiments: Experiment[] = [
             "Change the voice settings to a faster accent speed",
             "Re-type your source document in all capital letters"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Recognize that audio summaries are meant for high-level concepts; always rely on the primary text fi..." },
         {
           question: "When compiling a literature review from multiple uploaded research articles, what is the best workflow to find competing arguments?",
           options: [
@@ -97,8 +93,7 @@ export const aiM5Experiments: Experiment[] = [
             "Read only the first sentence of the first uploaded file",
             "Ask the AI to delete all pages that contain math formulas"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Use a prompt like: 'Compare the findings across Source A and Source B regarding algorithm performanc..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 5 — Research & Productivity Lab"
@@ -146,8 +141,7 @@ export const aiM5Experiments: Experiment[] = [
             "Gamma requires you to write raw HTML code for every word",
             "Gamma limits presentations to a maximum of two slides"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Legacy tools use rigid pixel coordinates that cause text overflow, while Gamma uses responsive web c..." },
         {
           question: "When feeding a text brief into an AI presentation engine, what structural indicator tells the model to create a new slide card?",
           options: [
@@ -156,8 +150,7 @@ export const aiM5Experiments: Experiment[] = [
             "Typing a random mathematical equation",
             "Inserting an external database link"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Logical markdown section breaks, headers, or major topic transitions in your text outline structure" },
         {
           question: "What is the design principle of 'Visual Scannability' in professional presentation development?",
           options: [
@@ -166,8 +159,7 @@ export const aiM5Experiments: Experiment[] = [
             "Hiding all text behind hidden navigation bars",
             "Printing slides out onto physical paper cards"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Organizing information using bold callouts, icons, multi-column cards, and clear spacing so an audie..." }
       ],
       procedure: [
         "Review presentation layout theories focusing on visual scannability and card component distribution.",
@@ -189,8 +181,7 @@ export const aiM5Experiments: Experiment[] = [
             "Change the background color to white",
             "Tell the presenter to read faster"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Rewrite this slide layout into three concise, scannable column cards with illustrative icons, keepin..." },
         {
           question: "Why is using an AI design assistant to modify slide structures mid-workflow beneficial?",
           options: [
@@ -199,8 +190,7 @@ export const aiM5Experiments: Experiment[] = [
             "It automatically signs you up for competitions",
             "It converts your presentation into an automated script"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It allows you to rapidly iterate on different layout structures (like switching columns to timelines..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 5 — Research & Productivity Lab"
@@ -249,8 +239,7 @@ export const aiM5Experiments: Experiment[] = [
             "A overlapping Venn diagram",
             "A random abstract artistic painting"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: A linear, step-by-step sequential flowchart showing directional data nodes" },
         {
           question: "How does Napkin AI determine where to suggest a diagram icon placeholder within a text document?",
           options: [
@@ -259,8 +248,7 @@ export const aiM5Experiments: Experiment[] = [
             "It checks the file storage size",
             "It prompts you to upload a manual canvas drawing"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It analyzes the semantic context of paragraphs to detect structural patterns like sequences, compari..." },
         {
           question: "What is the main advantage of vector-based diagrams over static screenshot images within technical reports?",
           options: [
@@ -269,8 +257,7 @@ export const aiM5Experiments: Experiment[] = [
             "Vector diagrams take up more disk space",
             "Vector diagrams completely hide the raw source code"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Vector shapes remain crisp at any display size, and individual nodes, text labels, color fills, and" }
       ],
       procedure: [
         "Study the relationships between technical prose structures and their corresponding diagram topologies.",
@@ -291,8 +278,7 @@ export const aiM5Experiments: Experiment[] = [
             "Use a white marker on your monitor",
             "Write a separate text document explaining the error"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Double-click the vector diagram node layers directly on the canvas and manually drag or rename the c..." },
         {
           question: "Why is integrating direct vector diagrams alongside text documentation critical for onboarding new developers?",
           options: [
@@ -301,8 +287,7 @@ export const aiM5Experiments: Experiment[] = [
             "It prevents the software code from crashing",
             "It translates documentation into alternative spoken languages"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Visual diagrams provide an immediate mental map of system components and data relationships, signifi..." }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 5 — Research & Productivity Lab"
@@ -349,8 +334,7 @@ export const aiM5Experiments: Experiment[] = [
             "Semantic engines only search social media",
             "Semantic search charges a user fee for every link"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Keyword searches look for exact string matches, while semantic search maps conceptual meanings using..." },
         {
           question: "Why is constructing an extraction matrix table critical during the literature review stage of a research project?",
           options: [
@@ -359,8 +343,7 @@ export const aiM5Experiments: Experiment[] = [
             "It automatically writes the code logic for your frontend",
             "It locks your research files"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It organizes key variables, methodologies, datasets, and limitations across multiple papers into a s..." },
         {
           question: "When an AI research engine extracts a summary column stating a paper's dataset size, what action must a responsible student researcher take?",
           options: [
@@ -369,8 +352,7 @@ export const aiM5Experiments: Experiment[] = [
             "Delete the paper reference entirely",
             "Change the number to a larger value"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: Click the reference link to open the original paper's methodology section to verify that the AI accu..." }
       ],
       procedure: [
         "Study the mechanics of semantic mapping and the structured taxonomy of a scientific research paper.",
@@ -392,8 +374,7 @@ export const aiM5Experiments: Experiment[] = [
             "Pay an unauthorized web hacker",
             "Invent a fake summary"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Use your university library credentials, institutional login portals, or tools like Google Scholar t..." },
         {
           question: "Which row entry in your literature extraction matrix is most useful for identifying 'Research Gaps' to help scope your final-year undergraduate project?",
           options: [
@@ -402,8 +383,7 @@ export const aiM5Experiments: Experiment[] = [
             "The alphabetical ranking index",
             "The total number of pages in the document"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: The 'Stated Limitations or Future Work' column, which outlines what current models cannot handle and..." },
         {
           question: "What is the primary benefit of exporting the extraction matrix as a CSV file?",
           options: [
@@ -412,8 +392,7 @@ export const aiM5Experiments: Experiment[] = [
             "It converts the text into a slideshow",
             "It changes the file into an executable program"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: It allows the researcher to sort, filter, and integrate the extracted data into spreadsheet software..." },
         {
           question: "If Elicit generates a summary for a paper, what should you do if the methodology is unclear?",
           options: [
@@ -422,8 +401,7 @@ export const aiM5Experiments: Experiment[] = [
             "Delete the row from your matrix",
             "Ask the AI to guess the methodology"
           ],
-          answerIndex: 1
-        },
+          answerIndex: 1, hint: "Think about why the correct answer involves: Hover over the summary cell to see the direct source text excerpt or open the original paper to read..." },
         {
           question: "How does a semantic search engine handle vocabulary differences across papers (e.g., 'heart disease' vs 'cardiovascular interventions')?",
           options: [
@@ -432,8 +410,7 @@ export const aiM5Experiments: Experiment[] = [
             "It requires the user to manually input all possible synonyms",
             "It searches only for the first word in the query"
           ],
-          answerIndex: 1
-        }
+          answerIndex: 1, hint: "Think about why the correct answer involves: It uses vector embeddings to position conceptually similar sentences close together, allowing it to" }
       ],
       references: [
         "JNTUGV AI Tools Lab Syllabus, Module 5 — Research & Productivity Lab"
