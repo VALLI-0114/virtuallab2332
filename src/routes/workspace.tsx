@@ -574,6 +574,7 @@ ORDER  BY grade DESC;`,
     ? ["Aim", "Theory", "Pretest", "Procedure", "Solve", "Posttest", "References"]
     : ["Aim", "Theory", "Pretest", "Procedure", "Simulation", "Code Test", "Posttest", "References"];
   const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const [maxStepReached, setMaxStepReached] = useState(0);
   
   const [pretestAnswers, setPretestAnswers] = useState<Record<number, number>>({});
   const [posttestAnswers, setPosttestAnswers] = useState<Record<number, number>>({});
@@ -628,7 +629,11 @@ ORDER  BY grade DESC;`,
       toast.error(`Please answer all questions in the ${currentStepName} before proceeding.`);
       return;
     }
-    if (activeStepIndex < WORKSPACE_STEPS.length - 1) setActiveStepIndex(activeStepIndex + 1);
+    if (activeStepIndex < WORKSPACE_STEPS.length - 1) {
+      const nextIdx = activeStepIndex + 1;
+      setActiveStepIndex(nextIdx);
+      setMaxStepReached(prev => Math.max(prev, nextIdx));
+    }
   };
 
   const handlePrev = () => {
@@ -666,15 +671,25 @@ ORDER  BY grade DESC;`,
             {WORKSPACE_STEPS.map((step, idx) => {
               const isCompleted = idx < activeStepIndex;
               const isActive = idx === activeStepIndex;
+              const isLocked = idx > maxStepReached && idx !== activeStepIndex;
+              
               return (
                 <button
                   key={step}
-                  onClick={() => setActiveStepIndex(idx)}
+                  onClick={() => {
+                    if (idx <= maxStepReached) {
+                      setActiveStepIndex(idx);
+                    } else if (idx === activeStepIndex + 1) {
+                      handleNext();
+                    } else {
+                      toast.error(`Please complete the ${WORKSPACE_STEPS[activeStepIndex]} step first.`);
+                    }
+                  }}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                     isActive ? "bg-cyan/20 text-cyan border border-cyan/30" : 
                     isCompleted ? "bg-secondary text-foreground border border-border" : 
                     "text-muted-foreground hover:bg-secondary/50 border border-transparent"
-                  }`}
+                  } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
                   {isCompleted && <CheckCircle2 className="size-3.5 text-mint" />}
                   <span className={isActive || isCompleted ? "" : "opacity-70"}>{step}</span>

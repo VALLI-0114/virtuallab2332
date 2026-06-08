@@ -194,15 +194,18 @@ function DynamicIsland() {
   );
 }
 
+import { Chatbot } from "@/components/Chatbot";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen">
+      <div className="min-h-screen relative">
         <DynamicIsland />
         <main className="pt-24">
           <Outlet />
         </main>
+        <Chatbot />
         <Toaster />
       </div>
     </QueryClientProvider>
