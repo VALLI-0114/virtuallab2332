@@ -55,6 +55,7 @@ export type Course = {
   title: string;
   objectives: string | string[];
   introduction?: string[];
+  shortNotes?: string;
   targetAudience?: {
     primary: string;
     prerequisites: string[];

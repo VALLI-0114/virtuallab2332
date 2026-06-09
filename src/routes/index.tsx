@@ -70,7 +70,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className="hidden lg:block relative opacity-0 animate-fade-in-up delay-300 z-10">
+          <div className="hidden lg:block relative opacity-0 animate-fade-in-up delay-300 z-10 -translate-x-32 scale-125">
             <HeroAnimation />
           </div>
         </div>

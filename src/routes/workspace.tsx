@@ -866,7 +866,7 @@ except BaseException:
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
               {details ? (
-                <Link to={`/course/${details.course.id}`} className="hover:text-foreground flex items-center gap-1">
+                <Link to={`/course/${details.course.id}`} hash="experiments" className="hover:text-foreground flex items-center gap-1">
                   <ArrowLeft className="size-3.5" /> Back to {courseTitle}
                 </Link>
               ) : (

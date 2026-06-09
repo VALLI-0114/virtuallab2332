@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses } from "@/lib/course-data";
-import { ArrowLeft, Book, Code, List, Info, Target, LayoutTemplate, Beaker, MessageSquare, Star } from "lucide-react";
+import { ArrowLeft, Book, Code, List, Info, Target, LayoutTemplate, Beaker, MessageSquare, Star, FileText, Download } from "lucide-react";
 import { toast } from "sonner";
 import { ErrorGraphic } from "@/components/ErrorGraphic";
 import { CheckCircle2 } from "lucide-react";
@@ -34,6 +34,7 @@ function CoursePage() {
     const t = [];
     if (course.introduction) t.push({ id: "Introduction", icon: Info });
     t.push({ id: "Objective", icon: Target });
+    t.push({ id: "Short Notes", icon: FileText });
     if (course.targetAudience) t.push({ id: "Target Audience", icon: List });
     if (course.alignment) t.push({ id: "Course Alignment", icon: LayoutTemplate });
     t.push({ id: "List of Experiments", icon: Beaker });
@@ -108,7 +109,7 @@ function CoursePage() {
   const nextTab = currentTabIndex < tabs.length - 1 ? tabs[currentTabIndex + 1] : null;
 
   return (
-    <div className="px-6 lg:px-10 py-12 max-w-6xl mx-auto">
+    <div className="px-6 lg:px-10 py-12 max-w-7xl mx-auto">
       <div>
         <Link to="/courses" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
           <ArrowLeft className="size-4" /> Back to Courses
@@ -272,6 +273,103 @@ function CoursePage() {
             ) : (
               <p className="text-muted-foreground leading-relaxed">{course.objectives}</p>
             )}
+              </section>
+            )}
+
+            {currentTab === "Short Notes" && (
+              <section>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold">Short Notes</h2>
+                  {course.shortNotes && (
+                    <div className="flex items-center gap-2">
+                      <button 
+                        onClick={() => {
+                          const blob = new Blob([course.shortNotes || ""], { type: 'text/plain' });
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement('a');
+                          a.href = url;
+                          a.download = `${course.title.replace(/\\s+/g, '_')}_Short_Notes.txt`;
+                          document.body.appendChild(a);
+                          a.click();
+                          document.body.removeChild(a);
+                          URL.revokeObjectURL(url);
+                          toast.success("Notes downloaded!");
+                        }}
+                        className="text-xs bg-secondary hover:bg-secondary/80 text-foreground px-3 py-1.5 rounded-md flex items-center gap-2 transition-colors"
+                      >
+                        <Download className="size-3.5" />
+                        Download
+                      </button>
+                      <button 
+                        onClick={() => {
+                          navigator.clipboard.writeText(course.shortNotes || "");
+                          toast.success("Notes copied to clipboard!");
+                        }}
+                        className="text-xs bg-secondary hover:bg-secondary/80 text-foreground px-3 py-1.5 rounded-md flex items-center gap-2 transition-colors"
+                      >
+                        <FileText className="size-3.5" />
+                        Copy Notes
+                      </button>
+                    </div>
+                  )}
+                </div>
+                {course.shortNotes ? (
+                  <div className="relative p-6 md:p-10 rounded-3xl border-8 border-cyan/20 bg-[#fdfbf7] dark:bg-card shadow-xl overflow-y-auto max-h-[70vh] custom-scrollbar notebook-bg">
+                    <div className="absolute top-0 left-8 bottom-0 w-0.5 bg-red-400/30 dark:bg-red-900/30 hidden sm:block"></div>
+                    <div className="sm:pl-10 relative z-10">
+                    {/* Top Image */}
+                    {course.id === 'data-structures-using-c-programming' && (
+                      <div className="mb-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                         <img src="/ds_types_of_data_structures.png" alt="Types of Data Structures Flowchart" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div className="space-y-2">
+                    {course.shortNotes.split(/\r?\n/).map((line, i) => {
+                      const text = line.trim();
+                      if (!text) return null;
+
+                      let el = null;
+                      if (text.startsWith('UNIT ')) {
+                        el = <h3 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-600 mt-12 mb-6 pb-2 border-b-2 border-cyan/30 flex items-center gap-2"><Book className="size-6 text-cyan" /> {text}</h3>;
+                      } else if (text === text.toUpperCase() && text.length > 5 && !text.includes('—')) {
+                        el = <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-xl mt-10 mb-4 inline-block">{text}</div>;
+                      } else if (text.endsWith(':')) {
+                        el = <h5 className="text-xl font-bold text-cyan mt-8 mb-4 flex items-center gap-2"><div className="w-3 h-3 rounded bg-orange-500"></div> {text}</h5>;
+                      } else if (text.match(/^[A-Z][a-zA-Z\\s/]+$/) && text.length < 40 && !text.includes('—')) {
+                        // Side headings
+                        el = <h6 className="text-lg font-bold text-foreground mt-6 mb-3 bg-secondary px-4 py-1.5 rounded-md border-l-4 border-cyan inline-block shadow-sm">{text}</h6>;
+                      } else if (text.includes('—') && text.split('—')[0].length < 30) {
+                        const parts = text.split('—');
+                        el = <div className="pl-4 border-l-4 border-orange-400/50 my-3 py-2 bg-orange-50/50 dark:bg-orange-900/10 rounded-r-lg shadow-sm"><span className="font-bold text-foreground text-lg">{parts[0]}</span> <span className="text-muted-foreground mx-2">—</span> <span className="text-foreground/90">{parts.slice(1).join('—')}</span></div>;
+                      } else {
+                        // Regular text items as bullet points
+                        el = (
+                          <div className="flex gap-3 items-start ml-2 md:ml-6 group">
+                            <div className="mt-2 w-1.5 h-1.5 rounded-full bg-cyan/50 group-hover:bg-cyan transition-colors shrink-0"></div>
+                            <p className="text-foreground/80 leading-relaxed text-base md:text-lg">{text}</p>
+                          </div>
+                        );
+                      }
+                      
+                      // Skip image injection if it's already at top
+                      if (text.includes('Types of Data Structures:')) {
+                        return <div key={i} className="animate-in fade-in slide-in-from-bottom-4 duration-500">{el}</div>;
+                      }
+                      return <div key={i} className="animate-in fade-in duration-500">{el}</div>;
+                    })}
+                    </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-12 rounded-xl border border-border bg-card/50 flex flex-col items-center justify-center text-center border-dashed">
+                    <FileText className="size-10 text-muted-foreground/30 mb-4" />
+                    <h3 className="font-medium text-foreground mb-1">No short notes provided yet</h3>
+                    <p className="text-sm text-muted-foreground max-w-sm">This space will contain comprehensive notes, complete data, and images for this course.</p>
+                  </div>
+                )}
               </section>
             )}
 
