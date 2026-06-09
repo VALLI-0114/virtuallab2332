@@ -9,6 +9,19 @@ import { MemoryManagerSim } from "@/components/simulations/MemoryManagerSim";
 import { MirrorPortalSim } from "@/components/simulations/MirrorPortalSim";
 import { LinearSearchSim } from "@/components/simulations/LinearSearchSim";
 import { BinarySearchSim } from "@/components/simulations/BinarySearchSim";
+import { BubbleSortSim } from "@/components/simulations/BubbleSortSim";
+import { SelectionSortSim } from "@/components/simulations/SelectionSortSim";
+import { InsertionSortSim } from "@/components/simulations/InsertionSortSim";
+import { LinkedCityCampaign } from "@/components/simulations/LinkedCityCampaign";
+import { StackTowerCampaign } from "@/components/simulations/StackTowerCampaign";
+import { TransitDistrictCampaign } from "@/components/simulations/TransitDistrictCampaign";
+import { IntelligenceCenterCampaign } from "@/components/simulations/IntelligenceCenterCampaign";
+import { CommandTreeCampaign } from "@/components/simulations/CommandTreeCampaign";
+import { DataVaultCampaign } from "@/components/simulations/DataVaultCampaign";
+import { GenesisTerminalCampaign } from "@/components/simulations/GenesisTerminalCampaign";
+import { AlgorithmForestCampaign } from "@/components/simulations/AlgorithmForestCampaign";
+import { ExpressionLaboratoryCampaign } from "@/components/simulations/ExpressionLaboratoryCampaign";
+import { DecisionKingdomCampaign } from "@/components/simulations/DecisionKingdomCampaign";
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -1384,6 +1397,105 @@ except BaseException:
                     return (
                       <div className="h-full">
                         <BinarySearchSim />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ds-e1-4") {
+                    return (
+                      <div className="h-full bg-background">
+                        <BubbleSortSim />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ds-e1-5") {
+                    return (
+                      <div className="h-full bg-background">
+                        <SelectionSortSim />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ds-e1-6") {
+                    return (
+                      <div className="h-full bg-background">
+                        <InsertionSortSim />
+                      </div>
+                    );
+                  }
+                  if (
+                    details?.experiment.id?.startsWith("ds-e2-") ||
+                    details?.experiment.id?.startsWith("ds-e3-") ||
+                    details?.experiment.id?.startsWith("ds-e4-")
+                  ) {
+                    return (
+                      <div className="h-full bg-background">
+                        <LinkedCityCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id?.startsWith("ds-e5-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <StackTowerCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id?.startsWith("ds-e6-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <TransitDistrictCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id?.startsWith("ds-e7-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <IntelligenceCenterCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id?.startsWith("ds-e8-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <CommandTreeCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id?.startsWith("ds-e9-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <DataVaultCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+                  
+                  if (details?.experiment.id?.startsWith("c-w1-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <GenesisTerminalCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("c-w2-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <AlgorithmForestCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("c-w4-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <ExpressionLaboratoryCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("c-w5-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <DecisionKingdomCampaign expId={details.experiment.id} />
                       </div>
                     );
                   }
