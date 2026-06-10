@@ -832,7 +832,7 @@ except BaseException:
   const WORKSPACE_STEPS = isAITools 
     ? ["Aim", "Theory", "Pretest", "Procedure", "Solve", "Posttest", "References"]
     : isIot
-    ? ["Aim", "Theory", "Pretest", "Procedure", "Simulation", "Tinkercad", "Posttest", "References"]
+    ? ["Aim", "Theory", "Pretest", "Procedure", "Tinkercad", "Posttest", "References"]
     : ["Aim", "Theory", "Pretest", "Procedure", "Simulation", "Code Test", "Posttest", "References"];
   const experimentStartTime = useRef<number>(Date.now());
   const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -1173,7 +1173,7 @@ except BaseException:
                   </div>
                 </div>
               ) : isIot ? (
-                <div className="h-full flex flex-col items-center justify-center bg-[#0f111a] relative overflow-hidden">
+                <div className="h-full flex flex-col items-center justify-center bg-slate-50/50 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan/5 to-fuchsia-400/5" />
                   <div className="relative z-10 w-full h-full p-4 flex flex-col gap-4">
                     <div className="flex items-center justify-between px-4 py-3 bg-secondary/80 border border-border rounded-xl">
@@ -1191,12 +1191,20 @@ except BaseException:
                         <ExternalLink className="size-3.5" /> Open in New Tab
                       </button>
                     </div>
-                    <div className="flex-1 rounded-xl border border-border overflow-hidden bg-white">
-                      <iframe 
-                        src="https://www.tinkercad.com/dashboard" 
-                        className="w-full h-full border-none" 
-                        title="Tinkercad Workspace" 
-                      />
+                    <div className="flex-1 rounded-xl border border-border overflow-hidden bg-white flex flex-col items-center justify-center p-8 text-center shadow-sm">
+                      <div className="size-20 rounded-2xl bg-cyan/10 text-cyan grid place-items-center mb-6 ring-1 ring-cyan/20">
+                        <ExternalLink className="size-10" />
+                      </div>
+                      <h2 className="text-2xl font-bold mb-3 font-display text-slate-900">Tinkercad Requires a New Window</h2>
+                      <p className="text-slate-500 max-w-md mb-8 leading-relaxed">
+                        For security reasons, Tinkercad cannot be embedded directly within the Virtual Lab. Please open it in a separate tab to continue your experiment.
+                      </p>
+                      <button 
+                        onClick={() => window.open("https://www.tinkercad.com/dashboard", "_blank")}
+                        className="px-8 py-3 rounded-full bg-cyan text-cyan-foreground font-semibold hover:bg-cyan/90 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105 flex items-center gap-2"
+                      >
+                        Launch Tinkercad Workspace <ExternalLink className="size-4.5" />
+                      </button>
                     </div>
                   </div>
                 </div>

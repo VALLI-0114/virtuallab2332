@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -198,6 +199,9 @@ import { Chatbot } from "@/components/Chatbot";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const hideBot = location.pathname.startsWith('/course') || location.pathname.startsWith('/workspace');
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen relative">
@@ -205,7 +209,7 @@ function RootComponent() {
         <main className="pt-24">
           <Outlet />
         </main>
-        <Chatbot />
+        {!hideBot && <Chatbot />}
         <Toaster />
       </div>
     </QueryClientProvider>

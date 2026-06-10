@@ -186,7 +186,7 @@ useEffect(() => {
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-secondary/50 text-xs font-medium text-muted-foreground mb-4 block w-fit">
           <Book className="size-3.5" /> Syllabus Overview
         </div>
-        <h1 className="font-display text-4xl lg:text-5xl font-bold tracking-tight mb-12">{course.title}</h1>
+        <h1 className="font-display text-4xl lg:text-5xl font-bold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary pb-2 w-fit block">{course.title}</h1>
       </div>
 
       {allSolved && (
@@ -216,10 +216,12 @@ useEffect(() => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all text-left ${isActive ? "bg-secondary text-cyan shadow-sm translate-x-1" : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground hover:translate-x-1"}`}
+                className={`flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all text-left ${isActive ? "bg-secondary shadow-sm translate-x-1" : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground hover:translate-x-1"}`}
               >
-                <Icon className={`size-4 ${isActive ? "text-cyan" : ""}`} />
-                {tab.id}
+                <Icon className={`size-4 shrink-0 ${isActive ? "text-cyan" : ""}`} />
+                <span className={isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary font-bold inline-block" : ""}>
+                  {tab.id}
+                </span>
               </button>
             );
           })}
@@ -230,7 +232,7 @@ useEffect(() => {
           <div key={currentTab} className="animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-forwards">
             {currentTab === "Introduction" && course.introduction && (
               <section>
-                <h2 className="text-2xl font-bold mb-6">Introduction</h2>
+                <h2 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">Introduction</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   {course.introduction.map((p, i) => (
                     <p key={i}>{p}</p>
@@ -241,7 +243,7 @@ useEffect(() => {
 
             {currentTab === "Objective" && (
               <section>
-            <h2 className="text-2xl font-bold mb-6">Objective</h2>
+            <h2 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">Objective</h2>
             
             {course.id === "ai-tools" && (
               <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
@@ -348,7 +350,7 @@ useEffect(() => {
             {currentTab === "Short Notes" && (
               <section>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold">Short Notes</h2>
+                  <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">Short Notes</h2>
                   {course.shortNotes && (
                     <div className="flex items-center gap-2">
                       <button 
@@ -383,9 +385,8 @@ useEffect(() => {
                   )}
                 </div>
                 {course.shortNotes ? (
-                  <div className="relative p-6 md:p-10 rounded-3xl border-8 border-cyan/20 bg-[#fdfbf7] dark:bg-card shadow-xl overflow-y-auto max-h-[70vh] custom-scrollbar notebook-bg">
-                    <div className="absolute top-0 left-8 bottom-0 w-0.5 bg-red-400/30 dark:bg-red-900/30 hidden sm:block"></div>
-                    <div className="sm:pl-10 relative z-10">
+                  <div className="relative p-6 md:p-10 rounded-3xl border border-cyan/20 bg-card/50 backdrop-blur-sm shadow-xl overflow-y-auto max-h-[70vh] custom-scrollbar">
+                    <div className="sm:pl-4 relative z-10">
                     {/* Top Image */}
                     {course.id === 'data-structures-using-c-programming' && (
                       <div className="mb-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
@@ -402,9 +403,9 @@ useEffect(() => {
 
                       let el = null;
                       if (text.startsWith('UNIT ')) {
-                        el = <h3 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-600 mt-12 mb-6 pb-2 border-b-2 border-cyan/30 flex items-center gap-2"><Book className="size-6 text-cyan" /> {text}</h3>;
+                        el = <h3 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary mt-12 mb-6 pb-2 border-b-2 border-cyan/30 flex items-center gap-2"><Book className="size-6 text-cyan" /> {text}</h3>;
                       } else if (text === text.toUpperCase() && text.length > 5 && !text.includes('—')) {
-                        el = <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-xl mt-10 mb-4 inline-block">{text}</div>;
+                        el = <div className="bg-gradient-to-r from-cyan/10 to-blue-500/10 border border-cyan/20 shadow-sm text-foreground px-5 py-2.5 rounded-xl font-bold text-xl mt-10 mb-4 inline-block tracking-tight">{text}</div>;
                       } else if (text.endsWith(':')) {
                         el = <h5 className="text-xl font-bold text-cyan mt-8 mb-4 flex items-center gap-2"><div className="w-3 h-3 rounded bg-orange-500"></div> {text}</h5>;
                       } else if (text.match(/^[A-Z][a-zA-Z\\s/]+$/) && text.length < 40 && !text.includes('—')) {
@@ -413,6 +414,19 @@ useEffect(() => {
                       } else if (text.includes('—') && text.split('—')[0].length < 30) {
                         const parts = text.split('—');
                         el = <div className="pl-4 border-l-4 border-orange-400/50 my-3 py-2 bg-orange-50/50 dark:bg-orange-900/10 rounded-r-lg shadow-sm"><span className="font-bold text-foreground text-lg">{parts[0]}</span> <span className="text-muted-foreground mx-2">—</span> <span className="text-foreground/90">{parts.slice(1).join('—')}</span></div>;
+                      } else if (text.startsWith('![') && text.includes('](') && text.endsWith(')')) {
+                        const altMatch = text.match(/!\[(.*?)\]/);
+                        const srcMatch = text.match(/\((.*?)\)/);
+                        if (altMatch && srcMatch) {
+                          const alt = altMatch[1];
+                          const src = srcMatch[1];
+                          el = (
+                            <div className="my-8 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden max-w-lg mx-auto">
+                              <div className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                              <img src={src} alt={alt} className="max-h-64 object-contain max-w-full rounded-xl hover:scale-[1.02] transition-transform duration-500 shadow-sm relative z-10" />
+                            </div>
+                          );
+                        }
                       } else {
                         // Regular text items as bullet points
                         el = (
@@ -569,7 +583,7 @@ useEffect(() => {
 
             {currentTab === "Target Audience" && course.targetAudience && (
               <section>
-              <h2 className="text-2xl font-bold mb-6">Target Audience</h2>
+              <h2 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">Target Audience</h2>
               <div className="space-y-8 text-muted-foreground leading-relaxed">
                 <div>
                   <h3 className="font-semibold text-foreground mb-3">Primary Audience</h3>
@@ -593,7 +607,7 @@ useEffect(() => {
 
             {currentTab === "Course Alignment" && course.alignment && (
               <section>
-              <h2 className="text-2xl font-bold mb-6">Course Alignment</h2>
+              <h2 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">Course Alignment</h2>
               <div className="overflow-hidden rounded-xl border border-border">
                 <table className="w-full text-left text-sm text-muted-foreground">
                   <tbody className="divide-y divide-border/50">
@@ -635,41 +649,55 @@ useEffect(() => {
 
             {currentTab === "List of Experiments" && (
               <section>
-                <h2 className="text-2xl font-bold mb-6">List of Experiments</h2>
-                <div className="space-y-8">
+                <h2 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">List of Experiments</h2>
+                 <div className="space-y-8">
                   {course.weeks.map((week, index) => (
-                    <div key={index} className="rounded-xl border border-border bg-card overflow-hidden">
-                      <div className="px-6 py-5 border-b border-border bg-secondary/30">
-                        <div className="flex items-center gap-3">
-                          <div className="flex-shrink-0 grid place-items-center size-10 rounded-lg bg-primary/10 text-primary font-bold font-mono">
+                    <div key={index} className="rounded-2xl border border-border/60 bg-card overflow-hidden shadow-sm hover:shadow-xl hover:border-cyan/30 transition-all duration-500 group">
+                      <div className="px-6 py-6 border-b border-border/40 bg-gradient-to-r from-cyan/5 to-transparent relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:bg-cyan/20 transition-colors duration-700"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="flex-shrink-0 grid place-items-center size-14 rounded-xl bg-gradient-to-br from-cyan to-primary text-white font-black font-display text-xl shadow-[0_0_20px_rgba(6,182,212,0.4)] group-hover:scale-110 transition-transform duration-500">
                             W{index + 1}
                           </div>
                           <div>
-                            <h2 className="text-lg font-semibold">{week.title}</h2>
-                            <p className="text-sm text-muted-foreground mt-1">{week.objective}</p>
+                            <h2 className="text-xl font-bold font-display tracking-tight text-foreground">{week.title}</h2>
+                            <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed max-w-2xl">{week.objective}</p>
                           </div>
                         </div>
                       </div>
-                      <div className="p-6">
-                        <div className="mb-4">
-                          <h3 className="text-sm font-semibold mb-1 text-foreground/80">{week.tutorial}</h3>
-                          <p className="text-sm text-muted-foreground">{week.labTitle}</p>
+                      <div className="p-6 md:p-8">
+                        <div className="mb-6 p-4 rounded-xl bg-secondary/30 border border-border/50">
+                          <h3 className="text-sm font-semibold mb-1 text-foreground flex items-center gap-2">
+                            <Book className="size-4 text-cyan" /> {week.tutorial}
+                          </h3>
+                          <p className="text-sm text-muted-foreground pl-6">{week.labTitle}</p>
                         </div>
-                        <div className="space-y-2 mt-4">
-                          <h4 className="text-xs font-mono uppercase tracking-wider text-cyan mb-3">Experiments</h4>
+                        <div className="space-y-3 mt-6">
+                          <div className="flex items-center gap-2 mb-4">
+                            <Beaker className="size-4 text-cyan" />
+                            <h4 className="text-xs font-bold uppercase tracking-widest text-foreground">Experiments</h4>
+                          </div>
                           {week.experiments.map((exp, i) => (
-                            <div key={exp.id} className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-background/50 hover:border-border transition-colors">
-                              <div className="flex items-center gap-3">
-                                <span className="text-xs font-mono text-muted-foreground">{i + 1}.</span>
-                                <span className="text-sm font-medium">{exp.title}</span>
-                                {solvedExps.has(exp.id) && <CheckCircle2 className="size-4 text-mint" />}
+                            <div key={exp.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border border-border/40 bg-secondary/10 hover:bg-card hover:-translate-y-1 hover:border-cyan/30 hover:shadow-lg transition-all duration-300 gap-4">
+                              <div className="flex items-start gap-3">
+                                <div className="mt-0.5 flex-shrink-0 grid place-items-center size-6 rounded-full bg-secondary text-xs font-bold text-muted-foreground">
+                                  {i + 1}
+                                </div>
+                                <div>
+                                  <span className="text-sm font-semibold text-foreground/90 group-hover:text-foreground transition-colors leading-tight">{exp.title}</span>
+                                  {solvedExps.has(exp.id) && (
+                                    <span className="inline-flex items-center gap-1 mt-1 ml-2 px-2 py-0.5 rounded-full bg-mint/10 border border-mint/20 text-[10px] font-bold text-mint uppercase tracking-wider">
+                                      <CheckCircle2 className="size-3" /> Solved
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                               <Link 
                                 to="/workspace"
                                 search={{ exp: exp.id }}
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
+                                className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-gradient-to-r from-cyan to-primary text-white text-sm font-semibold shadow-md hover:shadow-lg hover:shadow-cyan/20 hover:scale-[1.02] active:scale-95 transition-all w-full sm:w-auto"
                               >
-                                <Code className="size-3.5" /> Solve
+                                <Code className="size-4" /> Solve Lab
                               </Link>
                             </div>
                           ))}
@@ -709,7 +737,7 @@ useEffect(() => {
 
             {currentTab === "Feedback" && (
               <section>
-            <h2 className="text-2xl font-bold mb-6">Feedback</h2>
+            <h2 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan to-primary w-fit block">Feedback</h2>
               <div className="bg-card border border-border rounded-xl p-8 max-w-3xl">
                 <p className="text-muted-foreground mb-8">We value your feedback. Please take a few minutes to share your experience using this virtual laboratory. Your responses will help us improve the quality, usability, and content of the experiments.</p>
                 

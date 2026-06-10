@@ -1,8 +1,10 @@
 import type { Course } from "./course-data";
+import { iotShortNotes } from "./iot-short-notes";
 
 export const iotCourse: Course = {
   id: "iot",
   title: "IoT Virtual Lab — JNTUGV Virtual Labs",
+  shortNotes: iotShortNotes,
   objectives: [
     "To introduce students to the fundamental concepts of IoT architecture including the sensor layer, communication layer, processing layer, and cloud application layer and understand how each layer interacts in a complete IoT system.",
     "To train students in interfacing analog and digital sensors including DHT11/DHT22 temperature and humidity sensors, LDR light-dependent resistors, and PIR passive infrared motion sensors with Arduino and ESP8266/ESP32 microcontrollers using Tinkercad and Wokwi simulations.",
@@ -65,7 +67,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m1-1", 
           title: "Experiment 1.1 — Temperature Sensor Interfacing (DHT11/DHT22)", 
-          desc: "Interface a DHT11 or DHT22 digital temperature sensor with an Arduino Uno. Read temperature values in Celsius and Fahrenheit using the DHT library. Display readings on the Serial Monitor. Simulate the full circuit on Tinkercad including sensor wiring, pull-up resistor, and serial output.\n\nSolve: http://localhost:8080/workspace?exp=iot-m1-1", 
+          desc: "Interface a DHT11 or DHT22 digital temperature sensor with an Arduino Uno. Read temperature values in Celsius and Fahrenheit using the DHT library. Display readings on the Serial Monitor. Simulate the full circuit on Tinkercad including sensor wiring, pull-up resistor, and serial output.", 
           expected: "Values read successfully.",
           content: {
             aim: {
@@ -205,7 +207,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m1-2", 
           title: "Experiment 1.2 — Humidity Monitoring (DHT11/DHT22)", 
-          desc: "Read humidity percentage from the DHT11/DHT22 sensor and implement threshold-based alerting — activate an LED when humidity exceeds a set limit. Understand the difference between relative humidity and absolute humidity. Simulate on Tinkercad with LED indicator circuit.\n\nSolve: http://localhost:8080/workspace?exp=iot-m1-2", 
+          desc: "Read humidity percentage from the DHT11/DHT22 sensor and implement threshold-based alerting — activate an LED when humidity exceeds a set limit. Understand the difference between relative humidity and absolute humidity. Simulate on Tinkercad with LED indicator circuit.", 
           expected: "Humidity read and LED triggered successfully.",
           content: {
             aim: {
@@ -328,7 +330,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m1-3", 
           title: "Experiment 1.3 — Light Sensor Interfacing (LDR)", 
-          desc: "Interface a Light Dependent Resistor (LDR) in a voltage divider circuit with the Arduino analog input pin. Read raw ADC values and convert to lux approximation. Implement automatic light control — activate an LED when ambient light falls below a threshold. Simulate on Tinkercad.\n\nSolve: http://localhost:8080/workspace?exp=iot-m1-3", 
+          desc: "Interface a Light Dependent Resistor (LDR) in a voltage divider circuit with the Arduino analog input pin. Read raw ADC values and convert to lux approximation. Implement automatic light control — activate an LED when ambient light falls below a threshold. Simulate on Tinkercad.", 
           expected: "LDR values read and LED triggered successfully.",
           content: {
             aim: {
@@ -448,7 +450,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m1-4", 
           title: "Experiment 1.4 — Motion Sensor Interfacing (PIR)", 
-          desc: "Interface a Passive Infrared (PIR) motion sensor with Arduino. Detect presence and absence of motion from the digital output of the PIR module. Trigger an alarm LED and buzzer on motion detection. Implement a cooldown timer to prevent repeated triggers. Simulate on Tinkercad.\n\nSolve: http://localhost:8080/workspace?exp=iot-m1-4", 
+          desc: "Interface a Passive Infrared (PIR) motion sensor with Arduino. Detect presence and absence of motion from the digital output of the PIR module. Trigger an alarm LED and buzzer on motion detection. Implement a cooldown timer to prevent repeated triggers. Simulate on Tinkercad.", 
           expected: "Motion detected and buzzer triggered successfully.",
           content: {
             aim: {
@@ -596,7 +598,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m2-1", 
           title: "Experiment 2.1 — Smart Light Control", 
-          desc: "Control an LED or lamp using a relay module connected to an ESP8266/ESP32. Implement Wi-Fi connectivity and expose a simple web server on the microcontroller. Control the light ON/OFF from a browser on the same Wi-Fi network. Simulate the relay circuit on Tinkercad and Wi-Fi web server on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m2-1", 
+          desc: "Control an LED or lamp using a relay module connected to an ESP8266/ESP32. Implement Wi-Fi connectivity and expose a simple web server on the microcontroller. Control the light ON/OFF from a browser on the same Wi-Fi network. Simulate the relay circuit on Tinkercad and Wi-Fi web server on Wokwi.", 
           expected: "Relay toggled via web server successfully.",
           content: {
             aim: {
@@ -732,7 +734,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m2-2", 
           title: "Experiment 2.2 — Fan Automation", 
-          desc: "Monitor temperature using a DHT sensor connected to ESP8266/ESP32. Automatically activate a DC fan (represented by a relay) when temperature exceeds a set threshold. Implement manual override via a web interface. Combine sensor reading and relay control in one firmware. Simulate on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m2-2", 
+          desc: "Monitor temperature using a DHT sensor connected to ESP8266/ESP32. Automatically activate a DC fan (represented by a relay) when temperature exceeds a set threshold. Implement manual override via a web interface. Combine sensor reading and relay control in one firmware. Simulate on Wokwi.", 
           expected: "Fan automated correctly.",
           content: {
             aim: {
@@ -853,7 +855,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m2-3", 
           title: "Experiment 2.3 — Smart Door Lock", 
-          desc: "Implement a keypad-based door lock using a 4x4 matrix keypad and a servo motor as the lock actuator. Accept a PIN code — servo rotates to open on correct PIN and remains locked on incorrect PIN. Add a buzzer alert for incorrect attempts. Simulate on Tinkercad with keypad, servo, and buzzer.\n\nSolve: http://localhost:8080/workspace?exp=iot-m2-3", 
+          desc: "Implement a keypad-based door lock using a 4x4 matrix keypad and a servo motor as the lock actuator. Accept a PIN code — servo rotates to open on correct PIN and remains locked on incorrect PIN. Add a buzzer alert for incorrect attempts. Simulate on Tinkercad with keypad, servo, and buzzer.", 
           expected: "Door unlocked with correct PIN.",
           content: {
             aim: {
@@ -979,7 +981,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m2-4", 
           title: "Experiment 2.4 — Home Security Alarm", 
-          desc: "Build a multi-sensor security system combining PIR motion detection and an LDR-based night detection. Arm the alarm only during nighttime (LDR detects darkness) and trigger a buzzer alarm when motion is detected. Send an alert notification via Adafruit IO MQTT feed. Simulate on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m2-4", 
+          desc: "Build a multi-sensor security system combining PIR motion detection and an LDR-based night detection. Arm the alarm only during nighttime (LDR detects darkness) and trigger a buzzer alarm when motion is detected. Send an alert notification via Adafruit IO MQTT feed. Simulate on Wokwi.", 
           expected: "Alarm triggered during night time.",
           content: {
             aim: {
@@ -1118,7 +1120,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m3-1", 
           title: "Experiment 3.1 — MQTT Publish/Subscribe", 
-          desc: "Connect an ESP8266/ESP32 to a public MQTT broker (broker.hivemq.com or test.mosquitto.org). Publish DHT sensor data (temperature and humidity) to a topic every 5 seconds. Subscribe to a control topic and act on received commands (turn LED on/off). Visualize published data in Node-RED dashboard. Simulate device on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m3-1", 
+          desc: "Connect an ESP8266/ESP32 to a public MQTT broker (broker.hivemq.com or test.mosquitto.org). Publish DHT sensor data (temperature and humidity) to a topic every 5 seconds. Subscribe to a control topic and act on received commands (turn LED on/off). Visualize published data in Node-RED dashboard. Simulate device on Wokwi.", 
           expected: "MQTT communication successful.",
           content: {
             aim: {
@@ -1248,7 +1250,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m3-2", 
           title: "Experiment 3.2 — HTTP-Based Data Transfer", 
-          desc: "Implement HTTP GET and POST requests from an ESP8266/ESP32 to a remote server. Send sensor data as JSON payload via HTTP POST to a free REST API endpoint (webhook.site or similar). Parse HTTP response and act on server commands. Understand request-response cycle and status codes. Simulate on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m3-2", 
+          desc: "Implement HTTP GET and POST requests from an ESP8266/ESP32 to a remote server. Send sensor data as JSON payload via HTTP POST to a free REST API endpoint (webhook.site or similar). Parse HTTP response and act on server commands. Understand request-response cycle and status codes. Simulate on Wokwi.", 
           expected: "HTTP transfer successful.",
           content: {
             aim: {
@@ -1371,7 +1373,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m3-3", 
           title: "Experiment 3.3 — WebSocket Communication", 
-          desc: "Implement a WebSocket server on ESP8266/ESP32. Connect from a browser-based WebSocket client. Send real-time sensor data from device to browser without polling. Implement bidirectional control — browser sends commands, device responds with sensor readings. Simulate on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m3-3", 
+          desc: "Implement a WebSocket server on ESP8266/ESP32. Connect from a browser-based WebSocket client. Send real-time sensor data from device to browser without polling. Implement bidirectional control — browser sends commands, device responds with sensor readings. Simulate on Wokwi.", 
           expected: "WebSocket connection established.",
           content: {
             aim: {
@@ -1490,7 +1492,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m3-4", 
           title: "Experiment 3.4 — Device-to-Device Messaging", 
-          desc: "Implement ESP-NOW peer-to-peer communication between two ESP32 devices. One device acts as a sensor node (transmitter) sending temperature readings. Second device acts as a display node (receiver) showing received data on an OLED display. No Wi-Fi router required. Simulate on Wokwi with two ESP32 instances.\n\nSolve: http://localhost:8080/workspace?exp=iot-m3-4", 
+          desc: "Implement ESP-NOW peer-to-peer communication between two ESP32 devices. One device acts as a sensor node (transmitter) sending temperature readings. Second device acts as a display node (receiver) showing received data on an OLED display. No Wi-Fi router required. Simulate on Wokwi with two ESP32 instances.", 
           expected: "ESP-NOW messaging successful.",
           content: {
             aim: {
@@ -1620,7 +1622,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m4-1", 
           title: "Experiment 4.1 — Real-Time Dashboard Creation", 
-          desc: "Connect an ESP8266/ESP32 to ThingSpeak cloud platform. Send temperature and humidity data from DHT22 sensor every 15 seconds. Create a ThingSpeak channel with two fields. Build a real-time line chart dashboard on ThingSpeak showing live sensor readings. Simulate device on Wokwi, cloud on ThingSpeak.\n\nSolve: http://localhost:8080/workspace?exp=iot-m4-1", 
+          desc: "Connect an ESP8266/ESP32 to ThingSpeak cloud platform. Send temperature and humidity data from DHT22 sensor every 15 seconds. Create a ThingSpeak channel with two fields. Build a real-time line chart dashboard on ThingSpeak showing live sensor readings. Simulate device on Wokwi, cloud on ThingSpeak.", 
           expected: "ThingSpeak dashboard updated.",
           content: {
             aim: {
@@ -1710,7 +1712,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m4-2", 
           title: "Experiment 4.2 — Data Logging", 
-          desc: "Implement continuous sensor data logging to ThingSpeak or Google Sheets via IFTTT. Store timestamped temperature, humidity, and LDR readings. Download historical data as CSV. Perform basic statistics (min, max, average) using ThingSpeak MATLAB analysis. Simulate device on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m4-2", 
+          desc: "Implement continuous sensor data logging to ThingSpeak or Google Sheets via IFTTT. Store timestamped temperature, humidity, and LDR readings. Download historical data as CSV. Perform basic statistics (min, max, average) using ThingSpeak MATLAB analysis. Simulate device on Wokwi.", 
           expected: "Data logged successfully.",
           content: {
             aim: {
@@ -1804,7 +1806,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m4-3", 
           title: "Experiment 4.3 — Remote Monitoring", 
-          desc: "Build a complete remote monitoring system using Adafruit IO. Create feeds for temperature, humidity, and motion status. Build an Adafruit IO dashboard with gauges, line charts, and status indicators. Access the dashboard from a mobile browser to monitor sensor readings remotely in real time. Simulate device on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m4-3", 
+          desc: "Build a complete remote monitoring system using Adafruit IO. Create feeds for temperature, humidity, and motion status. Build an Adafruit IO dashboard with gauges, line charts, and status indicators. Access the dashboard from a mobile browser to monitor sensor readings remotely in real time. Simulate device on Wokwi.", 
           expected: "Remote monitoring dashboard active.",
           content: {
             aim: {
@@ -1891,7 +1893,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m4-4", 
           title: "Experiment 4.4 — Alert Generation", 
-          desc: "Configure ThingSpeak ThingAlerts or Adafruit IO triggers to send an email or notification when sensor values cross defined thresholds. Implement temperature alert above 35°C, humidity alert above 80%, and motion detection alert. Test alert delivery end-to-end. Simulate sensor data using Wokwi with tunable values.\n\nSolve: http://localhost:8080/workspace?exp=iot-m4-4", 
+          desc: "Configure ThingSpeak ThingAlerts or Adafruit IO triggers to send an email or notification when sensor values cross defined thresholds. Implement temperature alert above 35°C, humidity alert above 80%, and motion detection alert. Test alert delivery end-to-end. Simulate sensor data using Wokwi with tunable values.", 
           expected: "Alert sent on threshold crossing.",
           content: {
             aim: {
@@ -1989,7 +1991,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m5-1", 
           title: "Experiment 5.1 — Soil Moisture Monitoring", 
-          desc: "Interface a capacitive soil moisture sensor with ESP8266/ESP32. Read raw ADC values and convert to percentage moisture level. Display readings on Serial Monitor and an OLED display. Send moisture data to ThingSpeak for remote monitoring. Simulate on Wokwi with potentiometer representing moisture sensor output.\n\nSolve: http://localhost:8080/workspace?exp=iot-m5-1", 
+          desc: "Interface a capacitive soil moisture sensor with ESP8266/ESP32. Read raw ADC values and convert to percentage moisture level. Display readings on Serial Monitor and an OLED display. Send moisture data to ThingSpeak for remote monitoring. Simulate on Wokwi with potentiometer representing moisture sensor output.", 
           expected: "Soil moisture read successfully.",
           content: {
             aim: {
@@ -2113,7 +2115,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m5-2", 
           title: "Experiment 5.2 — Automatic Irrigation System", 
-          desc: "Build an automatic irrigation controller using soil moisture sensor data. When moisture falls below a dry threshold activate a water pump relay. When moisture rises above a wet threshold deactivate the pump. Add a manual override switch and a status display on LCD. Simulate full circuit on Tinkercad and Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m5-2", 
+          desc: "Build an automatic irrigation controller using soil moisture sensor data. When moisture falls below a dry threshold activate a water pump relay. When moisture rises above a wet threshold deactivate the pump. Add a manual override switch and a status display on LCD. Simulate full circuit on Tinkercad and Wokwi.", 
           expected: "Pump automated successfully.",
           content: {
             aim: {
@@ -2239,7 +2241,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m5-3", 
           title: "Experiment 5.3 — Weather Monitoring Station", 
-          desc: "Build a complete weather monitoring station using DHT22 (temperature and humidity), BMP280 (barometric pressure and altitude), and LDR (light intensity). Display all readings on a 16x2 LCD. Send all sensor data to ThingSpeak for historical logging and visualization. Simulate on Wokwi.\n\nSolve: http://localhost:8080/workspace?exp=iot-m5-3", 
+          desc: "Build a complete weather monitoring station using DHT22 (temperature and humidity), BMP280 (barometric pressure and altitude), and LDR (light intensity). Display all readings on a 16x2 LCD. Send all sensor data to ThingSpeak for historical logging and visualization. Simulate on Wokwi.", 
           expected: "Weather parameters monitored.",
           content: {
             aim: {
@@ -2363,7 +2365,7 @@ export const iotCourse: Course = {
         { 
           id: "iot-m5-4", 
           title: "Experiment 5.4 — Crop Health Alerts", 
-          desc: "Combine soil moisture, temperature, and humidity monitoring in one system. Define optimal ranges for each parameter for a specific crop (example: tomatoes require soil moisture 60-80%, temperature 20-30°C, humidity 65-75%). Generate local buzzer alerts and remote Adafruit IO notifications when any parameter goes out of the optimal range. Simulate on Wokwi with ThingSpeak and Adafruit IO integration.\n\nSolve: http://localhost:8080/workspace?exp=iot-m5-4", 
+          desc: "Combine soil moisture, temperature, and humidity monitoring in one system. Define optimal ranges for each parameter for a specific crop (example: tomatoes require soil moisture 60-80%, temperature 20-30°C, humidity 65-75%). Generate local buzzer alerts and remote Adafruit IO notifications when any parameter goes out of the optimal range. Simulate on Wokwi with ThingSpeak and Adafruit IO integration.", 
           expected: "Crop health alerts generated.",
           content: {
             aim: {
