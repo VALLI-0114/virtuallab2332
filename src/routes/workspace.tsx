@@ -64,6 +64,7 @@ import { AVLTreeSim } from "@/components/simulations/AVLTreeSim";
 import { AVLDeletionSim } from "@/components/simulations/AVLDeletionSim";
 import { RedBlackSim } from "@/components/simulations/RedBlackSim";
 import { BTreeSim } from "@/components/simulations/BTreeSim";
+import { PythonInterpreterCampaign } from "@/components/simulations/PythonInterpreterCampaign";
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -1596,6 +1597,14 @@ except BaseException:
                     );
                   }
                   
+                  if (details?.experiment.id?.startsWith("py-e1-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <PythonInterpreterCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
                   if (details?.experiment.id?.startsWith("c-w1-")) {
                     return (
                       <div className="h-full bg-background">

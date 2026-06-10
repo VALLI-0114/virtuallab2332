@@ -335,15 +335,9 @@ function CoursesPage() {
         </div>
 
         <div className="relative z-10 flex items-center gap-2.5 w-fit mt-4">
-          {t === "C Programming" ? (
-            <div className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 bg-gradient-to-b from-slate-800 to-slate-950 border border-slate-700 rounded-lg text-[14px] font-medium text-white shadow-lg shadow-slate-900/20 hover:shadow-xl transition-all">
-              Explore Course <ChevronRight className="w-4 h-4 ml-1" />
-            </div>
-          ) : (
-            <div className={`inline-flex items-center justify-center gap-1.5 px-4 py-1.5 bg-transparent border ${btnBorderClass} rounded-full text-[13px] font-medium text-[#111111] dark:text-slate-300 hover:bg-[#111F22]/5 dark:hover:bg-slate-800 transition-colors`}>
-              Explore Course <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          )}
+          <div className={`inline-flex items-center justify-center gap-1.5 px-4 py-1.5 bg-transparent border ${btnBorderClass} rounded-full text-[13px] font-medium text-[#111111] dark:text-slate-300 hover:bg-[#111F22]/5 dark:hover:bg-slate-800 transition-colors`}>
+            Explore Course <ArrowRight className="w-3.5 h-3.5" />
+          </div>
         </div>
 
         {/* Background Icon */}
