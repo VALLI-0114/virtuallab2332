@@ -60,6 +60,10 @@ import { DataKingdomSim } from "@/components/simulations/DataKingdomSim";
 import { JDBCOdysseySim } from "@/components/simulations/JDBCOdysseySim";
 import { SQLDefenseAcademySim } from "@/components/simulations/SQLDefenseAcademySim";
 import { DatabaseAssassinSim } from "@/components/simulations/DatabaseAssassinSim";
+import { AVLTreeSim } from "@/components/simulations/AVLTreeSim";
+import { AVLDeletionSim } from "@/components/simulations/AVLDeletionSim";
+import { RedBlackSim } from "@/components/simulations/RedBlackSim";
+import { BTreeSim } from "@/components/simulations/BTreeSim";
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -1919,7 +1923,38 @@ except BaseException:
                       </div>
                     );
                   }
+
+                  if (details?.experiment.id === "ads-w1-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <AVLTreeSim />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id === "ads-w1-2") {
+                    return (
+                      <div className="h-full bg-background">
+                        <AVLDeletionSim/>
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id === "ads-w2-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <RedBlackSim/>
+                      </div>
+                    );
+                  }
                   
+                  if (details?.experiment.id === "ads-w3-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <BTreeSim/>
+                      </div>
+                    );
+                  }
                   return (
                     <div className="h-full">
                       <SimulationPlayer data={content.simulation} />
