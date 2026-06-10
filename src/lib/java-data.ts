@@ -1,8 +1,10 @@
 import type { Course } from "./course-data";
+import { javaShortNotes } from "./java-short-notes";
 
 export const javaCourse: Course = {
   id: "java",
   title: "Java Programming",
+  shortNotes: javaShortNotes,
   objectives: [
     "To understand the fundamental principles of Object-Oriented Programming (OOP) in Java, including platform independence, bytecodes, and JVM operations.",
     "To gain hands-on programming experience using Java primitives, operators, and control structures.",
