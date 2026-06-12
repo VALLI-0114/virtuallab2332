@@ -193,7 +193,10 @@ export async function createProfile(
 /** Update an existing profile */
 export async function updateProfile(
   userId: string,
-  updates: Partial<Pick<Profile, 'name' | 'college' | 'interests'>>
+  updates: Partial<Pick<Profile,
+  'name' | 'college' | 'interests' | 'skills' |
+  'degree' | 'branch' | 'year_of_study' | 'graduation_year' | 'bio'
+>>
 ): Promise<Profile | null> {
   const { data, error } = await supabase
     .from('profiles')
