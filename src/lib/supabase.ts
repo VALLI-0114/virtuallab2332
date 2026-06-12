@@ -124,6 +124,32 @@ export async function getUniqueCourseCount(userId: string): Promise<number> {
   return unique.size;
 }
 
+// Migrates guest localStorage solves into the DB after login
+export async function migrateGuestProgress(userId: string) {
+  const KEY = 'vlms_guest_solved';
+  const data: Record<string, boolean> = JSON.parse(localStorage.getItem(KEY) || '{}');
+  const entries = Object.entries(data).filter(([, v]) => v);
+  if (entries.length === 0) return;
+
+  // Build rows — you'll need course_id. Since we only store exp IDs,
+  // insert with course_id = 'unknown' or look it up from courses data.
+  // Best approach: store {expId, courseId} pairs in localStorage from the start.
+  // See Step 4 for how we'll store courseId too.
+  const rows = entries.map(([experimentId]) => ({
+    user_id: userId,
+    experiment_id: experimentId,
+    // course_id will be stored alongside in Step 4
+    course_id: JSON.parse(localStorage.getItem('vlms_guest_course') || '{}')[experimentId] || 'unknown',
+  }));
+
+  await supabase
+    .from('experiment_completions')
+    .upsert(rows, { onConflict: 'user_id,experiment_id' });
+
+  localStorage.removeItem(KEY);
+  localStorage.removeItem('vlms_guest_course');
+}
+
 // ── Profile helpers ────────────────────────────────────────────────────────
 
 /** Fetch the profile for the currently logged-in user */

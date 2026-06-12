@@ -16,7 +16,7 @@ import { ErrorGraphic } from "@/components/ErrorGraphic";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
-
+import { supabase } from "../lib/supabase";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -110,23 +110,59 @@ function ProfileNav() {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    const profileStr = localStorage.getItem('currentUserProfile');
-    if (profileStr) {
+    // Helper function to fetch the user's custom database profile info
+    const fetchUserProfile = async (userId: string) => {
       try {
-        const profile = JSON.parse(profileStr);
-        if (profile.name) {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('name')
+          .eq('id', userId)
+          .single();
+
+        if (data && data.name) {
+          setName(data.name);
           setIsLoggedIn(true);
-          setName(profile.name);
+        } else if (error) {
+          console.error("Error loading user profile records:", error);
         }
-      } catch (e) {}
-    }
-  }, [showAuth]);
+      } catch (err) {
+        console.error("Unexpected error retrieving profile data:", err);
+      }
+    };
+
+    // 1. Initial Check: See if there is already an active session right now
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        fetchUserProfile(session.user.id);
+      } else {
+        setIsLoggedIn(false);
+        setName('');
+      }
+    });
+
+    // 2. Continuous Listener: Watch for background state modifications (SIGN_IN, SIGN_OUT)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        fetchUserProfile(session.user.id);
+      } else {
+        setIsLoggedIn(false);
+        setName('');
+      }
+    });
+
+    // 3. Cleanup subscription whenever the layout component unmounts
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <>
       {isLoggedIn ? (
         <Link to="/profile" className="flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full hover:bg-secondary transition-colors group">
-          <span className="hidden sm:block text-xs font-medium text-foreground">{name.split(' ')[0]}</span>
+          <span className="hidden sm:block text-xs font-medium text-foreground">
+            {name ? name.split(' ')[0] : 'User'}
+          </span>
           <div className="grid place-items-center size-7 rounded-full bg-cyan/20 text-cyan group-hover:bg-cyan/30 transition-colors">
             <User className="size-3.5" />
           </div>
@@ -145,7 +181,6 @@ function ProfileNav() {
         onClose={() => setShowAuth(false)} 
         onAuthenticated={() => {
           setShowAuth(false);
-          setIsLoggedIn(true);
         }} 
         courseId="" 
       />

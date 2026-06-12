@@ -4,7 +4,7 @@ import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Be
 import { courses } from "@/lib/course-data";
 import Editor from "@monaco-editor/react";
 import { toast } from "sonner";
-import { supabase, awardBadge, markExperimentComplete } from "@/lib/supabase";
+import { supabase, awardBadge, markExperimentComplete, migrateGuestProgress} from "@/lib/supabase";
 import { MemoryManagerSim } from "@/components/simulations/MemoryManagerSim";
 import { MirrorPortalSim } from "@/components/simulations/MirrorPortalSim";
 import { LinearSearchSim } from "@/components/simulations/LinearSearchSim";
@@ -78,7 +78,8 @@ import { BellmanFordSim } from "@/components/simulations/BellmanFordSim";
 import { KruskalSim } from "@/components/simulations/KruskalSim";
 import { PrimAlgorithmSim } from "@/components/simulations/PrimSim";
 import { GraphRaidersSim } from "@/components/simulations/GraphRaidersSim";
-
+import { PostSolveAuthModal } from '@/components/PostSolveAuthModal';
+import { markGuestSolved, hasGuestSolved } from '@/lib/guestProgress';
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -494,6 +495,8 @@ function Workspace() {
   const [pyodideLoadError, setPyodideLoadError] = useState<string | null>(null);
   const pyodideRef = useRef<any>(null); // pyodide instance
 
+  const [showPostSolveModal, setShowPostSolveModal] = useState(false);
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -886,96 +889,131 @@ except BaseException:
   }
 
   const handleSubmit = async () => {
-    // ── Step 1: Get logged-in user ─────────────────────────────────────────
     const { data: { user } } = await supabase.auth.getUser();
   
-    // ── Step 2: Save completion to DATABASE (not localStorage) ────────────
-    if (user && details?.experiment?.id && details?.course?.id) {
-      const saved = await markExperimentComplete(
-        user.id,
-        details.experiment.id,
-        details.course.id
-      );
-      if (saved) {
-        console.log(`✅ Saved completion: ${details.experiment.id}`);
-      }
+    if (!user) {
+      // ── GUEST PATH: Check if they've already skipped once for this experiment ──
+      const alreadyShown = sessionStorage.getItem('vlms_popup_shown') === 'true';
+if (alreadyShown) {
+  toast.success("Experiment Completed! 🎉");
+  if (details?.course?.id) {
+    navigate({ to: `/course/${details.course.id}`, hash: 'experiments' });
+  } else {
+    navigate({ to: '/courses' });
+  }
+  return;
+}
+  
+      // First time completing without login — show the prompt modal
+      setShowPostSolveModal(true);
+      return;
     }
   
-    // ── Step 3: Also keep localStorage for guests (not logged in) ─────────
-    // This is a fallback only — logged-in users use DB
+    // ── LOGGED-IN PATH (unchanged from your original) ─────────────────────────
+    if (details?.experiment?.id && details?.course?.id) {
+      const saved = await markExperimentComplete(user.id, details.experiment.id, details.course.id);
+      if (saved) console.log(`✅ Saved: ${details.experiment.id}`);
+    }
+  
+    // Keep localStorage in sync for logged-in users too (optional, harmless)
     if (details?.experiment?.id) {
       const solved = JSON.parse(localStorage.getItem('solved_experiments') || '{}');
       solved[details.experiment.id] = true;
       localStorage.setItem('solved_experiments', JSON.stringify(solved));
     }
   
-    // ── Step 4: Award badges using DATABASE completions ───────────────────
+    // Badge logic (your existing code, unchanged)
     try {
-      if (user) {
-        const badgePromises: Promise<void>[] = [];
+      const badgePromises: Promise<void>[] = [];
+      const { data: completions } = await supabase
+        .from('experiment_completions')
+        .select('experiment_id, course_id')
+        .eq('user_id', user.id);
   
-        // Fetch fresh completion count from DB
-        const { data: completions } = await supabase
-          .from('experiment_completions')
-          .select('experiment_id, course_id')
-          .eq('user_id', user.id);
+      const totalSolved = completions?.length ?? 0;
+      const solvedIds = new Set(completions?.map((c: any) => c.experiment_id) ?? []);
   
-        const totalSolved = completions?.length ?? 0;
-        const solvedIds = new Set(completions?.map((c: any) => c.experiment_id) ?? []);
+      if (totalSolved === 1) badgePromises.push(awardBadge(user.id, 'first_solve'));
   
-        // 🧪 First Solve
-        if (totalSolved === 1) {
-          badgePromises.push(awardBadge(user.id, 'first_solve'));
-        }
+      const elapsedMs = Date.now() - experimentStartTime.current;
+      if (elapsedMs < 2 * 60 * 1000) badgePromises.push(awardBadge(user.id, 'speed_coder'));
   
-        // ⚡ Speed Coder
-        const elapsedMs = Date.now() - experimentStartTime.current;
-        if (elapsedMs < 2 * 60 * 1000) {
-          badgePromises.push(awardBadge(user.id, 'speed_coder'));
-        }
-  
-        // 💯 Perfect Score
-        const posttest = (details?.experiment?.content as any)?.posttest;
-        if (posttest?.length > 0) {
-          const correct = posttest.filter(
-            (q: any, i: number) => posttestAnswers[i] === q.answerIndex
-          ).length;
-          if (correct === posttest.length) {
-            badgePromises.push(awardBadge(user.id, 'perfect_score'));
-          }
-        }
-  
-        // 🏆 All Courses Completed (checks DB, not localStorage)
-        if (details?.course) {
-          const allExpIds: string[] = details.course.weeks.flatMap(
-            (w: any) => w.experiments.map((e: any) => e.id)
-          );
-          if (allExpIds.every(id => solvedIds.has(id))) {
-            badgePromises.push(awardBadge(user.id, 'all_courses'));
-          }
-        }
-  
-        // 🔍 Curious Mind — 3+ different courses
-        const uniqueCourses = new Set(completions?.map((c: any) => c.course_id) ?? []);
-        if (uniqueCourses.size >= 3) {
-          badgePromises.push(awardBadge(user.id, 'curious_mind'));
-        }
-  
-        await Promise.all(badgePromises);
+      const posttest = (details?.experiment?.content as any)?.posttest;
+      if (posttest?.length > 0) {
+        const correct = posttest.filter((q: any, i: number) => posttestAnswers[i] === q.answerIndex).length;
+        if (correct === posttest.length) badgePromises.push(awardBadge(user.id, 'perfect_score'));
       }
+  
+      if (details?.course) {
+        const allExpIds: string[] = details.course.weeks.flatMap(
+          (w: any) => w.experiments.map((e: any) => e.id)
+        );
+        if (allExpIds.every(id => solvedIds.has(id))) badgePromises.push(awardBadge(user.id, 'all_courses'));
+      }
+  
+      const uniqueCourses = new Set(completions?.map((c: any) => c.course_id) ?? []);
+      if (uniqueCourses.size >= 3) badgePromises.push(awardBadge(user.id, 'curious_mind'));
+  
+      await Promise.all(badgePromises);
     } catch (err) {
       console.error('Badge error:', err);
     }
   
-    // ── Step 5: Navigate without page reload ──────────────────────────────
     toast.success("Experiment Completed Successfully! 🎉");
-  
     if (details?.course?.id) {
       navigate({ to: `/course/${details.course.id}`, hash: 'experiments' });
     } else {
       navigate({ to: '/courses' });
     }
   };
+
+  // Called when guest clicks "Skip for now"
+const handlePostSolveSkip = () => {
+  setShowPostSolveModal(false);
+  if (details?.experiment?.id && details?.course?.id) {
+    sessionStorage.setItem('vlms_popup_shown', 'true');
+  }
+  toast.success("Experiment saved locally! Sign in anytime to sync. 🎉");
+  if (details?.course?.id) {
+    navigate({ to: `/course/${details.course.id}`, hash: 'experiments' });
+  } else {
+    navigate({ to: '/courses' });
+  }
+};
+
+// Called when guest successfully logs in / signs up from the post-solve modal
+const handlePostSolveAuthenticated = async (userId: string) => {
+  setShowPostSolveModal(false);
+
+  await migrateGuestProgress(userId);
+
+  if (details?.experiment?.id && details?.course?.id) {
+    await markExperimentComplete(userId, details.experiment.id, details.course.id);
+  }
+
+  try {
+    const { data: completions } = await supabase
+      .from('experiment_completions')
+      .select('experiment_id')
+      .eq('user_id', userId);
+    if ((completions?.length ?? 0) === 1) {
+      await awardBadge(userId, 'first_solve');
+    }
+  } catch (err) {
+    console.error('Badge error on post-solve auth:', err);
+  }
+
+  toast.success("Progress saved! Welcome to VLMS 🎉");
+
+  // Wait for Supabase session to be fully written before reloading
+  await new Promise(r => setTimeout(r, 800));
+
+  window.location.href = details?.course?.id
+    ? `/course/${details.course.id}#experiments`
+    : '/courses';
+};
+
+
   const handleNext = () => {
     if (!isNextEnabled) {
       toast.error(`Please answer all questions in the ${currentStepName} before proceeding.`);
@@ -2185,6 +2223,12 @@ except BaseException:
           </div>
         )}
       </div>
+      <PostSolveAuthModal
+  isOpen={showPostSolveModal}
+  experimentId={details?.experiment?.id || ''}
+  onSkip={handlePostSolveSkip}
+  onAuthenticated={handlePostSolveAuthenticated}
+/>
     </div>
   );
 }
