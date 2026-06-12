@@ -65,6 +65,20 @@ import { AVLDeletionSim } from "@/components/simulations/AVLDeletionSim";
 import { RedBlackSim } from "@/components/simulations/RedBlackSim";
 import { BTreeSim } from "@/components/simulations/BTreeSim";
 import { PythonInterpreterCampaign } from "@/components/simulations/PythonInterpreterCampaign";
+import { BPlusTreeSim } from "@/components/simulations/BPlusTreeSim";
+import { SegmentTreeSim } from "@/components/simulations/SegmentTreeSim";
+import { FenwickCitySim } from "@/components/simulations/FenwickCitySim";
+import { HeapCitySim } from "@/components/simulations/HeapCitySim";
+import { UnionVerseSim } from "@/components/simulations/UnionVerseSim";
+import { HashCitySim } from "@/components/simulations/HashCitySim";
+import { CuckooKingdomSim } from "@/components/simulations/CuckooKingdomSim";
+import { TrieSim } from "@/components/simulations/TrieSim";
+import { PathfinderSim } from "@/components/simulations/PathfinderSim";
+import { BellmanFordSim } from "@/components/simulations/BellmanFordSim";
+import { KruskalSim } from "@/components/simulations/KruskalSim";
+import { PrimAlgorithmSim, PrimSim } from "@/components/simulations/PrimSim";
+import { GraphRaidersSim } from "@/components/simulations/GraphRaidersSim";
+
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -1972,6 +1986,101 @@ except BaseException:
                       </div>
                     );
                   }
+
+                  if (details?.experiment.id === "ads-w4-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <BPlusTreeSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w5-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <SegmentTreeSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w5-2") {
+                    return (
+                      <div className="h-full bg-background">
+                        <FenwickCitySim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w6-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <HeapCitySim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w7-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <UnionVerseSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w8-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <HashCitySim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w8-2") {
+                    return (
+                      <div className="h-full bg-background">
+                        <CuckooKingdomSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w9-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <TrieSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w10-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <PathfinderSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w10-2") {
+                    return (
+                      <div className="h-full bg-background">
+                        <BellmanFordSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w11-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <KruskalSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w11-2") {
+                    return (
+                      <div className="h-full bg-background">
+                        <PrimAlgorithmSim/>
+                      </div>
+                    );
+                  }
+                  if (details?.experiment.id === "ads-w12-1") {
+                    return (
+                      <div className="h-full bg-background">
+                        <GraphRaidersSim/>
+                      </div>
+                    );
+                  }
+                  
+
+
                   return (
                     <div className="h-full">
                       <SimulationPlayer data={content.simulation} />
