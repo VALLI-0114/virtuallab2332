@@ -159,19 +159,19 @@ function ProfileNav() {
   return (
     <>
       {isLoggedIn ? (
-        <Link to="/profile" className="flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full hover:bg-secondary transition-colors group">
-          <span className="hidden sm:block text-xs font-medium text-foreground">
+        <Link to="/profile" className="flex items-center gap-3 pl-4 pr-2 py-2 rounded-full hover:bg-secondary transition-colors group">
+          <span className="hidden sm:block text-sm font-medium text-foreground">
             {name ? name.split(' ')[0] : 'User'}
           </span>
-          <div className="grid place-items-center size-7 rounded-full bg-cyan/20 text-cyan group-hover:bg-cyan/30 transition-colors">
-            <User className="size-3.5" />
+          <div className="grid place-items-center size-9 rounded-full bg-cyan/20 text-cyan group-hover:bg-cyan/30 transition-colors">
+            <User className="size-4" />
           </div>
         </Link>
       ) : (
-        <button onClick={() => setShowAuth(true)} className="flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-full hover:bg-secondary transition-colors group text-muted-foreground hover:text-foreground">
-          <span className="hidden sm:block text-xs font-medium">Sign In</span>
-          <div className="grid place-items-center size-7 rounded-full bg-secondary text-foreground group-hover:bg-secondary/80 transition-colors">
-            <User className="size-3.5" />
+        <button onClick={() => setShowAuth(true)} className="flex items-center gap-3 pl-4 pr-2 py-2 rounded-full hover:bg-secondary transition-colors group text-muted-foreground hover:text-foreground">
+          <span className="hidden sm:block text-sm font-medium">Sign In</span>
+          <div className="grid place-items-center size-9 rounded-full bg-secondary text-foreground group-hover:bg-secondary/80 transition-colors">
+            <User className="size-4" />
           </div>
         </button>
       )}
@@ -190,38 +190,38 @@ function ProfileNav() {
 
 function DynamicIsland() {
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[min(960px,calc(100vw-1.5rem))]">
-      <div className="flex items-center gap-2 rounded-full border border-border/70 bg-background/70 backdrop-blur-xl px-2 py-2 shadow-[0_10px_40px_-12px_color-mix(in_oklab,var(--foreground)_35%,transparent)]">
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[min(1200px,calc(100vw-2rem))]">
+      <div className="flex items-center gap-4 rounded-full border border-border/70 bg-background/70 backdrop-blur-xl px-4 py-3 shadow-[0_10px_40px_-12px_color-mix(in_oklab,var(--foreground)_35%,transparent)]">
         {/* Brand */}
-        <Link to="/" className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full">
-          <div className="grid place-items-center size-8 rounded-full bg-white overflow-hidden shadow-sm">
+        <Link to="/" className="flex items-center gap-3 pl-3 pr-4 py-2 rounded-full">
+          <div className="grid place-items-center size-10 rounded-full bg-white overflow-hidden shadow-sm">
             <img src="/jntugvcev.b33bb43b07b2037ab043.svg" alt="JNTU GV" className="w-full h-full object-contain p-[2px]" />
           </div>
           <div className="hidden sm:flex flex-col leading-tight">
-            <span className="font-display font-bold text-[13px] tracking-tight">VLMS</span>
-            <span className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground -mt-0.5">Virtual Lab</span>
+            <span className="font-display font-bold text-base tracking-tight">VLMS</span>
+            <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Virtual Lab</span>
           </div>
         </Link>
 
-        <span className="hidden md:block h-6 w-px bg-border" />
+        <span className="hidden md:block h-8 w-px bg-border" />
 
         {/* Nav */}
-        <nav className="flex items-center gap-1 flex-1 justify-center">
+        <nav className="flex items-center gap-2 flex-1 justify-center">
           {navItems.map(({ to, label, icon: Icon }) => (
             <Link
               key={to}
               to={to}
               activeOptions={{ exact: to === "/" }}
-              className="group relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="group relative flex items-center gap-2 rounded-full px-5 py-2.5 text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors"
               activeProps={{ className: "bg-secondary text-foreground shadow-sm" }}
             >
-              <Icon className="size-3.5" />
+              <Icon className="size-4" />
               <span className="hidden sm:inline">{label}</span>
             </Link>
           ))}
         </nav>
 
-        <span className="h-6 w-px bg-border" />
+        <span className="h-8 w-px bg-border" />
 
         {/* Profile Nav */}
         <ProfileNav />
