@@ -1,7 +1,7 @@
 export const aiToolsShortNotes = `AI TOOLS - SHORT NOTES
 
 INTRODUCTION TO AI TOOLS
-![Introduction to AI Tools](/ai%20tool.png)
+![Introduction to AI Tools](/ai%20tools.png)
 The landscape of Artificial Intelligence has evolved rapidly, moving from specialized research to accessible, everyday tools. AI tools empower individuals across all domains to enhance productivity, creativity, and problem-solving. This course explores practical applications of modern AI platforms.
 
 Why Use AI Tools?
