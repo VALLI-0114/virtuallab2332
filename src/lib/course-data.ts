@@ -3066,7 +3066,7 @@ export const courses: Record<string, Course> = {
                     "If 3 friends — Aarav, Bhanu, and Chetan — sit in a row, how many different seating arrangements are possible?",
                     "Aarav first: 3 choices for seat 1, 2 remaining for seat 2, 1 left for seat 3 → 3 × 2 × 1 = 6 ways",
                     "That's 3! = 6. This is exactly what factorial computes — the number of ways to arrange things. Used everywhere in maths, probability, and even game development!",
-                    "![Kids sitting at a party table](https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400)"
+                    "![Kids sitting at a party table](https://d14qv6cm1t62pm.cloudfront.net/ccbp-website/Blogs/home/factorial-program-in-c-image-2.png)"
                   ]
                 },
                 {
@@ -3167,7 +3167,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Every number can be broken into smaller pieces by multiplication — except prime numbers. A prime number is a number that can ONLY be divided by 1 and itself. No other number divides it cleanly.",
                     "Here's the wild part: primes are used to protect your passwords and bank details right now! When you type your password on a website, it gets locked using a mathematical trick based on huge prime numbers. Hackers can't break it because multiplying two giant primes is easy — but finding the two primes from the product is nearly impossible!",
-                    "![A padlock / security concept](https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400)"
+                    "![A padlock / security concept](https://i.ytimg.com/vi/_kh9uX5MCOo/maxresdefault.jpg)"
                   ]
                 },
                 {
@@ -3363,7 +3363,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "A palindrome reads the same forwards and backwards. Like the word \"MADAM\" — spell it backwards, still MADAM! Or the number 121 — flip it, still 121. Or 12321 — still 12321.",
                     "To check this in code, we reverse the number and compare it to the original. If they match, it's a palindrome — like checking if someone looks the same from the front and back in a mirror!",
-                    "![Mirror reflection concept](https://images.unsplash.com/photo-1580834341580-8c17a3a630ca?w=400)"
+                    "![Mirror reflection concept](https://ica.edu.np/uploads/blog_image/original/78811.png)"
                   ]
                 },
                 {
@@ -3471,7 +3471,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Look at a pyramid from the front. Row 1 has 1 brick, row 2 has 2 bricks, row 3 has 3 bricks. Each row is wider than the last, and everything is centered. To draw this with code, we use loops inside loops — the outer loop builds each row, the inner loops place the spaces and numbers perfectly.",
                     "It's like a construction worker who, for each floor of the building, carefully counts how many bricks to place and where to start!",
-                    "![A pyramid or triangle pattern](https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=400)"
+                    "![A pyramid or triangle pattern](https://static.scientificamerican.com/dam/m/5a010cba8055f33f/original/oddPyramid_graphic_d1_TEXT.png?m=1721669879.477&w=900)"
                   ]
                 },
                 {
@@ -3576,6 +3576,13 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 📏 The Tallest Student in Line!
+Imagine a gym teacher trying to find the tallest student in a lineup. The teacher starts by pointing at the very first student and saying, \"You are the tallest so far!\" Then, the teacher walks down the line, comparing everyone to that student. Anytime the teacher finds someone even taller, they point to the new student instead. By the end of the line, the person being pointed to is guaranteed to be the tallest in the class (the Maximum)!
+
+![Line of students](https://labviewwiki.org/w/images/2/28/Array_Max_and_Min_-_Terminals.png)`]
+                },
+                {
                   title: "1D Array",
                   body: ["A one-dimensional array is a contiguous block of memory storing elements of the same data type, accessed via an index starting at 0:", "int arr[100]; declares an array of 100 integers", "arr[0] = 10; assigns 10 to the first element", "arr[n-1] is the last valid element for an array of size n"]
                 },
@@ -3664,6 +3671,13 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🔑 The Lost Locker Key!
+Oh no, you dropped your house key inside one of the school lockers, but you don't remember which one! Since you don't know where it is, you have to open Locker 1 and check. Not there? Open Locker 2 and check. Not there? Open Locker 3... You keep doing this one-by-one until you either find the key, or run out of lockers! This step-by-step checking is called a \"Linear Search\".
+
+![Row of lockers](https://dsavisualizer.in/og/searching/linearSearch.png)`]
+                },
+                {
                   title: "Linear Search Algorithm",
                   body: ["Sequentially checks each element of the array from the first to the last until the target is found or the array is exhausted.", "for (i = 0; i < n; i++) { if (arr[i] == key) { found = 1; pos = i; break; } }"]
                 },
@@ -3749,6 +3763,13 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🥞 Flipping the Pancake Stack!
+Reversing an array is like flipping a whole stack of pancakes upside down! The pancake at the very top swaps places with the pancake at the very bottom. Then, the second pancake from the top swaps with the second from the bottom. You keep swapping the opposite ends until you meet right in the middle!
+
+![Pancakes flipping](https://www.tutorialspoint.com/python/images/reverse_array_operation_python.jpg)`]
+                },
                 {
                   title: "Array Reversal",
                   body: ["Reversing an array means placing its elements in the opposite order: Original : {1, 2, 3, 4, 5} -> Reversed : {5, 4, 3, 2, 1}"]
@@ -3840,6 +3861,13 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🃏 Sorting a Trading Card Collection!
+Imagine you buy a pack of Pokémon cards and get three Pikachus. When you put them in your special display binder, you only want to show *one* Pikachu card to keep your collection unique. You keep the first one, and throw the duplicates away! In an array, removing duplicates means shifting all the unique items to the front, and ignoring the repeats.
+
+![Trading cards](https://www.devscall.com/_next/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2Fq5upm53j%2Fproduction%2F22798cd73f702208d7e73fe633f246852bcdbc9b-1381x407.png%3Ffit%3Dmax%26auto%3Dformat&w=1920&q=75)`]
+                },
                 {
                   title: "Duplicate Element",
                   body: ["An element is a duplicate if the same value has already appeared at an earlier index in the array."]
@@ -3951,6 +3979,13 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🍕 The Double-Decker Pizza Grid!
+Imagine you have two square pizza boxes (Matrix A and Matrix B), and both are sliced into a perfect 3x3 grid. To add these matrices together, you don't do anything crazy—you just stack them! The slice in the top-left corner of Box A gets added to the slice in the top-left corner of Box B. You just add the matching spots together. It's that simple!
+
+![Pizza grid](https://media.geeksforgeeks.org/wp-content/uploads/20250621093907095324/addition_of_matrices.webp)`]
+                },
+                {
                   title: "2D Array Declaration",
                   body: ["A two-dimensional array in C is declared as: int A[10][10];", "It stores elements in row-major order. Element at row i, column j is accessed as A[i][j]. Row indices run from 0 to rows-1; column indices from 0 to cols-1."]
                 },
@@ -4041,6 +4076,13 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🏭 The Factory Assembly Line!
+Matrix multiplication is NOT like addition. It's a complex, choreographed dance! Instead of just matching spots, the workers on the conveyor belt (a Row in Matrix A) have to high-five every single worker going up the elevator (a Column in Matrix B). You multiply them one-by-one and add up all the high-fives to get a single number for the new matrix. It's a Row-by-Column collision!
+
+![Assembly line](https://i.ytimg.com/vi/2spTnAiQg4M/maxresdefault.jpg)`]
+                },
                 {
                   title: "Matrix Multiplication Condition",
                   body: ["A matrix A of size m × p can be multiplied by a matrix B of size p × n only if the number of columns of A equals the number of rows of B (both equal p). The result C is of size m × n."]
@@ -4136,6 +4178,13 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🫧 Bubbles Rising in a Soda!
+When you pour a glass of soda, the biggest, heaviest bubbles always float to the top first. That's exactly how Bubble Sort works! We compare two numbers side-by-side. If the left one is heavier (larger), they swap places. The heavy numbers slowly \"bubble\" their way to the far right end of the array, one by one, until everyone is standing in the perfect order!
+
+![Bubble sort visualization](https://favtutor.com/resources/images/uploads/mceu_61632030011682402256084.png)`]
+                },
                 {
                   title: "Bubble Sort Algorithm",
                   body: ["Repeatedly steps through the array comparing adjacent elements and swapping them if they are in the wrong order. Larger elements \"bubble\" toward the end with each pass."]
@@ -4237,6 +4286,13 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🚂 Connecting the Train Cars!
+In C, a word (String) is just a train made out of individual letter boxcars. The very last car is always a special marker called the Null Terminator ('\0'). When we \"concatenate\" two strings, it's like unhooking the caboose of the first train, and hooking the entire second train onto the back to create one giant mega-train!
+
+![String concatenation](https://media.geeksforgeeks.org/wp-content/uploads/20230915112055/StringConcatenation-(1)-(1).png)`]
+                },
+                {
                   title: "Strings in C",
                   body: ["A string is a character array terminated by the null character '\\0'.", "char str[50] = \"Hello\"; // stored as: H e l l o \\0", "strlen(\"Hello\") = 5 (the null terminator is not counted)."]
                 },
@@ -4324,6 +4380,13 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "Kid-Friendly Addition",
+                  body: [`### 🪟 Reading Backwards through Glass!
+Reversing a string is exactly like reversing an array of numbers. You swap the first letter with the very last letter, the second letter with the second-to-last, and keep squeezing inwards until you meet in the middle. The only trick? You have to make sure you don't accidentally move the '\0' end-of-train marker, otherwise the computer won't know where the word stops!
+
+![Reverse string](https://storage.googleapis.com/algodailyrandomassets/curriculum/easy-strings/reverse-a-string.jpg)`]
+                },
                 {
                   title: "String as Character Array",
                   body: ["A C string is stored as a char array: char str[] = \"Hello\";", "Indices 0 to len-1 hold the characters; index len holds '\\0'."]
