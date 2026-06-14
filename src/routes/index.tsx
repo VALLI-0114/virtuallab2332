@@ -35,12 +35,23 @@ function Dashboard() {
 
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative overflow-hidden border-b border-border bg-black/40">
         <div className="absolute inset-0 grid-bg hero-fade" />
+        <div className="laser-beam" />
+        <div className="laser-beam" style={{ animationDelay: '-4s', top: '20%' }} />
         
         {/* Animated Background Orbs */}
-        <div className="absolute top-10 left-10 lg:top-1/4 lg:left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-cyan/20 rounded-full mix-blend-screen filter blur-[80px] lg:blur-[100px] opacity-50 animate-pulse" style={{ animationDuration: '5s' }} />
-        <div className="absolute top-20 right-10 lg:top-1/3 lg:right-1/4 w-80 h-80 lg:w-[30rem] lg:h-[30rem] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] lg:blur-[120px] opacity-50 animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute top-10 left-10 lg:top-1/4 lg:left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-cyan/30 rounded-full mix-blend-screen filter blur-[80px] lg:blur-[100px] opacity-60 animate-pulse animate-float" style={{ animationDuration: '4s' }} />
+        <div className="absolute top-20 right-10 lg:top-1/3 lg:right-1/4 w-80 h-80 lg:w-[30rem] lg:h-[30rem] bg-primary/30 rounded-full mix-blend-screen filter blur-[100px] lg:blur-[120px] opacity-60 animate-pulse animate-float" style={{ animationDuration: '7s', animationDelay: '1s' }} />
+        
+        {/* Floating Particles Overlay */}
+        <div className="absolute inset-0 pointer-events-none opacity-30">
+           <div className="absolute top-[20%] left-[15%] size-2 rounded-full bg-cyan animate-float" style={{ animationDelay: '0s' }}></div>
+           <div className="absolute top-[40%] right-[20%] size-3 rounded-full bg-primary animate-float" style={{ animationDelay: '1s' }}></div>
+           <div className="absolute bottom-[30%] left-[30%] size-1.5 rounded-full bg-white animate-float" style={{ animationDelay: '2s' }}></div>
+           <div className="absolute top-[10%] right-[40%] size-2.5 rounded-full bg-cyan animate-float" style={{ animationDelay: '0.5s' }}></div>
+           <div className="absolute bottom-[20%] right-[10%] size-2 rounded-full bg-primary animate-float" style={{ animationDelay: '1.5s' }}></div>
+        </div>
 
         <div className="relative px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_500px] gap-10 items-center">
           <div className="max-w-2xl relative z-10">
@@ -72,38 +83,38 @@ function Dashboard() {
 
         <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
           {/* Python */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <i className="fab fa-python text-[1.4rem] text-[#3b82f6] group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '0s' }}>
+            <i className="fab fa-python text-[1.4rem] text-[#3b82f6] group-hover:scale-110 transition-transform duration-300 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Python</span>
           </div>
           {/* Java */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <i className="fab fa-java text-[1.4rem] text-[#f59e0b] group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '1s' }}>
+            <i className="fab fa-java text-[1.4rem] text-[#f59e0b] group-hover:scale-110 transition-transform duration-300 group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Java</span>
           </div>
           {/* C */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <span className="text-[1.1rem] font-bold text-[#0ea5e9] group-hover:scale-110 transition-transform duration-300 font-mono">C</span>
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '0.5s' }}>
+            <span className="text-[1.1rem] font-bold text-[#0ea5e9] group-hover:scale-110 transition-transform duration-300 font-mono group-hover:drop-shadow-[0_0_8px_rgba(14,165,233,0.8)]">C</span>
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">C Language</span>
           </div>
           {/* SQL */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <Database className="size-5 text-[#8b5cf6] group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '1.5s' }}>
+            <Database className="size-5 text-[#8b5cf6] group-hover:scale-110 transition-transform duration-300 group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">SQL / DBMS</span>
           </div>
           {/* ML */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <Brain className="size-5 text-[#10b981] group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '0.2s' }}>
+            <Brain className="size-5 text-[#10b981] group-hover:scale-110 transition-transform duration-300 group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">Machine Learning</span>
           </div>
           {/* IoT */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <Activity className="size-5 text-[#f43f5e] group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '1.2s' }}>
+            <Activity className="size-5 text-[#f43f5e] group-hover:scale-110 transition-transform duration-300 group-hover:drop-shadow-[0_0_8px_rgba(244,63,94,0.8)]" />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">IoT</span>
           </div>
           {/* AI */}
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group">
-            <Sparkles className="size-5 text-[#a78bfa] group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-border bg-background/60 hover:border-cyan/40 hover:bg-cyan/5 transition-all duration-300 group animate-float" style={{ animationDelay: '0.8s' }}>
+            <Sparkles className="size-5 text-[#a78bfa] group-hover:scale-110 transition-transform duration-300 group-hover:drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]" />
             <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">AI Tools</span>
           </div>
         </div>
@@ -133,17 +144,18 @@ function Dashboard() {
               No registration required. Jump straight into experiments, run code, and get instant results in your browser.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row gap-4 shrink-0 relative z-20">
             <Link
               to="/workspace"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-cyan to-primary text-white px-7 py-3 text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-xl hover:shadow-cyan/30 group"
+              className="relative inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-cyan to-primary text-white px-8 py-3.5 text-sm font-bold hover:opacity-100 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:shadow-[0_0_30px_rgba(0,255,255,0.6)] group overflow-hidden"
             >
+              <div className="absolute inset-0 bg-white/20 -translate-x-[150%] skew-x-[-30deg] group-hover:animate-[glint_1s_ease-in-out_infinite]" />
               Launch Workspace
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
             </Link>
             <Link
               to="/courses"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-cyan/30 bg-background/60 backdrop-blur px-7 py-3 text-sm font-semibold text-cyan hover:bg-cyan/10 transition-all duration-300 hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-cyan/40 bg-background/80 backdrop-blur-md px-8 py-3.5 text-sm font-bold text-cyan hover:bg-cyan/10 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(0,255,255,0.1)] hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]"
             >
               Browse Courses
             </Link>
