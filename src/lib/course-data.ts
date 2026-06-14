@@ -1463,28 +1463,42 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🎉 Think of it like this!",
+                  body: [
+                    "Imagine you just got a brand new robot friend. Before the robot can do anything cool — dance, talk, or help you — it needs to wake up and say hello! That's exactly what this first program does. We're waking up the computer and telling it to say \"Hello, World!\"",
+                    "Every time you write a C program, it's like giving your robot a set of instructions written on paper. The computer reads from top to bottom, does exactly what you wrote, and stops.",
+                    "![Hello World](https://lmichelin.fr/content/images/2019/05/5c1bb7dd5e7cc9678fcdc39f_Hello-World-Header.png)"
+                  ]
+                },
+                {
                   title: "Structure of a C Program",
-                  body: ["Every C program follows a fixed structure. Understanding this structure is the first step to writing C programs.", "A basic C program has these parts:"]
+                  body: ["Every C program follows a fixed, well-defined structure. Understanding this structure is the very first step to writing correct C programs. A C program is made up of several distinct parts that must appear in a specific order for the compiler to understand and build the program.", "C was designed in the early 1970s by Dennis Ritchie at Bell Labs. It was built to be close to the hardware while still being human-readable. Because of this design philosophy, C requires you to explicitly declare everything — the libraries you use, the variables you create, and what type of data they hold.", "A basic C program consists of the following parts in order: Preprocessor Directives (lines starting with #), the main() function declaration, opening brace {, the body of statements, closing brace }, and a return statement."]
                 },
                 {
                   title: "1. Preprocessor Directive",
-                  body: ["Lines starting with # are preprocessor directives. They are processed before compilation begins.", "#include <stdio.h> tells the compiler to include the Standard Input Output library, which contains functions like printf() and scanf()."]
+                  body: ["Lines starting with # are preprocessor directives. They are processed by the C preprocessor (a separate phase before actual compilation) before any code is compiled.", "#include <stdio.h> tells the compiler to include the Standard Input Output library header file. This header file contains function prototypes (declarations) for functions like printf() and scanf(). Without it, the compiler does not know what printf() is and will produce a compilation error.", "Think of #include as an 'import' statement. The angle brackets < > tell the compiler to look in the standard system directories. Double quotes \" \" would tell it to look in the current directory first."]
                 },
                 {
                   title: "2. main() Function",
-                  body: ["Every C program must have exactly one main() function. Execution of the program always begins from main().", "int main() means the function returns an integer value to the operating system."]
+                  body: ["Every C program must have exactly one main() function. This is the mandatory entry point — the operating system calls main() to start your program. Execution always begins from the very first statement inside main() and proceeds line by line.", "int main() means the function returns an integer value to the operating system when it finishes. The OS can use this return value to determine if the program succeeded or failed.", "Variations like void main() exist but are not standard C and may not be supported on all compilers. The standard form int main() or int main(int argc, char* argv[]) should always be preferred."]
                 },
                 {
                   title: "3. printf() Function",
-                  body: ["printf() is used to print formatted output to the console.", "Syntax: printf(\"text to print\");", "The text must be enclosed in double quotes.", "Special character \\n moves the cursor to the next line (newline)."]
+                  body: ["printf() (print formatted) is used to print formatted output to the console (standard output). It is one of the most frequently used functions in C.", "Syntax: printf(\"text to print\"); or printf(\"format string\", variable1, variable2, ...);", "The text inside the double quotes is called the format string. It is printed exactly as-is, except for special escape sequences and format specifiers.", "Escape Sequences — Special character sequences beginning with a backslash \\\\ that represent control characters: \\\\n is newline (moves cursor to next line), \\\\t is horizontal tab, \\\\\\\\ prints a literal backslash, \\\\\" prints a literal double quote.", "printf() does NOT automatically add a newline at the end — you must explicitly include \\\\n if you want the output to move to the next line."]
+                },
+                {
+                  title: "👶 Super simple version",
+                  body: [
+                    "printf(\"Hello!\") is just the computer's way of shouting something out loud. The \\n at the end is like pressing Enter on your keyboard — it moves to the next line."
+                  ]
                 },
                 {
                   title: "4. return 0",
-                  body: ["return 0; at the end of main() tells the OS that the program ended successfully. Any non-zero value means the program ended with an error."]
+                  body: ["return 0; at the end of main() sends the value 0 back to the operating system. By convention, 0 signals that the program terminated successfully without any errors.", "Any non-zero return value (like return 1; or return -1;) signals that the program encountered an error. This is used in scripting and automation to chain programs together — a parent process can check the exit code of a child process.", "Modern compilers often generate implicit return 0; if you forget it in main(), but it is always best practice to write it explicitly for clarity and portability."]
                 },
                 {
                   title: "5. Curly Braces { }",
-                  body: ["All statements inside main() are enclosed within curly braces. The opening { marks the beginning and closing } marks the end of the function body."]
+                  body: ["All statements inside a function body are enclosed within a pair of curly braces. The opening { marks the start of the function body and the closing } marks its end.", "Curly braces define a 'block' in C. Variables declared inside a block only exist within that block (this is called 'scope'). Everything between the braces is considered one logical unit.", "Proper indentation inside braces (typically 4 spaces or 1 tab) is a critical coding style practice. The compiler ignores whitespace, but consistent indentation makes code readable and maintainable — a skill you'll use throughout your programming career."]
                 }
               ],
               pretest:[
@@ -1550,28 +1564,46 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "📬 Think of it like a mailbox!",
+                  body: [
+                    "When the computer wants to receive something from you (like your name), it opens a mailbox called scanf(). The & symbol is like writing the address on the mailbox so the letter (your input) lands in the right place. Without the address, the letter gets lost!",
+                    "![Mailbox](https://tse1.mm.bing.net/th/id/OIP.NAVswaeh2Npnmt9mxDt4wwHaCp?pid=Api&P=0&h=180)"
+                  ]
+                },
+                {
                   title: "scanf() — Reading Input",
                   body: [
-                    "scanf() reads formatted input from the keyboard (standard input).",
+                    "scanf() (scan formatted) reads formatted input from the keyboard (standard input, stdin). It is the input counterpart to printf().",
                     "Syntax: scanf(\"format_specifier\", &variable);",
-                    "The & symbol gives the memory address of the variable so scanf() can store the value there."
+                    "The & symbol is the 'address-of' operator. It gives scanf() the memory address of the variable so it can directly store the value the user types into that memory location. Without &, scanf() receives the value of the variable, not its location, and cannot write to it (this is undefined behavior and often causes crashes).",
+                    "scanf() reads input until it encounters whitespace (space, tab, newline). For reading strings with spaces, special functions like fgets() are needed.",
+                    "Common Pitfall: Always check that the number of format specifiers matches the number of address-of arguments. A mismatch leads to undefined behavior."
                   ]
                 },
                 {
                   title: "printf() with Format Specifiers",
                   body: [
-                    "printf() uses the same specifiers to print variables.",
-                    "printf(\"Name: %s Age: %d\", name, age);",
-                    "→ Replaces %s with the value of name, %d with the value of age"
+                    "Format specifiers are placeholders in the format string that tell printf() how to display a variable's value. They always start with % and are followed by a letter indicating the data type.",
+                    "Common Format Specifiers: %d for int (decimal integer), %f for float, %lf for double, %c for char, %s for char array (string).",
+                    "Example: printf(\"Name: %s Age: %d\", name, age); → Replaces %s with the value of name and %d with the value of age, in the order they appear in the argument list.",
+                    "Precision Modifier: %.2f displays a float with exactly 2 decimal places. The number between . and f specifies precision.",
+                    "Width Modifier: %10d prints an integer in a field of width 10, right-aligned. These are useful for creating aligned table output."
                   ]
                 },
                 {
                   title: "char array for strings",
                   body: [
-                    "C does not have a built-in string type. Strings are stored as character arrays.",
-                    "char name[50]; → declares a character array that can hold up to 49 characters + null terminator",
-                    "Why no & for char arrays in scanf?",
-                    "The array name itself is already a memory address in C, so & is not needed."
+                    "C does not have a built-in string data type like Python or Java. Strings in C are stored as arrays of characters (char arrays), terminated by a special null character '\\0' (ASCII value 0).",
+                    "Declaration: char name[50]; → declares a character array that can hold up to 49 printable characters plus the null terminator at position [49].",
+                    "The null terminator is crucial — string functions like printf() with %s and strlen() use it to know where the string ends. If it's missing, these functions may read garbage memory.",
+                    "Why no & for char arrays in scanf? — The array name (like name) in C is treated as a pointer to its first element (equivalent to &name[0]). Therefore, you don't need to prefix it with &. However, for individual characters or simple variables, & is required.",
+                    "Declaring an array too small (e.g., char name[5] for a long name) causes a buffer overflow — one of the most dangerous security vulnerabilities in C programming."
+                  ]
+                },
+                {
+                  title: "🍱 A string is like a lunchbox with compartments!",
+                  body: [
+                    "char name[50] is a lunchbox with 50 little compartments. Each compartment holds one letter. The last compartment always holds a special invisible marker '\\0' that says \"this is the end!\" If you forget that marker, the computer keeps looking for more letters — even into other people's lunchboxes!"
                   ]
                 }
               ],
@@ -1647,8 +1679,23 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "➕ Story time!",
+                  body: [
+                    "Imagine you and your friend both have some candies. You want to know how many you have together (that's the sum!) and how many each of you would get if you shared equally (that's the average!).",
+                    "sum = a + b → Put all candies together in one pile",
+                    "average = sum / 2 → Split the pile evenly"
+                  ]
+                },
+                {
                   title: "Arithmetic in C",
                   body: ["C supports +, -, *, / and % (modulus). When both operands are integers, division truncates: 7 / 2 = 3, not 3.5.", "To obtain a decimal result, cast one operand to float: (float)a / b."]
+                },
+                {
+                  title: "⚠️ Watch out for this sneaky bug!",
+                  body: [
+                    "In C, 5 / 2 gives you 2, NOT 2.5. Why? Because the computer thinks you only want a whole number! It's like cutting a pizza into 2 and ignoring the leftover crumbs. To keep the decimal part, write (float)5 / 2 — that tells the computer \"I want the crumbs too!\"",
+                    "![Pizza being split](https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400)"
+                  ]
                 },
                 {
                   title: "Sum",
@@ -1724,8 +1771,21 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🌡️ Two countries, two thermometers!",
+                  body: [
+                    "In the USA, people say \"It's 98°F today!\" In India, we say \"It's 37°C today!\" They're talking about the exact same temperature — just in different languages! This program is a translator between those two languages.",
+                    "![A thermometer closeup](https://media.whas11.com/assets/WHAS/images/59bf16b5-29d2-49f8-90ce-c7dad13475d5/59bf16b5-29d2-49f8-90ce-c7dad13475d5_1140x641.png)"
+                  ]
+                },
+                {
                   title: "Temperature Conversion Formula",
                   body: ["The relationship between Fahrenheit and Celsius is:", "C = (F - 32) * 5 / 9", "This formula subtracts 32 from the Fahrenheit value, then multiplies by 5 and divides by 9."]
+                },
+                {
+                  title: "🧮 Why the parentheses matter:",
+                  body: [
+                    "C is like a strict math teacher — it always does × and ÷ before + and −. So if you write F - 32 * 5 / 9, the computer first does 32 × 5 = 160, then 160 ÷ 9 = 17.7, and then subtracts that from F — which is completely wrong! Parentheses ( ) are your way of telling the computer: \"Do THIS part first!\""
+                  ]
                 },
                 {
                   title: "Operator Precedence",
@@ -1798,6 +1858,15 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "🏦 Imagine a piggy bank that grows!",
+                  body: [
+                    "You put ₹1000 in a bank (that's your Principal P). The bank says \"we'll give you 5% extra every year\" (that's the Rate R). After 3 years (Time T), how much extra money do you earn? That extra money is called Simple Interest!",
+                    "Formula: SI = (P × R × T) / 100",
+                    "Example: P=1000, R=5, T=3 → SI = (1000×5×3)/100 = ₹150 earned!",
+                    "![Piggy bank with coins](https://tse4.mm.bing.net/th/id/OIP.z19VFAmAL1ioO2-V-UUmIgHaDL?pid=Api&P=0&h=180)"
+                  ]
+                },
                 {
                   title: "Simple Interest Formula",
                   body: ["Simple interest is calculated as:", "SI = (P * R * T) / 100", "Where: P = Principal amount, R = Rate of interest per annum, T = Time period"]
@@ -1879,6 +1948,14 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🌳 The \"un-squaring\" machine!",
+                  body: [
+                    "If you know that 5 × 5 = 25, then the square root of 25 is 5. It's like having a magic machine — you put in 25, and it gives you back the number that was multiplied by itself to make 25.",
+                    "In C, this magic machine is called sqrt() and it lives in a toolbox called math.h.",
+                    "![A calculator](https://media.geeksforgeeks.org/wp-content/uploads/20231231153207/Square-Root-Symbol.png)"
+                  ]
+                },
+                {
                   title: "Square Root",
                   body: ["The square root of a number n is a value x such that x * x = n.", "For example, sqrt(25) = 5.0 and sqrt(2) = 1.414..."]
                 },
@@ -1893,6 +1970,12 @@ export const courses: Record<string, Course> = {
                 {
                   title: "Compilation and Types",
                   body: ["When using math.h functions, compile with: gcc program.c -o program -lm", "The -lm flag links the math library explicitly. Without it, a linker error occurs on some systems.", "sqrt() returns a double. If your variable is float, an implicit conversion occurs. It is safest to declare the variable as double when using math.h functions."]
+                },
+                {
+                  title: "🛠️ What is -lm?",
+                  body: [
+                    "When you use math.h, you need to also tell the compiler: \"Hey, I'm borrowing the math toolbox!\" The -lm flag is that permission slip. Without it, the compiler says \"I don't know what sqrt() is!\" and refuses to build your program."
+                  ]
                 }
               ],
               pretest:[
@@ -1956,12 +2039,25 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🌱 Interest on interest — like a snowball rolling downhill!",
+                  body: [
+                    "Simple interest always earns the same fixed amount every year. But compound interest earns interest on your ORIGINAL money AND on the interest you've already collected. So your money grows faster and faster — like a snowball picking up more snow as it rolls!",
+                    "![Snowball rolling downhill](https://sqy7rm.media.zestyio.com/Compound-Interest-Formula-Desktop.png)"
+                  ]
+                },
+                {
                   title: "Compound Interest Formula",
                   body: ["Unlike simple interest, compound interest calculates interest on both the principal and the previously accumulated interest:", "A = P * pow(1 + R/100, T)", "CI = A - P", "Where: P = Principal, R = Annual rate, T = Time, A = Amount"]
                 },
                 {
                   title: "pow() Function",
                   body: ["Syntax: double pow(double base, double exp);", "Returns base raised to the power exp. Requires #include <math.h> and -lm at compilation."]
+                },
+                {
+                  title: "🔢 Why not just multiply manually?",
+                  body: [
+                    "What if T = 10 years? Would you write × 1.05 × 1.05 × 1.05 × 1.05 × 1.05 ... ten times? That's messy! pow(1.05, 10) does all that multiplication for you in one clean step. pow(base, exponent) means \"multiply base by itself exponent times.\""
+                  ]
                 },
                 {
                   title: "Why Not Use Simple Multiplication?",
@@ -2033,12 +2129,26 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "📐 Finding area without a ruler for height!",
+                  body: [
+                    "Usually to find a triangle's area you need ½ × base × height. But what if you only know the lengths of all three sides and can't measure the height? Heron of Alexandria figured out a clever formula about 2000 years ago that lets you do exactly that!",
+                    "It's like being a detective — you use the clues you have (the three sides) to figure out something you can't directly measure (the area).",
+                    "![A triangle drawn on paper](https://androidcure.com/wp-content/uploads/2021/06/Heron-Formula.jpg)"
+                  ]
+                },
+                {
                   title: "Heron's Formula",
                   body: ["Given a triangle with sides a, b, and c, its area can be computed without knowing any angle:", "s = (a + b + c) / 2 (semi-perimeter)", "Area = sqrt(s * (s-a) * (s-b) * (s-c))", "This formula works for any triangle as long as the sides satisfy the triangle inequality."]
                 },
                 {
                   title: "Triangle Inequality",
                   body: ["For three sides to form a valid triangle, the sum of any two sides must be greater than the third side:", "a + b > c, b + c > a, a + c > b", "If this condition is not met, the expression inside sqrt() becomes negative or zero, yielding NaN or 0 as the area."]
+                },
+                {
+                  title: "✅ The triangle test:",
+                  body: [
+                    "Can you make a triangle with sides 3, 4, and 10? Try it with sticks! The 10cm stick is too long — the other two (3+4=7) can't even reach each other to close the triangle. So the rule is: any two sides added together must be longer than the third side. If this fails, there's no triangle — and your code should handle that!"
+                  ]
                 },
                 {
                   title: "Semi-perimeter",
@@ -2109,12 +2219,27 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🚀 Launching a rocket in code!",
+                  body: [
+                    "Imagine a car starts from rest (initial velocity = 0) and speeds up at 2 m/s every second (acceleration = 2 m/s²). After 5 seconds, how far has it gone? This formula from physics tells you exactly that! It's the same formula scientists use to calculate how far a rocket travels after launch.",
+                    "s = u×t + ½×a×t²",
+                    "u = starting speed, a = how fast it's speeding up, t = how many seconds passed",
+                    "![A rocket launching](https://forums.flightsimulator.com/uploads/default/original/4X/b/6/3/b63f37de919e547414b9a4bc348618c5730d2b8e.jpeg)"
+                  ]
+                },
+                {
                   title: "Equation of Motion",
                   body: ["The distance traveled by an object under uniform acceleration is:", "s = u*t + 0.5 * a * t * t", "Where: s = Distance (m), u = Initial velocity (m/s), a = Acceleration (m/s²), t = Time (s)", "This is the second equation of motion from classical kinematics."]
                 },
                 {
                   title: "Integer Division Pitfall",
                   body: ["Writing 1/2 in C evaluates to 0 because both operands are integer literals, truncating the result.", "Always write 0.5 or (float)1/2 to preserve the half factor."]
+                },
+                {
+                  title: "⚠️ The sneaky 1/2 bug again!",
+                  body: [
+                    "Writing 1/2 in C gives 0 — not 0.5! Always write 0.5 directly in physics formulas. It's one of the most common beginner mistakes that causes completely wrong answers. The computer isn't wrong — it's just doing integer math because you gave it two whole numbers!"
+                  ]
                 },
                 {
                   title: "Squaring t",
@@ -2193,6 +2318,15 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🎯 Math has a queue, just like a canteen!",
+                  body: [
+                    "In a school canteen, students with lunch boxes go first, then others. In C math, × and ÷ always go before + and −. This ordering is called operator precedence — it's the queue system of mathematics!",
+                    "So 2 + 3 × 4 = 2 + 12 = 14 (NOT 5 × 4 = 20)",
+                    "Use ( ) parentheses whenever you want something to go first in the queue!",
+                    "![Queue / lineup of people](https://image2.slideserve.com/4538776/expression-evaluation-l.jpg)"
+                  ]
+                },
+                {
                   title: "Operator Precedence",
                   body: ["When an expression contains multiple operators, C evaluates higher-precedence operators first. The standard precedence order for arithmetic:", "Level 1 (highest): *, /, %", "Level 2: +, -", "Level 3 (lowest): = (assignment)", "Example: 2 + 3 * 4 evaluates as 2 + (3 * 4) = 2 + 12 = 14, not 20."]
                 },
@@ -2201,12 +2335,27 @@ export const courses: Record<string, Course> = {
                   body: ["When two operators have equal precedence, associativity determines evaluation order. All basic arithmetic operators are left-to-right associative:", "10 - 3 - 2 evaluates as (10 - 3) - 2 = 5, not 10 - (3 - 2) = 9."]
                 },
                 {
+                  title: "↔️ Left to right — like reading a book!",
+                  body: [
+                    "When operators have the same precedence (like − and −), C reads them left to right, just like you read a sentence. So 10 - 3 - 2 becomes (10-3) - 2 = 5, not 10 - (3-2) = 9. Always read left to right when in doubt!"
+                  ]
+                },
+                {
                   title: "Parentheses",
                   body: ["Parentheses override all precedence rules and force a sub-expression to be evaluated first:", "(2 + 3) * 4 = 20"]
                 },
                 {
                   title: "Modulus and Types",
                   body: ["Integer vs Float Division — 7 / 2 = 3 (integer truncation). 7.0 / 2 = 3.5 (float).", "Modulus Operator — % gives the remainder of integer division. 17 % 5 = 2 because 17 = 5*3 + 2. % is only valid for integer operands in C."]
+                },
+                {
+                  title: "🧮 What is % — the remainder operator?",
+                  body: [
+                    "17 % 5 means: \"how many are left over after dividing 17 into groups of 5?\"",
+                    "17 ÷ 5 = 3 groups of 5 (that's 15), with 2 left over.",
+                    "So 17 % 5 = 2.",
+                    "A super useful trick: number % 2 == 0 checks if a number is even. If the remainder when divided by 2 is zero, the number is even!"
+                  ]
                 },
                 {
                   title: "Increment and Decrement",
@@ -2438,8 +2587,23 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🏆 The sports tournament analogy!",
+                  body: [
+                    "Imagine 4 students running a race. How do you find the fastest? Simple — you watch who crosses the finish line first! In code, we do the same thing: start by assuming the first person is the fastest, then check each remaining person. If someone is faster, they become the new \"champion.\" Keep going until you've checked everyone — the last champion is your winner (maximum)!",
+                    "Finding the minimum is the same game, but you're looking for the slowest instead.",
+                    "![Kids racing on a track](https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400)"
+                  ]
+                },
+                {
                   title: "Nested if-else",
                   body: ["An if-else construct placed inside another if or else block is called a nested if-else. It allows multi-way decisions based on a sequence of conditions.", "if (condition1) {\n    if (condition2) { ... }\n    else { ... }\n} else { ... }"]
+                },
+                {
+                  title: "🪆 Nested if-else = boxes inside boxes!",
+                  body: [
+                    "Think of Russian nesting dolls (Matryoshka). The outer doll checks one condition. If you open it, there's another doll inside checking another condition. That's exactly what nested if-else does — decisions inside decisions. The computer opens each layer one by one until it finds the answer!",
+                    "![Russian nesting dolls](https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=400)"
+                  ]
                 },
                 {
                   title: "Finding Maximum and Minimum",
@@ -2516,8 +2680,26 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "💡 Why does your bill go up so fast?!",
+                  body: [
+                    "Have you ever noticed that when your family uses a LOT of electricity, the bill suddenly jumps up way more than expected? That's because electricity boards use a slab system — the more you use, the higher the price per unit. It's like a video game where the first 100 units are \"easy mode\" (cheap), the next 100 are \"medium mode\" (costlier), and anything beyond that is \"hard mode\" (expensive)!",
+                    "This teaches the computer to calculate exactly how much to charge based on which \"level\" of usage you're in.",
+                    "![Electric meter or electricity bill](https://staticimg.amarujala.com/assets/images/2024/04/15/electric-bill-electricity-bill-new_2a609bc128bc3196169a37a0f9399406.jpeg)"
+                  ]
+                },
+                {
                   title: "Slab-Based Tariff",
                   body: ["Electricity boards charge different rates per unit for different consumption ranges. A common slab structure:", "Units 1–100 : Rs. 1.50 per unit", "Units 101–200 : Rs. 2.50 per unit (for units above 100)", "Units 201–300 : Rs. 4.00 per unit (for units above 200)", "Units above 300: Rs. 6.00 per unit (for units above 300)"]
+                },
+                {
+                  title: "🎮 The slab game — an example:",
+                  body: [
+                    "You used 250 units this month. Here's how the bill works:",
+                    "First 100 units → cheapest price (easy mode)",
+                    "Next 100 units → medium price",
+                    "Last 50 units → higher price (only 50 units, not 100!)",
+                    "You pay for each slab separately and add them all up. The computer uses if-else if to figure out which slabs you've crossed!"
+                  ]
                 },
                 {
                   title: "Cumulative Billing",
@@ -2592,12 +2774,30 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🎯 Finding where a curve touches the ground!",
+                  body: [
+                    "Imagine you throw a ball in the air. It goes up, reaches a peak, then comes back down. If you draw this path, it makes a U-shaped curve (called a parabola). A quadratic equation describes this curve. The \"roots\" are the two points where the ball hits the ground (touches the x-axis)!",
+                    "The formula ax² + bx + c = 0 is the math that describes that ball's path. Solving it tells you WHEN it lands.",
+                    "![A ball arc / parabola](https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400)"
+                  ]
+                },
+                {
                   title: "Quadratic Formula",
                   body: ["A second-degree polynomial equation of the form: ax² + bx + c = 0 where a ≠ 0", "Formula: x = (-b ± sqrt(b² - 4ac)) / (2a)"]
                 },
                 {
                   title: "Discriminant",
                   body: ["D = b² - 4ac determines the nature of the roots:", "D > 0 : Two distinct real roots. x1 = (-b + sqrt(D)) / (2a), x2 = (-b - sqrt(D)) / (2a)", "D == 0 : Two equal (repeated) real roots. x1 = x2 = -b / (2a)", "D < 0 : Two complex conjugate roots (no real roots). Real part = -b / (2a), Imaginary part = sqrt(-D) / (2a)"]
+                },
+                {
+                  title: "🔍 The discriminant is a fortune teller!",
+                  body: [
+                    "Before solving the equation, we calculate D = b² - 4ac. This single number tells us the FUTURE of our solutions:",
+                    "D > 0 → 🎉 Two different real answers (ball lands in two spots)",
+                    "D = 0 → 🤔 One repeated answer (ball just barely grazes the ground)",
+                    "D < 0 → 😶 No real answers (ball never touches the ground — it went into imaginary space!)",
+                    "That's why we always check D first before doing any square root. sqrt() of a negative number breaks the math!"
+                  ]
                 },
                 {
                   title: "Edge Case",
@@ -2669,6 +2869,13 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🔢 Building your own pocket calculator!",
+                  body: [
+                    "Every calculator has buttons: +, -, ×, ÷. When you press a button, the calculator looks at WHICH button you pressed and does that specific operation. That's exactly what switch-case does in C! Instead of writing a long chain of if-else if-else if, you list all the cases neatly — like the buttons on a calculator.",
+                    "![Classic calculator](https://wikihow.com/images/1/10/Find-the-Minimum-and-Maximum-Points-Using-a-Graphing-Calculator-Step-7.jpg)"
+                  ]
+                },
+                {
                   title: "switch-case Statement",
                   body: ["An alternative to long if-else if chains when branching on the value of a single integer or character expression.", "switch (expression) {\n    case value1: statements; break;\n    case value2: statements; break;\n    default: statements;\n}"]
                 },
@@ -2677,12 +2884,24 @@ export const courses: Record<string, Course> = {
                   body: ["Each case must end with break to prevent fall-through. Without break, execution continues into the next case regardless of its label.", "Intentional fall-through (omitting break) can group cases: case '+': case 'p': result = a + b; break;"]
                 },
                 {
+                  title: "🚪 break is like a door stopper!",
+                  body: [
+                    "Imagine you walk into a hotel. Room 1 is addition, Room 2 is subtraction, Room 3 is multiplication. Without break, once you enter Room 1 and finish, you'd accidentally walk into Room 2, then Room 3 as well! The break statement is a door stopper — it keeps you in the right room and stops you from falling through into the next one."
+                  ]
+                },
+                {
                   title: "default Case and Char Input",
                   body: ["default case is executed when no case value matches the expression. Used to handle invalid or unexpected input gracefully.", "Operators are characters. Read with scanf(\" %c\", &op). The leading space in \" %c\" skips any leftover whitespace or newline in the input buffer."]
                 },
                 {
                   title: "Division by Zero",
                   body: ["Always check if the divisor is zero before performing division:\ncase '/':\n    if (b == 0) printf(\"Error\");\n    else result = a / b;\n    break;"]
+                },
+                {
+                  title: "⛔ Why you can never divide by zero:",
+                  body: [
+                    "Try asking your calculator 5 ÷ 0. It shows ERROR! Why? Because 5 ÷ 0 means \"how many times does 0 fit into 5?\" — and the answer is infinite, which a computer can't store. It's like asking \"how many empty bags do you need to hold 5 apples?\" — you'd need endless empty bags! Always check if (b == 0) before dividing."
+                  ]
                 }
               ],
               pretest: [
@@ -2745,6 +2964,13 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "📅 Why do we even need leap years?",
+                  body: [
+                    "The Earth takes 365 days AND about 6 hours to go around the Sun. But our calendar only counts 365 days. So every year, we ignore those extra 6 hours. After 4 years, those ignored hours add up to a whole extra day (6×4=24 hours)! We add that day as February 29 — that's a leap year. Without this fix, our calendar would slowly drift, and eventually July would be in winter!",
+                    "![Earth orbiting the sun / calendar](https://dims.apnews.com/dims4/default/11ffb44/2147483647/strip/true/crop/4511x2537+0+235/resize/1440x810!/quality/90/?url=https:%2F%2Fassets.apnews.com%2Fd2%2F45%2F92bbfa6f4b44bee259b33411a5cb%2Ff7c5e5ee51eb4bffbf2ef57badc3f179)"
+                  ]
+                },
+                {
                   title: "Leap Year Rules",
                   body: ["A year is a leap year if: Rule 1: It is divisible by 4 AND Rule 2: It is NOT divisible by 100 OR Rule 3: It is divisible by 400", "Condensed Rule: (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)"]
                 },
@@ -2755,6 +2981,12 @@ export const courses: Record<string, Course> = {
                 {
                   title: "Examples",
                   body: ["2024 : 2024 % 4 == 0, 2024 % 100 != 0 → Leap year", "1900 : 1900 % 4 == 0, 1900 % 100 == 0, 1900 % 400 != 0 → Not a leap year", "2000 : 2000 % 400 == 0 → Leap year", "2023 : 2023 % 4 != 0 → Not a leap year"]
+                },
+                {
+                  title: "🧩 The 100-year exception — why?!",
+                  body: [
+                    "If we added a leap year every 4 years perfectly, we'd still be off by a tiny bit (the Earth takes slightly less than exactly 6 extra hours). Over 100 years, these tiny errors add up. So century years (1900, 2100) are NOT leap years — unless they're also divisible by 400 (like 2000). It's a correction inside a correction inside a correction — like fixing a slightly wrong clock!"
+                  ]
                 },
                 {
                   title: "Operators",
@@ -2829,6 +3061,15 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🎂 How many ways can your friends sit at a birthday party?",
+                  body: [
+                    "If 3 friends — Aarav, Bhanu, and Chetan — sit in a row, how many different seating arrangements are possible?",
+                    "Aarav first: 3 choices for seat 1, 2 remaining for seat 2, 1 left for seat 3 → 3 × 2 × 1 = 6 ways",
+                    "That's 3! = 6. This is exactly what factorial computes — the number of ways to arrange things. Used everywhere in maths, probability, and even game development!",
+                    "![Kids sitting at a party table](https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400)"
+                  ]
+                },
+                {
                   title: "Factorial Definition",
                   body: ["The factorial of a non-negative integer n, written n!, is: n! = n × (n-1) × (n-2) × ... × 2 × 1", "0! = 1 (by definition), 1! = 1, 5! = 5 × 4 × 3 × 2 × 1 = 120"]
                 },
@@ -2839,6 +3080,13 @@ export const courses: Record<string, Course> = {
                 {
                   title: "Why long long?",
                   body: ["Factorials grow very rapidly: 10! = 3,628,800, 15! = 1,307,674,368,000, 20! = 2,432,902,008,176,640,000", "An int (typically 32-bit) overflows beyond 12!. Use long long (64-bit) to safely hold values up to 20!. Format specifier: %lld."]
+                },
+                {
+                  title: "📈 Factorials grow INSANELY fast!",
+                  body: [
+                    "1! = 1 ... 5! = 120 ... 10! = 3,628,800 ... 20! = 2,432,902,008,176,640,000",
+                    "By just 20, the number has 19 digits! A regular int in C can only hold numbers up to about 2 billion (10 digits). That's why we use long long — a bigger box that holds numbers up to about 9 quintillion. Even then, 21! overflows it. Factorials are like rabbits — they multiply way faster than you expect!"
+                  ]
                 },
                 {
                   title: "Negative Input Handling",
@@ -2915,6 +3163,14 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🔐 Primes are the atoms of mathematics!",
+                  body: [
+                    "Every number can be broken into smaller pieces by multiplication — except prime numbers. A prime number is a number that can ONLY be divided by 1 and itself. No other number divides it cleanly.",
+                    "Here's the wild part: primes are used to protect your passwords and bank details right now! When you type your password on a website, it gets locked using a mathematical trick based on huge prime numbers. Hackers can't break it because multiplying two giant primes is easy — but finding the two primes from the product is nearly impossible!",
+                    "![A padlock / security concept](https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400)"
+                  ]
+                },
+                {
                   title: "Prime Number Definition",
                   body: ["A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.", "Primes: 2, 3, 5, 7, 11... Not prime (composite): 4, 6, 8, 9... 1 is neither prime nor composite."]
                 },
@@ -2925,6 +3181,12 @@ export const courses: Record<string, Course> = {
                 {
                   title: "Optimised Loop",
                   body: ["It is sufficient to check divisors only up to sqrt(n). If n has a factor greater than sqrt(n), it must have a corresponding factor smaller than sqrt(n).", "for (i = 2; i * i <= n; i++) reduces iterations significantly."]
+                },
+                {
+                  title: "⚡ The square root trick — why does it work?",
+                  body: [
+                    "If 36 has a factor of 4, it MUST also have a factor of 9 (because 4×9=36). One factor will always be ≤ √36 = 6, and the other ≥ 6. So if we check all numbers up to √n and find no factor, there can't be any factor above √n either. This cuts our work from checking 35 numbers (for n=36) down to just 6. For large numbers like 1,000,000, we check 1000 instead of 999,999. That's 1000× faster!"
+                  ]
                 },
                 {
                   title: "break Statement and Flag",
@@ -2999,12 +3261,27 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🌊 How does your phone calculate sin(30°)?",
+                  body: [
+                    "Your calculator doesn't have a \"sin button\" hardwired with a table of answers. It uses a clever mathematical trick discovered by a mathematician named Maclaurin — it approximates sin using an infinite series of additions and multiplications. Each extra term makes the answer more accurate. After 10-15 terms, the result matches the exact answer to many decimal places!",
+                    "This is how computers calculate ALL trigonometric functions — no magic, just clever repeated arithmetic.",
+                    "![Sine wave graph](https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400)"
+                  ]
+                },
+                {
                   title: "Sine Series (Maclaurin Expansion)",
                   body: ["sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + x⁹/9! - ...", "General term (n starting from 0): term_n = (-1)^n * x^(2n+1) / (2n+1)!"]
                 },
                 {
                   title: "Degree to Radian Conversion",
                   body: ["Trigonometric series require x in radians: x_rad = x_deg * (M_PI / 180.0)", "M_PI is defined in math.h. Alternatively use 3.14159265358979."]
+                },
+                {
+                  title: "📐 Why radians, not degrees?",
+                  body: [
+                    "Degrees (0°–360°) are human-invented. Radians are what the universe actually uses in mathematics. The formula sin(x) = x - x³/6 + ... only works when x is in radians. Think of degrees as a nickname (like calling someone \"Raju\") and radians as their official name on the birth certificate (like \"Rajeshwar\"). Math functions only understand the official name!",
+                    "Conversion: multiply degrees by π/180 to get radians."
+                  ]
                 },
                 {
                   title: "Iterative Term Building",
@@ -3082,12 +3359,30 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🪞 A number that looks the same in a mirror!",
+                  body: [
+                    "A palindrome reads the same forwards and backwards. Like the word \"MADAM\" — spell it backwards, still MADAM! Or the number 121 — flip it, still 121. Or 12321 — still 12321.",
+                    "To check this in code, we reverse the number and compare it to the original. If they match, it's a palindrome — like checking if someone looks the same from the front and back in a mirror!",
+                    "![Mirror reflection concept](https://images.unsplash.com/photo-1580834341580-8c17a3a630ca?w=400)"
+                  ]
+                },
+                {
                   title: "Palindrome Number",
                   body: ["A number is a palindrome if it reads the same forwards and backwards.", "Examples: 121 → 121 (Palindrome), 123 → 321 (Not a Palindrome), 5 → 5 (Palindrome)."]
                 },
                 {
                   title: "Digit Extraction",
                   body: ["remainder = n % 10 extracts the last digit of n.", "n = n / 10 removes the last digit from n (integer division)."]
+                },
+                {
+                  title: "🔢 How do we reverse a number step by step?",
+                  body: [
+                    "Let's reverse 123:",
+                    "Step 1: Last digit = 123 % 10 = 3. Remaining = 123 / 10 = 12. Reversed = 0 × 10 + 3 = 3",
+                    "Step 2: Last digit = 12 % 10 = 2. Remaining = 12 / 10 = 1. Reversed = 3 × 10 + 2 = 32",
+                    "Step 3: Last digit = 1 % 10 = 1. Remaining = 1 / 10 = 0. Reversed = 32 × 10 + 1 = 321",
+                    "Now compare: 123 ≠ 321 → NOT a palindrome. Try it with 121 and see it work!"
+                  ]
                 },
                 {
                   title: "Building the Reversed Number",
@@ -3172,8 +3467,22 @@ export const courses: Record<string, Course> = {
               },
               theory: [
                 {
+                  title: "🔺 Building patterns with loops — like stacking bricks!",
+                  body: [
+                    "Look at a pyramid from the front. Row 1 has 1 brick, row 2 has 2 bricks, row 3 has 3 bricks. Each row is wider than the last, and everything is centered. To draw this with code, we use loops inside loops — the outer loop builds each row, the inner loops place the spaces and numbers perfectly.",
+                    "It's like a construction worker who, for each floor of the building, carefully counts how many bricks to place and where to start!",
+                    "![A pyramid or triangle pattern](https://images.unsplash.com/photo-1553913861-c0fddf2619ee?w=400)"
+                  ]
+                },
+                {
                   title: "Nested Loops",
                   body: ["A loop placed inside another loop is called a nested loop. The outer loop controls the row number and the inner loop(s) control what is printed on each row.", "for (i = 1; i <= n; i++) {\n    for (j = 1; j <= ...; j++) { printf(...); }\n    printf(\"\\n\");\n}"]
+                },
+                {
+                  title: "🧅 Nested loops = onion layers!",
+                  body: [
+                    "Peel an onion — there's a layer, inside it another layer, inside it another. A nested loop is the same. The outer loop says \"do this for each ROW.\" The inner loop says \"for this row, do this for each COLUMN.\" Every time the outer loop ticks once, the entire inner loop runs completely. So for a 5-row pyramid, the inner loops run a total of 1+2+3+4+5 = 15 times!"
+                  ]
                 },
                 {
                   title: "Number Pyramid Pattern",
@@ -4488,12 +4797,26 @@ export const courses: Record<string, Course> = {
                   body: ["Start from head, print data, move to next node using cur = cur->next, repeat until cur becomes NULL."]
                 },
                 {
+                  title: "🚂 A linked list is like a treasure hunt chain!",
+                  body: [
+                    "Imagine a treasure hunt where the first clue tells you where to find the second clue, the second clue tells you where to find the third, and so on. Each clue (node) has two things: the actual treasure hint (data) and the location of the next clue (pointer). The last clue says \"THE END\" (NULL). That's exactly a linked list!",
+                    "Unlike an array where all items sit in a neat row, linked list nodes can be anywhere in memory — they just hold each other's hand (via pointers) to stay connected.",
+                    "![Treasure map with connected dots](https://images.unsplash.com/photo-1577495508326-19a1b3cf65b9?w=400)"
+                  ]
+                },
+                {
                   title: "Visual Structure for input 3 nodes: 10 20 30",
                   body: ["10 -> 20 -> 30 -> NULL", "Each arrow represents the next pointer storing the address of the following node."]
                 },
                 {
                   title: "Why Linked List over Array?",
                   body: ["Arrays have fixed size decided at compile time. Linked lists grow and shrink dynamically at runtime. Insertion and deletion are efficient in linked lists without shifting elements."]
+                },
+                {
+                  title: "📏 The key difference — flexibility!",
+                  body: [
+                    "Arrays are like a fixed-size parking lot — built for exactly 100 cars, even if only 3 show up today. Linked lists are like a valet service — you add a parking spot whenever a new car arrives, and remove one when a car leaves. No wasted space, no size limits declared upfront. The trade-off: finding a specific car takes longer (you must walk the chain), while arrays let you jump directly to any spot."
+                  ]
                 }
               ],
               pretest: [
@@ -4591,6 +4914,14 @@ export const courses: Record<string, Course> = {
                 ]
               },
               theory: [
+                {
+                  title: "🏠 Structure = a house with separate rooms. Union = one room that changes purpose!",
+                  body: [
+                    "A struct is like a house with a bedroom, kitchen, and living room — all existing at the same time, each with its own space. You can use all rooms simultaneously.",
+                    "A union is like a studio apartment with ONE room. Sometimes it's a bedroom, sometimes it's a gym, sometimes it's an office — but it can only be ONE thing at a time. The room is always the same size (the biggest version needed), but only the last use matters.",
+                    "![House floor plan / apartment studio](https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400)"
+                  ]
+                },
                 {
                   title: "What is a Structure?",
                   body: ["A structure is a user-defined data type that groups multiple variables of different data types under one name. Each member gets its own separate memory location. Total size of a struct equals the sum of sizes of all its members (plus possible padding bytes added by compiler for alignment).", "Example with int i (4 bytes) + float f (4 bytes) + char c (1 byte) = minimum 9 bytes, compiler may pad to 12 bytes for alignment."]

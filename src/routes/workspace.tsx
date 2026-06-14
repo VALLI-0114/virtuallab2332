@@ -78,6 +78,35 @@ import { BellmanFordSim } from "@/components/simulations/BellmanFordSim";
 import { KruskalSim } from "@/components/simulations/KruskalSim";
 import { PrimAlgorithmSim } from "@/components/simulations/PrimSim";
 import { GraphRaidersSim } from "@/components/simulations/GraphRaidersSim";
+import { JavaMemoryInspectorSim } from "@/components/simulations/JavaMemoryInspectorSim";
+import { JavaParabolaPlotterSim } from "@/components/simulations/JavaParabolaPlotterSim";
+import { JavaBinarySearchSim } from "@/components/simulations/JavaBinarySearchSim";
+import { JavaBubbleSortSim } from "@/components/simulations/JavaBubbleSortSim";
+import { JavaStringBufferSim } from "@/components/simulations/JavaStringBufferSim";
+import { JavaBlueprintFactorySim } from "@/components/simulations/JavaBlueprintFactorySim";
+import { JavaMethodDispatcherSim } from "@/components/simulations/JavaMethodDispatcherSim";
+import { JavaObjectAssemblySim } from "@/components/simulations/JavaObjectAssemblySim";
+import { JavaConstructorSelectorSim } from "@/components/simulations/JavaConstructorSelectorSim";
+import { JavaFamilyTreeSim } from "@/components/simulations/JavaFamilyTreeSim";
+import { JavaInheritanceChainSim } from "@/components/simulations/JavaInheritanceChainSim";
+import { JavaShapeFactorySim } from "@/components/simulations/JavaShapeFactorySim";
+import { JavaTryCatchSim } from "@/components/simulations/JavaTryCatchSim";
+import { JavaMultipleCatchSim } from "@/components/simulations/JavaMultipleCatchSim";
+import { JavaThrowsSim } from "@/components/simulations/JavaThrowsSim";
+import { JavaThreadLifecycleSim } from "@/components/simulations/JavaThreadLifecycleSim";
+import { JavaRunnableSim } from "@/components/simulations/JavaRunnableSim";
+import { JavaThreadPrioritySim } from "@/components/simulations/JavaThreadPrioritySim";
+import { JavaThreadSyncSim } from "@/components/simulations/JavaThreadSyncSim";
+import { JavaIsAliveSim } from "@/components/simulations/JavaIsAliveSim";
+import { JavaInterruptSim } from "@/components/simulations/JavaInterruptSim";
+import { JavaDaemonSim } from "@/components/simulations/JavaDaemonSim";
+import { JavaProducerConsumerSim } from "@/components/simulations/JavaProducerConsumerSim";
+import { JavaPackageSim } from "@/components/simulations/JavaPackageSim";
+import { JavaFXLabelImageSim } from "@/components/simulations/JavaFXLabelImageSim";
+import { JavaFXTipCalcSim } from "@/components/simulations/JavaFXTipCalcSim";
+import { JavaJDBCConnectSim } from "@/components/simulations/JavaJDBCConnectSim";
+import { JavaJDBCInsertSim } from "@/components/simulations/JavaJDBCInsertSim";
+import { JavaJDBCDeleteSim } from "@/components/simulations/JavaJDBCDeleteSim";
 import { PostSolveAuthModal } from '@/components/PostSolveAuthModal';
 import { markGuestSolved, hasGuestSolved } from '@/lib/guestProgress';
 type WorkspaceSearch = {
@@ -1553,6 +1582,93 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                 }
 
                 if (step === "simulation") {
+                  if (details?.experiment.id === "java-e1-1") {
+                    return <div className="h-full bg-background"><JavaMemoryInspectorSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e1-2") {
+                    return <div className="h-full bg-background"><JavaParabolaPlotterSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e2-1") {
+                    return <div className="h-full bg-background"><JavaBinarySearchSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e2-2") {
+                    return <div className="h-full bg-background"><JavaBubbleSortSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e2-3") {
+                    return <div className="h-full bg-background"><JavaStringBufferSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e3-1") {
+                    return <div className="h-full bg-background"><JavaBlueprintFactorySim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e3-2") {
+                    return <div className="h-full bg-background"><JavaMethodDispatcherSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e3-3") {
+                    return <div className="h-full bg-background"><JavaObjectAssemblySim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e3-4") {
+                    return <div className="h-full bg-background"><JavaConstructorSelectorSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e4-1") {
+                    return <div className="h-full bg-background"><JavaFamilyTreeSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e4-2") {
+                    return <div className="h-full bg-background"><JavaInheritanceChainSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e4-3") {
+                    return <div className="h-full bg-background"><JavaShapeFactorySim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e5-1") {
+                    return <div className="h-full bg-background"><JavaTryCatchSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e5-2") {
+                    return <div className="h-full bg-background"><JavaMultipleCatchSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e5-3") {
+                    return <div className="h-full bg-background"><JavaThrowsSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e6-1") {
+                    return <div className="h-full bg-background"><JavaThreadLifecycleSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e6-2") {
+                    return <div className="h-full bg-background"><JavaRunnableSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e6-3") {
+                    return <div className="h-full bg-background"><JavaThreadPrioritySim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e6-4") {
+                    return <div className="h-full bg-background"><JavaThreadSyncSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e7-1") {
+                    return <div className="h-full bg-background"><JavaIsAliveSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e7-2") {
+                    return <div className="h-full bg-background"><JavaInterruptSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e7-3") {
+                    return <div className="h-full bg-background"><JavaDaemonSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e7-4") {
+                    return <div className="h-full bg-background"><JavaProducerConsumerSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e8-1") {
+                    return <div className="h-full bg-background"><JavaPackageSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e8-2") {
+                    return <div className="h-full bg-background"><JavaFXLabelImageSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e8-3") {
+                    return <div className="h-full bg-background"><JavaFXTipCalcSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e9-1") {
+                    return <div className="h-full bg-background"><JavaJDBCConnectSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e9-2") {
+                    return <div className="h-full bg-background"><JavaJDBCInsertSim /></div>;
+                  }
+                  if (details?.experiment.id === "java-e9-3") {
+                    return <div className="h-full bg-background"><JavaJDBCDeleteSim /></div>;
+                  }
                   if (details?.experiment.id === "c-w1-2") {
                     return (
                       <div className="h-full">

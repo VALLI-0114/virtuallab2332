@@ -102,15 +102,7 @@ export const javaCourse: Course = {
               "Submit the code and verify the output displays correctly.",
               "Take the Posttest to complete the experiment."
             ],
-            simulation: {
-              code: "public class DefaultValues {\n    static boolean b;\n    static char c;\n    static int i;\n    static double d;\n    public static void main(String[] args) {\n        System.out.println(\"boolean: \" + b);\n        System.out.println(\"int: \" + i);\n        System.out.println(\"double: \" + d);\n    }\n}",
-              steps: [
-                { line: 1, annotation: "Class DefaultValues loaded into JVM. Static variables b, c, i, d initialized to default values.", memory: [{ variable: "b", type: "boolean", value: "false" }, { variable: "c", type: "char", value: "\\u0000" }, { variable: "i", type: "int", value: "0" }, { variable: "d", type: "double", value: "0.0" }], output: "" },
-                { line: 6, annotation: "Execute main method. Accessing static boolean field b.", memory: [{ variable: "b", type: "boolean", value: "false" }, { variable: "i", type: "int", value: "0" }, { variable: "d", type: "double", value: "0.0" }], output: "boolean: false\n" },
-                { line: 7, annotation: "Accessing static integer field i.", memory: [{ variable: "b", type: "boolean", value: "false" }, { variable: "i", type: "int", value: "0" }, { variable: "d", type: "double", value: "0.0" }], output: "boolean: false\nint: 0\n" },
-                { line: 8, annotation: "Accessing static double field d.", memory: [{ variable: "b", type: "boolean", value: "false" }, { variable: "i", type: "int", value: "0" }, { variable: "d", type: "double", value: "0.0" }], output: "boolean: false\nint: 0\ndouble: 0.0\n" }
-              ]
-            },
+            simulation: "java-e1-1",
             posttest: [
               { question: "What is the default value of a char variable in Java?", options: ["' '", "'0'", "'\\u0000'", "null"], answerIndex: 2, hint: "Char defaults to the Unicode null character code." },
               { question: "Which primitive type represents a single precision 32-bit IEEE 754 floating point?", options: ["double", "float", "decimal", "real"], answerIndex: 1, hint: "Float uses 32 bits, double uses 64 bits." },
@@ -170,18 +162,7 @@ export const javaCourse: Course = {
               "Go to the Code Test tab and run the program to verify standard output.",
               "Perform Posttest calculations to evaluate understanding."
             ],
-            simulation: {
-              code: "public class QuadraticRoots {\n    public static void main(String[] args) {\n        double a = 1, b = -3, c = 2;\n        double d = b * b - 4 * a * c;\n        if (d > 0) {\n            double r1 = (-b + Math.sqrt(d)) / (2 * a);\n            double r2 = (-b - Math.sqrt(d)) / (2 * a);\n            System.out.println(\"Root 1 = \" + r1);\n            System.out.println(\"Root 2 = \" + r2);\n        }\n    }\n}",
-              steps: [
-                { line: 3, annotation: "Variables a, b, c initialized with quadratic coefficients.", memory: [{ variable: "a", type: "double", value: "1.0" }, { variable: "b", type: "double", value: "-3.0" }, { variable: "c", type: "double", value: "2.0" }], output: "" },
-                { line: 4, annotation: "Calculate discriminant: D = (-3)^2 - 4*(1)*(2) = 9 - 8 = 1.0.", memory: [{ variable: "a", type: "double", value: "1.0" }, { variable: "b", type: "double", value: "-3.0" }, { variable: "c", type: "double", value: "2.0" }, { variable: "d", type: "double", value: "1.0" }], output: "" },
-                { line: 5, annotation: "Check condition D > 0 (1.0 > 0 is True). Enter branch.", memory: [{ variable: "a", type: "double", value: "1.0" }, { variable: "b", type: "double", value: "-3.0" }, { variable: "c", type: "double", value: "2.0" }, { variable: "d", type: "double", value: "1.0" }], output: "" },
-                { line: 6, annotation: "Calculate root 1: (3 + sqrt(1.0)) / 2 = 2.0.", memory: [{ variable: "a", type: "double", value: "1.0" }, { variable: "b", type: "double", value: "-3.0" }, { variable: "c", type: "double", value: "2.0" }, { variable: "d", type: "double", value: "1.0" }, { variable: "r1", type: "double", value: "2.0" }], output: "" },
-                { line: 7, annotation: "Calculate root 2: (3 - sqrt(1.0)) / 2 = 1.0.", memory: [{ variable: "a", type: "double", value: "1.0" }, { variable: "b", type: "double", value: "-3.0" }, { variable: "c", type: "double", value: "2.0" }, { variable: "d", type: "double", value: "1.0" }, { variable: "r1", type: "double", value: "2.0" }, { variable: "r2", type: "double", value: "1.0" }], output: "" },
-                { line: 8, annotation: "Print Root 1 value.", memory: [{ variable: "r1", type: "double", value: "2.0" }, { variable: "r2", type: "double", value: "1.0" }], output: "Root 1 = 2.0\n" },
-                { line: 9, annotation: "Print Root 2 value.", memory: [{ variable: "r1", type: "double", value: "2.0" }, { variable: "r2", type: "double", value: "1.0" }], output: "Root 1 = 2.0\nRoot 2 = 1.0\n" }
-              ]
-            },
+            simulation: "java-e1-2",
             posttest: [
               { question: "What type of value is returned by the Math.sqrt() function?", options: ["int", "float", "double", "BigDecimal"], answerIndex: 2, hint: "Most methods in Java's Math class return double precision values." },
               { question: "If a = 1, b = 2, c = 1, what is the value of the discriminant?", options: ["1", "0", "-1", "4"], answerIndex: 1, hint: "2^2 - 4*1*1 = 4 - 4 = 0." },
@@ -251,20 +232,7 @@ export const javaCourse: Course = {
               "Go to the Code Test tab and run the program.",
               "Complete the Posttest to confirm binary search understanding."
             ],
-            simulation: {
-              code: "public class BinarySearch {\n    public static void main(String[] args) {\n        int[] arr = {10, 20, 30, 40, 50};\n        int target = 40;\n        int low = 0, high = 4;\n        while (low <= high) {\n            int mid = (low + high) / 2;\n            if (arr[mid] == target) {\n                System.out.println(\"Element found at index \" + mid);\n                break;\n            } else if (arr[mid] < target) {\n                low = mid + 1;\n            } else {\n                high = mid - 1;\n            }\n        }\n    }\n}",
-              steps: [
-                { line: 3, annotation: "Sorted array and target variable (40) initialized.", memory: [{ variable: "target", type: "int", value: "40" }, { variable: "low", type: "int", value: "0" }, { variable: "high", type: "int", value: "4" }], output: "" },
-                { line: 5, annotation: "Check loop condition low <= high (0 <= 4 is True).", memory: [{ variable: "target", type: "int", value: "40" }, { variable: "low", type: "int", value: "0" }, { variable: "high", type: "int", value: "4" }], output: "" },
-                { line: 6, annotation: "Calculate mid index: (0 + 4)/2 = 2.", memory: [{ variable: "target", type: "int", value: "40" }, { variable: "low", type: "int", value: "0" }, { variable: "high", type: "int", value: "4" }, { variable: "mid", type: "int", value: "2" }], output: "" },
-                { line: 7, annotation: "Compare arr[2] (30) with target (40). 30 != 40.", memory: [{ variable: "mid", type: "int", value: "2" }], output: "" },
-                { line: 10, annotation: "Check arr[mid] < target (30 < 40 is True). Adjust low = mid + 1 = 3.", memory: [{ variable: "target", type: "int", value: "40" }, { variable: "low", type: "int", value: "3" }, { variable: "high", type: "int", value: "4" }], output: "" },
-                { line: 5, annotation: "Check loop condition low <= high (3 <= 4 is True).", memory: [{ variable: "low", type: "int", value: "3" }, { variable: "high", type: "int", value: "4" }], output: "" },
-                { line: 6, annotation: "Recalculate mid index: (3 + 4)/2 = 3.", memory: [{ variable: "target", type: "int", value: "40" }, { variable: "low", type: "int", value: "3" }, { variable: "high", type: "int", value: "4" }, { variable: "mid", type: "int", value: "3" }], output: "" },
-                { line: 7, annotation: "Compare arr[3] (40) with target (40). 40 == 40 is True.", memory: [{ variable: "mid", type: "int", value: "3" }], output: "" },
-                { line: 8, annotation: "Print result indicating element found.", memory: [], output: "Element found at index 3\n" }
-              ]
-            },
+            simulation: "java-e2-1",
             posttest: [
               { question: "What is the best-case time complexity of binary search?", options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"], answerIndex: 0, hint: "This occurs if the middle element itself is the target key." },
               { question: "What occurs to 'low' and 'high' variables if low exceeds high?", options: ["Throws ArrayIndexOutOfBoundsException", "The element is absent in the array", "StackOverflowError", "Infinite recursion"], answerIndex: 1, hint: "This signifies the search space is exhausted." },
@@ -321,19 +289,7 @@ export const javaCourse: Course = {
               "Go to the Code Test tab, run the program, and view the sorted array.",
               "Complete the Posttest questions."
             ],
-            simulation: {
-              code: "public class BubbleSort {\n    public static void main(String[] args) {\n        int[] arr = {5, 1, 4, 2};\n        int n = arr.length;\n        for (int i = 0; i < n-1; i++) {\n            for (int j = 0; j < n-i-1; j++) {\n                if (arr[j] > arr[j+1]) {\n                    int temp = arr[j];\n                    arr[j] = arr[j+1];\n                    arr[j+1] = temp;\n                }\n            }\n        }\n    }\n}",
-              steps: [
-                { line: 3, annotation: "Unsorted array initialized with elements [5, 1, 4, 2].", memory: [{ variable: "n", type: "int", value: "4" }], output: "" },
-                { line: 5, annotation: "Outer loop start: pass i = 0.", memory: [{ variable: "i", type: "int", value: "0" }], output: "" },
-                { line: 6, annotation: "Inner loop start: j = 0. Compare arr[0] (5) and arr[1] (1). 5 > 1 is True.", memory: [{ variable: "i", type: "int", value: "0" }, { variable: "j", type: "int", value: "0" }], output: "" },
-                { line: 8, annotation: "Perform swap: store 5 in temp, assign arr[0] = 1, arr[1] = 5.", memory: [{ variable: "temp", type: "int", value: "5" }], output: "" },
-                { line: 6, annotation: "Increment j = 1. Compare arr[1] (5) and arr[2] (4). 5 > 4 is True.", memory: [{ variable: "i", type: "int", value: "0" }, { variable: "j", type: "int", value: "1" }], output: "" },
-                { line: 8, annotation: "Perform swap: assign arr[1] = 4, arr[2] = 5.", memory: [{ variable: "temp", type: "int", value: "5" }], output: "" },
-                { line: 6, annotation: "Increment j = 2. Compare arr[2] (5) and arr[3] (2). 5 > 2 is True.", memory: [{ variable: "i", type: "int", value: "0" }, { variable: "j", type: "int", value: "2" }], output: "" },
-                { line: 8, annotation: "Perform swap: assign arr[2] = 2, arr[3] = 5. Array is now [1, 4, 2, 5].", memory: [{ variable: "temp", type: "int", value: "5" }], output: "" }
-              ]
-            },
+            simulation: "java-e2-2",
             posttest: [
               { question: "What is the space complexity of bubble sort?", options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"], answerIndex: 0, hint: "It requires only a single temporary variable for swapping." },
               { question: "What is the primary disadvantage of bubble sort?", options: ["Highly complex to write", "Requires auxiliary memory", "Unstable", "Inefficient for large datasets"], answerIndex: 3, hint: "Its quadratic time complexity makes it slow for large inputs." },
@@ -390,15 +346,7 @@ export const javaCourse: Course = {
               "Go to the Code Test tab to run and verify StringBuffer outputs.",
               "Proceed to the Posttest."
             ],
-            simulation: {
-              code: "public class TestStringBuffer {\n    public static void main(String[] args) {\n        StringBuffer sb = new StringBuffer(\"Hello World\");\n        sb.delete(5, 11);\n        sb.append(\" Java\");\n        System.out.println(\"Modified String: \" + sb.toString());\n    }\n}",
-              steps: [
-                { line: 3, annotation: "StringBuffer created with string 'Hello World'.", memory: [{ variable: "sb", type: "StringBuffer", value: "\"Hello World\" (capacity: 27)" }], output: "" },
-                { line: 4, annotation: "Delete characters from index 5 to 11. StringBuffer is now 'Hello'.", memory: [{ variable: "sb", type: "StringBuffer", value: "\"Hello\"" }], output: "" },
-                { line: 5, annotation: "Append ' Java' to StringBuffer. StringBuffer is now 'Hello Java'.", memory: [{ variable: "sb", type: "StringBuffer", value: "\"Hello Java\"" }], output: "" },
-                { line: 6, annotation: "Print the final modified buffer string.", memory: [], output: "Modified String: Hello Java\n" }
-              ]
-            },
+            simulation: "java-e2-3",
             posttest: [
               { question: "What is the output of sb.append() if sb is 'Hello' and argument is 'World'?", options: ["Hello", "World", "HelloWorld", "Hello World"], answerIndex: 2, hint: "It appends directly without spaces unless specified." },
               { question: "Which method returns the total allocated space in StringBuffer?", options: ["length()", "capacity()", "size()", "volume()"], answerIndex: 1, hint: "Capacity returns slots, length returns actual character count." },
@@ -461,14 +409,7 @@ export const javaCourse: Course = {
               "Go to the Code Test tab and run the class setup.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Dog {\n    String name;\n    String breed;\n    void display() {\n        System.out.println(\"Dog Name: \" + name);\n    }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Dog d = new Dog();\n        d.name = \"Bruno\";\n        d.display();\n    }\n}",
-              steps: [
-                { line: 9, annotation: "Create a reference variable 'd' on stack. Allocate new Dog object on Heap.", memory: [{ variable: "d", type: "Dog", value: "Dog@01 (fields: name=null, breed=null)" }], output: "" },
-                { line: 10, annotation: "Assign string 'Bruno' to the name field of Dog object.", memory: [{ variable: "d", type: "Dog", value: "Dog@01 (fields: name=\"Bruno\", breed=null)" }], output: "" },
-                { line: 11, annotation: "Invoke d.display() method which accesses name field.", memory: [], output: "Dog Name: Bruno\n" }
-              ]
-            },
+            simulation: "java-e3-1",
             posttest: [
               { question: "Can a single class have multiple active object instances?", options: ["No", "Yes, up to 256", "Yes, unlimited", "Depends on compilation"], answerIndex: 2, hint: "You can create as many instances as memory allows." },
               { question: "What represents the state of an object?", options: ["Methods", "Fields / Instance Variables", "Imports", "Keywords"], answerIndex: 1, hint: "Attributes or fields hold state values." },
@@ -527,13 +468,7 @@ export const javaCourse: Course = {
               "Verify and run the code in the Code Test tab.",
               "Proceed to the Posttest."
             ],
-            simulation: {
-              code: "class Adder {\n    static int add(int a, int b) { return a + b; }\n    static double add(double a, double b) { return a + b; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Sum of integers: \" + Adder.add(2, 3));\n        System.out.println(\"Sum of doubles: \" + Adder.add(2.5, 3.2));\n    }\n}",
-              steps: [
-                { line: 6, annotation: "Invoke Adder.add(int, int) with arguments 2 and 3. Resolved statically to integer method.", memory: [], output: "Sum of integers: 5\n" },
-                { line: 7, annotation: "Invoke Adder.add(double, double) with arguments 2.5 and 3.2. Resolved statically to double method.", memory: [], output: "Sum of integers: 5\nSum of doubles: 5.7\n" }
-              ]
-            },
+            simulation: "java-e3-2",
             posttest: [
               { question: "What occurs if two methods have the same name and parameters but different return types?", options: ["Code compiles normally", "Compilation error", "Runtime exception", "Warning generated"], answerIndex: 1, hint: "Return type is not considered part of the signature for uniqueness checks." },
               { question: "Can we overload static methods in Java?", options: ["No", "Yes", "Only in interfaces", "Only in abstract classes"], answerIndex: 1, hint: "Yes, static methods can be overloaded just like instance methods." },
@@ -592,15 +527,7 @@ export const javaCourse: Course = {
               "Run and compile the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Rectangle {\n    int width;\n    int height;\n    Rectangle(int w, int h) {\n        this.width = w;\n        this.height = h;\n    }\n    int getArea() { return width * height; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Rectangle r = new Rectangle(20, 10);\n        System.out.println(\"Rectangle Area = \" + r.getArea());\n    }\n}",
-              steps: [
-                { line: 10, annotation: "Invoke constructor with arguments w=20, h=10.", memory: [{ variable: "w", type: "int", value: "20" }, { variable: "h", type: "int", value: "10" }], output: "" },
-                { line: 5, annotation: "Execute constructor body. assign w (20) to this.width.", memory: [{ variable: "this.width", type: "int", value: "20" }], output: "" },
-                { line: 6, annotation: "Assign h (10) to this.height.", memory: [{ variable: "this.width", type: "int", value: "20" }, { variable: "this.height", type: "int", value: "10" }], output: "" },
-                { line: 11, annotation: "Calculate and print area: 20 * 10 = 200.", memory: [], output: "Rectangle Area = 200\n" }
-              ]
-            },
+            simulation: "java-e3-3",
             posttest: [
               { question: "Can a constructor be declared private?", options: ["No", "Yes", "Only if class is static", "Only if it returns int"], answerIndex: 1, hint: "Yes, private constructors are used in Singleton patterns." },
               { question: "Which keyword calls another constructor in the same class?", options: ["this()", "super()", "new()", "construct()"], answerIndex: 0, hint: "this() constructor call must be the first statement." },
@@ -657,17 +584,7 @@ export const javaCourse: Course = {
               "Run and compile the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Box {\n    double width, height, depth;\n    Box() {\n        width = height = depth = 1.0;\n    }\n    Box(double w, double h, double d) {\n        width = w; height = h; depth = d;\n    }\n    double volume() { return width * height * depth; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Box b1 = new Box();\n        Box b2 = new Box(3, 4, 5);\n        System.out.println(\"Box 1 Volume = \" + b1.volume());\n        System.out.println(\"Box 2 Volume = \" + b2.volume());\n    }\n}",
-              steps: [
-                { line: 12, annotation: "Instantiate Box b1 using no-arg constructor.", memory: [{ variable: "b1", type: "Box", value: "Box@01" }], output: "" },
-                { line: 4, annotation: "Execute no-arg constructor. Assign default size: width = height = depth = 1.0.", memory: [{ variable: "b1.width", type: "double", value: "1.0" }, { variable: "b1.height", type: "double", value: "1.0" }, { variable: "b1.depth", type: "double", value: "1.0" }], output: "" },
-                { line: 13, annotation: "Instantiate Box b2 using parameterized constructor (3.0, 4.0, 5.0).", memory: [{ variable: "b1", type: "Box", value: "Box@01" }, { variable: "b2", type: "Box", value: "Box@02" }], output: "" },
-                { line: 7, annotation: "Execute parameterized constructor. Assign: w=3, h=4, d=5.", memory: [{ variable: "b2.width", type: "double", value: "3.0" }, { variable: "b2.height", type: "double", value: "4.0" }, { variable: "b2.depth", type: "double", value: "5.0" }], output: "" },
-                { line: 14, annotation: "Print Box 1 volume: 1.0 * 1.0 * 1.0 = 1.0.", memory: [], output: "Box 1 Volume = 1.0\n" },
-                { line: 15, annotation: "Print Box 2 volume: 3.0 * 4.0 * 5.0 = 60.0.", memory: [], output: "Box 1 Volume = 1.0\nBox 2 Volume = 60.0\n" }
-              ]
-            },
+            simulation: "java-e3-4",
             posttest: [
               { question: "In constructor chaining, this() call must reside on:", options: ["Any line", "The first line", "The last line", "Only inside methods"], answerIndex: 1, hint: "Java requires this() to be the absolute first statement in the constructor." },
               { question: "What is the maximum number of overloaded constructors you can write?", options: ["8", "16", "Unlimited", "1"], answerIndex: 2, hint: "As many distinct parameter signatures as required." },
@@ -731,14 +648,7 @@ export const javaCourse: Course = {
               "Compile and run in Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Parent {\n    int x = 10;\n    void showX() { System.out.println(\"Parent shows: \" + x); }\n}\nclass Child extends Parent {\n    int y = 20;\n    void showY() { System.out.println(\"Child shows: \" + y); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Child c = new Child();\n        c.showX();\n        c.showY();\n    }\n}",
-              steps: [
-                { line: 10, annotation: "Instantiate Child object on Heap. Child inherits field x from Parent, and defines y.", memory: [{ variable: "c", type: "Child", value: "Child@01 (Parent.x=10, Child.y=20)" }], output: "" },
-                { line: 11, annotation: "Call inherited method showX() which reads Parent's variable x.", memory: [], output: "Parent shows: 10\n" },
-                { line: 12, annotation: "Call showY() which reads Child's variable y.", memory: [], output: "Parent shows: 10\nChild shows: 20\n" }
-              ]
-            },
+            simulation: "java-e4-1",
             posttest: [
               { question: "Which class is the ultimate superclass of all classes in Java?", options: ["Class", "Object", "System", "Main"], answerIndex: 1, hint: "java.lang.Object is at the root of Java's class hierarchy." },
               { question: "What constructor is called first when a subclass is instantiated?", options: ["Subclass constructor", "Superclass constructor", "Default class static initializers", "None"], answerIndex: 1, hint: "The superclass constructor executes before the child constructor." },
@@ -794,15 +704,7 @@ export const javaCourse: Course = {
               "Verify values in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Grandparent {\n    int g = 1;\n}\nclass Parent extends Grandparent {\n    int p = 2;\n}\nclass Child extends Parent {\n    int c = 3;\n}\npublic class Main {\n    public static void main(String[] args) {\n        Child child = new Child();\n        System.out.println(\"Grandparent value: \" + child.g);\n        System.out.println(\"Parent value: \" + child.p);\n        System.out.println(\"Child value: \" + child.c);\n    }\n}",
-              steps: [
-                { line: 11, annotation: "Create Child object. JVM traverses up to Grandparent class. Allocate and initialize fields in chain order.", memory: [{ variable: "child", type: "Child", value: "Child@01" }], output: "" },
-                { line: 12, annotation: "Print grandparent field g (1). Inherited through Parent.", memory: [], output: "Grandparent value: 1\n" },
-                { line: 13, annotation: "Print parent field p (2). Inherited from direct parent.", memory: [], output: "Grandparent value: 1\nParent value: 2\n" },
-                { line: 14, annotation: "Print child field c (3). Defined locally.", memory: [], output: "Grandparent value: 1\nParent value: 2\nChild value: 3\n" }
-              ]
-            },
+            simulation: "java-e4-2",
             posttest: [
               { question: "What is the order of constructor execution in a multilevel chain Grandparent -> Parent -> Child?", options: ["Child -> Parent -> Grandparent", "Grandparent -> Parent -> Child", "Parent -> Grandparent -> Child", "Parallel execution"], answerIndex: 1, hint: "Constructors execute top-down starting from the base object." },
               { question: "Which modifier blocks a class from being subclassed?", options: ["static", "final", "abstract", "private"], answerIndex: 1, hint: "The final keyword prevents further subclass extensions." },
@@ -859,13 +761,7 @@ export const javaCourse: Course = {
               "Run code in the Code Test tab and confirm area outputs.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "abstract class Shape {\n    abstract double area();\n}\nclass Rectangle extends Shape {\n    double w = 20, h = 10;\n    double area() { return w * h; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Shape s = new Rectangle();\n        System.out.println(\"Rectangle Area = \" + s.area());\n    }\n}",
-              steps: [
-                { line: 9, annotation: "Create Shape reference 's' pointing to a Rectangle object instance. Abstract class reference is valid.", memory: [{ variable: "s", type: "Shape", value: "Rectangle@01 (w=20.0, h=10.0)" }], output: "" },
-                { line: 10, annotation: "Call s.area() method. Dynamic dispatch executes Rectangle's area method. 20 * 10 = 200.", memory: [], output: "Rectangle Area = 200.0\n" }
-              ]
-            },
+            simulation: "java-e4-3",
             posttest: [
               { question: "Can an abstract class have constructors?", options: ["No", "Yes", "Only static ones", "Only private ones"], answerIndex: 1, hint: "Yes, called during subclass instantiation via super()." },
               { question: "Can an abstract method be declared static?", options: ["Yes", "No", "Depends on JDK version", "Only in nested classes"], answerIndex: 1, hint: "No, static methods belong to classes and cannot be overridden, which contradicts abstract design." },
@@ -932,15 +828,7 @@ export const javaCourse: Course = {
               "Compile and run code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Vehicle {\n    int speed = 100;\n}\nclass Car extends Vehicle {\n    int speed = 150;\n    void display() {\n        System.out.println(\"Parent speed = \" + super.speed);\n        System.out.println(\"Child speed = \" + speed);\n    }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Car c = new Car();\n        c.display();\n    }\n}",
-              steps: [
-                { line: 11, annotation: "Create Car object. speed of parent (Vehicle) is initialized to 100. speed of child (Car) is initialized to 150.", memory: [{ variable: "c", type: "Car", value: "Car@01 (super.speed=100, speed=150)" }], output: "" },
-                { line: 12, annotation: "Call c.display().", memory: [], output: "" },
-                { line: 7, annotation: "Print super.speed (100) from parent class.", memory: [], output: "Parent speed = 100\n" },
-                { line: 8, annotation: "Print speed (150) from local subclass field.", memory: [], output: "Parent speed = 100\nChild speed = 150\n" }
-              ]
-            },
+            simulation: "java-e5-1",
             posttest: [
               { question: "Can we use super.super.variable to access a grandparent variable?", options: ["Yes", "No", "Only if protected", "Only if static"], answerIndex: 1, hint: "Java restricts 'super' access to the immediate parent class only." },
               { question: "What error occurs if super() is not on the first line of subclass constructor?", options: ["Runtime NullPointerException", "Compilation error", "StackOverflowError", "ClassCastException"], answerIndex: 1, hint: "Compiler strictly validates the first statement requirement." },
@@ -997,14 +885,7 @@ export const javaCourse: Course = {
               "Run and compile the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "interface Printable {\n    void print();\n}\ninterface Showable {\n    void show();\n}\nclass Document implements Printable, Showable {\n    public void print() { System.out.println(\"Printable prints.\"); }\n    public void show() { System.out.println(\"Showable shows.\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Document d = new Document();\n        d.print();\n        d.show();\n    }\n}",
-              steps: [
-                { line: 11, annotation: "Instantiate class Document implementing Printable and Showable.", memory: [{ variable: "d", type: "Document", value: "Document@01" }], output: "" },
-                { line: 12, annotation: "Call print() overridden method.", memory: [], output: "Printable prints.\n" },
-                { line: 13, annotation: "Call show() overridden method.", memory: [], output: "Printable prints.\nShowable shows.\n" }
-              ]
-            },
+            simulation: "java-e5-2",
             posttest: [
               { question: "Can we instantiate an interface directly using 'new'?", options: ["Yes", "No", "Only if abstract", "Only via reflections"], answerIndex: 1, hint: "Interfaces cannot be instantiated directly; they must be implemented by classes." },
               { question: "Can an interface extend another interface?", options: ["No", "Yes, using implements", "Yes, using extends", "Only using static imports"], answerIndex: 2, hint: "An interface can extend other interfaces using the extends keyword." },
@@ -1061,13 +942,7 @@ export const javaCourse: Course = {
               "Verify and run the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Vehicle {\n    void run() { System.out.println(\"Vehicle is running\"); }\n}\nclass Bike extends Vehicle {\n    void run() { System.out.println(\"Bike is running safely\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Vehicle v = new Bike();\n        v.run();\n    }\n}",
-              steps: [
-                { line: 8, annotation: "Declare Vehicle reference variable v. Point it to a Bike object instance on Heap.", memory: [{ variable: "v", type: "Vehicle", value: "Bike@01" }], output: "" },
-                { line: 9, annotation: "Invoke v.run(). JVM checks actual object type (Bike) and runs Bike's overridden run method.", memory: [], output: "Bike is running safely\n" }
-              ]
-            },
+            simulation: "java-e5-3",
             posttest: [
               { question: "Which binding mechanism supports Runtime Polymorphism?", options: ["Early Binding", "Late Binding / Dynamic Binding", "Static Binding", "No binding"], answerIndex: 1, hint: "Late binding binds methods during execution." },
               { question: "Can you change the access modifier of an overridden method in a subclass to be more restrictive?", options: ["Yes", "No", "Only if abstract", "Depends on JDK"], answerIndex: 1, hint: "Subclass overridden methods must keep or expand visibility (e.g., protected cannot become private)." },
@@ -1134,17 +1009,7 @@ export const javaCourse: Course = {
               "Compile and run the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "public class ExceptionTest {\n    public static void main(String[] args) {\n        try {\n            int x = 10, y = 0;\n            int res = x / y;\n        } catch (ArithmeticException e) {\n            System.out.println(\"Caught: \" + e.getMessage());\n        }\n        System.out.println(\"Program continues...\");\n    }\n}",
-              steps: [
-                { line: 3, annotation: "Enter try block.", memory: [], output: "" },
-                { line: 4, annotation: "Assign values: x = 10, y = 0.", memory: [{ variable: "x", type: "int", value: "10" }, { variable: "y", type: "int", value: "0" }], output: "" },
-                { line: 5, annotation: "Execute division: 10 / 0. JVM intercepts division-by-zero, halts try block, instantiates ArithmeticException.", memory: [], output: "" },
-                { line: 6, annotation: "ArithmeticException caught. JVM moves execution flow to the catch block parameter e.", memory: [{ variable: "e", type: "ArithmeticException", value: "ArithmeticException: / by zero" }], output: "" },
-                { line: 7, annotation: "Print exception description message: '/ by zero'.", memory: [], output: "Caught: / by zero\n" },
-                { line: 9, annotation: "Execute code outside catch block. Program handles error successfully and completes normal execution.", memory: [], output: "Caught: / by zero\nProgram continues...\n" }
-              ]
-            },
+            simulation: "java-e6-1",
             posttest: [
               { question: "What occurs if an exception is thrown in a try block but not caught by any catch block?", options: ["Program compiles and ignores error", "Program terminates abnormally (crash)", "Catch block executes anyway", "JVM halts compiler"], answerIndex: 1, hint: "The default exception handler terminates the thread." },
               { question: "Can we write a try block without a catch or finally block?", options: ["Yes", "No", "Only if abstract", "Only in JDK 9+"], answerIndex: 1, hint: "A try block must be followed by at least a catch block or finally block." },
@@ -1201,17 +1066,7 @@ export const javaCourse: Course = {
               "Run code in the Code Test tab and check output.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "public class MultiCatch {\n    public static void main(String[] args) {\n        try {\n            int[] arr = {1, 2};\n            arr[5] = 10;\n        } catch (ArithmeticException e) {\n            System.out.println(\"Caught: ArithmeticException\");\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Caught: ArrayIndexOutOfBoundsException\");\n        }\n    }\n}",
-              steps: [
-                { line: 3, annotation: "Enter try block.", memory: [], output: "" },
-                { line: 4, annotation: "Initialize array arr of size 2.", memory: [{ variable: "arr", type: "int[]", value: "[1, 2]" }], output: "" },
-                { line: 5, annotation: "Attempt to write at index 5. Array size is 2. JVM halts try block and throws ArrayIndexOutOfBoundsException.", memory: [], output: "" },
-                { line: 6, annotation: "Check first catch block (ArithmeticException). Does not match ArrayIndexOutOfBoundsException. Skip block.", memory: [], output: "" },
-                { line: 8, annotation: "Check second catch block (ArrayIndexOutOfBoundsException). Matches. Execute handler code.", memory: [{ variable: "e", type: "ArrayIndexOutOfBoundsException", value: "ArrayIndexOutOfBoundsException" }], output: "" },
-                { line: 9, annotation: "Print message to output.", memory: [], output: "Caught: ArrayIndexOutOfBoundsException\n" }
-              ]
-            },
+            simulation: "java-e6-2",
             posttest: [
               { question: "Which syntax permits catching multiple exceptions in a single catch block since Java 7?", options: ["catch(ArithmeticException && NullPointerException e)", "catch(ArithmeticException | NullPointerException e)", "catch(ArithmeticException, NullPointerException e)", "catch(ArithmeticException + NullPointerException e)"], answerIndex: 1, hint: "Uses the vertical pipe operator |." },
               { question: "In a multi-catch block `catch (A | B e)`, the exception variable `e` is implicitly:", options: ["static", "final", "abstract", "transient"], answerIndex: 1, hint: "Multi-catch parameters are implicitly final." },
@@ -1269,16 +1124,7 @@ export const javaCourse: Course = {
               "Run the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "public class BuiltInTest {\n    public static void main(String[] args) {\n        try {\n            String s = null;\n            int len = s.length();\n        } catch (NullPointerException e) {\n            System.out.println(\"Caught NullPointerException: Name reference is null\");\n        }\n    }\n}",
-              steps: [
-                { line: 3, annotation: "Enter try block.", memory: [], output: "" },
-                { line: 4, annotation: "Create String variable s, assigned value null.", memory: [{ variable: "s", type: "String", value: "null" }], output: "" },
-                { line: 5, annotation: "Attempt to call s.length(). Reference is null. JVM throws NullPointerException.", memory: [], output: "" },
-                { line: 6, annotation: "NullPointerException caught. Execution shifts to handler.", memory: [{ variable: "e", type: "NullPointerException", value: "NullPointerException" }], output: "" },
-                { line: 7, annotation: "Print recovery message.", memory: [], output: "Caught NullPointerException: Name reference is null\n" }
-              ]
-            },
+            simulation: "java-e6-3",
             posttest: [
               { question: "What is thrown by Integer.parseInt('abc')?", options: ["ArithmeticException", "NullPointerException", "NumberFormatException", "ClassCastException"], answerIndex: 2, hint: "Thrown because 'abc' is not a valid representation of an integer." },
               { question: "Which class is the parent of all unchecked exceptions in Java?", options: ["Exception", "RuntimeException", "Error", "Throwable"], answerIndex: 1, hint: "RuntimeException is the base class for unchecked exceptions." },
@@ -1336,16 +1182,7 @@ export const javaCourse: Course = {
               "Run and compile in Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class InvalidAgeException extends Exception {\n    InvalidAgeException(String s) { super(s); }\n}\npublic class CustomException {\n    static void checkAge(int age) throws InvalidAgeException {\n        if (age < 18) throw new InvalidAgeException(\"Age is less than 18\");\n    }\n    public static void main(String[] args) {\n        try {\n            checkAge(15);\n        } catch (InvalidAgeException e) {\n            System.out.println(\"Caught Custom Exception: \" + e.getMessage());\n        }\n    }\n}",
-              steps: [
-                { line: 9, annotation: "Enter try block. Invoke checkAge(15).", memory: [], output: "" },
-                { line: 5, annotation: "Entering checkAge. Parameter age = 15.", memory: [{ variable: "age", type: "int", value: "15" }], output: "" },
-                { line: 6, annotation: "Evaluate condition age < 18 (15 < 18 is True). Throw custom InvalidAgeException object.", memory: [], output: "" },
-                { line: 10, annotation: "Exception caught. Control returns to catch block matching InvalidAgeException.", memory: [{ variable: "e", type: "InvalidAgeException", value: "InvalidAgeException: Age is less than 18" }], output: "" },
-                { line: 11, annotation: "Print message retrieved using e.getMessage().", memory: [], output: "Caught Custom Exception: Age is less than 18\n" }
-              ]
-            },
+            simulation: "java-e6-4",
             posttest: [
               { question: "Is a custom class extending RuntimeException checked or unchecked?", options: ["Checked", "Unchecked", "Final", "Synchronized"], answerIndex: 1, hint: "All classes extending RuntimeException are unchecked." },
               { question: "What happens if a custom checked exception is thrown but not declared in the method signature?", options: ["Compiles successfully", "Compilation error", "Runtime exception", "Bypassed by compiler"], answerIndex: 1, hint: "Checked exceptions must follow the declare-or-handle rule." },
@@ -1412,17 +1249,7 @@ export const javaCourse: Course = {
               "Verify and run the code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class MsgThread extends Thread {\n    String msg;\n    int delay;\n    MsgThread(String msg, int delay) { this.msg = msg; this.delay = delay; }\n    public void run() {\n        try {\n            Thread.sleep(delay);\n            System.out.println(msg);\n        } catch(InterruptedException e) {}\n    }\n}\npublic class Main {\n    public static void main(String[] args) {\n        MsgThread t1 = new MsgThread(\"Good Morning\", 100);\n        MsgThread t2 = new MsgThread(\"Hello\", 200);\n        t1.start();\n        t2.start();\n    }\n}",
-              steps: [
-                { line: 12, annotation: "Create thread object t1 with delay 100ms. State is NEW.", memory: [{ variable: "t1", type: "MsgThread", value: "NEW (msg=\"Good Morning\", delay=100)" }], output: "" },
-                { line: 13, annotation: "Create thread object t2 with delay 200ms. State is NEW.", memory: [{ variable: "t1", type: "MsgThread", value: "NEW" }, { variable: "t2", type: "MsgThread", value: "NEW (msg=\"Hello\", delay=200)" }], output: "" },
-                { line: 14, annotation: "Call t1.start(). Thread state moves to RUNNABLE. JVM schedules thread.", memory: [{ variable: "t1", type: "MsgThread", value: "RUNNABLE" }], output: "" },
-                { line: 15, annotation: "Call t2.start(). Thread state moves to RUNNABLE.", memory: [{ variable: "t1", type: "MsgThread", value: "RUNNABLE" }, { variable: "t2", type: "MsgThread", value: "RUNNABLE" }], output: "" },
-                { line: 6, annotation: "Thread 1 wakes up first after 100ms sleep and prints message.", memory: [], output: "Good Morning\n" },
-                { line: 6, annotation: "Thread 2 wakes up after 200ms sleep and prints message.", memory: [], output: "Good Morning\nHello\n" }
-              ]
-            },
+            simulation: "java-e7-1",
             posttest: [
               { question: "Which method causes the currently executing thread to pause for a specified duration?", options: ["Thread.sleep()", "Thread.yield()", "Thread.wait()", "Thread.stop()"], answerIndex: 0, hint: "Throws InterruptedException, accepts milliseconds." },
               { question: "What exception can be thrown by Thread.sleep()?", options: ["IOException", "RuntimeException", "InterruptedException", "ThreadDeathException"], answerIndex: 2, hint: "Thrown when another thread interrupts the sleeping state." },
@@ -1480,16 +1307,7 @@ export const javaCourse: Course = {
               "Run code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class MyTask extends Thread {\n    public void run() {\n        try { Thread.sleep(100); } catch(Exception e) {}\n    }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        MyTask t = new MyTask();\n        t.start();\n        System.out.println(\"Thread 1 isAlive: \" + t.isAlive());\n        t.join();\n        System.out.println(\"Thread 1 completed. Thread 1 isAlive: \" + t.isAlive());\n    }\n}",
-              steps: [
-                { line: 8, annotation: "Instantiate MyTask thread t.", memory: [{ variable: "t", type: "MyTask", value: "NEW" }], output: "" },
-                { line: 9, annotation: "Call t.start().", memory: [{ variable: "t", type: "MyTask", value: "RUNNABLE" }], output: "" },
-                { line: 10, annotation: "Check isAlive() status. Returns true.", memory: [], output: "Thread 1 isAlive: true\n" },
-                { line: 11, annotation: "Main thread blocks and waits for t to complete. t runs and terminates.", memory: [{ variable: "t", type: "MyTask", value: "TERMINATED" }], output: "" },
-                { line: 12, annotation: "Main thread resumes. Check isAlive() status. Returns false.", memory: [], output: "Thread 1 isAlive: true\nThread 1 completed. Thread 1 isAlive: false\n" }
-              ]
-            },
+            simulation: "java-e7-2",
             posttest: [
               { question: "If join() is called on a thread that has already completed, what happens?", options: ["Throws exception", "Blocks indefinitely", "Returns immediately", "Restarts the thread"], answerIndex: 2, hint: "Returns immediately because target is already dead." },
               { question: "Is isAlive() a static method of Thread class?", options: ["Yes", "No", "Depends on JDK", "Only in Runnable"], answerIndex: 1, hint: "No, it is an instance method called on a thread object reference." },
@@ -1546,16 +1364,7 @@ export const javaCourse: Course = {
               "Run code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class DaemonTask extends Thread {\n    public void run() {\n        while (true) {\n            System.out.println(\"[Daemon thread runs in background]\");\n            try { Thread.sleep(500); } catch(Exception e) { break; }\n        }\n    }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        DaemonTask t = new DaemonTask();\n        t.setDaemon(true);\n        t.start();\n        Thread.sleep(100);\n        System.out.println(\"Main thread finishing\");\n    }\n}",
-              steps: [
-                { line: 10, annotation: "Instantiate DaemonTask t.", memory: [{ variable: "t", type: "DaemonTask", value: "NEW" }], output: "" },
-                { line: 11, annotation: "Configure t as a Daemon thread.", memory: [{ variable: "t", type: "DaemonTask", value: "NEW (daemon=true)" }], output: "" },
-                { line: 12, annotation: "Start thread t. Thread enters loop.", memory: [{ variable: "t", type: "DaemonTask", value: "RUNNABLE" }], output: "" },
-                { line: 4, annotation: "Daemon print statement triggers first time.", memory: [], output: "[Daemon thread runs in background]\n" },
-                { line: 14, annotation: "Main thread finishes sleep and prints completion message. JVM exits. Daemon is killed immediately.", memory: [], output: "[Daemon thread runs in background]\nMain thread finishing\n" }
-              ]
-            },
+            simulation: "java-e7-3",
             posttest: [
               { question: "If you call setDaemon(true) after calling start(), what is thrown?", options: ["NullPointerException", "IllegalThreadStateException", "IOException", "ArithmeticException"], answerIndex: 1, hint: "API state verification error class." },
               { question: "Is the Main thread a daemon thread?", options: ["Yes", "No", "Only if overridden", "JVM config dependent"], answerIndex: 1, hint: "The main thread is a standard user thread." },
@@ -1614,14 +1423,7 @@ export const javaCourse: Course = {
               "Compile and run in Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "class Utility {\n    int data;\n    boolean empty = true;\n    synchronized void put(int val) {\n        while (!empty) try { wait(); } catch(Exception e) {}\n        data = val;\n        empty = false;\n        notify();\n    }\n    synchronized int get() {\n        while (empty) try { wait(); } catch(Exception e) {}\n        empty = true;\n        notify();\n        return data;\n    }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Utility u = new Utility();\n        u.put(1);\n        System.out.println(\"Produced: 1\");\n        System.out.println(\"Consumed: \" + u.get());\n    }\n}",
-              steps: [
-                { line: 18, annotation: "Create Utility buffer object u.", memory: [{ variable: "u", type: "Utility", value: "Utility@01 (data=0, empty=true)" }], output: "" },
-                { line: 19, annotation: "Call put(1). empty is true. Write data = 1. Set empty = false. Notify waiters.", memory: [{ variable: "u.data", type: "int", value: "1" }, { variable: "u.empty", type: "boolean", value: "false" }], output: "Produced: 1\n" },
-                { line: 21, annotation: "Call get() which returns data and resets empty = true.", memory: [{ variable: "u.empty", type: "boolean", value: "true" }], output: "Produced: 1\nConsumed: 1\n" }
-              ]
-            },
+            simulation: "java-e7-4",
             posttest: [
               { question: "What is thrown if wait() is called outside a synchronized block?", options: ["NullPointerException", "IllegalMonitorStateException", "InterruptedException", "IllegalThreadStateException"], answerIndex: 1, hint: "Thrown because monitor ownership was not acquired." },
               { question: "What occurs to a thread in the wait pool after notify() is called?", options: ["Terminates", "Moves to blocked/ready queue to re-acquire monitor lock", "Starts immediately", "Resets variables"], answerIndex: 1, hint: "Must wait to re-acquire the lock before executing." },
@@ -1688,13 +1490,7 @@ export const javaCourse: Course = {
               "Run and compile in Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "// File 1: mypack/Message.java\npackage mypack;\npublic class Message {\n    public static void display() { System.out.println(\"Hello from package!\"); }\n}\n// File 2: Main.java\nimport mypack.Message;\npublic class Main {\n    public static void main(String[] args) {\n        Message.display();\n    }\n}",
-              steps: [
-                { line: 7, annotation: "JVM loads class Message from package mypack. Import statement checked.", memory: [], output: "" },
-                { line: 10, annotation: "Invoke static display method from imported class.", memory: [], output: "Hello from package!\n" }
-              ]
-            },
+            simulation: "java-e8-1",
             posttest: [
               { question: "Which package is imported automatically in every Java file?", options: ["java.io", "java.util", "java.lang", "java.net"], answerIndex: 2, hint: "Includes basic Object, Math, String and System classes." },
               { question: "Can a package statement reside after import statements in a file?", options: ["Yes", "No", "Only if static", "Only if protected"], answerIndex: 1, hint: "The package statement must be the absolute first line of code." },
@@ -1753,17 +1549,7 @@ export const javaCourse: Course = {
               "Compile and review class structures in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "import javafx.application.Application;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Label;\nimport javafx.scene.layout.VBox;\nimport javafx.stage.Stage;\npublic class App extends Application {\n    public void start(Stage stage) {\n        Label label = new Label(\"Welcome to JavaFX!\");\n        VBox vbox = new VBox(label);\n        Scene scene = new Scene(vbox, 300, 200);\n        stage.setScene(scene);\n        stage.show();\n    }\n}",
-              steps: [
-                { line: 7, annotation: "start(Stage) method triggered. Initialize Stage object.", memory: [{ variable: "stage", type: "Stage", value: "Stage@01" }], output: "" },
-                { line: 8, annotation: "Create Label node displaying text 'Welcome to JavaFX!'.", memory: [{ variable: "label", type: "Label", value: "Label@02 (text=\"Welcome to JavaFX!\")" }], output: "Label text: 'Welcome to JavaFX!'\n" },
-                { line: 9, annotation: "Add label to a layout container (VBox).", memory: [{ variable: "vbox", type: "VBox", value: "VBox@03 (children=[Label])" }], output: "" },
-                { line: 10, annotation: "Establish Scene containing layout with width=300, height=200.", memory: [{ variable: "scene", type: "Scene", value: "Scene@04" }], output: "" },
-                { line: 11, annotation: "Bind Scene to stage container.", memory: [], output: "" },
-                { line: 12, annotation: "Show window stage. GUI renders in desktop environment.", memory: [], output: "ImageView displays: 'logo.png'\n" }
-              ]
-            },
+            simulation: "java-e8-2",
             posttest: [
               { question: "Which layout pane organizes nodes vertically in a single column?", options: ["HBox", "VBox", "GridPane", "StackPane"], answerIndex: 1, hint: "VBox stacks children vertically." },
               { question: "Which method launches the JavaFX lifecycle?", options: ["start()", "init()", "launch()", "run()"], answerIndex: 2, hint: "A static utility method called Application.launch(args)." },
@@ -1820,19 +1606,7 @@ export const javaCourse: Course = {
               "Run structural layout code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "import javafx.scene.control.Button;\nimport javafx.scene.control.TextField;\npublic class TipCalc {\n    public static void main(String[] args) {\n        TextField billInput = new TextField(\"100\");\n        Button calculate = new Button();\n        calculate.setOnAction(e -> {\n            double bill = Double.parseDouble(billInput.getText());\n            double tip = bill * 0.15;\n            System.out.println(\"Tip calculated: \" + tip);\n            System.out.println(\"Total calculated: \" + (bill + tip));\n        });\n        calculate.fire(); // Simulate button press\n    }\n}",
-              steps: [
-                { line: 4, annotation: "Create bill input field with value '100'.", memory: [{ variable: "billInput", type: "TextField", value: "TextField(text=\"100\")" }], output: "" },
-                { line: 5, annotation: "Instantiate Calculate Button.", memory: [{ variable: "calculate", type: "Button", value: "Button@02" }], output: "" },
-                { line: 6, annotation: "Bind Event Listener lambda to the button click action.", memory: [], output: "" },
-                { line: 12, annotation: "Trigger simulate action event. Event loop executes calculate block.", memory: [], output: "" },
-                { line: 7, annotation: "Extract text bill string '100' and parse to double 100.0.", memory: [{ variable: "bill", type: "double", value: "100.0" }], output: "" },
-                { line: 8, annotation: "Calculate 15% tip amount: 100.0 * 0.15 = 15.0.", memory: [{ variable: "bill", type: "double", value: "100.0" }, { variable: "tip", type: "double", value: "15.0" }], output: "" },
-                { line: 9, annotation: "Print calculated tip.", memory: [], output: "Tip calculated: 15.0\n" },
-                { line: 10, annotation: "Print calculated total: 100 + 15 = 115.0.", memory: [], output: "Tip calculated: 15.0\nTotal calculated: 115.0\n" }
-              ]
-            },
+            simulation: "java-e8-3",
             posttest: [
               { question: "Which class represents floating-point UI selectors in JavaFX?", options: ["ProgressIndicator", "Slider", "ProgressBar", "Spinner"], answerIndex: 1, hint: "A track with a thumb selector, called Slider." },
               { question: "How do you parse String text '12.50' to double value in Java?", options: ["Double.parseDouble()", "Double.valueOf()", "Integer.parseInt()", "Both Double.parseDouble() & Double.valueOf()"], answerIndex: 3, hint: "Double parseDouble returns double primitive; valueOf returns Double wrapper." },
@@ -1900,16 +1674,7 @@ export const javaCourse: Course = {
               "Run structural template code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "import java.sql.Connection;\nimport java.sql.DriverManager;\npublic class JDBCConnect {\n    public static void main(String[] args) {\n        try {\n            System.out.println(\"Connecting to database...\");\n            Connection conn = DriverManager.getConnection(\n                \"jdbc:mysql://localhost:3306/lab\", \"user\", \"pass\"\n            );\n            if (conn != null) {\n                System.out.println(\"Database connected successfully!\");\n                conn.close();\n            }\n        } catch (Exception e) {\n            System.out.println(\"Connection failed: \" + e.getMessage());\n        }\n    }\n}",
-              steps: [
-                { line: 5, annotation: "Print connection initialization message.", memory: [], output: "Connecting to database...\n" },
-                { line: 6, annotation: "Attempt to establish physical JDBC connection to MySQL database via DriverManager.", memory: [{ variable: "conn", type: "Connection", value: "Connection@01" }], output: "" },
-                { line: 9, annotation: "Check connection state. conn is not null (True).", memory: [], output: "" },
-                { line: 10, annotation: "Print success message.", memory: [], output: "Connecting to database...\nDatabase connected successfully!\n" },
-                { line: 11, annotation: "Close the database session to release socket resources.", memory: [{ variable: "conn", type: "Connection", value: "Closed" }], output: "" }
-              ]
-            },
+            simulation: "java-e9-1",
             posttest: [
               { question: "Which exception must be caught when dealing with JDBC APIs?", options: ["IOException", "SQLException", "DatabaseException", "RuntimeException"], answerIndex: 1, hint: "Most methods in java.sql throw SQLException." },
               { question: "What represents the URL schema prefix for JDBC database connections?", options: ["http://", "jdbc:<subprotocol>:", "sql://", "db://"], answerIndex: 1, hint: "Begins with jdbc: prefix." },
@@ -1965,15 +1730,7 @@ export const javaCourse: Course = {
               "Run standard template code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "import java.sql.Connection;\nimport java.sql.Statement;\npublic class JDBCInsert {\n    public static void main(String[] args) {\n        try (Connection conn = null; Statement stmt = null) {\n            System.out.println(\"Inserting record...\");\n            String query = \"INSERT INTO student VALUES(101, 'Raj')\";\n            int count = 1; // Simulated executeUpdate response\n            if (count > 0) {\n                System.out.println(\"Row inserted successfully! count = \" + count);\n            }\n        } catch(Exception e) {}\n    }\n}",
-              steps: [
-                { line: 5, annotation: "Print insert start message.", memory: [], output: "Inserting record...\n" },
-                { line: 6, annotation: "Create SQL query string to insert ID 101 and Name Raj.", memory: [{ variable: "query", type: "String", value: "\"INSERT INTO student VALUES(101, 'Raj')\"" }], output: "" },
-                { line: 7, annotation: "Execute update query. Database engine processes query and returns affected rows count (1).", memory: [{ variable: "count", type: "int", value: "1" }], output: "" },
-                { line: 9, annotation: "Verify row update status. 1 > 0 is True.", memory: [], output: "Inserting record...\nRow inserted successfully! count = 1\n" }
-              ]
-            },
+            simulation: "java-e9-2",
             posttest: [
               { question: "Which interface precompiles SQL statements on the database server?", options: ["Statement", "PreparedStatement", "CallableStatement", "SQLStatement"], answerIndex: 1, hint: "Used for high efficiency and parameter binding." },
               { question: "How do you define placeholders inside a PreparedStatement query?", options: ["Using %s", "Using ?", "Using :value", "Using $"], answerIndex: 1, hint: "Uses the question mark character ?" },
@@ -2029,15 +1786,7 @@ export const javaCourse: Course = {
               "Run code in the Code Test tab.",
               "Complete the Posttest."
             ],
-            simulation: {
-              code: "import java.sql.Connection;\nimport java.sql.Statement;\npublic class JDBCDelete {\n    public static void main(String[] args) {\n        try (Connection conn = null; Statement stmt = null) {\n            System.out.println(\"Deleting record...\");\n            String query = \"DELETE FROM student WHERE id = 101\";\n            int count = 1; // Simulated executeUpdate response\n            if (count > 0) {\n                System.out.println(\"Row deleted successfully! count = \" + count);\n            }\n        } catch(Exception e) {}\n    }\n}",
-              steps: [
-                { line: 5, annotation: "Print deletion start message.", memory: [], output: "Deleting record...\n" },
-                { line: 6, annotation: "Write DELETE SQL statement matching student with id 101.", memory: [{ variable: "query", type: "String", value: "\"DELETE FROM student WHERE id = 101\"" }], output: "" },
-                { line: 7, annotation: "Execute delete query. Database updates tables and returns 1 row affected.", memory: [{ variable: "count", type: "int", value: "1" }], output: "" },
-                { line: 9, annotation: "Verify row delete status. 1 > 0 is True.", memory: [], output: "Deleting record...\nRow deleted successfully! count = 1\n" }
-              ]
-            },
+            simulation: "java-e9-3",
             posttest: [
               { question: "What is the return value of executeUpdate() if no rows matched the delete condition?", options: ["0", "-1", "throws SQLException", "null"], answerIndex: 0, hint: "0 rows were affected by the operation." },
               { question: "Which statement is true about SQL injection vulnerability in deletion?", options: ["Only INSERT is vulnerable", "Concatenating user inputs directly into static DELETE strings is fully vulnerable", "SQL injection is impossible in DELETE", "PreparedStatement is vulnerable"], answerIndex: 1, hint: "Static string concatenation is vulnerable for all DML queries." },
