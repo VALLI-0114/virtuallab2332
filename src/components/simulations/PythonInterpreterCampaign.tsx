@@ -1,668 +1,1252 @@
 import React, { useState, useEffect } from "react";
-import { 
-  Terminal, ArrowRight, Zap, Satellite, Cpu, 
-  Monitor, Code, Star, CheckCircle2, Play, 
-  Database, FileCode, Server, Hexagon, Shield, Radio, Activity,
-  Globe, Blocks, FlaskConical, LayoutGrid, BrainCircuit, Rocket
+import {
+  Play, RotateCcw, ArrowRight, CheckCircle2, Terminal, Info,
+  Database, HelpCircle, Star, Sparkles, Code, Cpu, Award, Zap,
+  Layers, PlayCircle, ShieldAlert, BookOpen, AlertCircle, Rocket,
+  Globe, Radio, Compass, Lock, RefreshCw, Send, Check, X, ShieldCheck
 } from "lucide-react";
 
 type CampaignProps = {
   expId: string;
 };
 
+interface Badge {
+  id: string;
+  name: string;
+  desc: string;
+  icon: string;
+  unlocked: boolean;
+}
+
+interface StageProgress {
+  id: number;
+  name: string;
+  status: "locked" | "unlocked" | "completed";
+  xpAwarded: number;
+}
+
 export function PythonInterpreterCampaign({ expId }: CampaignProps) {
-  const [stage, setStage] = useState(0);
+  // --- Profile & Progress State ---
   const [xp, setXp] = useState(0);
-  const [badges, setBadges] = useState<string[]>([]);
-  const [toastMsg, setToastMsg] = useState<{text: string, type: 'success' | 'error' | 'xp'} | null>(null);
+  const [activeScreen, setActiveScreen] = useState<"lobby" | "game" | "completion">("lobby");
+  const [currentStageIndex, setCurrentStageIndex] = useState(0);
+  const [badges, setBadges] = useState<Badge[]>([
+    { id: "mode_explorer", name: "Mode Explorer", desc: "Explored Interactive and Script modes", icon: "🚪", unlocked: false },
+    { id: "interpreter_observer", name: "Interpreter Observer", desc: "Watched PyBot process statements", icon: "🤖", unlocked: false },
+    { id: "satellite_activated", name: "Satellite Activated", desc: "Delivered first space message", icon: "📡", unlocked: false },
+    { id: "language_explorer", name: "Language Explorer", desc: "Understood Python vs Java differences", icon: "🚀", unlocked: false },
+    { id: "separator_engineer", name: "Separator Engineer", desc: "Mastered the sep parameter", icon: "⚙️", unlocked: false },
+    { id: "output_designer", name: "Output Designer", desc: "Controlled lines using the end parameter", icon: "📐", unlocked: false },
+    { id: "indentation_guardian", name: "Indentation Guardian", desc: "Solved the Indentation Temple", icon: "⛩️", unlocked: false },
+    { id: "launch_commander", name: "Python Launch Commander", desc: "Saved the space station", icon: "👑", unlocked: false }
+  ]);
 
-  const showToast = (text: string, type: 'success' | 'error' | 'xp' = 'success') => {
-    setToastMsg({ text, type });
-    setTimeout(() => setToastMsg(null), 3000);
+  const [stages, setStages] = useState<StageProgress[]>([
+    { id: 1, name: "Enter the Launch Station", status: "unlocked", xpAwarded: 50 },
+    { id: 2, name: "Meet PyBot Interpreter", status: "locked", xpAwarded: 100 },
+    { id: 3, name: "Deliver First Space Message", status: "locked", xpAwarded: 150 },
+    { id: 4, name: "Python vs Java Race", status: "locked", xpAwarded: 100 },
+    { id: 5, name: "Build Your Own Message", status: "locked", xpAwarded: 150 },
+    { id: 6, name: "Separator Factory", status: "locked", xpAwarded: 100 },
+    { id: 7, name: "Newline Machine", status: "locked", xpAwarded: 100 },
+    { id: 8, name: "Indentation Temple", status: "locked", xpAwarded: 150 }
+  ]);
+
+  const [toast, setToast] = useState<{ message: string; type: "success" | "xp" | "error" | "badge" } | null>(null);
+
+  // Trigger toast notification
+  const triggerToast = (message: string, type: "success" | "xp" | "error" | "badge") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
   };
 
-  const addXp = (amount: number, reason: string) => {
-    setXp(x => x + amount);
-    showToast(`+${amount} XP: ${reason}`, 'xp');
+  const addXpPoints = (amount: number, reason: string) => {
+    setXp(prev => prev + amount);
+    triggerToast(`+${amount} XP: ${reason}`, "xp");
   };
 
-  const unlockBadge = (badge: string) => {
-    if (!badges.includes(badge)) {
-      setBadges(b => [...b, badge]);
-      setTimeout(() => showToast(`🏆 Badge Unlocked: ${badge}`, 'success'), 1500);
+  const unlockBadgeById = (badgeId: string) => {
+    setBadges(prev => prev.map(b => {
+      if (b.id === badgeId && !b.unlocked) {
+        triggerToast(`Badge Unlocked: ${b.name}!`, "badge");
+        return { ...b, unlocked: true };
+      }
+      return b;
+    }));
+  };
+
+  const completeStage = (stageId: number) => {
+    setStages(prev => prev.map(s => {
+      if (s.id === stageId) {
+        if (s.status !== "completed") {
+          addXpPoints(s.xpAwarded, `Completed Stage ${stageId}`);
+        }
+        return { ...s, status: "completed" };
+      }
+      if (s.id === stageId + 1 && s.status === "locked") {
+        return { ...s, status: "unlocked" };
+      }
+      return s;
+    }));
+  };
+
+  // --- STAGE VARIABLES & INTERACTION LOGIC ---
+
+  // Stage 1: Modes
+  const [s1SelectedDoor, setS1SelectedDoor] = useState<"interactive" | "script" | null>(null);
+  const [s1DemoOutput, setS1DemoOutput] = useState<string[]>([]);
+  const [s1Visited, setS1Visited] = useState<Record<string, boolean>>({});
+
+  const handleS1DoorClick = (mode: "interactive" | "script") => {
+    setS1SelectedDoor(mode);
+    setS1Visited(prev => ({ ...prev, [mode]: true }));
+    if (mode === "interactive") {
+      setS1DemoOutput([">>> print(\"Hello\")", "Hello"]);
+    } else {
+      setS1DemoOutput(["print(\"Hello\")", "print(\"World\")", "--- Run Output ---", "Hello", "World"]);
+    }
+
+    const newVisited = { ...s1Visited, [mode]: true };
+    if (newVisited.interactive && newVisited.script) {
+      unlockBadgeById("mode_explorer");
+      completeStage(1);
     }
   };
 
-  const nextStage = () => {
-    setStage(s => s + 1);
-  };
-
-  // ---------------------------------------------------------
-  // STAGE 0/1: Arrival
-  // ---------------------------------------------------------
-  const renderStage1 = () => (
-    <div className="flex flex-col items-center justify-center h-full p-8 text-center animate-in fade-in zoom-in duration-700">
-      <Satellite className="size-32 text-red-500 mb-8 animate-pulse drop-shadow-[0_0_30px_rgba(239,68,68,0.6)]" />
-      <h1 className="text-4xl font-black text-white mb-4 tracking-wider uppercase">Mission Python: Launch Station</h1>
-      <p className="text-xl text-slate-300 max-w-2xl mb-8 leading-relaxed">
-        Welcome, Commander. The PY-1 satellite cannot communicate with Earth. Its communication systems are offline. 
-        To restore communication, you must learn how Python sends information using the <code className="text-cyan-400 bg-cyan-950/50 px-2 py-1 rounded">print()</code> function.
-      </p>
-      
-      <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl w-full max-w-md mb-8">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-slate-400 font-bold uppercase tracking-widest text-sm">Mission Progress</span>
-          <span className="text-cyan-400 font-mono font-bold">0%</span>
-        </div>
-        <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
-          <div className="h-full bg-cyan-500 w-[0%]" />
-        </div>
-      </div>
-
-      <button 
-        onClick={() => {
-          addXp(50, "Mission Started");
-          unlockBadge("Python Cadet");
-          nextStage();
-        }}
-        className="px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-lg text-lg flex items-center gap-3 transition-transform hover:scale-105 active:scale-95"
-      >
-        <Play className="size-6" /> START MISSION
-      </button>
-    </div>
-  );
-
-  // ---------------------------------------------------------
-  // STAGE 2: Python City (Sorting)
-  // ---------------------------------------------------------
-  const [s2Matches, setS2Matches] = useState<Record<string, string>>({});
-  const s2Items = [
-    { id: "comp", text: "Requires Compilation", correct: "c" },
-    { id: "curly", text: "Uses Curly Braces", correct: "c" },
-    { id: "ind", text: "Uses Indentation", correct: "py" },
-    { id: "dyn", text: "Dynamic Typing", correct: "py" },
-    { id: "main", text: "Main Function Required", correct: "c" },
+  // Stage 2: Robot
+  const [s2Step, setS2Step] = useState(0);
+  const [s2Logs, setS2Logs] = useState<string[]>([]);
+  const s2Steps = [
+    { label: "Step 1: Read Line", desc: "PyBot reads the code line: print(\"Hello World\")", log: "Reading line: print(\"Hello World\")" },
+    { label: "Step 2: Recognize print()", desc: "PyBot identifies print as a built-in statement", log: "Parsed token: print call identified." },
+    { label: "Step 3: Extract Text", desc: "PyBot extracts the characters inside quotes", log: "Extracted value: 'Hello World'" },
+    { label: "Step 4: Display Output", desc: "PyBot flushes 'Hello World' directly to the screen", log: "Writing to console stdout: Hello World" }
   ];
 
-  const handleS2Click = (item: any, target: string) => {
-    if (item.correct === target) {
-      setS2Matches(prev => ({ ...prev, [item.id]: target }));
-      showToast("Correct!", "success");
-      if (Object.keys(s2Matches).length + 1 === s2Items.length) {
-        addXp(100, "City Restored");
-        setTimeout(nextStage, 2000);
+  const handleS2Next = () => {
+    if (s2Step < s2Steps.length) {
+      setS2Logs(prev => [...prev, s2Steps[s2Step].log]);
+      setS2Step(prev => prev + 1);
+      if (s2Step === s2Steps.length - 1) {
+        unlockBadgeById("interpreter_observer");
+        completeStage(2);
       }
-    } else {
-      showToast("Incorrect! Think about how Python is simpler.", "error");
     }
   };
 
-  const renderStage2 = () => {
-    const isComplete = Object.keys(s2Matches).length === s2Items.length;
-    return (
-      <div className="flex flex-col h-full gap-6 p-6">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-cyan-400 flex items-center justify-center gap-2">
-            <Hexagon className="size-6" /> Stage 2: Python City
-          </h2>
-          <p className="text-slate-400 mt-2">Sort the characteristics to power up the language buildings.</p>
-        </div>
-
-        <div className="flex-1 flex gap-8">
-          <div className={`flex-1 rounded-2xl border-2 p-6 flex flex-col transition-colors ${isComplete ? 'border-green-500 bg-green-950/20' : 'border-slate-700 bg-slate-900'}`}>
-            <h3 className="text-xl font-bold text-center text-slate-300 mb-6">C / Java Tower</h3>
-            <div className="space-y-3 flex-1">
-              {s2Items.filter(i => s2Matches[i.id] === 'c').map(i => (
-                <div key={i.id} className="bg-slate-800 p-3 rounded text-center text-slate-300">{i.text}</div>
-              ))}
-            </div>
-            {!isComplete && (
-              <div className="flex flex-wrap gap-2 justify-center mt-4">
-                 {s2Items.filter(i => !s2Matches[i.id]).map(i => (
-                   <button key={i.id} onClick={() => handleS2Click(i, 'c')} className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded text-sm">&lt; Send to C/Java</button>
-                 ))}
-              </div>
-            )}
-          </div>
-
-          <div className={`flex-1 rounded-2xl border-2 p-6 flex flex-col transition-colors ${isComplete ? 'border-cyan-500 bg-cyan-950/20' : 'border-slate-700 bg-slate-900'}`}>
-            <h3 className="text-xl font-bold text-center text-cyan-400 mb-6">Python Innovation Hub</h3>
-            <div className="space-y-3 flex-1">
-              {s2Items.filter(i => s2Matches[i.id] === 'py').map(i => (
-                <div key={i.id} className="bg-cyan-900/40 border border-cyan-800 p-3 rounded text-center text-cyan-300">{i.text}</div>
-              ))}
-            </div>
-            {!isComplete && (
-              <div className="flex flex-wrap gap-2 justify-center mt-4">
-                 {s2Items.filter(i => !s2Matches[i.id]).map(i => (
-                   <button key={i.id} onClick={() => handleS2Click(i, 'py')} className="px-3 py-1.5 bg-cyan-900/40 hover:bg-cyan-800 border border-cyan-800 rounded text-sm text-cyan-300">Send to Python &gt;</button>
-                 ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Unsorted Items Pool */}
-        {!isComplete && (
-          <div className="bg-slate-800 p-4 rounded-xl flex flex-wrap gap-4 justify-center items-center">
-            <span className="text-slate-400 font-bold uppercase tracking-widest text-sm mr-4">Data Packets:</span>
-            {s2Items.filter(i => !s2Matches[i.id]).map(i => (
-              <div key={i.id} className="bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg font-medium shadow-lg animate-pulse">
-                {i.text}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    );
+  // Stage 3: Space Message
+  const [s3Launched, setS3Launched] = useState(false);
+  const handleS3Launch = () => {
+    setS3Launched(true);
+    unlockBadgeById("satellite_activated");
+    completeStage(3);
   };
 
-  // ---------------------------------------------------------
-  // STAGE 3: Interpreter Tunnel
-  // ---------------------------------------------------------
-  const [s3Step, setS3Step] = useState(0);
-  const s3Nodes = [
-    { label: "Source Reader", desc: "Scans the characters of code." },
-    { label: "Bytecode Generator", desc: "Converts code to internal bytecode." },
-    { label: "Execution Engine", desc: "Runs the bytecode instructions." },
-    { label: "Output Gateway", desc: "Sends results to console." }
-  ];
+  // Stage 4: Python vs Java Race
+  const [s4OrderJava, setS4OrderJava] = useState<string[]>([]);
+  const [s4OrderPython, setS4OrderPython] = useState<string[]>([]);
+  const [s4Success, setS4Success] = useState(false);
 
-  const handleS3Next = () => {
-    if (s3Step < 3) {
-      setS3Step(s => s + 1);
+  const handleS4Drop = (lang: "java" | "python", step: string) => {
+    if (lang === "java") {
+      if (!s4OrderJava.includes(step)) {
+        setS4OrderJava([...s4OrderJava, step]);
+      }
     } else {
-      unlockBadge("Interpreter Explorer");
-      addXp(100, "Tunnel Completed");
-      nextStage();
+      if (!s4OrderPython.includes(step)) {
+        setS4OrderPython([...s4OrderPython, step]);
+      }
     }
   };
 
-  const renderStage3 = () => (
-    <div className="flex flex-col h-full gap-6 p-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-fuchsia-400 flex items-center justify-center gap-2">
-          <Activity className="size-6" /> Stage 3: Inside the Interpreter Tunnel
-        </h2>
-        <p className="text-slate-400 mt-2">Python executes code step-by-step. Guide the code packet through the tunnel.</p>
-      </div>
-
-      <div className="flex-1 flex flex-col items-center justify-center relative">
-        <div className="w-full max-w-4xl h-48 bg-slate-900/80 rounded-full border-4 border-slate-800 relative flex items-center justify-between px-12 overflow-hidden shadow-[inset_0_0_50px_rgba(0,0,0,0.5)]">
-          {/* Packet */}
-          <div 
-            className="absolute h-16 bg-fuchsia-500 rounded-full shadow-[0_0_30px_rgba(217,70,239,0.8)] flex items-center justify-center px-6 transition-all duration-1000 z-10"
-            style={{ 
-              left: `calc(${10 + (s3Step * 25)}% - 60px)`,
-              width: '120px'
-            }}
-          >
-            <span className="font-mono font-bold text-white whitespace-nowrap text-xs">print("Hi")</span>
-          </div>
-
-          {/* Nodes */}
-          {s3Nodes.map((n, i) => (
-            <div key={i} className="flex flex-col items-center relative z-0">
-              <div className={`size-12 rounded-full border-4 transition-colors duration-500 flex items-center justify-center ${s3Step >= i ? 'border-fuchsia-500 bg-fuchsia-950 shadow-[0_0_20px_rgba(217,70,239,0.4)]' : 'border-slate-700 bg-slate-800'}`}>
-                {s3Step > i ? <CheckCircle2 className="size-6 text-fuchsia-500" /> : <div className="size-3 bg-slate-500 rounded-full" />}
-              </div>
-              <div className="absolute top-16 text-center w-32">
-                <div className={`font-bold text-sm ${s3Step >= i ? 'text-fuchsia-400' : 'text-slate-500'}`}>{n.label}</div>
-                {s3Step === i && <div className="text-xs text-slate-400 mt-1 animate-in slide-in-from-top-2">{n.desc}</div>}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex justify-center">
-        <button onClick={handleS3Next} className="px-8 py-3 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-bold rounded-lg flex items-center gap-2 text-lg transition-transform active:scale-95">
-          {s3Step < 3 ? 'Advance Code Packet' : 'Exit Tunnel'} <ArrowRight className="size-5" />
-        </button>
-      </div>
-    </div>
-  );
-
-  // ---------------------------------------------------------
-  // STAGE 4: Print Function Factory
-  // ---------------------------------------------------------
-  const [s4Input, setS4Input] = useState<string | null>(null);
-  
-  const handleS4Feed = (val: string) => {
-    setS4Input(val);
-    setTimeout(() => {
-      addXp(50, "Data Processed");
-      if (val === "Hello World") {
-        setTimeout(nextStage, 1500);
-      }
-    }, 1500);
+  const handleS4Clear = () => {
+    setS4OrderJava([]);
+    setS4OrderPython([]);
+    setS4Success(false);
   };
 
-  const renderStage4 = () => (
-    <div className="flex flex-col h-full gap-6 p-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-emerald-400 flex items-center justify-center gap-2">
-          <Blocks className="size-6" /> Stage 4: Print Function Factory
-        </h2>
-        <p className="text-slate-400 mt-2">Feed data into the print() machine to generate formatted output.</p>
-      </div>
+  useEffect(() => {
+    const javaCorrect = JSON.stringify(s4OrderJava) === JSON.stringify(["Write", "Compile", "Run"]);
+    const pythonCorrect = JSON.stringify(s4OrderPython) === JSON.stringify(["Write", "Run"]);
+    if (javaCorrect && pythonCorrect && !s4Success) {
+      setS4Success(true);
+      unlockBadgeById("language_explorer");
+      completeStage(4);
+    }
+  }, [s4OrderJava, s4OrderPython]);
 
-      <div className="flex-1 flex items-center justify-center gap-8">
-        {/* Input Items */}
-        <div className="flex flex-col gap-4">
-          <button onClick={() => handleS4Feed("42")} disabled={!!s4Input} className="bg-slate-800 hover:bg-slate-700 p-4 rounded-xl border border-slate-600 font-mono text-emerald-400 font-bold transition-all hover:scale-105 disabled:opacity-50">42 (Number)</button>
-          <button onClick={() => handleS4Feed("True")} disabled={!!s4Input} className="bg-slate-800 hover:bg-slate-700 p-4 rounded-xl border border-slate-600 font-mono text-emerald-400 font-bold transition-all hover:scale-105 disabled:opacity-50">True (Boolean)</button>
-          <button onClick={() => handleS4Feed("Hello World")} disabled={!!s4Input} className="bg-emerald-900 hover:bg-emerald-800 p-4 rounded-xl border border-emerald-600 font-mono text-emerald-300 font-bold shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all hover:scale-105 disabled:opacity-50">"Hello World" (String)</button>
-        </div>
+  // Stage 5: Live Custom Message
+  const [s5Name, setS5Name] = useState("Alex");
+  const [s5Success, setS5Success] = useState(false);
 
-        {/* Machine */}
-        <div className="bg-slate-900 border-4 border-slate-700 rounded-3xl p-8 w-64 h-64 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 w-full bg-slate-800 py-2 text-center font-black text-slate-500 tracking-widest border-b border-slate-700">print() MACHINE</div>
-          <div className="flex gap-2 mb-4 mt-8">
-            <div className={`w-3 h-8 rounded-full ${s4Input ? 'bg-emerald-500 animate-pulse' : 'bg-slate-700'}`} />
-            <div className={`w-3 h-8 rounded-full ${s4Input ? 'bg-emerald-500 animate-pulse delay-75' : 'bg-slate-700'}`} />
-            <div className={`w-3 h-8 rounded-full ${s4Input ? 'bg-emerald-500 animate-pulse delay-150' : 'bg-slate-700'}`} />
-          </div>
-          <div className="font-mono text-slate-400 text-sm">Processing...</div>
-        </div>
-
-        {/* Output */}
-        <div className="flex flex-col items-center">
-          <div className="text-slate-500 font-bold uppercase tracking-widest text-sm mb-4">Console Screen</div>
-          <div className="w-64 h-48 bg-black border-2 border-slate-800 rounded-xl p-4 font-mono text-emerald-400 text-lg shadow-[inset_0_0_20px_rgba(0,0,0,1)] flex items-center justify-center">
-            {s4Input ? (
-              <span className="animate-in fade-in zoom-in duration-1000 delay-500 fill-mode-both">{s4Input}</span>
-            ) : (
-              <span className="text-slate-800">_</span>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // ---------------------------------------------------------
-  // STAGE 5: Interactive vs Script Mode
-  // ---------------------------------------------------------
-  const [s5Matches, setS5Matches] = useState<Record<string, string>>({});
-  const s5Items = [
-    { id: "1", text: "Quick Math Testing", correct: "int" },
-    { id: "2", text: "Saving a Large Project", correct: "scr" },
-    { id: "3", text: "Line-by-line Debugging", correct: "int" },
-    { id: "4", text: "Running a Web Server", correct: "scr" },
-  ];
-
-  const handleS5Click = (item: any, target: string) => {
-    if (item.correct === target) {
-      setS5Matches(prev => ({ ...prev, [item.id]: target }));
-      showToast("Correct Sort!", "success");
-      if (Object.keys(s5Matches).length + 1 === s5Items.length) {
-        unlockBadge("Speed Tester");
-        addXp(100, "Modes Mastered");
-        setTimeout(nextStage, 2000);
-      }
+  const handleS5Submit = () => {
+    if (s5Name.trim() && s5Name !== "Alex") {
+      setS5Success(true);
+      addXpPoints(150, "Completed First Custom Python Program!");
+      completeStage(5);
     } else {
-      showToast("Incorrect Mode. Try again.", "error");
+      triggerToast("Replace the placeholder name with your own name first!", "error");
     }
   };
 
-  const renderStage5 = () => {
-    const isComplete = Object.keys(s5Matches).length === s5Items.length;
-    return (
-      <div className="flex flex-col h-full gap-6 p-6">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-orange-400 flex items-center justify-center gap-2">
-            <LayoutGrid className="size-6" /> Stage 5: Interactive vs Script Mode
-          </h2>
-          <p className="text-slate-400 mt-2">Sort the actions into the correct Python execution mode.</p>
-        </div>
-
-        <div className="flex-1 flex gap-8">
-          <div className={`flex-[1.5] rounded-2xl border-2 p-6 flex flex-col transition-colors ${isComplete ? 'border-orange-500 bg-orange-950/20' : 'border-slate-700 bg-slate-900'}`}>
-            <h3 className="text-xl font-bold text-orange-400 mb-2 flex items-center gap-2"><Terminal className="size-5" /> Interactive Mode</h3>
-            <p className="text-xs text-slate-400 mb-6 font-mono">&gt;&gt;&gt; Executes instantly</p>
-            <div className="space-y-3 flex-1">
-              {s5Items.filter(i => s5Matches[i.id] === 'int').map(i => (
-                <div key={i.id} className="bg-orange-900/40 border border-orange-800 p-3 rounded text-orange-300">{i.text}</div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex-[1] flex flex-col gap-3 justify-center items-center bg-slate-800/50 p-4 rounded-xl border border-slate-800">
-             <div className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">Unsorted Scenarios</div>
-             {s5Items.filter(i => !s5Matches[i.id]).map(i => (
-               <div key={i.id} className="bg-slate-700 w-full p-3 rounded-lg text-center font-medium flex flex-col gap-2">
-                 <span className="text-white">{i.text}</span>
-                 <div className="flex gap-2 mt-2">
-                   <button onClick={()=>handleS5Click(i, 'int')} className="flex-1 py-1.5 bg-orange-900/50 hover:bg-orange-800 text-orange-300 rounded text-xs">&lt; Interactive</button>
-                   <button onClick={()=>handleS5Click(i, 'scr')} className="flex-1 py-1.5 bg-blue-900/50 hover:bg-blue-800 text-blue-300 rounded text-xs">Script &gt;</button>
-                 </div>
-               </div>
-             ))}
-          </div>
-
-          <div className={`flex-[1.5] rounded-2xl border-2 p-6 flex flex-col transition-colors ${isComplete ? 'border-blue-500 bg-blue-950/20' : 'border-slate-700 bg-slate-900'}`}>
-            <h3 className="text-xl font-bold text-blue-400 mb-2 flex items-center gap-2"><FileCode className="size-5" /> Script Mode</h3>
-            <p className="text-xs text-slate-400 mb-6 font-mono">python script.py (Runs whole file)</p>
-            <div className="space-y-3 flex-1">
-              {s5Items.filter(i => s5Matches[i.id] === 'scr').map(i => (
-                <div key={i.id} className="bg-blue-900/40 border border-blue-800 p-3 rounded text-blue-300">{i.text}</div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // ---------------------------------------------------------
-  // STAGE 6: Separator & Newline Lab (Combining 7 & 8)
-  // ---------------------------------------------------------
+  // Stage 6: Separator Factory
   const [s6Sep, setS6Sep] = useState(" ");
-  const [s6End, setS6End] = useState("\\n");
-  const [s6Complete, setS6Complete] = useState(false);
+  const [s6Success, setS6Success] = useState(false);
 
-  const checkS6 = () => {
-    if (s6Sep === "-" && s6End === " ") {
-      setS6Complete(true);
-      unlockBadge("Separator Scientist");
-      addXp(150, "Laboratory Configured");
-      setTimeout(nextStage, 2500);
-    }
+  const handleS6Select = (sepVal: string) => {
+    setS6Sep(sepVal);
+    setS6Success(true);
+    unlockBadgeById("separator_engineer");
+    completeStage(6);
   };
 
-  const renderStage6 = () => (
-    <div className="flex flex-col h-full gap-6 p-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-yellow-400 flex items-center justify-center gap-2">
-          <FlaskConical className="size-6" /> Stage 6: Format Laboratory
-        </h2>
-        <p className="text-slate-400 mt-2">Adjust the <code>sep</code> and <code>end</code> parameters. Target: <code>Hello-World Earth</code> on one line.</p>
-      </div>
+  // Stage 7: Newline Machine
+  const [s7End, setS7End] = useState("\\n");
+  const [s7Success, setS7Success] = useState(false);
 
-      <div className="flex-1 flex gap-8">
-        <div className="flex-[1.5] bg-slate-900 rounded-2xl border border-slate-700 p-8 flex flex-col">
-           <h3 className="text-slate-500 font-bold uppercase tracking-widest mb-6">Reactor Controls</h3>
-           
-           <div className="space-y-8">
-             <div>
-               <label className="block text-slate-300 font-bold mb-2">Separator (sep)</label>
-               <div className="flex gap-3">
-                 {[" ", "-", "*", ","].map(val => (
-                   <button key={val} onClick={() => {setS6Sep(val); setTimeout(checkS6,100)}} className={`w-12 h-12 rounded-xl text-xl font-mono flex items-center justify-center transition-all ${s6Sep === val ? 'bg-yellow-500 text-slate-900 font-black scale-110' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}>
-                     {val === " " ? "␣" : val}
-                   </button>
-                 ))}
-               </div>
-               <p className="text-xs text-slate-500 mt-2">Separates multiple values in print.</p>
-             </div>
+  const handleS7Select = (endVal: string) => {
+    setS7End(endVal);
+    setS7Success(true);
+    unlockBadgeById("output_designer");
+    completeStage(7);
+  };
 
-             <div>
-               <label className="block text-slate-300 font-bold mb-2">Line Ending (end)</label>
-               <div className="flex gap-3">
-                 {["\\n", " ", "-", ""].map(val => (
-                   <button key={val} onClick={() => {setS6End(val); setTimeout(checkS6,100)}} className={`px-4 h-12 rounded-xl text-lg font-mono flex items-center justify-center transition-all ${s6End === val ? 'bg-indigo-500 text-white font-black scale-110' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}>
-                     {val === " " ? "␣" : val === "" ? "Empty" : val}
-                   </button>
-                 ))}
-               </div>
-               <p className="text-xs text-slate-500 mt-2">Appended after printing values.</p>
-             </div>
-           </div>
-        </div>
+  // Stage 8: Indentation Temple
+  const [s8Indented, setS8Indented] = useState(false);
+  const [s8Success, setS8Success] = useState(false);
 
-        <div className="flex-1 flex flex-col gap-4">
-           <div className="bg-slate-900 p-4 rounded-xl border border-slate-700 font-mono text-sm">
-             <div className="text-slate-500 mb-2">Code:</div>
-             <div className="text-blue-300">print(<span className="text-green-300">"Hello"</span>, <span className="text-green-300">"World"</span>, sep=<span className="text-yellow-300">"{s6Sep}"</span>, end=<span className="text-yellow-300">"{s6End}"</span>)</div>
-             <div className="text-blue-300">print(<span className="text-green-300">"Earth"</span>)</div>
-           </div>
-
-           <div className="bg-black flex-1 rounded-xl border-2 border-slate-800 p-6 flex flex-col relative overflow-hidden">
-             <div className="text-slate-600 font-bold uppercase tracking-widest text-xs mb-4">Live Output</div>
-             <div className={`font-mono text-xl whitespace-pre-wrap ${s6Complete ? 'text-green-400 animate-pulse' : 'text-slate-300'}`}>
-               {`Hello${s6Sep}World${s6End === '\\n' ? '\n' : s6End}Earth`}
-             </div>
-             
-             {s6Complete && (
-               <div className="absolute inset-0 bg-green-500/10 flex items-center justify-center backdrop-blur-sm animate-in fade-in duration-500">
-                  <div className="bg-green-900 text-green-300 px-6 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2">
-                    <CheckCircle2 className="size-5" /> Target Match!
-                  </div>
-               </div>
-             )}
-           </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // ---------------------------------------------------------
-  // STAGE 7: Memory Observatory
-  // ---------------------------------------------------------
-  const [s7Step, setS7Step] = useState(0);
-
-  const renderStage7 = () => (
-    <div className="flex flex-col h-full gap-6 p-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-pink-400 flex items-center justify-center gap-2">
-          <BrainCircuit className="size-6" /> Stage 7: Memory Observatory
-        </h2>
-        <p className="text-slate-400 mt-2">Observe how standard printing interacts with computer memory.</p>
-      </div>
-
-      <div className="flex-1 flex gap-8">
-        <div className="flex-[1] flex flex-col gap-4 justify-center">
-          <div className={`bg-slate-900 border-2 rounded-xl p-6 transition-colors ${s7Step === 0 ? 'border-pink-500 shadow-[0_0_20px_rgba(244,114,182,0.2)]' : 'border-slate-800 opacity-50'}`}>
-             <h3 className="text-slate-400 font-mono text-sm mb-4">Snippet A</h3>
-             <code className="text-green-400 text-lg">print("Hello World")</code>
-             {s7Step === 0 && (
-               <button onClick={()=>setS7Step(1)} className="mt-6 w-full py-2 bg-pink-600 hover:bg-pink-500 text-white font-bold rounded-lg flex justify-center items-center gap-2">Execute Snippet A</button>
-             )}
-          </div>
-
-          <div className={`bg-slate-900 border-2 rounded-xl p-6 transition-colors ${s7Step === 1 ? 'border-pink-500 shadow-[0_0_20px_rgba(244,114,182,0.2)]' : 'border-slate-800 opacity-50'}`}>
-             <h3 className="text-slate-400 font-mono text-sm mb-4">Snippet B</h3>
-             <pre className="text-lg">
-               <span className="text-blue-300">name</span> = <span className="text-green-400">"Alex"</span><br/>
-               <span className="text-blue-300">print</span>(name)
-             </pre>
-             {s7Step === 1 && (
-               <button onClick={()=>{
-                 setS7Step(2); 
-                 unlockBadge("Memory Observer");
-                 addXp(100, "Memory Scanned");
-               }} className="mt-6 w-full py-2 bg-pink-600 hover:bg-pink-500 text-white font-bold rounded-lg flex justify-center items-center gap-2">Execute Snippet B</button>
-             )}
-          </div>
-        </div>
-
-        <div className="flex-[1.5] bg-slate-950 rounded-3xl border border-slate-800 p-8 flex flex-col relative overflow-hidden items-center justify-center">
-           <div className="absolute top-4 left-4 text-slate-600 font-bold uppercase tracking-widest text-xs">Memory Chamber</div>
-           
-           <div className="relative w-64 h-64 bg-blue-900/10 rounded-full border border-blue-900/30 flex items-center justify-center">
-             {s7Step === 0 && (
-               <span className="text-slate-500 italic">Awaiting Execution...</span>
-             )}
-             {s7Step === 1 && (
-               <span className="text-slate-500 italic">Empty. print() does not store data.</span>
-             )}
-             {s7Step === 2 && (
-               <div className="bg-pink-900/50 border border-pink-500 p-4 rounded-xl flex items-center gap-4 animate-in zoom-in duration-500">
-                 <Database className="text-pink-400 size-8" />
-                 <div>
-                   <div className="text-pink-200 text-sm">name</div>
-                   <div className="text-white font-mono font-bold">"Alex"</div>
-                 </div>
-               </div>
-             )}
-           </div>
-
-           {s7Step === 2 && (
-             <button onClick={nextStage} className="absolute bottom-8 px-8 py-3 bg-white text-black font-black rounded-full shadow-xl hover:scale-105 transition-transform flex items-center gap-2">
-               Proceed <ArrowRight className="size-5" />
-             </button>
-           )}
-        </div>
-      </div>
-    </div>
-  );
-
-  // ---------------------------------------------------------
-  // STAGE 8: Final Boss Challenge
-  // ---------------------------------------------------------
-  const [bossInput, setBossInput] = useState("");
-  const [bossStep, setBossStep] = useState(0);
-
-  const bossTasks = [
-    { prompt: 'Create a print statement exactly like this: print("Earth")', expected: 'print("Earth")' },
-    { prompt: 'Combine "Hello" and "World" using a hyphen separator: print("Hello", "World", sep="-")', expected: 'print("Hello", "World", sep="-")' }
-  ];
-
-  const handleBossSubmit = () => {
-    // simplified parser
-    const clean = bossInput.trim().replace(/'/g, '"');
-    const target = bossTasks[bossStep].expected.replace(/'/g, '"');
-    
-    if (clean === target) {
-      if (bossStep === 0) {
-        setBossStep(1);
-        setBossInput("");
-        showToast("Signal Validated. Final stage initiated.", "success");
-        addXp(100, "Signal Valid");
-      } else {
-        unlockBadge("Satellite Savior");
-        addXp(500, "Satellite Restored");
-        setStage(9); // Victory
-      }
+  const handleS8Verify = () => {
+    if (s8Indented) {
+      setS8Success(true);
+      unlockBadgeById("indentation_guardian");
+      completeStage(8);
     } else {
-      showToast("Invalid code structure. Try again.", "error");
+      triggerToast("The print block needs to be indented under the if condition!", "error");
     }
   };
 
-  const renderStage8 = () => (
-    <div className="flex flex-col h-full gap-6 p-6">
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-red-500 flex items-center justify-center gap-2 animate-pulse">
-          <Shield className="size-6" /> Final Boss: Save the Satellite
-        </h2>
-        <p className="text-slate-400 mt-2">The satellite relies entirely on your manual code entry to launch!</p>
-      </div>
+  // --- MINI CHALLENGES STATE ---
+  const [mcAnswer1, setMcAnswer1] = useState<string | null>(null);
+  const [mcAnswer2, setMcAnswer2] = useState<string | null>(null);
+  const [mcAnswer3, setMcAnswer3] = useState<Record<string, string>>({});
+  const [mcAnswer4, setMcAnswer4] = useState<string | null>(null);
+  const [mcAnswer5, setMcAnswer5] = useState<string | null>(null);
 
-      <div className="flex-1 flex flex-col items-center justify-center max-w-2xl mx-auto w-full gap-8">
-        
-        <div className="bg-red-950/30 border-2 border-red-900/50 rounded-2xl p-6 w-full text-center">
-          <Radio className="size-12 text-red-500 mx-auto mb-4 animate-bounce" />
-          <h3 className="text-xl text-white font-bold mb-2">TASK {bossStep + 1} / 2</h3>
-          <p className="text-red-300 font-mono">{bossTasks[bossStep].prompt}</p>
-        </div>
+  // --- FINAL BOSS SYSTEM REPAIR ---
+  const [crystals, setCrystals] = useState<Record<number, boolean>>({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false
+  });
 
-        <div className="w-full relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl blur opacity-25"></div>
-          <div className="bg-black relative rounded-xl border border-slate-800 p-6 flex flex-col">
-            <span className="text-slate-500 font-mono text-xs mb-2">terminal_input.py</span>
-            <input 
-              type="text" 
-              value={bossInput}
-              onChange={e => setBossInput(e.target.value)}
-              placeholder="Type Python code here..."
-              className="bg-transparent border-none outline-none font-mono text-xl text-white placeholder:text-slate-700 w-full"
-              autoFocus
-              onKeyDown={e => e.key === 'Enter' && handleBossSubmit()}
-            />
-          </div>
-        </div>
+  const [bossT1, setBossT1] = useState("");
+  const [bossT2, setBossT2] = useState("");
+  const [bossT3, setBossT3] = useState("");
+  const [bossT4, setBossT4] = useState("");
+  const [bossT5Indented, setBossT5Indented] = useState(false);
 
-        <button onClick={handleBossSubmit} className="w-full py-4 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-black text-xl rounded-xl shadow-[0_0_30px_rgba(239,68,68,0.4)] transition-transform active:scale-95 flex items-center justify-center gap-3">
-          TRANSMIT CODE <Zap className="size-6" />
-        </button>
+  const checkBossTask = (taskIndex: number) => {
+    if (taskIndex === 1) {
+      if (bossT1.trim() === 'print("Hello World")') {
+        setCrystals(prev => ({ ...prev, 1: true }));
+        addXpPoints(30, "Crystal 1 Restored!");
+      } else {
+        triggerToast("Format must be: print(\"Hello World\")", "error");
+      }
+    } else if (taskIndex === 2) {
+      if (bossT2.startsWith('print("') && bossT2.endsWith('")') && bossT2 !== 'print("Alex")') {
+        setCrystals(prev => ({ ...prev, 2: true }));
+        addXpPoints(30, "Crystal 2 Restored!");
+      } else {
+        triggerToast("Use print(\"Your Name\")", "error");
+      }
+    } else if (taskIndex === 3) {
+      const match = bossT3.replace(/\s+/g, "");
+      if (match.includes('sep="-"')) {
+        setCrystals(prev => ({ ...prev, 3: true }));
+        addXpPoints(30, "Crystal 3 Restored!");
+      } else {
+        triggerToast("Must include separator parameter: sep=\"-\"", "error");
+      }
+    } else if (taskIndex === 4) {
+      const match = bossT4.replace(/\s+/g, "");
+      if (match.includes('end=" "') || match.includes("end=' '")) {
+        setCrystals(prev => ({ ...prev, 4: true }));
+        addXpPoints(30, "Crystal 4 Restored!");
+      } else {
+        triggerToast("Must set end parameter to a space: end=\" \"", "error");
+      }
+    } else if (taskIndex === 5) {
+      if (bossT5Indented) {
+        setCrystals(prev => ({ ...prev, 5: true }));
+        addXpPoints(30, "Crystal 5 Restored!");
+      } else {
+        triggerToast("Indentation is missing!", "error");
+      }
+    }
+  };
 
-      </div>
-    </div>
-  );
+  const isStationRestored = Object.values(crystals).every(v => v);
 
-  // ---------------------------------------------------------
-  // STAGE 9: Victory
-  // ---------------------------------------------------------
-  const renderStage9 = () => (
-    <div className="flex flex-col items-center justify-center h-full p-8 text-center animate-in fade-in zoom-in duration-1000 relative overflow-hidden">
-      {/* Confetti / Stars simulation background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 -z-10"></div>
-      
-      <Rocket className="size-48 text-cyan-400 mb-8 animate-bounce drop-shadow-[0_0_50px_rgba(34,211,238,0.8)]" />
-      <h1 className="text-6xl font-black text-white mb-6 tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-        Mission Accomplished
-      </h1>
-      
-      <div className="bg-slate-900/80 backdrop-blur border border-slate-700 p-8 rounded-2xl max-w-md w-full shadow-2xl mb-8">
-        <h3 className="text-slate-400 font-bold uppercase tracking-widest text-sm mb-6 border-b border-slate-700 pb-2">Mission Summary</h3>
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-slate-300 font-medium">Total XP Earned</span>
-          <span className="text-cyan-400 font-mono font-black text-xl">{xp}</span>
-        </div>
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-slate-300 font-medium">Badges Unlocked</span>
-          <span className="text-yellow-400 font-mono font-black text-xl">{badges.length} / 5</span>
-        </div>
-        
-        <div className="flex flex-wrap gap-2 mt-6 pt-4 border-t border-slate-800">
-          {badges.map(b => (
-            <div key={b} className="bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-full text-xs font-bold text-yellow-500 flex items-center gap-1">
-              <Star className="size-3 fill-yellow-500" /> {b}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  const triggerCompletion = () => {
+    unlockBadgeById("launch_commander");
+    setActiveScreen("completion");
+  };
+
+  const currentStage = stages[currentStageIndex];
 
   return (
-    <div className="flex flex-col h-full bg-slate-950 text-slate-200 p-6 overflow-hidden relative font-sans select-none">
-      
-      {/* Toast Notification */}
-      {toastMsg && (
-        <div className={`absolute top-24 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full shadow-xl animate-in slide-in-from-top-10 z-50 font-bold flex items-center gap-2 border ${
-          toastMsg.type === 'error' ? 'bg-red-950 text-red-400 border-red-900/50' : 
-          toastMsg.type === 'xp' ? 'bg-indigo-950 text-indigo-300 border-indigo-900/50' :
-          'bg-green-950 text-green-400 border-green-900/50'
+    <div className="flex flex-col h-full bg-[#030712] text-slate-100 font-sans select-none overflow-hidden relative">
+      {/* Interactive Cyber Space Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#1f2937_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
+
+      {/* Global Space Navigation Header */}
+      <header className="flex items-center justify-between px-6 py-4 bg-gray-900/80 backdrop-blur-md border-b border-cyan-500/20 relative z-10 shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-gradient-to-tr from-cyan-600 to-indigo-600 rounded-xl text-white shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+            <Rocket className="size-6 animate-pulse" />
+          </div>
+          <div>
+            <h1 className="font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400">
+              PYTHON LAUNCH PAD
+            </h1>
+            <p className="text-[10px] text-cyan-300 tracking-widest uppercase font-mono">Space Station Command Console</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 bg-indigo-950/50 border border-indigo-500/30 px-3.5 py-1.5 rounded-full text-xs font-bold text-indigo-200">
+            <Star className="size-4 text-yellow-400 fill-yellow-400" />
+            <span>{xp} XP</span>
+          </div>
+          <button
+            onClick={() => setActiveScreen("lobby")}
+            className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 border border-cyan-500/30 hover:border-cyan-400 text-xs font-bold rounded-lg transition-all"
+          >
+            Lobby Menu
+          </button>
+        </div>
+      </header>
+
+      {/* Toast Alert */}
+      {toast && (
+        <div className={`absolute top-20 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl shadow-2xl animate-in slide-in-from-top-10 z-50 font-bold flex items-center gap-3 border ${
+          toast.type === "error" ? "bg-red-950/90 text-red-300 border-red-500/50" :
+          toast.type === "xp" ? "bg-indigo-950/90 text-indigo-200 border-indigo-500/50" :
+          toast.type === "badge" ? "bg-yellow-950/90 text-yellow-200 border-yellow-500/50" :
+          "bg-emerald-950/90 text-emerald-200 border-emerald-500/50"
         }`}>
-          {toastMsg.type === 'error' ? <Shield className="size-4" /> : <Star className="size-4" />}
-          {toastMsg.text}
+          <Sparkles className="size-5 text-yellow-400 animate-spin" />
+          <span className="text-sm font-mono">{toast.message}</span>
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-800 shrink-0">
-        <div>
-          <h2 className="text-2xl font-black text-cyan-400 flex items-center gap-3 uppercase tracking-widest drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">
-            <Globe className="size-7 text-cyan-400" /> Python Launch Station
-          </h2>
-        </div>
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 bg-slate-900 px-4 py-1.5 rounded-full border border-slate-800 font-bold shadow-sm">
-            <Star className="size-4 text-yellow-500" /> {xp} XP
-          </div>
-          {stage > 0 && stage < 9 && (
-            <div className="text-sm font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
-               STAGE <span className="text-white bg-slate-800 px-2 rounded">{stage}</span> / 8
+      {/* Main Content Pane */}
+      <main className="flex-1 min-h-0 relative flex flex-col">
+        {activeScreen === "lobby" && (
+          <div className="flex-1 p-8 overflow-y-auto max-w-6xl mx-auto w-full space-y-8 animate-in fade-in duration-300">
+            
+            {/* Story Jumbotron */}
+            <div className="bg-gradient-to-r from-gray-900 to-indigo-950/40 border border-cyan-500/20 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 shadow-2xl relative overflow-hidden">
+              <div className="absolute right-0 top-0 size-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="text-5xl">📡</div>
+              <div className="space-y-2">
+                <span className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-xs font-extrabold text-cyan-300 uppercase tracking-widest font-mono">Mission Briefing</span>
+                <h2 className="text-2xl font-black text-white">Restore Communication with Earth</h2>
+                <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
+                  You are a Junior Space Programmer at the Python Launch Station. A communication satellite is waiting for a telemetry message. Unlike Java which requires setup templates and compilation, Python can launch commands instantly. Assist the robot in executing Python messages to reboot the station!
+                </p>
+              </div>
             </div>
-          )}
+
+            {/* Stages Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="md:col-span-2 space-y-4">
+                <h3 className="font-extrabold text-lg text-cyan-300 tracking-wider uppercase border-b border-cyan-900/30 pb-2">Launch Sequence Modules</h3>
+                <div className="grid grid-cols-1 gap-3">
+                  {stages.map((stg, i) => (
+                    <div
+                      key={stg.id}
+                      className={`p-4 rounded-xl border flex items-center justify-between transition-all ${
+                        stg.status === "completed"
+                          ? "bg-emerald-950/10 border-emerald-500/30 hover:border-emerald-500/60"
+                          : stg.status === "unlocked"
+                            ? "bg-indigo-950/10 border-indigo-500/30 hover:border-indigo-500/60 cursor-pointer hover:scale-[1.01]"
+                            : "bg-gray-950 border-slate-900 opacity-40 pointer-events-none"
+                      }`}
+                      onClick={() => {
+                        if (stg.status !== "locked") {
+                          setCurrentStageIndex(i);
+                          setActiveScreen("game");
+                        }
+                      }}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className={`size-10 rounded-lg flex items-center justify-center font-black ${
+                          stg.status === "completed"
+                            ? "bg-emerald-500/20 text-emerald-400"
+                            : stg.status === "unlocked"
+                              ? "bg-cyan-500/20 text-cyan-400 animate-pulse"
+                              : "bg-slate-800 text-slate-500"
+                        }`}>
+                          {stg.id}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-white">{stg.name}</h4>
+                          <p className="text-xs text-slate-400">Award: {stg.xpAwarded} XP</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {stg.status === "completed" && <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1 font-mono"><CheckCircle2 className="size-4" /> Ready</span>}
+                        {stg.status === "unlocked" && <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1 font-mono">Initiate <ArrowRight className="size-4" /></span>}
+                        {stg.status === "locked" && <span className="text-xs font-bold text-slate-600 uppercase tracking-widest font-mono"><Lock className="size-3 inline mr-1" />Locked</span>}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Boss Arena Banner */}
+                  <div
+                    className={`p-5 rounded-2xl border-2 border-dashed flex items-center justify-between transition-all ${
+                      stages.every(s => s.status === "completed")
+                        ? "bg-gradient-to-r from-red-950/20 to-indigo-950/20 border-red-500/40 hover:border-red-500 cursor-pointer"
+                        : "bg-slate-900/10 border-slate-800/40 opacity-40 pointer-events-none"
+                    }`}
+                    onClick={() => {
+                      setCurrentStageIndex(8); // Boss Stage
+                      setActiveScreen("game");
+                    }}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="text-3xl">☄️</div>
+                      <div>
+                        <h4 className="font-extrabold text-red-400 text-lg">FINAL MISSION: Save the Space Station</h4>
+                        <p className="text-xs text-slate-400">Restore the offline crystals by applying all concepts!</p>
+                      </div>
+                    </div>
+                    <div>
+                      <span className="px-4 py-1.5 bg-red-950 border border-red-500/40 rounded-lg text-xs font-bold text-red-300 uppercase tracking-wider">Activate Protocol</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievements Column */}
+              <div className="space-y-6">
+                <div className="bg-gray-900 border border-cyan-500/20 p-5 rounded-2xl space-y-4 shadow-xl">
+                  <h3 className="font-extrabold text-sm text-cyan-300 uppercase tracking-widest flex items-center gap-2">
+                    <Award className="size-5 text-yellow-500" /> Space Badges
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {badges.map(b => (
+                      <div
+                        key={b.id}
+                        className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center transition-all ${
+                          b.unlocked
+                            ? "bg-yellow-500/10 border-yellow-500/40"
+                            : "bg-slate-950/50 border-slate-900 opacity-30"
+                        }`}
+                        title={b.desc}
+                      >
+                        <span className="text-2xl mb-1">{b.icon}</span>
+                        <span className="text-[10px] font-bold text-slate-300 leading-tight">{b.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeScreen === "game" && (
+          <div className="flex-1 flex flex-col min-h-0">
+            {/* Simulation Header */}
+            <div className="px-6 py-3 bg-gray-950 border-b border-cyan-500/20 flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 font-mono">Stage {currentStage.id}:</span>
+                <h3 className="font-extrabold text-white text-sm">{currentStage.name}</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  disabled={currentStageIndex === 0}
+                  onClick={() => setCurrentStageIndex(prev => prev - 1)}
+                  className="px-3 py-1 bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-xs font-bold rounded"
+                >
+                  Prev
+                </button>
+                <button
+                  disabled={currentStageIndex === stages.length - 1 || stages[currentStageIndex + 1].status === "locked"}
+                  onClick={() => setCurrentStageIndex(prev => prev + 1)}
+                  className="px-3 py-1 bg-cyan-600 hover:bg-cyan-500 disabled:opacity-30 text-xs font-bold rounded"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+
+            {/* Stages Interface Area */}
+            <div className="flex-1 min-h-0 p-6 overflow-y-auto">
+              
+              {/* STAGE 1: Interactive vs Script Mode Doorway */}
+              {currentStage.id === 1 && (
+                <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-300">
+                  <div className="text-center space-y-2">
+                    <h3 className="text-xl font-bold text-white">Choose how you want to communicate with Python</h3>
+                    <p className="text-xs text-slate-400">Interactive Mode executes one command immediately. Script Mode stores commands in a file.</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Interactive Door */}
+                    <div
+                      onClick={() => handleS1DoorClick("interactive")}
+                      className={`p-6 rounded-2xl border-2 flex flex-col items-center justify-center text-center cursor-pointer transition-all hover:scale-105 ${
+                        s1SelectedDoor === "interactive"
+                          ? "bg-cyan-950/20 border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+                          : "bg-gray-900 border-slate-800 hover:border-slate-700"
+                      }`}
+                    >
+                      <span className="text-5xl mb-4">🚪</span>
+                      <h4 className="text-lg font-bold text-cyan-300">Interactive Mode</h4>
+                      <p className="text-xs text-slate-400 mt-2">Type a command, get an instant response from the interpreter shell.</p>
+                    </div>
+
+                    {/* Script Door */}
+                    <div
+                      onClick={() => handleS1DoorClick("script")}
+                      className={`p-6 rounded-2xl border-2 flex flex-col items-center justify-center text-center cursor-pointer transition-all hover:scale-105 ${
+                        s1SelectedDoor === "script"
+                          ? "bg-indigo-950/20 border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.3)]"
+                          : "bg-gray-900 border-slate-800 hover:border-slate-700"
+                      }`}
+                    >
+                      <span className="text-5xl mb-4">🚪</span>
+                      <h4 className="text-lg font-bold text-indigo-300">Script Mode</h4>
+                      <p className="text-xs text-slate-400 mt-2">Write multiple instructions in a file, and execute the entire program at once.</p>
+                    </div>
+                  </div>
+
+                  {s1DemoOutput.length > 0 && (
+                    <div className="bg-black border border-slate-800 rounded-xl p-4 font-mono text-xs max-w-md mx-auto space-y-1">
+                      <span className="text-slate-500 uppercase text-[9px] block mb-2">Shell Live Feed</span>
+                      {s1DemoOutput.map((ln, idx) => (
+                        <div key={idx} className={ln.startsWith(">>>") ? "text-cyan-400" : ln.startsWith("print") ? "text-indigo-400" : "text-emerald-400"}>
+                          {ln}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {stages[0].status === "completed" && (
+                    <div className="flex justify-center">
+                      <div className="bg-emerald-950/30 border border-emerald-500/30 rounded-xl px-6 py-2.5 text-center text-emerald-400 text-xs font-bold animate-pulse">
+                        🏅 Mode Explorer Badge Unlocked! (Stage complete. Click "Next Stage" at top right)
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* STAGE 2: PyBot Interpreter Robot */}
+              {currentStage.id === 2 && (
+                <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in duration-300">
+                  <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl">🤖</span>
+                      <div>
+                        <h3 className="font-bold text-white text-base">PyBot Interpreter</h3>
+                        <p className="text-xs text-slate-400">Reads your Python code line-by-line and executes it instantly.</p>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-950 p-4 rounded-xl border border-slate-900 text-center font-mono text-cyan-300 text-sm">
+                      print("Hello World")
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-bold text-slate-400">Processing Steps:</h4>
+                      <div className="grid grid-cols-1 gap-2">
+                        {s2Steps.map((step, idx) => (
+                          <div
+                            key={idx}
+                            className={`p-2 rounded-lg border text-xs flex justify-between ${
+                              s2Step > idx
+                                ? "bg-emerald-950/20 border-emerald-500/30 text-emerald-400"
+                                : s2Step === idx
+                                  ? "bg-cyan-950/20 border-cyan-500/50 text-cyan-300 animate-pulse"
+                                  : "bg-slate-950 border-slate-900 text-slate-600"
+                            }`}
+                          >
+                            <span>{step.label}</span>
+                            <span className="text-[10px] text-slate-400">{step.desc}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={handleS2Next}
+                      disabled={s2Step >= s2Steps.length}
+                      className="w-full py-2 bg-cyan-600 hover:bg-cyan-500 disabled:opacity-40 text-xs font-bold rounded-lg text-white"
+                    >
+                      {s2Step >= s2Steps.length ? "PyBot Finished processing" : "▶ Next Step"}
+                    </button>
+                  </div>
+
+                  <div className="flex flex-col space-y-4">
+                    <div className="bg-black border border-slate-800 rounded-2xl p-5 h-[200px] flex flex-col">
+                      <span className="text-[10px] text-cyan-300 font-mono tracking-wider uppercase mb-2">Space Console Screen</span>
+                      <div className="flex-1 bg-slate-950 p-4 rounded-xl font-mono text-emerald-400 text-sm overflow-y-auto">
+                        {s2Logs.length === 0 ? (
+                          <span className="text-slate-700 italic">Awaiting PyBot execution...</span>
+                        ) : (
+                          s2Logs.map((log, idx) => <div key={idx} className="pb-1">{log}</div>)
+                        )}
+                        {s2Step === s2Steps.length && (
+                          <div className="text-xl font-bold mt-2 animate-bounce">Hello World</div>
+                        )}
+                      </div>
+                    </div>
+
+                    {stages[1].status === "completed" && (
+                      <div className="bg-emerald-950/30 border border-emerald-500/30 rounded-xl p-4 text-center text-emerald-400 text-xs font-bold">
+                        🏅 Interpreter Observer Badge Unlocked! (Stage complete. Click "Next Stage")
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* STAGE 3: Deliver Space Message */}
+              {currentStage.id === 3 && (
+                <div className="max-w-4xl mx-auto text-center space-y-8 animate-in fade-in duration-300">
+                  <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-md mx-auto space-y-4">
+                    <div className="flex justify-center text-4xl">🛰️</div>
+                    <h3 className="text-lg font-bold text-white">Deliver the First Space Message</h3>
+                    <p className="text-xs text-slate-400">Send the command to the satellite orbiting overhead. The print() function will transmit the payload.</p>
+
+                    <div className="bg-slate-950 p-4 rounded-xl border border-slate-900 text-left font-mono text-cyan-300 text-xs">
+                      print("Hello World")
+                    </div>
+
+                    <button
+                      onClick={handleS3Launch}
+                      disabled={s3Launched}
+                      className="w-full py-3 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:brightness-110 disabled:opacity-40 text-xs font-bold rounded-xl text-white flex items-center justify-center gap-2"
+                    >
+                      <Radio className="size-4 animate-ping" />
+                      🚀 Launch Message
+                    </button>
+                  </div>
+
+                  {s3Launched && (
+                    <div className="space-y-4 animate-in zoom-in duration-300">
+                      <div className="max-w-md mx-auto p-4 bg-emerald-950/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-bold text-xs">
+                        🎉 Satellite Activated! Earth Link Restored.
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* STAGE 4: Python vs Java Rocket Race */}
+              {currentStage.id === 4 && (
+                <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-300">
+                  <div className="text-center space-y-1">
+                    <h3 className="text-lg font-bold text-white">Python vs Java Race</h3>
+                    <p className="text-xs text-slate-400">Order the steps correctly to launch each rocket. Java requires compilation, while Python runs directly.</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Java Card */}
+                    <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-indigo-400">Java Rocket</span>
+                        <span className="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded font-mono">Compiled</span>
+                      </div>
+                      
+                      <div className="bg-slate-950 p-3 rounded-lg border border-slate-900 font-mono text-[10px] text-slate-400 h-24 overflow-y-auto">
+                        class Main &#123;<br />
+                        &nbsp;&nbsp;public static void main(String[] args)&#123;<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello");<br />
+                        &nbsp;&nbsp;&#125;<br />
+                        &#125;
+                      </div>
+
+                      <div className="flex gap-2">
+                        {["Write", "Compile", "Run"].map(step => (
+                          <button
+                            key={step}
+                            onClick={() => handleS4Drop("java", step)}
+                            disabled={s4OrderJava.includes(step)}
+                            className="flex-1 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded text-slate-300 font-mono"
+                          >
+                            + {step}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="bg-slate-950 p-2.5 rounded-lg text-xs font-bold flex gap-2 items-center text-indigo-300 font-mono">
+                        <span>Sequence:</span>
+                        {s4OrderJava.map((s, idx) => (
+                          <span key={idx} className="bg-indigo-900/60 px-2 py-0.5 rounded text-[10px] border border-indigo-500/20">{s}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Python Card */}
+                    <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-cyan-400">Python Rocket</span>
+                        <span className="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded font-mono">Interpreted</span>
+                      </div>
+
+                      <div className="bg-slate-950 p-3 rounded-lg border border-slate-900 font-mono text-[10px] text-cyan-400 h-24 flex items-center justify-center">
+                        print("Hello")
+                      </div>
+
+                      <div className="flex gap-2">
+                        {["Write", "Compile", "Run"].map(step => (
+                          <button
+                            key={step}
+                            onClick={() => handleS4Drop("python", step)}
+                            disabled={s4OrderPython.includes(step)}
+                            className="flex-1 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded text-slate-300 font-mono"
+                          >
+                            + {step}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="bg-slate-950 p-2.5 rounded-lg text-xs font-bold flex gap-2 items-center text-cyan-300 font-mono">
+                        <span>Sequence:</span>
+                        {s4OrderPython.map((s, idx) => (
+                          <span key={idx} className="bg-cyan-900/60 px-2 py-0.5 rounded text-[10px] border border-cyan-500/20">{s}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center gap-4">
+                    <button onClick={handleS4Clear} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded-lg text-slate-300">
+                      Reset Order
+                    </button>
+                  </div>
+
+                  {s4Success && (
+                    <div className="max-w-md mx-auto p-4 bg-emerald-950/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-bold text-xs text-center">
+                      🏅 Language Explorer Badge Unlocked! Python rocket has launched with 2 simple steps (Write → Run)!
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* STAGE 5: Build Your Own Message */}
+              {currentStage.id === 5 && (
+                <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in duration-300">
+                  <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <h3 className="font-bold text-white text-base">Mission Control Console</h3>
+                    <p className="text-xs text-slate-400">Replace the name "Alex" inside the quotes with your own name to personalize the message output.</p>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] text-slate-500 uppercase font-mono">Modify Code Here:</label>
+                      <div className="flex items-center bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 font-mono text-xs">
+                        <span className="text-indigo-400">print("My name is </span>
+                        <input
+                          type="text"
+                          value={s5Name}
+                          onChange={e => {
+                            setS5Name(e.target.value);
+                            setS5Success(false);
+                          }}
+                          className="bg-slate-900 border-b border-cyan-400 text-cyan-300 outline-none px-1 text-xs w-28 font-bold text-center"
+                        />
+                        <span className="text-indigo-400">")</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={handleS5Submit}
+                      className="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-xs font-bold rounded-lg text-white"
+                    >
+                      🚀 Transmit Custom Code
+                    </button>
+                  </div>
+
+                  <div className="bg-black border border-slate-800 rounded-2xl p-5 flex flex-col h-[200px] justify-between">
+                    <div>
+                      <span className="text-[10px] text-cyan-300 font-mono tracking-wider uppercase mb-2 block">Live Display Panel</span>
+                      <div className="bg-slate-950 p-4 rounded-xl font-mono text-emerald-400 text-sm min-h-24 flex items-center justify-center">
+                        {s5Success ? `My name is ${s5Name}` : "Awaiting customized launch code..."}
+                      </div>
+                    </div>
+
+                    {s5Success && (
+                      <div className="p-3 bg-emerald-950/20 border border-emerald-500/30 rounded-xl text-center text-emerald-400 text-xs font-bold">
+                        🏅 First Python Program Complete! Proceed to the next module.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* STAGE 6: Separator Factory */}
+              {currentStage.id === 6 && (
+                <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-300">
+                  <div className="text-center space-y-1">
+                    <h3 className="text-lg font-bold text-white">Separator Factory</h3>
+                    <p className="text-xs text-slate-400">Configure the separator parameter (sep) to connect the three cargo boxes: Hello, World, and Python.</p>
+                  </div>
+
+                  <div className="flex justify-center gap-6 items-center">
+                    {["Hello", "World", "Python"].map((box, idx) => (
+                      <React.Fragment key={idx}>
+                        <div className="p-4 bg-indigo-950/50 border border-indigo-500/30 rounded-xl font-mono text-sm text-indigo-300 shadow-md">
+                          {box}
+                        </div>
+                        {idx < 2 && (
+                          <div className="px-3 py-1 bg-yellow-950 border border-yellow-500/30 rounded font-mono text-xs text-yellow-400">
+                            {s6Sep === " " ? "Space" : s6Sep}
+                          </div>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+
+                  <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 max-w-md mx-auto space-y-4">
+                    <h4 className="text-xs font-bold text-slate-400">Select Separator Value:</h4>
+                    <div className="grid grid-cols-4 gap-2">
+                      {[
+                        { val: " ", label: "Space" },
+                        { val: "-", label: "Dash (-)" },
+                        { val: "*", label: "Star (*)" },
+                        { val: "->", label: "Arrow (->)" }
+                      ].map(item => (
+                        <button
+                          key={item.val}
+                          onClick={() => handleS6Select(item.val)}
+                          className={`p-2 border rounded-lg text-xs font-bold font-mono ${
+                            s6Sep === item.val
+                              ? "bg-cyan-950/40 border-cyan-500 text-cyan-300 shadow-lg"
+                              : "bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-900"
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="bg-slate-950 p-3 rounded-lg border border-slate-900 font-mono text-xs text-slate-400">
+                      print("Hello", "World", "Python", sep="{s6Sep}")
+                    </div>
+
+                    <div className="bg-black p-3 rounded-lg border border-indigo-900/20 font-mono text-xs text-emerald-400 text-center">
+                      Output: Hello{s6Sep}World{s6Sep}Python
+                    </div>
+                  </div>
+
+                  {s6Success && (
+                    <div className="max-w-md mx-auto p-4 bg-emerald-950/20 border border-emerald-500/30 rounded-xl text-emerald-400 font-bold text-xs text-center">
+                      🏅 Separator Engineer Badge Unlocked! You successfully customized the item spacer parameter.
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* STAGE 7: Newline Machine */}
+              {currentStage.id === 7 && (
+                <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-300">
+                  <div className="text-center space-y-1">
+                    <h3 className="text-lg font-bold text-white">Newline Machine</h3>
+                    <p className="text-xs text-slate-400">The end parameter controls what happens after printing. Use it to keep or break lines.</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                      <h4 className="text-xs font-bold text-slate-400">Select Line Ending (end):</h4>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { val: "\\n", label: "Newline" },
+                          { val: " ", label: "Space" },
+                          { val: "-", label: "Dash" }
+                        ].map(item => (
+                          <button
+                            key={item.val}
+                            onClick={() => handleS7Select(item.val)}
+                            className={`p-2 border rounded-lg text-xs font-bold font-mono ${
+                              s7End === item.val
+                                ? "bg-cyan-950/40 border-cyan-500 text-cyan-300"
+                                : "bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-900"
+                            }`}
+                          >
+                            {item.label}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="bg-slate-950 p-3 rounded-lg border border-slate-900 font-mono text-xs text-slate-400 space-y-1">
+                        <div>print("Hello", end="{s7End}")</div>
+                        <div>print("World")</div>
+                      </div>
+                    </div>
+
+                    <div className="bg-black border border-slate-800 rounded-2xl p-5 flex flex-col justify-between h-[200px]">
+                      <div>
+                        <span className="text-[10px] text-cyan-300 font-mono tracking-wider uppercase mb-2 block">Live Display Panel</span>
+                        <div className="bg-slate-950 p-4 rounded-xl font-mono text-emerald-400 text-sm min-h-20 flex flex-col justify-center items-center">
+                          {s7End === "\\n" ? (
+                            <>
+                              <div>Hello</div>
+                              <div>World</div>
+                            </>
+                          ) : (
+                            <div>Hello{s7End === " " ? " " : "-"}World</div>
+                          )}
+                        </div>
+                      </div>
+
+                      {s7Success && (
+                        <div className="p-3 bg-emerald-950/20 border border-emerald-500/30 rounded-xl text-center text-emerald-400 text-xs font-bold">
+                          🏅 Output Designer Badge Unlocked! Next stage is ready.
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* STAGE 8: Indentation Temple */}
+              {currentStage.id === 8 && (
+                <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-300">
+                  <div className="text-center space-y-1">
+                    <h3 className="text-lg font-bold text-white">Indentation Temple</h3>
+                    <p className="text-xs text-slate-400">Python uses indentation (4 spaces) instead of curly braces to group code statements.</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-gray-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                      <h4 className="text-xs font-bold text-slate-400">Indent the print statement:</h4>
+
+                      <div className="bg-slate-950 p-4 rounded-xl border border-slate-900 font-mono text-xs space-y-2">
+                        <div className="text-purple-400">if True:</div>
+                        <div className="flex items-center">
+                          <button
+                            onClick={() => setS8Indented(!s8Indented)}
+                            className="mr-2 px-2 py-0.5 bg-slate-800 hover:bg-slate-700 rounded text-[10px] text-cyan-300 border border-cyan-500/20"
+                          >
+                            {s8Indented ? "← Remove Tab" : "→ Tab Indent"}
+                          </button>
+                          <span className={s8Indented ? "pl-8 text-cyan-400" : "text-cyan-400"}>
+                            print("Inside Condition")
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={handleS8Verify}
+                        className="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-xs font-bold rounded-lg text-white"
+                      >
+                        Verify Block Indentation
+                      </button>
+                    </div>
+
+                    <div className="bg-black border border-slate-800 rounded-2xl p-5 flex flex-col justify-between h-[220px]">
+                      <div>
+                        <span className="text-[10px] text-cyan-300 font-mono tracking-wider uppercase mb-2 block">Temple Gate Status</span>
+                        <div className="bg-slate-950 p-4 rounded-xl font-mono text-sm min-h-20 flex items-center justify-center">
+                          {s8Success ? (
+                            <span className="text-emerald-400 font-bold">🚪 Temple Gate Unlocked! (Code verified)</span>
+                          ) : (
+                            <span className="text-red-400 font-bold">🚪 Temple Gate Locked</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {s8Success && (
+                        <div className="p-3 bg-emerald-950/20 border border-emerald-500/30 rounded-xl text-center text-emerald-400 text-xs font-bold">
+                          🏅 Indentation Guardian Badge Unlocked! Lobby menu has Boss Arena unlocked.
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </div>
+        )}
+
+        {/* --- COMPLETION MODULE --- */}
+        {activeScreen === "completion" && (
+          <div className="flex-1 flex flex-col items-center justify-center p-8 text-center max-w-2xl mx-auto space-y-8 animate-in zoom-in duration-300">
+            <div className="size-24 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-500 flex items-center justify-center text-5xl shadow-[0_0_30px_rgba(6,182,212,0.5)] animate-bounce">
+              👑
+            </div>
+
+            <div className="space-y-2">
+              <span className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-xs font-extrabold text-cyan-300 uppercase tracking-widest font-mono">Mission Accomplished</span>
+              <h2 className="text-3xl font-black text-white">Python Launch Commander!</h2>
+              <p className="text-sm text-slate-400">
+                You successfully mastered the Space Telemetry Console, PyBot Interpreter steps, Java rocket comparisons, custom message formatting, separator engineering, and Indentation Temple keys.
+              </p>
+            </div>
+
+            <div className="bg-gray-900 border border-cyan-500/20 p-6 rounded-2xl w-full grid grid-cols-2 gap-4">
+              <div className="text-center p-3 bg-slate-950/50 rounded-xl border border-slate-900">
+                <span className="text-xs text-slate-500 uppercase block mb-1">XP Restored</span>
+                <span className="text-xl font-black text-cyan-400">{xp}</span>
+              </div>
+              <div className="text-center p-3 bg-slate-950/50 rounded-xl border border-slate-900">
+                <span className="text-xs text-slate-500 uppercase block mb-1">Badges Secured</span>
+                <span className="text-xl font-black text-indigo-400">{badges.filter(b => b.unlocked).length} / {badges.length}</span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 justify-center">
+              {badges.filter(b => b.unlocked).map(b => (
+                <div key={b.id} className="bg-yellow-500/10 border border-yellow-500/30 px-3 py-1.5 rounded-full text-xs font-bold text-yellow-300 flex items-center gap-1.5">
+                  <span>{b.icon}</span>
+                  <span>{b.name}</span>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={() => {
+                setActiveScreen("lobby");
+              }}
+              className="px-8 py-3 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:brightness-110 text-white font-bold rounded-xl transition-all scale-105 hover:scale-110"
+            >
+              Back to Command Station
+            </button>
+          </div>
+        )}
+      </main>
+
+      {/* Mini Challenges Drawer overlay if activeScreen is game */}
+      {activeScreen === "game" && (
+        <footer className="bg-gray-900/90 border-t border-cyan-500/20 p-5 shrink-0 z-10 overflow-y-auto max-h-[200px]">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-cyan-300 uppercase tracking-widest font-mono">Mini Quiz 1: print("Python")</h4>
+              <div className="flex gap-2">
+                {["Python", "print(\"Python\")", "Error"].map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => {
+                      setMcAnswer1(opt);
+                      if (opt === "Python") addXpPoints(20, "Mini Quiz 1 Correct!");
+                    }}
+                    className={`px-3 py-1 rounded text-[10px] font-bold ${
+                      mcAnswer1 === opt
+                        ? opt === "Python"
+                          ? "bg-emerald-900 text-emerald-300 border border-emerald-500/40"
+                          : "bg-red-900 text-red-300 border border-red-500/40"
+                        : "bg-slate-800 hover:bg-slate-700 text-slate-300"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-cyan-300 uppercase tracking-widest font-mono">Mini Quiz 2: Mode shell</h4>
+              <div className="flex gap-2">
+                {["Python Shell", "Python File"].map(opt => (
+                  <button
+                    key={opt}
+                    onClick={() => {
+                      setMcAnswer2(opt);
+                      if (opt === "Python Shell") addXpPoints(20, "Mini Quiz 2 Correct!");
+                    }}
+                    className={`px-3 py-1 rounded text-[10px] font-bold ${
+                      mcAnswer2 === opt
+                        ? opt === "Python Shell"
+                          ? "bg-emerald-900 text-emerald-300 border border-emerald-500/40"
+                          : "bg-red-900 text-red-300 border border-red-500/40"
+                        : "bg-slate-800 hover:bg-slate-700 text-slate-300"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-cyan-300 uppercase tracking-widest font-mono font-bold">Mistakes Visualizer</h4>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => triggerToast("print(Hello) -> NameError: name 'Hello' is not defined (missing quotes)", "error")}
+                  className="px-2 py-1 bg-red-950 border border-red-500/30 rounded text-[9px] text-red-300 font-bold"
+                >
+                  print(Hello)
+                </button>
+                <button
+                  onClick={() => triggerToast("print(\"Hello\" -> SyntaxError: unexpected EOF while parsing (missing bracket)", "error")}
+                  className="px-2 py-1 bg-red-950 border border-red-500/30 rounded text-[9px] text-red-300 font-bold"
+                >
+                  print("Hello"
+                </button>
+              </div>
+            </div>
+          </div>
+        </footer>
+      )}
+
+      {/* --- BOSS CRYSTAL REPAIR PANEL (Overlay inside Lobby when Stage 8 is complete) --- */}
+      {activeScreen === "lobby" && stages[7].status === "completed" && (
+        <div className="bg-gray-900/90 border-t border-red-500/30 p-6 z-10 overflow-y-auto max-h-[300px] shrink-0">
+          <div className="max-w-6xl mx-auto space-y-4">
+            <div className="flex items-center gap-3 border-b border-red-500/20 pb-2">
+              <span className="text-3xl animate-bounce">☄️</span>
+              <div>
+                <h3 className="font-extrabold text-base text-red-400 uppercase tracking-wider font-mono">
+                  Boss Reactor Repair Status Board
+                </h3>
+                <p className="text-xs text-slate-400">Activate all 5 crystals by writing code lines inside each command slot.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              {[1, 2, 3, 4, 5].map(id => (
+                <div
+                  key={id}
+                  className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center ${
+                    crystals[id]
+                      ? "bg-emerald-950/20 border-emerald-500/50 text-emerald-400"
+                      : "bg-red-950/20 border-red-500/30 text-red-400 animate-pulse"
+                  }`}
+                >
+                  <span className="text-2xl mb-1">💎</span>
+                  <span className="text-[10px] font-bold">Crystal {id}</span>
+                  <span className="text-[9px] text-slate-400 mt-1 uppercase font-mono">{crystals[id] ? "Online" : "Offline"}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+              {/* Task 1 */}
+              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                <span className="text-[10px] text-cyan-300 font-bold font-mono">Task 1: Print Hello World</span>
+                <input
+                  type="text"
+                  placeholder='print("Hello World")'
+                  value={bossT1}
+                  onChange={e => setBossT1(e.target.value)}
+                  className="w-full bg-slate-900 text-xs text-slate-200 font-mono p-1.5 rounded outline-none border border-slate-800"
+                />
+                <button
+                  onClick={() => checkBossTask(1)}
+                  disabled={crystals[1]}
+                  className="w-full py-1 bg-cyan-700 hover:bg-cyan-600 disabled:opacity-40 text-[10px] font-bold rounded"
+                >
+                  {crystals[1] ? "Crystal Active" : "Restore"}
+                </button>
+              </div>
+
+              {/* Task 2 */}
+              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                <span className="text-[10px] text-cyan-300 font-bold font-mono">Task 2: Print Your Own Name</span>
+                <input
+                  type="text"
+                  placeholder='print("Your Name")'
+                  value={bossT2}
+                  onChange={e => setBossT2(e.target.value)}
+                  className="w-full bg-slate-900 text-xs text-slate-200 font-mono p-1.5 rounded outline-none border border-slate-800"
+                />
+                <button
+                  onClick={() => checkBossTask(2)}
+                  disabled={crystals[2]}
+                  className="w-full py-1 bg-cyan-700 hover:bg-cyan-600 disabled:opacity-40 text-[10px] font-bold rounded"
+                >
+                  {crystals[2] ? "Crystal Active" : "Restore"}
+                </button>
+              </div>
+
+              {/* Task 3 */}
+              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                <span className="text-[10px] text-cyan-300 font-bold font-mono">Task 3: sep parameter separator</span>
+                <input
+                  type="text"
+                  placeholder='print("Hello", "World", sep="-")'
+                  value={bossT3}
+                  onChange={e => setBossT3(e.target.value)}
+                  className="w-full bg-slate-900 text-xs text-slate-200 font-mono p-1.5 rounded outline-none border border-slate-800"
+                />
+                <button
+                  onClick={() => checkBossTask(3)}
+                  disabled={crystals[3]}
+                  className="w-full py-1 bg-cyan-700 hover:bg-cyan-600 disabled:opacity-40 text-[10px] font-bold rounded"
+                >
+                  {crystals[3] ? "Crystal Active" : "Restore"}
+                </button>
+              </div>
+
+              {/* Task 4 */}
+              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                <span className="text-[10px] text-cyan-300 font-bold font-mono">Task 4: end parameter newline</span>
+                <input
+                  type="text"
+                  placeholder='print("Hello", end=" ")'
+                  value={bossT4}
+                  onChange={e => setBossT4(e.target.value)}
+                  className="w-full bg-slate-900 text-xs text-slate-200 font-mono p-1.5 rounded outline-none border border-slate-800"
+                />
+                <button
+                  onClick={() => checkBossTask(4)}
+                  disabled={crystals[4]}
+                  className="w-full py-1 bg-cyan-700 hover:bg-cyan-600 disabled:opacity-40 text-[10px] font-bold rounded"
+                >
+                  {crystals[4] ? "Crystal Active" : "Restore"}
+                </button>
+              </div>
+
+              {/* Task 5 */}
+              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2 flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] text-cyan-300 font-bold font-mono block mb-1">Task 5: Fix Indentation</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setBossT5Indented(!bossT5Indented)}
+                      className={`px-3 py-1 text-[10px] rounded border font-mono ${
+                        bossT5Indented ? "bg-cyan-950 border-cyan-500 text-cyan-300" : "bg-slate-900 border-slate-800 text-slate-400"
+                      }`}
+                    >
+                      {bossT5Indented ? "Indented" : "No Indent"}
+                    </button>
+                    <div className="font-mono text-[9px] text-slate-500 flex flex-col">
+                      <span>if True:</span>
+                      <span className={bossT5Indented ? "pl-4 text-cyan-400" : "text-cyan-400"}>print("Yes")</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => checkBossTask(5)}
+                  disabled={crystals[5]}
+                  className="w-full py-1 bg-cyan-700 hover:bg-cyan-600 disabled:opacity-40 text-[10px] font-bold rounded mt-2"
+                >
+                  {crystals[5] ? "Crystal Active" : "Restore"}
+                </button>
+              </div>
+            </div>
+
+            {isStationRestored && (
+              <div className="pt-4 flex justify-center">
+                <button
+                  onClick={triggerCompletion}
+                  className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-sm rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-bounce"
+                >
+                  🚀 Activate Space Station & Launch!
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-
-      {/* Stage Renderer */}
-      <div className="flex-1 min-h-0 relative">
-        {stage === 0 && renderStage1()}
-        {stage === 1 && renderStage2()}
-        {stage === 2 && renderStage3()}
-        {stage === 3 && renderStage4()}
-        {stage === 4 && renderStage5()}
-        {stage === 5 && renderStage6()}
-        {stage === 6 && renderStage7()}
-        {stage === 7 && renderStage8()}
-        {stage === 8 && renderStage9()}
-      </div>
-
+      )}
     </div>
   );
 }

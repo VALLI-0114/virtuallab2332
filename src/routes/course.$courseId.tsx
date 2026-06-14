@@ -637,7 +637,7 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
                             {course.id === 'python' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-purple-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/python_unit3.svg" alt="Unit 3 Dictionaries, Tuples, and Sets" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/python_unit3.png?v=202606141630" alt="Unit 3 Dictionaries, Tuples, and Sets" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                           </div>

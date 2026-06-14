@@ -65,6 +65,9 @@ import { AVLDeletionSim } from "@/components/simulations/AVLDeletionSim";
 import { RedBlackSim } from "@/components/simulations/RedBlackSim";
 import { BTreeSim } from "@/components/simulations/BTreeSim";
 import { PythonInterpreterCampaign } from "@/components/simulations/PythonInterpreterCampaign";
+import { PythonTalentShowCampaign } from "@/components/simulations/PythonTalentShowCampaign";
+import { BurgerOrderCampaign } from "@/components/simulations/BurgerOrderCampaign";
+import { TrafficSignalCampaign } from "@/components/simulations/TrafficSignalCampaign";
 import { BPlusTreeSim } from "@/components/simulations/BPlusTreeSim";
 import { SegmentTreeSim } from "@/components/simulations/SegmentTreeSim";
 import { FenwickCitySim } from "@/components/simulations/FenwickCitySim";
@@ -1769,6 +1772,30 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                     return (
                       <div className="h-full bg-background">
                         <PythonInterpreterCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("py-e2-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <PythonTalentShowCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("py-e3-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <BurgerOrderCampaign expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("py-e4-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <TrafficSignalCampaign expId={details.experiment.id} />
                       </div>
                     );
                   }
