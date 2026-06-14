@@ -1,6 +1,7 @@
 export const aiToolsShortNotes = `AI TOOLS - SHORT NOTES
 
 INTRODUCTION TO AI TOOLS
+![Introduction to AI Tools](/ai%20tool.png)
 The landscape of Artificial Intelligence has evolved rapidly, moving from specialized research to accessible, everyday tools. AI tools empower individuals across all domains to enhance productivity, creativity, and problem-solving. This course explores practical applications of modern AI platforms.
 
 Why Use AI Tools?
@@ -10,6 +11,7 @@ Why Use AI Tools?
 * Democratized Skills: Accomplish tasks (like web design or complex data analysis) that previously required highly specialized training.
 
 UNIT I — VISUAL AI BASICS (Image Generation Lab)
+![Unit I - Visual AI Basics](/unit%201%20ai%20tool.png)
 Visual AI models transform text descriptions (prompts) into high-quality images. These models are built on architectures like Diffusion and GANs (Generative Adversarial Networks).
 
 * Gemini Imagen: Google's text-to-image model. Known for highly accurate photorealism and deep integration with Google's ecosystem. Excellent at understanding complex, nuanced prompts.
@@ -18,6 +20,7 @@ Visual AI models transform text descriptions (prompts) into high-quality images.
 * Midjourney: Renowned for its unparalleled artistic composition and aesthetic beauty. Accessed via Discord, it excels at creating cinematic, highly stylized, and award-winning digital art.
 
 UNIT II — GENERATIVE TEXT (Writing Lab)
+![Unit II - Generative Text](/unit%202%20ai%20tool.png)
 Generative Text models are Large Language Models (LLMs) that assist in writing, editing, summarizing, and researching by predicting and generating human-like text.
 
 * ChatGPT (OpenAI): The industry standard for versatile text generation. Excellent for brainstorming, writing persuasive essays, drafting emails, and general conversational tasks.
@@ -26,6 +29,7 @@ Generative Text models are Large Language Models (LLMs) that assist in writing, 
 * Perplexity AI: An AI-powered search engine. It synthesizes real-time web search results into comprehensive, fully-cited research query answers, eliminating the need to manually browse links.
 
 UNIT III — AI IN SOFTWARE DEVELOPMENT (Coding Lab)
+![Unit III - AI in Software Development](/unit%203%20ai%20tool.png)
 AI assistants have revolutionized software engineering by acting as pair programmers, helping developers write better code, faster.
 
 * Claude Code: Leveraging Claude's strong reasoning capabilities to assist in building entire mini-projects, writing complex logic, and understanding large codebases.
@@ -34,6 +38,7 @@ AI assistants have revolutionized software engineering by acting as pair program
 * Replit Agent: Built into the Replit cloud IDE. It acts as an autonomous agent that can plan, write, and deploy full prototypes and applications from a single prompt.
 
 UNIT IV — GENERATIVE UI (Web Design Lab)
+![Unit IV - Generative UI](/unit%204%20ai%20tool.png)
 Generative UI tools bridge the gap between design and code, allowing users to create functional user interfaces simply by describing them.
 
 * Lovable: An AI platform that generates complete, deployable web applications and landing pages from text descriptions, focusing on beautiful, modern aesthetics (often using frameworks like React and Tailwind).
@@ -42,6 +47,7 @@ Generative UI tools bridge the gap between design and code, allowing users to cr
 * Figma AI: Integrates AI directly into the leading design tool. Assists designers by automating repetitive layout tasks, generating placeholder content, and exploring design variations instantly.
 
 UNIT V — AI WORKFLOWS (Research & Productivity Lab)
+![Unit V - AI Workflows](/unit%205%20ai%20tool.png)
 AI workflow tools augment knowledge workers by processing, organizing, and visualizing complex information efficiently.
 
 * NotebookLM (Google): A personalized AI research assistant. You upload your own documents (PDFs, notes), and the AI grounds its answers strictly in your sources. It can even generate an audio "podcast" discussing your documents.
