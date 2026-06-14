@@ -1,7 +1,7 @@
 export const aiToolsShortNotes = `AI TOOLS - SHORT NOTES
 
 INTRODUCTION TO AI TOOLS
-![Introduction to AI Tools](/ai%20tools.png)
+![Introduction to AI Tools](/in%20ai%20tools.png)
 The landscape of Artificial Intelligence has evolved rapidly, transitioning from highly specialized academic research into accessible, everyday tools that anybody can use. "AI Tools" refer to software applications, platforms, and interfaces built on top of foundation models (like LLMs and Diffusion models) designed to accomplish specific tasks. These tools empower individuals across all professional domains—from artists and developers to researchers and business leaders—to enhance their productivity, amplify their creativity, and solve complex problems at unprecedented speeds. This course explores the practical applications of the most powerful modern AI platforms.
 
 Why Use AI Tools?
