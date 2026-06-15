@@ -180,7 +180,20 @@ useEffect(() => {
   const nextTab = currentTabIndex < tabs.length - 1 ? tabs[currentTabIndex + 1] : null;
 
   return (
-    <div className="px-6 lg:px-10 py-12 max-w-7xl mx-auto">
+    <>
+      {course.id === 'quantum-computing' && (
+        <div 
+          className="fixed inset-0 z-0 pointer-events-none"
+          style={{ 
+            backgroundImage: 'url(/quantum-bg.png)', 
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center center',
+            backgroundAttachment: 'fixed',
+            opacity: 0.7
+          }} 
+        />
+      )}
+      <div className="px-6 lg:px-10 py-12 max-w-7xl mx-auto relative z-10">
       <div>
         <Link to="/courses" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors relative z-10">
           <ArrowLeft className="size-4" /> Back to Courses
@@ -191,8 +204,7 @@ useEffect(() => {
           
           {/* Hero Card */}
           <div 
-            className={`relative z-10 p-8 rounded-2xl border shadow-sm overflow-hidden flex flex-col justify-center ${course.id === 'quantum-computing' ? 'border-none text-slate-800' : 'border-border/50 bg-secondary/20'}`}
-            style={course.id === 'quantum-computing' ? { backgroundImage: 'url(/quantum-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center right' } : {}}
+            className={`relative z-10 p-8 rounded-3xl border shadow-[0_8px_32px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col justify-center ${course.id === 'quantum-computing' ? 'border-white/40 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl text-slate-900 dark:text-white' : 'border-border/50 bg-secondary/20'}`}
           >
             {/* Premium animated blur blobs & illustrations for quantum */}
             {course.id === 'quantum-computing' && (
@@ -1177,5 +1189,6 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
         userName={certName}
       />
     </div>
+    </>
   );
 }
