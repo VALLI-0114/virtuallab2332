@@ -1454,7 +1454,8 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                 // @ts-ignore - content is dynamically added
                 const content = details?.experiment?.content;
                 
-                if (!content || !(content as any)[step]) {
+                const dataKey = step === "quiz" ? "posttest" : step === "visualization" ? "theory" : step;
+                if (!content || !(content as any)[dataKey]) {
                   return (
                     <div className="h-full flex flex-col items-center justify-center text-center">
                       <h2 className="text-4xl font-display font-bold mb-4">{WORKSPACE_STEPS[activeStepIndex]}</h2>
