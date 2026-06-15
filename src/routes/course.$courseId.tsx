@@ -177,6 +177,7 @@ useEffect(() => {
   const currentTabIndex = tabs.findIndex(t => t.id === activeTab);
   const currentTab = tabs[currentTabIndex] ? activeTab : tabs[0].id;
   const prevTab = currentTabIndex > 0 ? tabs[currentTabIndex - 1] : null;
+  const nextTab = currentTabIndex < tabs.length - 1 ? tabs[currentTabIndex + 1] : null;
   const hasCustomBg = course.id === 'quantum-computing' || course.id === 'dbms';
 
   return (
@@ -253,7 +254,7 @@ useEffect(() => {
             <p className="text-muted-foreground max-w-2xl text-lg mb-8 leading-relaxed">
               {course.id === 'quantum-computing' 
                 ? "Learn the principles of quantum mechanics, qubits, superposition, entanglement and quantum algorithms."
-                : course.objective || "Explore the fundamentals and advanced concepts of this interactive course."}
+                : "Explore the fundamentals and advanced concepts of this interactive course."}
             </p>
             
             <div className="flex flex-wrap gap-4 text-sm font-medium">
