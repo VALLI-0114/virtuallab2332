@@ -23,7 +23,7 @@ The Double-Slit Experiment (the most important experiment in quantum physics)
 Imagine you have a wall with two narrow slits cut into it, and you shoot a beam of electrons at it one at a time. You might expect each electron to go through one slit or the other, like a tiny ball, and create two strips on a screen behind the wall.
 
 But that is not what happens. The electrons actually create an interference pattern — many alternating light and dark bands — just like waves do when ripples from two sources overlap and either reinforce or cancel each other. This means each electron went through BOTH slits at the same time as a wave.
-
+![Double-Slit Experiment showing particle behavior vs wave interference pattern](/quantum_double_slit_experiment.png)
 Now here is the really strange part: the moment you place a detector to watch which slit the electron goes through, the interference pattern disappears, and you get two plain strips, as if the electron chose one slit. Simply observing or measuring the electron changes its behavior.
 
 This experiment tells us two things that are fundamental to quantum computing: (1) quantum objects exist as waves of possibility until observed, and (2) measurement changes the system.
@@ -41,7 +41,7 @@ What is superposition?
 Superposition means a quantum object can be in multiple states simultaneously. A qubit in superposition is both 0 and 1 at the same time — not randomly switching between them, but genuinely existing in both states at once as a blend.
 
 Analogy: Think of a coin spinning in the air. While it spins, it is neither heads nor tails — it is in a superposition of both. The moment it lands and you look at it, it becomes one or the other. A qubit is like that spinning coin: in superposition until you measure it.
-
+![Superposition analogy showing static coin states vs a spinning coin](/quantum_coin_superposition.png)
 This is what gives quantum computers their power. When you process a qubit in superposition, you are processing both |0⟩ and |1⟩ simultaneously. With 2 qubits, you process 4 combinations at once (|00⟩, |01⟩, |10⟩, |11⟩). With 300 qubits, you process more combinations simultaneously than there are atoms in the observable universe.
 
 4. Quantum Measurement
@@ -76,13 +76,14 @@ Uncertainty Principle	Position and momentum cannot both be precisely known; natu
 Module 2: Qubits and Quantum Information
 Now that we understand the physics, we can look at how quantum computers actually store and process information. The key unit is the qubit — the quantum version of a classical bit.
 
-1. Classical Bits vs Qubits
-Classical bits
+1. Classical Bits vs Qubits.
+
+ClassicalBits
 Every piece of information in a regular computer is stored as bits. A bit is a tiny switch that is either OFF (0) or ON (1). Everything — text, images, videos, programs — is encoded as long strings of 0s and 1s. A classical computer with n bits can represent exactly ONE of the 2ⁿ possible combinations at any given moment.
 
 Qubits
 A qubit is the quantum equivalent of a bit. Like a classical bit, when you measure a qubit you get either 0 or 1. But BEFORE you measure it, a qubit can exist in a superposition of both 0 and 1, as described by |ψ⟩ = α|0⟩ + β|1⟩.
-
+![Comparison of a classical bit toggle switch and a quantum qubit fluid pointer](/quantum_bit_vs_qubit.png)
 A quantum computer with n qubits can represent ALL 2ⁿ combinations simultaneously (as a superposition). This is not just twice as fast — it is exponentially more powerful for certain problems. For example, 10 qubits hold 1,024 simultaneous states, 50 qubits hold over 1 quadrillion, and 300 qubits hold more states than atoms in the universe.
 
 Physical implementations of qubits
@@ -92,7 +93,7 @@ A qubit is not a fixed physical object — it is any quantum system with two dis
 •	Photonic qubits: Individual photons of light. Used by PsiQuantum.
 •	Topological qubits: A theoretical approach being explored by Microsoft for error resistance.
 
-2. The Bloch Sphere
+2.The Bloch Sphere
 What is it?
 The Bloch sphere is a geometric way to visualize all possible states of a single qubit. It is a unit sphere (radius = 1) where:
 •	The north pole represents |0⟩
@@ -103,7 +104,7 @@ The Bloch sphere is a geometric way to visualize all possible states of a single
 Any qubit state can be described by two angles: θ (theta, between 0° and 180°), which controls how much |0⟩ vs |1⟩ is mixed in, and φ (phi, between 0° and 360°), which is called the phase and controls subtle differences between superpositions. Written formally: |ψ⟩ = cos(θ/2)|0⟩ + e^(iφ) sin(θ/2)|1⟩.
 
 The Bloch sphere is useful because quantum gates (operations on qubits) correspond to rotations of this sphere, making them easy to visualize.
-
+![Bloch Sphere 3D diagram showing poles as basis states and equator as superpositions](/quantum_bloch_sphere.png)
 3. Qubit Initialization
 Why does initialization matter?
 Before a quantum computation can begin, all qubits must be set to a known starting state — almost always |0⟩. This is like pressing RESET on a calculator before starting a new calculation. Without initialization, leftover quantum information from previous operations (called decoherence or noise) would corrupt results.
@@ -167,7 +168,7 @@ What it does
 The Pauli-Z gate leaves |0⟩ completely unchanged but flips the sign (phase) of |1⟩: it maps |1⟩ to -|1⟩. Its matrix is: Z = [[1, 0], [0, -1]]. Geometrically, it is a 180° rotation around the Z-axis.
 
 The -|1⟩ looks strange — how can a state have a negative sign? In quantum mechanics, the global phase (an overall sign) does not affect measurement probabilities. But the RELATIVE phase between |0⟩ and |1⟩ does matter because it affects how states interfere. Algorithms like Grover's search rely on Z gates to flip phases selectively so that wrong answers cancel out and the right answer amplifies.
-
+![Visualizing Pauli X Y and Z gate operations as rotations on the Bloch Sphere](/quantum_gate_rotations.jpg)
 4. Hadamard Gate
 What it does — and why it is the most important gate
 The Hadamard gate (H gate) creates a perfect superposition. It maps:
@@ -181,7 +182,7 @@ Its matrix is: H = (1/√2) × [[1, 1], [1, -1]]. A key property: applying H twi
 5. Quantum Circuit Design
 What is a quantum circuit?
 A quantum circuit is a diagram showing the sequence of gate operations applied to a set of qubits. It is the quantum analogue of a classical logic circuit diagram. Each qubit is drawn as a horizontal wire (line), time flows left to right, and gates are drawn as boxes on the wires.
-
+![Standard quantum circuit diagram schema showing wires gates and measurement meters](/quantum_circuit_baseline.png)
 Rules of quantum circuits
 •	No feedback loops: information flows strictly left to right (circuits are acyclic)
 •	All gates are reversible except measurement
@@ -215,8 +216,11 @@ Entanglement is often described as the most mysterious feature of quantum mechan
 What is entanglement?
 Two qubits are entangled when their quantum states are linked such that the state of one cannot be described independently of the other, no matter how far apart they are. Measuring one qubit instantly tells you something definite about the other.
 
-Analogy: Imagine you and a friend each take one glove from a pair, put them in separate boxes, and travel to opposite sides of the Earth. When you open your box and see a left glove, you instantly know your friend has the right glove. Classical correlation — nothing spooky. Entanglement is like this BUT more extreme: before either of you looks, neither glove has a definite handedness. Both gloves are in a superposition of left and right. The moment ONE of you looks, BOTH gloves simultaneously become definite — one left, one right — even if they are light-years apart.
-
+Analogy: Imagine for a moment two particles of light, which scientists call photons. Photons can carry different amounts of energy, corresponding to the different colors of light that our eyes perceive. You can think of the photons as pinpoints of light.
+Next, we’ll imagine that the colors of the two photons are entangled. In this particular case, that entanglement boils down to a simple rule: Each photon has a chance of being either blue or red, but, once measured, they are always different colors. If we find that the first photon is blue, we would immediately know that the second photon is red. And vice versa.
+![Quantum Entanglement visual representation showing two correlated linked particles](/quantum_entanglement_link.png)
+Another Analogy : Imagine you and a friend each take one glove from a pair, put them in separate boxes, and travel to opposite sides of the Earth. When you open your box and see a left glove, you instantly know your friend has the right glove. 
+Classical correlation — nothing spooky. Entanglement is like this BUT more extreme: before either of you looks, neither glove has a definite handedness. Both gloves are in a superposition of left and right. The moment ONE of you looks, BOTH gloves simultaneously become definite — one left, one right — even if they are light-years apart.
 Important: This does not allow faster-than-light communication. You cannot control which outcome you get (it is random), so you cannot use it to send a message. Its usefulness comes from the correlations, not from controlling outcomes.
 
 2. Bell States
@@ -237,7 +241,12 @@ Quantum teleportation is a protocol to transfer a qubit state from one person (A
 It does NOT teleport matter or energy. It teleports the quantum state — the exact pattern of superposition and phase — of a qubit. The original qubit at Alice's end is destroyed in the process (this is required by the no-cloning theorem, which says quantum states cannot be copied).
 
 The protocol (simplified)
-Step 1: Alice and Bob each hold one qubit of a shared entangled pair. Step 2: Alice has a third qubit whose state she wants to send to Bob. Step 3: Alice performs measurements on her two qubits and gets 2 classical bits. Step 4: She sends those 2 classical bits to Bob over a regular channel. Step 5: Bob applies one of four operations to his qubit based on the 2 bits he received. Step 6: Bob's qubit is now in exactly the state that Alice's original qubit was in. The state was teleported.
+Step 1: Alice and Bob each hold one qubit of a shared entangled pair. 
+Step 2: Alice has a third qubit whose state she wants to send to Bob. 
+Step 3: Alice performs measurements on her two qubits and gets 2 classical bits. 
+Step 4: She sends those 2 classical bits to Bob over a regular channel. 
+Step 5: Bob applies one of four operations to his qubit based on the 2 bits he received. 
+Step 6: Bob's qubit is now in exactly the state that Alice's original qubit was in. The state was teleported.
 
 4. Quantum Communication
 How is it different from classical communication?
@@ -253,7 +262,7 @@ Quantum Key Distribution (QKD) is the most mature application of quantum communi
 
 How BB84 works (simplified)
 Alice sends qubits to Bob, each prepared in one of four possible states. She randomly chooses between two different bases (ways to encode 0 and 1) for each qubit. Bob measures each qubit using a randomly chosen basis. After the transmission, they compare over a public channel which bases they used (not the actual results). They keep only the bits where they used the same basis — this becomes the secret key. If an eavesdropper (Eve) intercepted qubits, she disturbed them, introducing errors that Alice and Bob can detect.
-
+![BB84 Quantum Key Distribution protocol step by step transmission chart](/quantum_bb84_protocol.png)
 QKD is already deployed commercially by companies like Toshiba, ID Quantique, and government networks in China and Europe.
 
 Quick Reference Table — Module 4
@@ -281,7 +290,7 @@ In the worst case, a classical algorithm must query more than half the inputs to
 
 Quantum approach
 The Deutsch-Jozsa algorithm determines the answer in exactly ONE query, regardless of n. It works by using the Hadamard gate to query all inputs simultaneously in superposition, then interference causes constant and balanced functions to produce distinguishable patterns on the output qubits. It was the first proof that quantum computers can be exponentially faster than classical for a specific problem.
-
+![Deutsch-Jozsa algorithm showing classical multi-query guessing vs quantum single-shot wave interference pattern](/quantum_deutsch_jozsa_speedup.png)
 2. Grover's Search Algorithm
 The problem it solves
 You have an unordered list of N items, one of which is marked (the solution). You want to find it. Classically, you must check items one by one — on average N/2 checks, worst case N checks. This is called a linear search: O(N).
@@ -291,7 +300,7 @@ Grover's algorithm (1996) finds the marked item in only O(√N) queries — a qu
 
 How it works
 The algorithm works through amplitude amplification. It repeatedly applies two steps: (1) Oracle step — the oracle (a function that recognizes the correct answer) flips the sign/phase of the marked item's amplitude, making it negative. (2) Diffusion step — a mathematical operation that inverts all amplitudes around their average. Together, these two steps increase the amplitude of the correct answer and decrease all wrong answers. After √N repetitions, the correct answer has a very high amplitude, and measuring the qubits gives the correct item with high probability.
-
+![Grover search amplitude amplification steps showing initial state oracle phase flip and diffusion inversion](/quantum_grover_amplitude_amplification.png)
 3. Shor's Algorithm
 Why it matters so much
 Shor's algorithm (1994) can factor large numbers (break them into their prime factors) in polynomial time — meaning the time it takes grows as a power of the number of digits, not exponentially. Current internet encryption (RSA) relies on the fact that factoring large numbers is practically impossible for classical computers. A sufficiently powerful quantum computer running Shor's algorithm could break RSA encryption.
@@ -301,7 +310,7 @@ The best classical algorithm for factoring an n-digit number takes time roughly 
 
 Quantum speedup
 Shor's algorithm factors the same number in time proportional to n³ (polynomial). It uses a subroutine called Quantum Fourier Transform (QFT) — the quantum analogue of the classical Fast Fourier Transform, but exponentially faster — to find the period of a modular arithmetic function. Once the period is found, standard number theory gives the factors.
-
+![Shor algorithm period finding visualization using modular arithmetic waves to expose factors](/quantum_shors_period_finding.png)
 Current status
 Shor's algorithm requires fault-tolerant quantum computers with thousands of error-corrected logical qubits. Current machines have at most a few hundred noisy physical qubits. Shor's on large RSA keys is still years away, but the threat is taken seriously — governments and companies are already transitioning to post-quantum cryptography standards.
 
@@ -314,6 +323,7 @@ Key approaches
 •	Quantum Support Vector Machine (QSVM): Uses a quantum kernel (inner product in a high-dimensional quantum feature space) to classify data. Potentially exponential speedup on certain data types.
 •	HHL Algorithm: Solves systems of linear equations (Ax=b) exponentially faster in some settings — relevant to many ML subroutines.
 •	Quantum Principal Component Analysis (qPCA): Finds principal components of a dataset faster than classical PCA on quantum-accessible data.
+![Quantum Support Vector Machine mapping messy classical data into high dimensional quantum feature space for separation](/quantum_machine_learning_feature_space.png)
 
 NISQ era
 We are currently in the NISQ (Noisy Intermediate-Scale Quantum) era: quantum devices with 50–1000 qubits that are too noisy for perfect computation but large enough to potentially show quantum advantage on some tasks. Most QML research today is NISQ-focused.
