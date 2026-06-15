@@ -69,6 +69,7 @@ import { PythonDataTypesPlayground } from "@/components/simulations/PythonDataTy
 import { PythonInputOutputPlayground } from "@/components/simulations/PythonInputOutputPlayground";
 import { PythonConditionalsPlayground } from "@/components/simulations/PythonConditionalsPlayground";
 import { PythonLoopsPlayground } from "@/components/simulations/PythonLoopsPlayground";
+import { PythonFunctionsPlayground } from "@/components/simulations/PythonFunctionsPlayground";
 import { BurgerOrderCampaign } from "@/components/simulations/BurgerOrderCampaign";
 import { TrafficSignalCampaign } from "@/components/simulations/TrafficSignalCampaign";
 import { BPlusTreeSim } from "@/components/simulations/BPlusTreeSim";
@@ -1836,6 +1837,14 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                     return (
                       <div className="h-full bg-background">
                         <PythonLoopsPlayground expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("py-e6-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <PythonFunctionsPlayground expId={details.experiment.id} />
                       </div>
                     );
                   }
