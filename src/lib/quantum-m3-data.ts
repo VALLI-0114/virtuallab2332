@@ -50,7 +50,7 @@ except ImportError:
             title: "The Pauli-X Gate",
             body: [
               "The Pauli-X gate is one of the fundamental single-qubit quantum logic gates. It is the quantum equivalent of the classical NOT gate.",
-              "![Gate transformation animation](/videos/quantum_pauli_x.mp4)",
+              "![Gate transformation animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612931/Animation_showing_only_a_quant_plqpx5.mp4)",
               "Mathematically, it performs a 180-degree (π radian) rotation of the qubit's state vector around the X-axis of the Bloch sphere.",
               "If the qubit is in state |0⟩ (pointing up at the North Pole), applying the X-gate rotates it to the South Pole, putting it in state |1⟩. Conversely, if applied to |1⟩, it flips the state back to |0⟩."
             ]
@@ -109,7 +109,7 @@ except ImportError:
             title: "The Pauli-Y Gate",
             body: [
               "The Pauli-Y gate rotates the qubit's state vector by 180 degrees (π radians) around the Y-axis of the Bloch sphere.",
-              "![Phase change visualization](/videos/quantum_pauli_y.mp4)",
+              "![Phase change visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612932/Animation_showing_only_a_Bloch_1_vjuoie.mp4)",
               "Because it rotates through the complex Y-axis, it introduces an imaginary phase factor (i).",
               "When applied to |0⟩, it results in i|1⟩. When applied to |1⟩, it results in -i|0⟩.",
               "While the measurement probabilities (the absolute squares of the amplitudes) are identical to the X-gate when starting from |0⟩ or |1⟩, the complex phase is critical for interference effects in multi-gate algorithms."
@@ -176,7 +176,7 @@ except ImportError:
             title: "The Pauli-Z Gate",
             body: [
               "The Pauli-Z gate rotates the state vector by 180 degrees (π radians) around the Z-axis of the Bloch sphere.",
-              "![State inversion animation](/videos/quantum_pauli_z.mp4)",
+              "![State inversion animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612932/Quantum_circuit_showing_superpos__202606161758_maymef.mp4)",
               "Because the |0⟩ and |1⟩ states lie exactly ON the Z-axis, rotating around the Z-axis does not change the probability of measuring 0 or 1. This is why it's called a phase-flip gate rather than a bit-flip gate.",
               "Specifically, it leaves the |0⟩ state entirely unchanged. However, it multiplies the |1⟩ state by -1, changing it to -|1⟩.",
               "Its most noticeable effect is on superposition states that lie on the equator. If applied to the |+⟩ state (α=1/√2, β=1/√2), it flips the sign of β, resulting in the |-⟩ state (α=1/√2, β=-1/√2)."
@@ -240,7 +240,7 @@ except ImportError:
             title: "The Hadamard Gate",
             body: [
               "The Hadamard (H) gate is arguably the most important gate in quantum algorithms. It is responsible for creating superposition.",
-              "![Superposition creation animation](/videos/quantum_hadamard.mp4)",
+              "![Superposition creation animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612933/2-qubit_circuit_Bell_state_created_202606161756_bdx5av.mp4)",
               "When applied to the |0⟩ state, it creates the |+⟩ state: an equal superposition where the probability of measuring 0 or 1 is exactly 50%. Mathematically: H|0⟩ = 1/√2|0⟩ + 1/√2|1⟩.",
               "When applied to the |1⟩ state, it creates the |-⟩ state: H|1⟩ = 1/√2|0⟩ - 1/√2|1⟩. Note the negative phase on the |1⟩ component.",
               "The H-gate is its own inverse. Applying an H-gate to a state that is already in superposition (like |+⟩) will collapse it deterministically back into its original basis state (|0⟩)."
@@ -308,7 +308,7 @@ except ImportError:
             title: "Quantum Circuit Architecture",
             body: [
               "Quantum circuits are the standard visual language for describing quantum algorithms.",
-              "![Circuit execution visualization](/videos/quantum_circuit_design.mp4)",
+              "![Circuit execution visualization](https://res.cloudinary.com/den4nmmwx/image/upload/q_auto/f_auto/v1781612934/Gemini_Generated_Image_cdhhycdhhycdhhyc_leohfj.png)",
               "Each horizontal line represents a qubit evolving over time, flowing from left to right. The top wire is usually labeled q_0, the next q_1, and so on.",
               "A double line at the bottom represents the classical register, where measurement results are stored as standard bits.",
               "Gates are placed on the wires. Single-qubit gates (like H, X, Y, Z) appear as boxes on a single wire. Multi-qubit gates (like CNOT) span across multiple wires, indicating interaction or entanglement.",
