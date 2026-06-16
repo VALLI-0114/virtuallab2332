@@ -4,7 +4,7 @@ import { Play, Save, RotateCcw, CheckCircle2, Terminal, ArrowLeft, Lightbulb, Be
 import { courses } from "@/lib/course-data";
 import Editor from "@monaco-editor/react";
 import { toast } from "sonner";
-import { supabase, awardBadge, markExperimentComplete, migrateGuestProgress} from "@/lib/supabase";
+import { supabase, awardBadge, markExperimentComplete, migrateGuestProgress, getQuestionsForExperiment} from "@/lib/supabase";
 import { MemoryManagerSim } from "@/components/simulations/MemoryManagerSim";
 import { MirrorPortalSim } from "@/components/simulations/MirrorPortalSim";
 import { LinearSearchSim } from "@/components/simulations/LinearSearchSim";
@@ -911,27 +911,25 @@ except BaseException:
   const [sampledPretest, setSampledPretest] = useState<any[]>([]);
   const [sampledPosttest, setSampledPosttest] = useState<any[]>([]);
 
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(false);
+
   useEffect(() => {
-    if (details?.experiment?.content) {
-      const content = details.experiment.content as any;
-      const shuffleAndSample = (arr: any[]) => {
-        if (!arr || arr.length === 0) return [];
-        if (arr.length <= 5) return [...arr];
-        const shuffled = [...arr];
-        for (let i = shuffled.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        }
-        return shuffled.slice(0, 5);
-      };
-      setSampledPretest(shuffleAndSample(content.pretest || []));
-      setSampledPosttest(shuffleAndSample(content.posttest || []));
-      setPretestAnswers({});
-      setPosttestAnswers({});
-      setPretestReviewed(false);
-      setPosttestReviewed(false);
+    async function loadQuestions() {
+      if (details?.experiment?.id && details?.course?.id) {
+        setIsLoadingQuestions(true);
+        const pretest = await getQuestionsForExperiment(details.course.id, details.experiment.id, 'pretest');
+        const posttest = await getQuestionsForExperiment(details.course.id, details.experiment.id, 'posttest');
+        setSampledPretest(pretest);
+        setSampledPosttest(posttest);
+        setPretestAnswers({});
+        setPosttestAnswers({});
+        setPretestReviewed(false);
+        setPosttestReviewed(false);
+        setIsLoadingQuestions(false);
+      }
     }
-  }, [details?.experiment?.id]);
+    loadQuestions();
+  }, [details?.experiment?.id, details?.course?.id]);
 
 
   const currentStepName = WORKSPACE_STEPS[activeStepIndex].toLowerCase();
@@ -2462,7 +2460,18 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                   return (
                     <div className="space-y-10">
                       <h2 className="text-3xl font-bold font-display mb-6">{WORKSPACE_STEPS[activeStepIndex]}</h2>
-                      {testArray.map((mcq: any, i: number) => (
+                      {isLoadingQuestions ? (
+                        <div className="flex flex-col items-center justify-center p-12 text-muted-foreground animate-pulse border border-border rounded-xl bg-card">
+                          <Cpu className="size-8 mb-4 opacity-50 animate-spin" />
+                          <p>Loading questions from database...</p>
+                        </div>
+                      ) : testArray.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center p-12 text-muted-foreground border border-border rounded-xl bg-card">
+                          <p>No questions found for this section.</p>
+                        </div>
+                      ) : (
+                        <>
+                          {testArray.map((mcq: any, i: number) => (
                         <div key={i} className="p-6 rounded-xl border border-border bg-card space-y-4">
                           <div className="font-medium text-foreground flex items-start justify-between gap-3">
   <div>
@@ -2516,6 +2525,8 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                           </div>
                         </div>
                       ))}
+                      </>
+                      )}
                     </div>
                   );
                 }

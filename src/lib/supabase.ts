@@ -245,3 +245,38 @@ export async function getAllBadges(): Promise<Badge[]> {
   if (error) { console.error('getAllBadges error:', error); return []; }
   return data as Badge[];
 }
+// -- Question helpers -------------------------------------------------------
+
+export type Question = {
+  id: string;
+  course_id: string;
+  experiment_id: string;
+  type: 'pretest' | 'posttest';
+  question: string;
+  options: string[];
+  answer_index: number;
+};
+
+/** Fetch 5 random questions for a given course and experiment */
+export async function getQuestionsForExperiment(
+  courseId: string,
+  experimentId: string,
+  type: 'pretest' | 'posttest'
+): Promise<Question[]> {
+  const { data, error } = await supabase
+    .from('questions')
+    .select('*')
+    .eq('course_id', courseId)
+    .eq('experiment_id', experimentId)
+    .eq('type', type);
+
+  if (error) {
+    console.error('Error fetching questions:', error.message);
+    return [];
+  }
+
+  // Shuffle and sample 5
+  if (!data || data.length === 0) return [];
+  const shuffled = [...data].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 5);
+}
