@@ -51,7 +51,7 @@ except ImportError:
             title: "Quantum Entanglement",
             body: [
               "Entanglement is a purely quantum phenomenon where two or more particles become intrinsically linked, such that the state of one cannot be described independently of the state of the other.",
-              "![Entanglement animation](/videos/quantum_entanglement.mp4)",
+              "![Entanglement animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614030/Entangled_pair_measurement_corre__202606161811_psr9zf.mp4)",
               "Einstein famously referred to it as 'spooky action at a distance' because measuring one entangled particle instantaneously determines the state of its partner, even if they are light-years apart.",
               "The most common way to entangle two qubits is to place the first qubit in a superposition using a Hadamard (H) gate, and then use a Controlled-NOT (CNOT) gate to link the second qubit to the first.",
               "In a perfectly entangled |Φ+⟩ state, if you measure the first qubit and get a 0, the second qubit is guaranteed to be 0. If you get a 1, the second is guaranteed to be 1."
@@ -119,7 +119,7 @@ except ImportError:
             title: "The Four Bell States",
             body: [
               "There are four specific, maximally entangled quantum states of two qubits, collectively known as the Bell States (or EPR pairs).",
-              "![Bell State visualization](/videos/quantum_bell_states.mp4)",
+              "![Bell State visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614030/Bell_state_diagram_quantum_circuit_202606161814_r8iuu6.mp4)",
               "They form a complete orthonormal basis for the 4-dimensional state space of two qubits.",
               "The states are:\n1. |Φ+⟩ = 1/√2(|00⟩ + |11⟩) -> Perfect positive correlation.\n2. |Φ-⟩ = 1/√2(|00⟩ - |11⟩) -> Perfect positive correlation with a phase shift.\n3. |Ψ+⟩ = 1/√2(|01⟩ + |10⟩) -> Perfect anti-correlation.\n4. |Ψ-⟩ = 1/√2(|01⟩ - |10⟩) -> Perfect anti-correlation with a phase shift.",
               "These specific states are used in quantum teleportation, superdense coding, and quantum cryptography."
@@ -198,7 +198,7 @@ except ImportError:
             title: "Quantum Teleportation",
             body: [
               "Quantum teleportation allows the exact transfer of quantum information (a state vector) from one location to another. It does not transport physical matter.",
-              "![Teleportation animation](/videos/quantum_teleportation.mp4)",
+              "![Teleportation animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614030/Quantum_state_transfer_animation_202606161816_vn6tse.mp4)",
               "It requires three qubits: the qubit to be teleported (Alice's payload), and a pre-shared entangled pair (one with Alice, one with Bob).",
               "Alice performs a joint measurement on her payload qubit and her half of the entangled pair, which collapses their states and destroys the original payload (satisfying the No-Cloning Theorem).",
               "She then calls Bob on a classical telephone to tell him her two measurement results (00, 01, 10, or 11).",
