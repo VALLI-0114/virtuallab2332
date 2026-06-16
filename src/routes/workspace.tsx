@@ -908,14 +908,39 @@ except BaseException:
   const [pretestReviewed, setPretestReviewed] = useState(false);
   const [posttestReviewed, setPosttestReviewed] = useState(false);
 
+  const [sampledPretest, setSampledPretest] = useState<any[]>([]);
+  const [sampledPosttest, setSampledPosttest] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (details?.experiment?.content) {
+      const content = details.experiment.content as any;
+      const shuffleAndSample = (arr: any[]) => {
+        if (!arr || arr.length === 0) return [];
+        if (arr.length <= 5) return [...arr];
+        const shuffled = [...arr];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, 5);
+      };
+      setSampledPretest(shuffleAndSample(content.pretest || []));
+      setSampledPosttest(shuffleAndSample(content.posttest || []));
+      setPretestAnswers({});
+      setPosttestAnswers({});
+      setPretestReviewed(false);
+      setPosttestReviewed(false);
+    }
+  }, [details?.experiment?.id]);
+
+
   const currentStepName = WORKSPACE_STEPS[activeStepIndex].toLowerCase();
   const currentContent = details?.experiment?.content as any;
   let isNextEnabled = true;
 
   const calculateScore = (stepName: "pretest" | "posttest" | "quiz") => {
-    const dataKey = stepName === "quiz" ? "posttest" : stepName;
-    const test = currentContent?.[dataKey];
-    if (!test) return 0;
+    const test = stepName === "pretest" ? sampledPretest : sampledPosttest;
+    if (!test || test.length === 0) return 0;
     const answers = stepName === "pretest" ? pretestAnswers : posttestAnswers;
     let score = 0;
     test.forEach((q: any, i: number) => {
@@ -925,12 +950,12 @@ except BaseException:
   };
 
   if (currentContent) {
-    if (currentStepName === "pretest" && currentContent.pretest) {
-      if (Object.keys(pretestAnswers).length < currentContent.pretest.length) {
+    if (currentStepName === "pretest" && sampledPretest.length > 0) {
+      if (Object.keys(pretestAnswers).length < sampledPretest.length) {
         isNextEnabled = false;
       }
-    } else if ((currentStepName === "posttest" || currentStepName === "quiz") && currentContent.posttest) {
-      if (Object.keys(posttestAnswers).length < currentContent.posttest.length) {
+    } else if ((currentStepName === "posttest" || currentStepName === "quiz") && sampledPosttest.length > 0) {
+      if (Object.keys(posttestAnswers).length < sampledPosttest.length) {
         isNextEnabled = false;
       }
     }
@@ -2433,11 +2458,11 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                   const state = step === "pretest" ? pretestAnswers : posttestAnswers;
                   const setState = step === "pretest" ? setPretestAnswers : setPosttestAnswers;
                   const isReviewed = step === "pretest" ? pretestReviewed : posttestReviewed;
-                  const dataKey = step === "quiz" ? "posttest" : step;
+                  const testArray = step === "pretest" ? sampledPretest : sampledPosttest;
                   return (
                     <div className="space-y-10">
                       <h2 className="text-3xl font-bold font-display mb-6">{WORKSPACE_STEPS[activeStepIndex]}</h2>
-                      {((content as any)[dataKey] as any[] ?? []).map((mcq: any, i: number) => (
+                      {testArray.map((mcq: any, i: number) => (
                         <div key={i} className="p-6 rounded-xl border border-border bg-card space-y-4">
                           <div className="font-medium text-foreground flex items-start justify-between gap-3">
   <div>
@@ -2476,7 +2501,7 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                                       if (isReviewed) return;
                                       const newState = { ...state, [i]: j };
                                       setState(newState);
-                                      if (Object.keys(newState).length === ((content as any)[dataKey] as any[])?.length) {
+                                      if (Object.keys(newState).length === testArray?.length) {
                                         if (step === "pretest") setPretestReviewed(true);
                                         else setPosttestReviewed(true);
                                       }
@@ -2509,10 +2534,10 @@ const handlePostSolveAuthenticated = async (userId: string) => {
               </button>
               
               <div className="flex items-center gap-4">
-                {(currentStepName === "pretest" || currentStepName === "posttest" || currentStepName === "quiz") && isNextEnabled && currentContent[currentStepName === "quiz" ? "posttest" : currentStepName] && (
+                {(currentStepName === "pretest" || currentStepName === "posttest" || currentStepName === "quiz") && isNextEnabled && (currentStepName === "pretest" ? sampledPretest.length > 0 : sampledPosttest.length > 0) && (
                   <div className="flex items-center gap-2 text-sm font-medium px-4 py-2 bg-secondary/50 rounded-md border border-border">
                     <span className="text-muted-foreground">Score:</span>
-                    <span className="text-mint text-base">{calculateScore(currentStepName as any)} / {currentContent[currentStepName === "quiz" ? "posttest" : currentStepName]?.length || 0}</span>
+                    <span className="text-mint text-base">{calculateScore(currentStepName as any)} / {(currentStepName === "pretest" ? sampledPretest : sampledPosttest).length || 0}</span>
                   </div>
                 )}
                 
