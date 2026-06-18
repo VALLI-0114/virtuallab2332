@@ -943,7 +943,7 @@ except BaseException:
     const answers = stepName === "pretest" ? pretestAnswers : posttestAnswers;
     let score = 0;
     test.forEach((q: any, i: number) => {
-      if (answers[i] === q.answerIndex) score++;
+      if (answers[i] === q.answer_index) score++;
     });
     return score;
   };
@@ -1010,10 +1010,13 @@ if (alreadyShown) {
       const elapsedMs = Date.now() - experimentStartTime.current;
       if (elapsedMs < 2 * 60 * 1000) badgePromises.push(awardBadge(user.id, 'speed_coder'));
   
-      const posttest = (details?.experiment?.content as any)?.posttest;
-      if (posttest?.length > 0) {
-        const correct = posttest.filter((q: any, i: number) => posttestAnswers[i] === q.answerIndex).length;
-        if (correct === posttest.length) badgePromises.push(awardBadge(user.id, 'perfect_score'));
+      if (sampledPosttest.length > 0) {
+        const correct = sampledPosttest.filter(
+          (q: any, i: number) => posttestAnswers[i] === q.answer_index
+        ).length;
+        if (correct === sampledPosttest.length) {
+          badgePromises.push(awardBadge(user.id, 'perfect_score'));
+        }
       }
   
       if (details?.course) {
@@ -2514,7 +2517,7 @@ const handlePostSolveAuthenticated = async (userId: string) => {
 </div>
                           <div className="space-y-2 pl-6">
                             {mcq.options.map((opt: string, j: number) => {
-                              const isCorrect = j === mcq.answerIndex;
+                              const isCorrect = j === mcq.answer_index;
                               const isSelected = state[i] === j;
                               
                               let labelClass = `flex items-center gap-3 p-3 rounded-lg border hover:bg-secondary/50 cursor-pointer transition-colors ${isSelected ? 'border-cyan bg-cyan/10' : 'border-border/50'}`;
