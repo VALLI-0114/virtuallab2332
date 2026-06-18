@@ -78,6 +78,7 @@ import { PythonModulesPlayground } from "@/components/simulations/PythonModulesP
 import { PythonOOPPlayground } from "@/components/simulations/PythonOOPPlayground";
 import { PythonInheritancePlayground } from "@/components/simulations/PythonInheritancePlayground";
 import { PythonDataAnalysisPlayground } from "@/components/simulations/PythonDataAnalysisPlayground";
+import { PythonGradeManagementPlayground } from "@/components/simulations/PythonGradeManagementPlayground";
 import { BurgerOrderCampaign } from "@/components/simulations/BurgerOrderCampaign";
 import { TrafficSignalCampaign } from "@/components/simulations/TrafficSignalCampaign";
 import { BPlusTreeSim } from "@/components/simulations/BPlusTreeSim";
@@ -1940,6 +1941,14 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                     return (
                       <div className="h-full bg-background">
                         <PythonDataAnalysisPlayground expId={details.experiment.id} />
+                      </div>
+                    );
+                  }
+
+                  if (details?.experiment.id?.startsWith("py-e15-")) {
+                    return (
+                      <div className="h-full bg-background">
+                        <PythonGradeManagementPlayground expId={details.experiment.id} />
                       </div>
                     );
                   }
