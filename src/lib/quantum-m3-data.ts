@@ -308,7 +308,7 @@ except ImportError:
             title: "Quantum Circuit Architecture",
             body: [
               "Quantum circuits are the standard visual language for describing quantum algorithms.",
-              "![Circuit execution visualization](https://res.cloudinary.com/den4nmmwx/image/upload/q_auto/f_auto/v1781612934/Gemini_Generated_Image_cdhhycdhhycdhhyc_leohfj.png)",
+              "![Circuit execution visualization](https://res.cloudinary.com/den4nmmwx/image/upload/q_auto/f_auto/v1781612934/Gemini_Generated_Image_cdhhycdhhycdhhyc_leohfj.webp)",
               "Each horizontal line represents a qubit evolving over time, flowing from left to right. The top wire is usually labeled q_0, the next q_1, and so on.",
               "A double line at the bottom represents the classical register, where measurement results are stored as standard bits.",
               "Gates are placed on the wires. Single-qubit gates (like H, X, Y, Z) appear as boxes on a single wire. Multi-qubit gates (like CNOT) span across multiple wires, indicating interaction or entanglement.",

@@ -58,25 +58,25 @@ function AboutPage() {
             name="Ch. Sai Rupini" 
             role="Developer" 
             linkedin="https://www.linkedin.com/in/sairupini-chitikesi" 
-            image="/Rupa.jpg"
+            image="/Rupa.webp"
           />
           <TeamMember 
             name="Sk. Asma" 
             role="Developer" 
             linkedin="https://www.linkedin.com/in/shaik-asma-216564330" 
-            image="/Asma.jpeg"
+            image="/Asma.webp"
           />
           <TeamMember 
             name="K. Pravallika" 
             role="Developer" 
             linkedin="https://www.linkedin.com/in/kundum-pravallika-4a1249296" 
-            image="/Pravallika.jpeg"
+            image="/Pravallika.webp"
           />
           <TeamMember 
             name="M. Likhith Kumar" 
             role="Developer" 
             linkedin="https://www.linkedin.com/in/likhithmankala/" 
-            image="/Likhith.jpeg"
+            image="/Likhith.webp"
           />
         </div>
       </div>

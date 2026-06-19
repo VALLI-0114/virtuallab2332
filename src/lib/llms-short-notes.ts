@@ -3,7 +3,7 @@ export const llmsShortNotes = `LARGE LANGUAGE MODELS - SHORT NOTES
 INTRODUCTION TO LARGE LANGUAGE MODELS
 Large Language Models (LLMs) are advanced Artificial Intelligence systems designed to understand, generate, and interact with human language. They represent a massive leap in natural language processing (NLP) capabilities. Trained on terabytes of internet text data using deep neural networks, LLMs possess billions or even trillions of parameters. These models do not merely copy text; they learn the statistical representations and underlying structures of human language, enabling them to reason, summarize, translate, write code, and act as autonomous agents. Examples include OpenAI's GPT-4, Google's Gemini, Anthropic's Claude, and Meta's open-source LLaMA.
 
-![Introduction to Large Language Models](/unit%201%20llm.png)
+![Introduction to Large Language Models](/unit%201%20llm.webp)
 
 Why Learn LLMs?
 * Paradigm Shift: They are fundamentally changing how software is built—moving from deterministic programming to probabilistic generation.
@@ -34,7 +34,7 @@ This is the core mathematical innovation of the Transformer. Self-attention allo
 * Q, K, V Vectors: It calculates attention scores using Query, Key, and Value vectors to determine mathematically how much "focus" or weight one word should place on every other word in the sequence.
 
 UNIT II — PROMPT ENGINEERING
-![Unit II - Prompt Engineering](/unit%202%20llm.png)
+![Unit II - Prompt Engineering](/unit%202%20llm.webp)
 
 Interacting with LLMs:
 Prompt engineering is the art and science of structuring text inputs (prompts) to maximize the quality, accuracy, and relevance of an LLM's output. Since LLMs operate fundamentally as complex "next-token predictors", the precise phrasing, context, and constraints provided in the prompt drastically alter the generated response.
@@ -63,7 +63,7 @@ In software engineering, natural language is difficult to parse. We instruct the
 * Example: "Extract the names, ages, and cities from the text. Output strictly as a JSON array of objects with keys 'name', 'age', and 'city'. Do not include any conversational text."
 
 UNIT III — BUILDING AI APPLICATIONS
-![Unit III - Building AI Applications](/unit%203%20llm.png)
+![Unit III - Building AI Applications](/unit%203%20llm.webp)
 
 LLM API Integration:
 While web interfaces like ChatGPT are popular for consumers, developers build AI applications by accessing models programmatically via HTTP APIs. Developers send requests containing the prompt payload, and the API returns the generated text.
@@ -85,7 +85,7 @@ Document Question Answering:
 Building systems that allow users to "chat with their documents." Because LLMs have a hard limit on how much text they can read at once (the context window), you cannot simply paste a 1000-page textbook into the prompt. Advanced architectural patterns are required to fetch only the relevant pages before asking the question.
 
 UNIT IV — ADVANCED LLM SYSTEMS
-![Unit IV - Advanced LLM Systems](/unit%204%20llm.png)
+![Unit IV - Advanced LLM Systems](/unit%204%20llm.webp)
 
 Retrieval-Augmented Generation (RAG):
 RAG is the industry-standard architecture for grounding LLMs in external, private, or up-to-date knowledge. Instead of relying solely on the LLM's pre-trained memory (which may be years out of date and prone to hallucinations), a RAG system first retrieves relevant factual data from an external database and injects it directly into the prompt as context. The LLM is then instructed to answer the question *only* using the provided context.

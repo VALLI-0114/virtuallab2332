@@ -1220,7 +1220,7 @@ export const javaCourse: Course = {
           id: "java-e8-2",
           title: "JavaFX Label and ImageView",
           desc: "Describe the structural JavaFX GUI component hierarchy for labels and image views.",
-          expected: "Label text: 'Welcome to JavaFX!'\nImageView displays: 'logo.png'",
+          expected: "Label text: 'Welcome to JavaFX!'\nImageView displays: 'logo.webp'",
           content: {
             aim: {
               text: "In this experiment the student will implement a Java program to build a gui application structure in javafx containing a label and an imageview to render text and graphical assets.",

@@ -14,10 +14,10 @@ export const Route = createFileRoute("/")({
 function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-white text-slate-900">
-      {/* Full Screen Background Image (User should upload 'bg-landing.jpg' to public folder) */}
+      {/* Full Screen Background Image (User should upload 'bg-landing.webp' to public folder) */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-90"
-        style={{ backgroundImage: "url('/bg-landing.jpg'), linear-gradient(to bottom, #f8fafc, #e2e8f0)" }}
+        style={{ backgroundImage: "url('/bg-landing.webp'), linear-gradient(to bottom, #f8fafc, #e2e8f0)" }}
       />
       
       {/* Light Overlay for readability */}
@@ -84,7 +84,7 @@ function LandingPage() {
       {/* Floating Robot Icon (Bottom Right) */}
       <div className="absolute bottom-8 right-8 z-50 opacity-0 animate-fade-in-up delay-500 animate-float">
         <div className="size-16 rounded-full bg-blue-500/10 backdrop-blur-md border border-blue-200/50 flex items-center justify-center shadow-lg cursor-pointer hover:bg-blue-500/20 transition-colors">
-           <img src="/robot-icon.png" alt="Bot" className="size-12 object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+           <img src="/robot-icon.webp" alt="Bot" className="size-12 object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
         </div>
       </div>
 

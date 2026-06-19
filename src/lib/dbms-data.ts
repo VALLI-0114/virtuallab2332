@@ -101,7 +101,7 @@ export const dbmsCourse: Course = {
                   "A table is a grid of rows and columns, much like a spreadsheet:",
                   "• Each column has a fixed data type (INT, VARCHAR, DATE) decided when the table is created",
                   "• Each row represents one complete record, such as one student or one department",
-                  "![Table Structure with Rows and Columns](/Relational_Model.png)",
+                  "![Table Structure with Rows and Columns](/Relational_Model.webp)",
                   "Constraints are rules checked automatically by the database:",
                   "• If an INSERT or UPDATE would break a constraint, the database refuses the operation",
                   "• This guarantees data integrity — the data stored is always accurate and trustworthy"
@@ -114,7 +114,7 @@ export const dbmsCourse: Course = {
                   "• No two rows can ever share the same primary key value",
                   "• A primary key column can never be NULL (empty)",
                   "• In the STUDENT table, Roll_No is a natural choice since every student already has a unique roll number",
-                  "![Primary Key and Foreign Key Relationship](/constraints.png)",
+                  "![Primary Key and Foreign Key Relationship](/constraints.webp)",
                   "A FOREIGN KEY is what makes a database 'relational' — it lets one table point to a row in another table:",
                   "• STUDENT's Dept_ID column is a foreign key referencing DEPARTMENT's Dept_ID primary key",
                   "• This guarantees a student can never be linked to a department that doesn't actually exist",
@@ -213,7 +213,7 @@ export const dbmsCourse: Course = {
                   "A subquery is a SELECT statement nested inside another SQL statement:",
                   "• It runs first, and its result is used by the outer query — like asking one small question first to help answer a bigger question",
                   "• Example: to find students from departments in 'Hyderabad', first find which Dept_IDs are in Hyderabad, then look up students belonging to those IDs",
-                  "![How a Subquery Feeds the Outer Query](/subqueries.png)",
+                  "![How a Subquery Feeds the Outer Query](/subqueries.webp)",
                   "Subqueries can appear almost anywhere a normal value or table could appear in SQL — most commonly inside a WHERE clause, but also inside a SELECT list or in place of a table in the FROM clause."
                 ]
               },
@@ -230,7 +230,7 @@ export const dbmsCourse: Course = {
                 body: [
                   "EXISTS checks only whether a subquery produces at least one row — not what values it returns:",
                   "• The database can stop searching the moment it finds a single matching row, which often makes EXISTS efficient",
-                  "![EXISTS Checking for at Least One Match](sql-exists.png)",
+                  "![EXISTS Checking for at Least One Match](sql-exists.webp)",
                   "NOT EXISTS is the opposite — true only when the subquery returns zero rows:",
                   "• A typical use is finding students who have never appeared in the MARKS table at all, meaning they haven't taken any exam yet"
                 ]
@@ -250,7 +250,7 @@ export const dbmsCourse: Course = {
                   "UNION and INTERSECT combine the results of two SELECT statements:",
                   "• UNION stacks the rows from both queries into one result and automatically removes duplicates",
                   "• INTERSECT keeps only the rows that appear in both result sets",
-                  "![UNION and INTERSECT as Set Operations](/sql-union.png)",
+                  "![UNION and INTERSECT as Set Operations](/sql-union.webp)",
                   "Both operators require the two queries to be 'union-compatible' — same number of columns, matching order, compatible data types. These operations come directly from the set theory the relational model is built on."
                 ]
               },
@@ -334,7 +334,7 @@ export const dbmsCourse: Course = {
                   "GROUP BY produces one summary per category instead of one overall summary for the whole table — for example, average age per department instead of average age of the whole college.",
                   "• It splits the table into groups based on the values in a chosen column",
                   "• The aggregate function is then applied separately within each group",
-                  "![Rows Split into Groups Before Aggregation](/sql-groupby.png)",
+                  "![Rows Split into Groups Before Aggregation](/sql-groupby.webp)",
                   "Important rule: every column in the SELECT clause must either appear in the GROUP BY clause or be wrapped inside an aggregate function — otherwise the database wouldn't know which single value to display for a column that isn't grouped or summarized."
                 ]
               },
@@ -345,7 +345,7 @@ export const dbmsCourse: Course = {
                   "• WHERE filters individual rows before any grouping happens",
                   "• HAVING filters the groups themselves, after aggregation — e.g., show only departments with more than one student",
                   "• HAVING runs after GROUP BY and can use aggregate functions in its condition, something WHERE cannot do",
-                  "![HAVING](/sql-having.png)",
+                  "![HAVING](/sql-having.webp)",
                   "Simple rule of thumb: WHERE works on raw, individual rows; HAVING works on already-grouped, summarized results."
                 ]
               },
@@ -353,7 +353,7 @@ export const dbmsCourse: Course = {
                 title: "Views — Saving a Query as a Virtual Table",
                 body: [
                   "A view is a saved SELECT query that behaves like a table when queried, but stores no data of its own — its underlying query runs fresh every time the view is used.",
-                  "![A View Acting as a Virtual Table](/sql-views.png)",
+                  "![A View Acting as a Virtual Table](/sql-views.webp)",
                   "Views are useful for:",
                   "• Hiding complexity — query SELECT * FROM Student_Summary instead of repeating a complicated query every time",
                   "• Limiting access — exposing only a controlled subset of the underlying data",
@@ -509,7 +509,7 @@ export const dbmsCourse: Course = {
                 title: "The Anatomy of a PL/SQL Block",
                 body: [
                   "PL/SQL extends plain SQL with programming constructs — variables, loops, conditional logic — tightly woven into the database itself.",
-                  "![The Three Sections of a PL/SQL Block](/plsql_block_structure.png)",
+                  "![The Three Sections of a PL/SQL Block](/plsql_block_structure.webp)",
                   "Every PL/SQL block is organized into up to three sections:",
                   "• DECLARE (optional) — defines the variables and cursors used later",
                   "• BEGIN (mandatory) — holds the actual executable statements",
@@ -614,7 +614,7 @@ export const dbmsCourse: Course = {
               {
                 title: "Nested IF — Checking Multiple Conditions in Layers",
                 body: [
-                  "![Decision Tree for a Nested IF](/nested_if_decision.png)",
+                  "![Decision Tree for a Nested IF](/nested_if_decision.webp)",
                   "A nested IF places one IF statement inside another — useful whenever a decision depends on more than one independent question.",
                   "• Assigning a letter grade from marks is a classic example: check whether marks are 90+ first, and only if that fails, move to the next threshold, and so on",
                   "• Like walking down a staircase of conditions until exactly one matches"
@@ -693,7 +693,7 @@ export const dbmsCourse: Course = {
               {
                 title: "WHILE Loop — Repeating While a Condition Holds",
                 body: [
-                  "![WHILE Loop](/sql-while.png)",
+                  "![WHILE Loop](/sql-while.webp)",
                   "A WHILE loop checks its condition before every iteration and keeps repeating its body for as long as that condition stays true:",
                   "• The moment the condition becomes false, the loop stops immediately",
                   "• Right choice whenever the exact number of repetitions isn't known in advance"
@@ -702,7 +702,7 @@ export const dbmsCourse: Course = {
               {
                 title: "Numeric FOR Loop — Repeating a Known Number of Times",
                 body: [
-                  "![FOR Loop](/sql-for.png)",
+                  "![FOR Loop](/sql-for.webp)",
                   "A numeric FOR loop is the right tool when the exact range to repeat over is already known, such as counting from 1 to 10.",
                   "• PL/SQL automatically creates and increments the loop counter — no need to remember to manually increase it, a common bug with WHILE loops",
                   "• Adding REVERSE walks the same range backward"
@@ -791,7 +791,7 @@ export const dbmsCourse: Course = {
               {
                 title: "What Is a Stored Procedure?",
                 body: [
-                  "![Calling a Stored Procedure](/procedure_call_flow.png)",
+                  "![Calling a Stored Procedure](/procedure_call_flow.webp)",
                   "A stored procedure is a named, reusable block of PL/SQL code saved inside the database itself, rather than rewritten every time the same task is needed.",
                   "• Once created, it can be called by name from any other PL/SQL block or application — similar to calling a function in an ordinary programming language"
                 ]
@@ -868,7 +868,7 @@ export const dbmsCourse: Course = {
               {
                 title: "What Is a Stored Function?",
                 body: [
-                  "![Function Returns a Value, Procedure Performs an Action](/function_vs_procedure.png)",
+                  "![Function Returns a Value, Procedure Performs an Action](/function_vs_procedure.webp)",
                   "A stored function is similar to a stored procedure — both are named, reusable blocks of PL/SQL code — but a function is specifically designed to compute and RETURN a single value back to its caller.",
                   "• This RETURN value is exactly what makes a function usable directly inside ordinary SQL statements, not just inside PL/SQL blocks"
                 ]
@@ -954,7 +954,7 @@ export const dbmsCourse: Course = {
               {
                 title: "Recap — What Is a Cursor?",
                 body: [
-                  "![The OPEN, FETCH, CLOSE Lifecycle of a Cursor](/cursor_lifecycle.png)",
+                  "![The OPEN, FETCH, CLOSE Lifecycle of a Cursor](/cursor_lifecycle.webp)",
                   "A cursor is a pointer to the result set of a SELECT query, letting a PL/SQL program process its rows one at a time instead of all at once.",
                   "• A basic cursor is permanently fixed to one specific query the moment it's declared — fine for simple cases, but limiting for more flexible programs"
                 ]
@@ -1038,7 +1038,7 @@ export const dbmsCourse: Course = {
               {
                 title: "What Is a Trigger?",
                 body: [
-                  "![Different Kinds of Triggers Around a DML Statement](/trigger_types.png)",
+                  "![Different Kinds of Triggers Around a DML Statement](/trigger_types.webp)",
                   "A trigger is a special block of PL/SQL code the database runs automatically in response to a specific event — typically an INSERT, UPDATE, or DELETE on a table — without anyone explicitly calling it.",
                   "• Useful for enforcing rules, automatically logging changes, or keeping related data in sync without relying on every application to remember to do it manually"
                 ]
@@ -1140,7 +1140,7 @@ export const dbmsCourse: Course = {
                 body: [
                   "An index is an extra, separate data structure the database maintains alongside a table, built specifically to make searching a particular column much faster.",
                   "• Conceptually similar to the index at the back of a textbook — jump straight to the right page instead of reading the entire book",
-                  "![A B-Tree Index Sitting Alongside a Table](/btree_index_structure.png)",
+                  "![A B-Tree Index Sitting Alongside a Table](/btree_index_structure.webp)",
                   "• Most database indexes are built using a B-Tree (or a close variant) — the same balanced tree structure from data structures courses — which keeps tree height small even for very large tables, guaranteeing fast lookups"
                 ]
               },
@@ -1228,7 +1228,7 @@ export const dbmsCourse: Course = {
               {
                 title: "What Is JDBC?",
                 body: [
-                  "![How JDBC Sits Between Java and the Database](/jdbc_architecture.jpg)",
+                  "![How JDBC Sits Between Java and the Database](/jdbc_architecture.webp)",
                   "JDBC (Java Database Connectivity) is a standard Java API that lets a Java program talk to a relational database, regardless of which specific database product is used.",
                   "• A program can usually switch from one database (e.g., SQLite) to a different one (e.g., MySQL) just by changing the driver and connection details, without rewriting query logic"
                 ]
@@ -1315,7 +1315,7 @@ export const dbmsCourse: Course = {
                 title: "Statement vs PreparedStatement",
                 body: [
                   "A plain Statement executes a fixed, complete SQL string exactly as written. If part of that string is built by directly concatenating user input, an attacker could craft input that changes the query's meaning entirely — the basis of a SQL injection attack.",
-                  "![Values Flowing Safely into a Parameterized Query](/preparedstatement_flow.png)",
+                  "![Values Flowing Safely into a Parameterized Query](/preparedstatement_flow.webp)",
                   "A PreparedStatement instead uses a SQL template with placeholder question marks (?) wherever a value will go:",
                   "• Actual values are supplied afterward using methods like setInt() and setString()",
                   "• The database driver ensures these values are always treated strictly as data, never as part of the SQL command itself"

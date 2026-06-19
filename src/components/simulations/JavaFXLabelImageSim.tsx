@@ -122,7 +122,7 @@ export function JavaFXLabelImageSim() {
                         {step >= 2 && (
                           <div className="w-48 h-32 bg-slate-200 rounded flex flex-col items-center justify-center border border-slate-300 text-slate-400">
                             <ImageIcon className="w-8 h-8 mb-2" />
-                            <span className="text-xs">logo.png</span>
+                            <span className="text-xs">logo.webp</span>
                           </div>
                         )}
                       </div>
@@ -145,7 +145,7 @@ export function JavaFXLabelImageSim() {
         <div className="h-32 bg-slate-900 rounded border border-slate-800 p-4 font-mono text-xs overflow-y-auto">
           <div className="text-slate-500 mb-2">// Code Construction Log</div>
           {step >= 1 && <div><span className="text-blue-400">Label</span> label = <span className="text-purple-400">new</span> Label(<span className="text-green-300">"Welcome to JavaFX!"</span>);</div>}
-          {step >= 2 && <div><span className="text-blue-400">ImageView</span> imageView = <span className="text-purple-400">new</span> ImageView(<span className="text-green-300">"logo.png"</span>);</div>}
+          {step >= 2 && <div><span className="text-blue-400">ImageView</span> imageView = <span className="text-purple-400">new</span> ImageView(<span className="text-green-300">"logo.webp"</span>);</div>}
           {step >= 3 && <div><span className="text-blue-400">VBox</span> vbox = <span className="text-purple-400">new</span> VBox(label, imageView); <span className="text-slate-500">// Stack vertically</span></div>}
           {step >= 4 && <div><span className="text-blue-400">Scene</span> scene = <span className="text-purple-400">new</span> Scene(vbox, <span className="text-orange-400">300</span>, <span className="text-orange-400">200</span>);</div>}
           {step >= 5 && <div className="mt-2"><span className="text-white">stage.setScene(scene);</span><br/><span className="text-white font-bold">stage.show();</span> <span className="text-emerald-400">// Renders GUI window!</span></div>}

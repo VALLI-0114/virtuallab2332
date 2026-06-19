@@ -186,7 +186,7 @@ useEffect(() => {
         <div 
           className="fixed inset-0 z-0 pointer-events-none"
           style={{ 
-            backgroundImage: 'url(/quantum-bg.png)', 
+            backgroundImage: 'url(/quantum-bg.webp)', 
             backgroundSize: 'cover', 
             backgroundPosition: 'center center',
             backgroundAttachment: 'fixed',
@@ -198,7 +198,7 @@ useEffect(() => {
         <div 
           className="fixed inset-0 z-0 pointer-events-none"
           style={{ 
-            backgroundImage: 'url(/dbms-bg.png)', 
+            backgroundImage: 'url(/dbms-bg.webp)', 
             backgroundSize: 'cover', 
             backgroundPosition: 'center center',
             backgroundAttachment: 'fixed',
@@ -390,7 +390,7 @@ useEffect(() => {
             {course.id === "ai-tools" && (
               <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/ai-labs-flowchart.jpg" 
+                  src="/ai-labs-flowchart.webp" 
                   alt="Top 5 AI Labs Hands-on Learning Journey" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -400,7 +400,7 @@ useEffect(() => {
             {course.id === "ml" && (
               <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/ml-flowchart.jpg" 
+                  src="/ml-flowchart.webp" 
                   alt="Machine Learning Journey" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -410,7 +410,7 @@ useEffect(() => {
             {course.id === "c-programming" && (
               <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/c-flowchart.jpg" 
+                  src="/c-flowchart.webp" 
                   alt="C Programming Curriculum Flowchart" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -420,7 +420,7 @@ useEffect(() => {
             {course.id === "dbms" && (
               <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/dbms-flowchart.jpg" 
+                  src="/dbms-flowchart.webp" 
                   alt="DBMS Syllabus Journey" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -430,7 +430,7 @@ useEffect(() => {
             {course.id === "data-structures-using-c-programming" && (
               <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/ds-flowchart.png" 
+                  src="/ds-flowchart.webp" 
                   alt="Data Structures Curriculum Flowchart" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -440,7 +440,7 @@ useEffect(() => {
             {course.id === "python" && (
               <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/python-flowchart.png" 
+                  src="/python-flowchart.webp" 
                   alt="Python Programming Curriculum Flowchart" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -450,7 +450,7 @@ useEffect(() => {
             {course.id === "java" && (
               <div className="mb-8 max-w-2xl mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/java-flowchart.png" 
+                  src="/java-flowchart.webp" 
                   alt="Java Programming Curriculum Flowchart" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -460,7 +460,7 @@ useEffect(() => {
             {course.id === "llms" && (
               <div className="mb-8 max-w-lg mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/llm-flowchart.png" 
+                  src="/llm-flowchart.webp" 
                   alt="Large Language Models Curriculum Flowchart" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -470,7 +470,7 @@ useEffect(() => {
             {course.id === "iot" && (
               <div className="mb-8 max-w-lg mx-auto overflow-hidden rounded-xl border border-border/50 bg-secondary/10 shadow-lg">
                 <img 
-                  src="/iot-flowchart.png" 
+                  src="/iot-flowchart.webp" 
                   alt="Internet of Things (IoT) Ecosystem Flowchart" 
                   className="w-full h-auto object-cover hover:scale-[1.02] transition-transform duration-700" 
                 />
@@ -535,7 +535,7 @@ useEffect(() => {
                     {course.id === 'data-structures-using-c-programming' && (
                       <div className="mb-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
                         <div className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                         <img src="/ds_types_of_data_structures.png" alt="Types of Data Structures Flowchart" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                         <img src="/ds_types_of_data_structures.webp" alt="Types of Data Structures Flowchart" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                       </div>
                     )}
 
@@ -682,7 +682,7 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
       {/* Injected Schematic Diagram Asset mapping the text block rules exactly */}
       <div className="mt-8 p-4 bg-white/80 dark:bg-black/40 rounded-xl border border-cyan/10 flex justify-center">
         <img 
-          src="/dbms_university_er_example.png" 
+          src="/dbms_university_er_example.webp" 
           alt="Complete University Database System ER Diagram Model" 
           className="max-h-96 object-contain rounded-lg shadow-sm"
         />
@@ -703,19 +703,19 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
                             {course.id === 'c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/c_unit1.png" alt="Unit 1 Computer Problem Solving" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/c_unit1.webp" alt="Unit 1 Computer Problem Solving" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'machine-learning' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ml-unit1.png" alt="Unit 1 Introduction to ML" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ml-unit1.webp" alt="Unit 1 Introduction to ML" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'python' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-cyan/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/python_unit1.png" alt="Unit 1 Introduction to Python Programming" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/python_unit1.webp" alt="Unit 1 Introduction to Python Programming" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                           </div>
@@ -729,25 +729,25 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
                             {course.id === 'data-structures-using-c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-indigo-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ds_unit2_linked_lists.png" alt="Unit 2 Linked Lists Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ds_unit2_linked_lists.webp" alt="Unit 2 Linked Lists Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-indigo-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/c_unit2.png" alt="Unit 2 Intro to C Programming" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/c_unit2.webp" alt="Unit 2 Intro to C Programming" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'machine-learning' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-indigo-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ml-unit2.png" alt="Unit 2 Tree Based and Ensemble Learning" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ml-unit2.webp" alt="Unit 2 Tree Based and Ensemble Learning" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'python' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-indigo-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/python_unit2.png" alt="Unit 2 Functions, Strings, and Lists" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/python_unit2.webp" alt="Unit 2 Functions, Strings, and Lists" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                           </div>
@@ -761,25 +761,25 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
                             {course.id === 'data-structures-using-c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-purple-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ds_unit3_stacks.png" alt="Unit 3 Stacks Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ds_unit3_stacks.webp" alt="Unit 3 Stacks Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-purple-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/c_unit3.png" alt="Unit 3 Arrays and Pointers" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/c_unit3.webp" alt="Unit 3 Arrays and Pointers" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'machine-learning' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-purple-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ml-unit3.png" alt="Unit 3 Linear Models and Probabilistic Learning" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ml-unit3.webp" alt="Unit 3 Linear Models and Probabilistic Learning" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'python' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-purple-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/python_unit3.png?v=202606141630" alt="Unit 3 Dictionaries, Tuples, and Sets" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/python_unit3.webp?v=202606141630" alt="Unit 3 Dictionaries, Tuples, and Sets" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                           </div>
@@ -793,25 +793,25 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
                             {course.id === 'data-structures-using-c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-emerald-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ds_unit4_queues.jpg" alt="Unit 4 Queues & Deques Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ds_unit4_queues.webp" alt="Unit 4 Queues & Deques Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-emerald-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/c_unit4.png" alt="Unit 4 Functions and Strings" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/c_unit4.webp" alt="Unit 4 Functions and Strings" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'machine-learning' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-emerald-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ml-unit4.png" alt="Unit 4 Neural Networks" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ml-unit4.webp" alt="Unit 4 Neural Networks" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'python' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-emerald-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/python_unit4.png" alt="Unit 4 Files and Object-Oriented Programming" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/python_unit4.webp" alt="Unit 4 Files and Object-Oriented Programming" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                           </div>
@@ -825,25 +825,25 @@ if (text.startsWith('[ER_DIAGRAM_EXAMPLE]')) {
                             {course.id === 'data-structures-using-c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-rose-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ds_unit5_trees.jpg" alt="Unit 5 Trees & Hashing Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ds_unit5_trees.webp" alt="Unit 5 Trees & Hashing Diagram" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'c-programming' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-rose-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/c_unit5.png" alt="Unit 5 Structures, Unions, and Files" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/c_unit5.webp" alt="Unit 5 Structures, Unions, and Files" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'machine-learning' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-rose-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/ml-unit5.png" alt="Unit 5 Clustering Algorithms" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/ml-unit5.webp" alt="Unit 5 Clustering Algorithms" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                             {course.id === 'python' && (
                               <div className="my-10 p-4 bg-white/50 dark:bg-black/20 rounded-2xl border-4 border-dashed border-rose-400/40 flex justify-center group relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-rose-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                 <img src="/python_unit5.png" alt="Unit 5 Introduction to Data Science" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
+                                 <img src="/python_unit5.webp" alt="Unit 5 Introduction to Data Science" className="max-w-full rounded-xl hover:scale-105 transition-transform duration-500 shadow-sm relative z-10" />
                               </div>
                             )}
                           </div>

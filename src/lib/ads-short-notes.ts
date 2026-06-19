@@ -232,13 +232,13 @@ When insertion or deletion violates this property, we perform ROTATIONS to rebal
 
 Height of AVL tree with n nodes: ≈ 1.44 log₂(n) — slightly taller than perfect binary tree but still O(log n)
 
-![AVL Tree Balance Factors](/avl_balance_factors.png)
+![AVL Tree Balance Factors](/avl_balance_factors.webp)
 
 Four Imbalance Cases and Their Rotations:
 
 [TABLE]:<table class="w-full border-collapse border border-cyan/30 text-base text-foreground/90 my-6 shadow-md rounded-xl overflow-hidden"><thead class="bg-gradient-to-r from-cyan/20 to-blue-500/10 text-cyan font-bold"><tr><th class="p-3 border border-cyan/20">Case</th><th class="p-3 border border-cyan/20">Condition</th><th class="p-3 border border-cyan/20">Visual</th><th class="p-3 border border-cyan/20">Rotation</th><th class="p-3 border border-cyan/20">Effect</th></tr></thead><tbody><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">LL</td><td class="p-3 border border-cyan/20">BF = +2<br/>Left child BF ≥ 0</td><td class="p-3 border border-cyan/20">y (root)<br/> /<br/>x<br/>/<br/>Z</td><td class="p-3 border border-cyan/20">Right Rotation on y</td><td class="p-3 border border-cyan/20">x becomes root,<br/>y becomes right child</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">RR</td><td class="p-3 border border-cyan/20">BF = -2<br/>Right child BF ≤ 0</td><td class="p-3 border border-cyan/20">y (root)<br/> \<br/>  x<br/>   \<br/>    Z</td><td class="p-3 border border-cyan/20">Left Rotation on y</td><td class="p-3 border border-cyan/20">x becomes root,<br/>y becomes left child</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">LR</td><td class="p-3 border border-cyan/20">BF = +2<br/>Left child BF = -1</td><td class="p-3 border border-cyan/20">   z<br/>  /<br/> x<br/>  \<br/>   y</td><td class="p-3 border border-cyan/20">Left rotate on x<br/>then Right rotate on z</td><td class="p-3 border border-cyan/20">y becomes root</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">RL</td><td class="p-3 border border-cyan/20">BF = -2<br/>Right child BF = +1</td><td class="p-3 border border-cyan/20">z<br/> \<br/>  x<br/> /<br/>y</td><td class="p-3 border border-cyan/20">Right rotate on x<br/>then Left rotate on z</td><td class="p-3 border border-cyan/20">y becomes root</td></tr></tbody></table>
 
-![AVL Tree Rotations Visualization](/avl_rotations.png)
+![AVL Tree Rotations Visualization](/avl_rotations.webp)
 
 [START_CODE_SNIPPET]
 // Complete AVL Tree Implementation in Java
@@ -407,7 +407,7 @@ These properties ensure the tree height ≤ 2 log₂(n+1), maintaining O(log n) 
 
 [TABLE]:<div class="grid grid-cols-2 gap-6 my-6"><div class="bg-cyan-50 p-5 rounded-xl border border-cyan-200"><h4 class="font-bold text-cyan-800 text-lg mb-3">AVL Tree</h4><ul class="list-disc ml-4 space-y-2"><li>Stricter balancing (|BF| ≤ 1)</li><li>Height ≤ 1.44 log₂(n)</li><li>Faster lookups (more balanced)</li><li>Slower inserts/deletes (more rotations)</li><li>Used in: in-memory DBs (Redis)</li></ul></div><div class="bg-blue-50 p-5 rounded-xl border border-blue-200"><h4 class="font-bold text-blue-800 text-lg mb-3">Red-Black Tree</h4><ul class="list-disc ml-4 space-y-2"><li>Relaxed balancing</li><li>Height ≤ 2 log₂(n+1)</li><li>Slightly slower lookups (1-2 extra levels)</li><li>Faster inserts/deletes (~3 rotations per insert)</li><li>Used in: C++ STL map/set, Java TreeMap/HashMap</li></ul></div></div>
 
-![Red-Black Tree Example](/red_black_tree.png)
+![Red-Black Tree Example](/red_black_tree.webp)
 
 B-TREES & B+ TREES (Database Indexing Core)
 
@@ -431,7 +431,7 @@ B+ Tree (Used in ALL modern databases: MySQL, PostgreSQL, MongoDB):
 
 [TABLE]:<table class="w-full border-collapse border border-cyan/30 text-base text-foreground/90 my-6 shadow-md rounded-xl overflow-hidden"><thead class="bg-gradient-to-r from-cyan/20 to-blue-500/10 text-cyan font-bold"><tr><th class="p-3 border border-cyan/20">Feature</th><th class="p-3 border border-cyan/20">B-Tree</th><th class="p-3 border border-cyan/20">B+ Tree</th></tr></thead><tbody><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Data pointers location</td><td class="p-3 border border-cyan/20">Internal AND leaf nodes</td><td class="p-3 border border-cyan/20">Leaf nodes ONLY</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Range query efficiency</td><td class="p-3 border border-cyan/20">Inefficient (need inorder traversal)</td><td class="p-3 border border-cyan/20">Efficient (leaf pointer chain)</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Internal node storage</td><td class="p-3 border border-cyan/20">Keys + data pointers (less fanout)</td><td class="p-3 border border-cyan/20">Only keys (MORE fanout → shorter tree)</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Typical height (1B records, m=500)</td><td class="p-3 border border-cyan/20">4-5 levels</td><td class="p-3 border border-cyan/20">3-4 levels</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Database usage</td><td class="p-3 border border-cyan/20">MySQL (with R-Tree indexes)</td><td class="p-3 border border-cyan/20">MySQL InnoDB, PostgreSQL, MongoDB, Oracle</td></tr></tbody></table>
 
-![B+ Tree Structure Detailed](/bplus_tree_detailed.jpg)
+![B+ Tree Structure Detailed](/bplus_tree_detailed.webp)
 
 [START_CODE_SNIPPET]
 // Simplified B-Tree Node Structure (Conceptual)
@@ -818,7 +818,7 @@ Extracted min 10, heap: []
 PriorityQueue extraction: 1 3 4 5 8 10 
 */
 [END_CODE_SNIPPET]
-![Binary Heap Structure](/binary_heap.png)
+![Binary Heap Structure](/binary_heap.webp)
 
 BINOMIAL HEAPS
 
@@ -835,7 +835,7 @@ Properties:
 - Insert: O(1) amortized
 
 [TABLE]:<table class="w-full border-collapse border border-cyan/30 text-base text-foreground/90 my-6 shadow-md rounded-xl overflow-hidden"><thead class="bg-gradient-to-r from-cyan/20 to-blue-500/10 text-cyan font-bold"><tr><th class="p-3 border border-cyan/20">Property</th><th class="p-3 border border-cyan/20">Binary Heap</th><th class="p-3 border border-cyan/20">Binomial Heap</th></thead><tbody><tr><td class="p-3 border border-cyan-20 font-bold">Structure</td><td class="p-3 border border-cyan/20">Single complete binary tree</td><td class="p-3 border border-cyan/20">Collection of binomial trees</td></tr><tr><td class="p-3 border border-cyan-20 font-bold">Merge complexity</td><td class="p-3 border border-cyan/20">O(m log(m+n))</td><td class="p-3 border border-cyan/20">O(log n)</td></tr><tr><td class="p-3 border border-cyan-20 font-bold">Insert amortized</td><td class="p-3 border border-cyan/20">O(1)</td><td class="p-3 border border-cyan/20">O(1)</td></tr><tr><td class="p-3 border border-cyan-20 font-bold">Extract-Min</td><td class="p-3 border border-cyan/20">O(log n)</td><td class="p-3 border border-cyan/20">O(log n)</td></tr></tbody></table>
-![Binomial Heap Structure](/binomial_heap.jpg)
+![Binomial Heap Structure](/binomial_heap.webp)
 FIBONACCI HEAPS
 
 Fibonacci Heap is the theoretically optimal priority queue for Dijkstra and Prim algorithms.
@@ -849,7 +849,7 @@ Key Innovations:
 
 Amortized complexity
 
-![Fibonacci Heap Structure](/fibonacci_heap.png)
+![Fibonacci Heap Structure](/fibonacci_heap.webp)
 
 DISJOINT SET ADT (Union-Find):
 The Union-Find data structure tracks a partition of n elements into disjoint sets. 
@@ -1525,7 +1525,7 @@ DFS uses stack/recursion -> explores deep first -> uses less memory (no queue)
 */
 [END_CODE_SNIPPET]
 
-![BFS vs DFS Visualization](/bfs_dfs_comparison.png)
+![BFS vs DFS Visualization](/bfs_dfs_comparison.webp)
 
 SHORTEST PATH ALGORITHMS
 

@@ -56,7 +56,7 @@ Physical Data Independence:
 It is the capacity to change the Internal Schema without changing the Conceptual Schema (and consequently, keeping the application programs untouched).
 If the physical storage mechanisms are altered—such as migrating databases from an old HDD system to modern NVMe SSDs, changing the file-organization type, or switching indexing techniques from B+ Trees to Linear Hashing to optimize performance—the conceptual structure remains intact.
 The database users and application interfaces continue to interact with the logical table entities unaware of the underlying physical storage upgrades. Because of this, Physical Data Independence is significantly easier to achieve than Logical Data Independence.
-![Three Schema Architecture Diagram](/3-Tier-Schema-Architecture.jpg)
+![Three Schema Architecture Diagram](/3-Tier-Schema-Architecture.webp)
 
 Database System Structure & Architecture:
 - Centralized Architecture: All components on a single machine (traditional mainframe)
@@ -71,7 +71,7 @@ ER Model Introduction:
 ER Model is a high-level conceptual data model used to design databases. It represents real-world entities and relationships visually using ER Diagrams.
 
 Components of ER Diagram:
-![Basic Components of ER Diagram](/Basic_Components_ER.png)
+![Basic Components of ER Diagram](/Basic_Components_ER.webp)
 1. ENTITIES:
    - Real-world object distinguishable from others (Person, Product, Course)
    - Represented by Rectangle
@@ -92,7 +92,7 @@ Components of ER Diagram:
    - Association between entities (Works_In, Enrolls_In)
    - Represented by Diamond
    - Degree: Unary (same entity type), Binary (two types), Ternary (three types)
-![Symbols representing components of ER](/Symbols_ER.png)
+![Symbols representing components of ER](/Symbols_ER.webp)
 
 Relationship Constraints (Cardinality Ratios):
 - One-to-One (1:1): One entity A related to at most one entity B
@@ -142,7 +142,7 @@ Terminology:
 - Degree: Number of attributes/columns
 - Cardinality: Number of tuples/rows
 - Null Value: Value that is unknown, not applicable, or missing (not zero or blank)
-![Relational Model](/Relational_Model.png)
+![Relational Model](/Relational_Model.webp)
 
 Relational Constraints:
 
@@ -350,7 +350,7 @@ SELECT Name FROM Students S WHERE EXISTS (SELECT 1 FROM Enrollments E WHERE E.Ro
 
 JOINS (Combining Tables):
 [TABLE]:<table class="w-full border-collapse border border-cyan/30 text-base text-foreground/90 my-6 shadow-md rounded-xl overflow-hidden"><thead class="bg-gradient-to-r from-cyan/20 to-blue-500/10 text-cyan font-bold"><tr><th class="p-3 border border-cyan/20 tracking-wide text-left">Join Type</th><th class="p-3 border border-cyan/20 tracking-wide text-left">Behavior & Description</th></tr></thead><tbody class="divide-y divide-cyan/10"><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">INNER JOIN</td><td class="p-3 border border-cyan/20">Returns only rows that have matching values in both tables.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">LEFT OUTER JOIN</td><td class="p-3 border border-cyan/20">Returns all records from the left table, and matched records from the right table (NULL if no match).</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">RIGHT OUTER JOIN</td><td class="p-3 border border-cyan/20">Returns all records from the right table, and matched records from the left table (NULL if no match).</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">FULL OUTER JOIN</td><td class="p-3 border border-cyan/20">Returns all records when there is a match in either left or right table.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">CROSS JOIN</td><td class="p-3 border border-cyan/20">Returns the Cartesian product of both tables (combines every row of A with every row of B).</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">NATURAL JOIN</td><td class="p-3 border border-cyan/20">Implicitly joins tables based on columns that share identical names and data types.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">SELF JOIN</td><td class="p-3 border border-cyan/20">A regular join where a table is joined with itself (requires explicit table aliasing).</td></tr></tbody></table>
-![SQL Joins Venn Diagrams Map](/dbms_sql_joins_chart.jpg)
+![SQL Joins Venn Diagrams Map](/dbms_sql_joins_chart.webp)
 
 Syntax Examples for Core Joins:
 [START_SQL_CODE]
@@ -413,7 +413,7 @@ A minimal set of functional dependencies that is logically equivalent to the ori
 
 Normal Forms Reference Matrix:
 [TABLE]:<table class="w-full border-collapse border border-cyan/30 text-base text-foreground/90 my-6 shadow-md rounded-xl overflow-hidden"><thead class="bg-gradient-to-r from-cyan/20 to-blue-500/10 text-cyan font-bold"><tr><th class="p-3 border border-cyan/20 tracking-wide text-left">Normal Form</th><th class="p-3 border border-cyan/20 tracking-wide text-left">Core Structural Constraint Rule</th><th class="p-3 border border-cyan/20 tracking-wide text-left">Eliminates / Resolves</th></tr></thead><tbody class="divide-y divide-cyan/10"><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">1NF</td><td class="p-3 border border-cyan/20">All domain attributes must be atomic. No multi-valued or composite cells.</td><td class="p-3 border border-cyan/20">Repeating groups and nested arrays.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">2NF</td><td class="p-3 border border-cyan/20">Must be in 1NF + No partial dependencies (non-prime attributes cannot depend on part of a composite PK).</td><td class="p-3 border border-cyan/20">Redundancy from composite primary keys.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">3NF</td><td class="p-3 border border-cyan/20">Must be in 2NF + No transitive dependencies (non-prime attributes cannot depend on other non-prime fields).</td><td class="p-3 border border-cyan/20">Transitive updates anomalies.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">BCNF</td><td class="p-3 border border-cyan/20">For every non-trivial FD X → Y, X must be a valid Super Key.</td><td class="p-3 border border-cyan/20">Anomalies from overlapping candidate keys.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">4NF</td><td class="p-3 border border-cyan/20">Must be in BCNF + Contains zero independent Multi-Valued Dependencies (MVD: X →→ Y).</td><td class="p-3 border border-cyan/20">Asymmetric independent multi-valued facts.</td></tr><tr class="hover:bg-cyan/5 transition-colors"><td class="p-3 border border-cyan/20 font-bold text-cyan/90">5NF</td><td class="p-3 border border-cyan/20">Every join dependency (PJNF) in the table must be implied entirely by its candidate keys.</td><td class="p-3 border border-cyan/20">Semantic decomposition losses.</td></tr></tbody></table>
-![Database Normalization Hierarchy Diagram](/dbms_normalization_levels.png)
+![Database Normalization Hierarchy Diagram](/dbms_normalization_levels.webp)
 
 Surrogate Key:
 An artificial, system-generated primary key (e.g., identity column, auto-increment, UUID) containing zero physical business meaning. Used when natural keys are missing or too wide.
@@ -434,7 +434,7 @@ Partially Committed: Final step executes, but buffer modifications are not yet f
 Failed State: Normal execution halts due to hardware failures or structural errors
 Aborted State: Database resets to its pre-transaction baseline (Rollback action completed)
 Committed State: Data changes are made fully permanent and safe in non-volatile storage
-![Transaction State Transition Diagram](/dbms_transaction_states.png)
+![Transaction State Transition Diagram](/dbms_transaction_states.webp)
 
 ACID Properties Architecture:
 1. Atomicity: All database modifications within a single transaction succeed, or all operations fail together.

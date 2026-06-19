@@ -841,7 +841,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Imagine you just got a brand new robot friend. Before the robot can do anything cool — dance, talk, or help you — it needs to wake up and say hello! That's exactly what this first program does. We're waking up the computer and telling it to say \"Hello, World!\"",
                     "Every time you write a C program, it's like giving your robot a set of instructions written on paper. The computer reads from top to bottom, does exactly what you wrote, and stops.",
-                    "![Hello World](https://lmichelin.fr/content/images/2019/05/5c1bb7dd5e7cc9678fcdc39f_Hello-World-Header.png)"
+                    "![Hello World](https://lmichelin.fr/content/images/2019/05/5c1bb7dd5e7cc9678fcdc39f_Hello-World-Header.webp)"
                   ]
                 },
                 {
@@ -1112,7 +1112,7 @@ export const courses: Record<string, Course> = {
                   title: "🌡️ Two countries, two thermometers!",
                   body: [
                     "In the USA, people say \"It's 98°F today!\" In India, we say \"It's 37°C today!\" They're talking about the exact same temperature — just in different languages! This program is a translator between those two languages.",
-                    "![A thermometer closeup](https://media.whas11.com/assets/WHAS/images/59bf16b5-29d2-49f8-90ce-c7dad13475d5/59bf16b5-29d2-49f8-90ce-c7dad13475d5_1140x641.png)"
+                    "![A thermometer closeup](https://media.whas11.com/assets/WHAS/images/59bf16b5-29d2-49f8-90ce-c7dad13475d5/59bf16b5-29d2-49f8-90ce-c7dad13475d5_1140x641.webp)"
                   ]
                 },
                 {
@@ -1266,7 +1266,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "If you know that 5 × 5 = 25, then the square root of 25 is 5. It's like having a magic machine — you put in 25, and it gives you back the number that was multiplied by itself to make 25.",
                     "In C, this magic machine is called sqrt() and it lives in a toolbox called math.h.",
-                    "![A calculator](https://media.geeksforgeeks.org/wp-content/uploads/20231231153207/Square-Root-Symbol.png)"
+                    "![A calculator](https://media.geeksforgeeks.org/wp-content/uploads/20231231153207/Square-Root-Symbol.webp)"
                   ]
                 },
                 {
@@ -1344,7 +1344,7 @@ export const courses: Record<string, Course> = {
                   title: "🌱 Interest on interest — like a snowball rolling downhill!",
                   body: [
                     "Simple interest always earns the same fixed amount every year. But compound interest earns interest on your ORIGINAL money AND on the interest you've already collected. So your money grows faster and faster — like a snowball picking up more snow as it rolls!",
-                    "![Snowball rolling downhill](https://sqy7rm.media.zestyio.com/Compound-Interest-Formula-Desktop.png)"
+                    "![Snowball rolling downhill](https://sqy7rm.media.zestyio.com/Compound-Interest-Formula-Desktop.webp)"
                   ]
                 },
                 {
@@ -1423,7 +1423,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Usually to find a triangle's area you need ½ × base × height. But what if you only know the lengths of all three sides and can't measure the height? Heron of Alexandria figured out a clever formula about 2000 years ago that lets you do exactly that!",
                     "It's like being a detective — you use the clues you have (the three sides) to figure out something you can't directly measure (the area).",
-                    "![A triangle drawn on paper](https://androidcure.com/wp-content/uploads/2021/06/Heron-Formula.jpg)"
+                    "![A triangle drawn on paper](https://androidcure.com/wp-content/uploads/2021/06/Heron-Formula.webp)"
                   ]
                 },
                 {
@@ -1502,7 +1502,7 @@ export const courses: Record<string, Course> = {
                     "Imagine a car starts from rest (initial velocity = 0) and speeds up at 2 m/s every second (acceleration = 2 m/s²). After 5 seconds, how far has it gone? This formula from physics tells you exactly that! It's the same formula scientists use to calculate how far a rocket travels after launch.",
                     "s = u×t + ½×a×t²",
                     "u = starting speed, a = how fast it's speeding up, t = how many seconds passed",
-                    "![A rocket launching](https://forums.flightsimulator.com/uploads/default/original/4X/b/6/3/b63f37de919e547414b9a4bc348618c5730d2b8e.jpeg)"
+                    "![A rocket launching](https://forums.flightsimulator.com/uploads/default/original/4X/b/6/3/b63f37de919e547414b9a4bc348618c5730d2b8e.webp)"
                   ]
                 },
                 {
@@ -1589,7 +1589,7 @@ export const courses: Record<string, Course> = {
                     "In a school canteen, students with lunch boxes go first, then others. In C math, × and ÷ always go before + and −. This ordering is called operator precedence — it's the queue system of mathematics!",
                     "So 2 + 3 × 4 = 2 + 12 = 14 (NOT 5 × 4 = 20)",
                     "Use ( ) parentheses whenever you want something to go first in the queue!",
-                    "![Queue / lineup of people](https://image2.slideserve.com/4538776/expression-evaluation-l.jpg)"
+                    "![Queue / lineup of people](https://image2.slideserve.com/4538776/expression-evaluation-l.webp)"
                   ]
                 },
                 {
@@ -1902,7 +1902,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Have you ever noticed that when your family uses a LOT of electricity, the bill suddenly jumps up way more than expected? That's because electricity boards use a slab system — the more you use, the higher the price per unit. It's like a video game where the first 100 units are \"easy mode\" (cheap), the next 100 are \"medium mode\" (costlier), and anything beyond that is \"hard mode\" (expensive)!",
                     "This teaches the computer to calculate exactly how much to charge based on which \"level\" of usage you're in.",
-                    "![Electric meter or electricity bill](https://staticimg.amarujala.com/assets/images/2024/04/15/electric-bill-electricity-bill-new_2a609bc128bc3196169a37a0f9399406.jpeg)"
+                    "![Electric meter or electricity bill](https://staticimg.amarujala.com/assets/images/2024/04/15/electric-bill-electricity-bill-new_2a609bc128bc3196169a37a0f9399406.webp)"
                   ]
                 },
                 {
@@ -2066,7 +2066,7 @@ export const courses: Record<string, Course> = {
                   title: "🔢 Building your own pocket calculator!",
                   body: [
                     "Every calculator has buttons: +, -, ×, ÷. When you press a button, the calculator looks at WHICH button you pressed and does that specific operation. That's exactly what switch-case does in C! Instead of writing a long chain of if-else if-else if, you list all the cases neatly — like the buttons on a calculator.",
-                    "![Classic calculator](https://wikihow.com/images/1/10/Find-the-Minimum-and-Maximum-Points-Using-a-Graphing-Calculator-Step-7.jpg)"
+                    "![Classic calculator](https://wikihow.com/images/1/10/Find-the-Minimum-and-Maximum-Points-Using-a-Graphing-Calculator-Step-7.webp)"
                   ]
                 },
                 {
@@ -2236,7 +2236,7 @@ export const courses: Record<string, Course> = {
                     "If 3 friends — Aarav, Bhanu, and Chetan — sit in a row, how many different seating arrangements are possible?",
                     "Aarav first: 3 choices for seat 1, 2 remaining for seat 2, 1 left for seat 3 → 3 × 2 × 1 = 6 ways",
                     "That's 3! = 6. This is exactly what factorial computes — the number of ways to arrange things. Used everywhere in maths, probability, and even game development!",
-                    "![Kids sitting at a party table](https://d14qv6cm1t62pm.cloudfront.net/ccbp-website/Blogs/home/factorial-program-in-c-image-2.png)"
+                    "![Kids sitting at a party table](https://d14qv6cm1t62pm.cloudfront.net/ccbp-website/Blogs/home/factorial-program-in-c-image-2.webp)"
                   ]
                 },
                 {
@@ -2325,7 +2325,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Every number can be broken into smaller pieces by multiplication — except prime numbers. A prime number is a number that can ONLY be divided by 1 and itself. No other number divides it cleanly.",
                     "Here's the wild part: primes are used to protect your passwords and bank details right now! When you type your password on a website, it gets locked using a mathematical trick based on huge prime numbers. Hackers can't break it because multiplying two giant primes is easy — but finding the two primes from the product is nearly impossible!",
-                    "![A padlock / security concept](https://i.ytimg.com/vi/_kh9uX5MCOo/maxresdefault.jpg)"
+                    "![A padlock / security concept](https://i.ytimg.com/vi/_kh9uX5MCOo/maxresdefault.webp)"
                   ]
                 },
                 {
@@ -2497,7 +2497,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "A palindrome reads the same forwards and backwards. Like the word \"MADAM\" — spell it backwards, still MADAM! Or the number 121 — flip it, still 121. Or 12321 — still 12321.",
                     "To check this in code, we reverse the number and compare it to the original. If they match, it's a palindrome — like checking if someone looks the same from the front and back in a mirror!",
-                    "![Mirror reflection concept](https://ica.edu.np/uploads/blog_image/original/78811.png)"
+                    "![Mirror reflection concept](https://ica.edu.np/uploads/blog_image/original/78811.webp)"
                   ]
                 },
                 {
@@ -2593,7 +2593,7 @@ export const courses: Record<string, Course> = {
                   body: [
                     "Look at a pyramid from the front. Row 1 has 1 brick, row 2 has 2 bricks, row 3 has 3 bricks. Each row is wider than the last, and everything is centered. To draw this with code, we use loops inside loops — the outer loop builds each row, the inner loops place the spaces and numbers perfectly.",
                     "It's like a construction worker who, for each floor of the building, carefully counts how many bricks to place and where to start!",
-                    "![A pyramid or triangle pattern](https://static.scientificamerican.com/dam/m/5a010cba8055f33f/original/oddPyramid_graphic_d1_TEXT.png?m=1721669879.477&w=900)"
+                    "![A pyramid or triangle pattern](https://static.scientificamerican.com/dam/m/5a010cba8055f33f/original/oddPyramid_graphic_d1_TEXT.webp?m=1721669879.477&w=900)"
                   ]
                 },
                 {
@@ -2690,7 +2690,7 @@ export const courses: Record<string, Course> = {
                   body: [`### 📏 The Tallest Student in Line!
 Imagine a gym teacher trying to find the tallest student in a lineup. The teacher starts by pointing at the very first student and saying, \"You are the tallest so far!\" Then, the teacher walks down the line, comparing everyone to that student. Anytime the teacher finds someone even taller, they point to the new student instead. By the end of the line, the person being pointed to is guaranteed to be the tallest in the class (the Maximum)!
 
-![Line of students](https://labviewwiki.org/w/images/2/28/Array_Max_and_Min_-_Terminals.png)`]
+![Line of students](https://labviewwiki.org/w/images/2/28/Array_Max_and_Min_-_Terminals.webp)`]
                 },
                 {
                   title: "1D Array",
@@ -2773,7 +2773,7 @@ Imagine a gym teacher trying to find the tallest student in a lineup. The teache
                   body: [`### 🔑 The Lost Locker Key!
 Oh no, you dropped your house key inside one of the school lockers, but you don't remember which one! Since you don't know where it is, you have to open Locker 1 and check. Not there? Open Locker 2 and check. Not there? Open Locker 3... You keep doing this one-by-one until you either find the key, or run out of lockers! This step-by-step checking is called a \"Linear Search\".
 
-![Row of lockers](https://dsavisualizer.in/og/searching/linearSearch.png)`]
+![Row of lockers](https://dsavisualizer.in/og/searching/linearSearch.webp)`]
                 },
                 {
                   title: "Linear Search Algorithm",
@@ -2854,7 +2854,7 @@ Oh no, you dropped your house key inside one of the school lockers, but you don'
                   body: [`### 🥞 Flipping the Pancake Stack!
 Reversing an array is like flipping a whole stack of pancakes upside down! The pancake at the very top swaps places with the pancake at the very bottom. Then, the second pancake from the top swaps with the second from the bottom. You keep swapping the opposite ends until you meet right in the middle!
 
-![Pancakes flipping](https://www.tutorialspoint.com/python/images/reverse_array_operation_python.jpg)`]
+![Pancakes flipping](https://www.tutorialspoint.com/python/images/reverse_array_operation_python.webp)`]
                 },
                 {
                   title: "Array Reversal",
@@ -2940,7 +2940,7 @@ Reversing an array is like flipping a whole stack of pancakes upside down! The p
                   body: [`### 🃏 Sorting a Trading Card Collection!
 Imagine you buy a pack of Pokémon cards and get three Pikachus. When you put them in your special display binder, you only want to show *one* Pikachu card to keep your collection unique. You keep the first one, and throw the duplicates away! In an array, removing duplicates means shifting all the unique items to the front, and ignoring the repeats.
 
-![Trading cards](https://www.devscall.com/_next/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2Fq5upm53j%2Fproduction%2F22798cd73f702208d7e73fe633f246852bcdbc9b-1381x407.png%3Ffit%3Dmax%26auto%3Dformat&w=1920&q=75)`]
+![Trading cards](https://www.devscall.com/_next/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2Fq5upm53j%2Fproduction%2F22798cd73f702208d7e73fe633f246852bcdbc9b-1381x407.webp%3Ffit%3Dmax%26auto%3Dformat&w=1920&q=75)`]
                 },
                 {
                   title: "Duplicate Element",
@@ -3131,7 +3131,7 @@ Imagine you have two square pizza boxes (Matrix A and Matrix B), and both are sl
                   body: [`### 🏭 The Factory Assembly Line!
 Matrix multiplication is NOT like addition. It's a complex, choreographed dance! Instead of just matching spots, the workers on the conveyor belt (a Row in Matrix A) have to high-five every single worker going up the elevator (a Column in Matrix B). You multiply them one-by-one and add up all the high-fives to get a single number for the new matrix. It's a Row-by-Column collision!
 
-![Assembly line](https://i.ytimg.com/vi/2spTnAiQg4M/maxresdefault.jpg)`]
+![Assembly line](https://i.ytimg.com/vi/2spTnAiQg4M/maxresdefault.webp)`]
                 },
                 {
                   title: "Matrix Multiplication Condition",
@@ -3221,7 +3221,7 @@ Matrix multiplication is NOT like addition. It's a complex, choreographed dance!
                   body: [`### 🫧 Bubbles Rising in a Soda!
 When you pour a glass of soda, the biggest, heaviest bubbles always float to the top first. That's exactly how Bubble Sort works! We compare two numbers side-by-side. If the left one is heavier (larger), they swap places. The heavy numbers slowly \"bubble\" their way to the far right end of the array, one by one, until everyone is standing in the perfect order!
 
-![Bubble sort visualization](https://favtutor.com/resources/images/uploads/mceu_61632030011682402256084.png)`]
+![Bubble sort visualization](https://favtutor.com/resources/images/uploads/mceu_61632030011682402256084.webp)`]
                 },
                 {
                   title: "Bubble Sort Algorithm",
@@ -3316,7 +3316,7 @@ When you pour a glass of soda, the biggest, heaviest bubbles always float to the
                   body: [`### 🚂 Connecting the Train Cars!
 In C, a word (String) is just a train made out of individual letter boxcars. The very last car is always a special marker called the Null Terminator ('\0'). When we \"concatenate\" two strings, it's like unhooking the caboose of the first train, and hooking the entire second train onto the back to create one giant mega-train!
 
-![String concatenation](https://media.geeksforgeeks.org/wp-content/uploads/20230915112055/StringConcatenation-(1)-(1).png)`]
+![String concatenation](https://media.geeksforgeeks.org/wp-content/uploads/20230915112055/StringConcatenation-(1)-(1).webp)`]
                 },
                 {
                   title: "Strings in C",
@@ -3399,7 +3399,7 @@ In C, a word (String) is just a train made out of individual letter boxcars. The
                   body: [`### 🪟 Reading Backwards through Glass!
 Reversing a string is exactly like reversing an array of numbers. You swap the first letter with the very last letter, the second letter with the second-to-last, and keep squeezing inwards until you meet in the middle. The only trick? You have to make sure you don't accidentally move the '\0' end-of-train marker, otherwise the computer won't know where the word stops!
 
-![Reverse string](https://storage.googleapis.com/algodailyrandomassets/curriculum/easy-strings/reverse-a-string.jpg)`]
+![Reverse string](https://storage.googleapis.com/algodailyrandomassets/curriculum/easy-strings/reverse-a-string.webp)`]
                 },
                 {
                   title: "String as Character Array",
