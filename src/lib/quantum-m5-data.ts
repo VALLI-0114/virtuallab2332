@@ -58,13 +58,21 @@ except ImportError:
         },
         theory: [
           {
-            title: "Deutsch–Jozsa Algorithm",
+            title: "The Black-Box Problem — Constant or Balanced?",
             body: [
-              "Proposed in 1992, the Deutsch-Jozsa algorithm solves a specific 'black box' problem.",
-              "![Algorithm flow visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781864212/Classical_vs_Quantum_function_query_202606191521_xr9oci.mp4)",
-              "Imagine a hidden function that takes a binary string as input and outputs a single 0 or 1. You are guaranteed that this function is either completely 'Constant' (outputs the same thing for every input) or perfectly 'Balanced' (outputs 0 for half the inputs and 1 for the other half).",
-              "Classically, if you have N bits of input, you might have to query the function (2^N)/2 + 1 times in the worst case to be 100% sure if it's constant or balanced.",
-              "By putting all input bits into a superposition and utilizing quantum interference, the Deutsch-Jozsa algorithm determines the answer with 100% certainty in exactly ONE query, proving an exponential quantum speedup."
+              "Imagine a sealed box with a hidden function inside. You're told one thing for certain: this function is either Constant (it spits out the exact same answer — all 0s or all 1s — no matter what you feed it) or Balanced (it splits its answers exactly 50/50 between 0 and 1):",
+              "• Your job is to figure out which type it is, without ever seeing inside the box",
+              "• Classically, in the worst case, you'd need to check more than half of all possible inputs — `(2^N)/2 + 1` queries — before you could be 100% sure",
+              "The Deutsch–Jozsa algorithm gets the answer with total certainty using just ONE query — no matter how big N is. That's not a small speedup; it's exponential."
+            ]
+          },
+          {
+            title: "Reading the Algorithm in Code",
+            body: [
+              "In our `code` cell, the setup does three things before we ever touch the hidden function:",
+              "• `qc.x(1)` flips the ancilla (helper) qubit to |1⟩",
+              "• `qc.h(0)` and `qc.h(1)` push both qubits into superposition — now we're effectively testing every input at once",
+              "The line `qc.cx(0, 1)` is the oracle — the 'hidden function' itself, here implemented as a Balanced function using a simple CNOT gate. After a final `qc.h(0)` and `qc.measure(0, 0)`, quantum interference does the rest: a measured `'1'` means Balanced, a `'0'` means Constant. Running it confirms the result in exactly one shot, every time."
             ]
           }
         ],
@@ -105,14 +113,21 @@ print("While not exponential like Shor's, quadratic speedup is massive for big d
         },
         theory: [
           {
-            title: "Grover's Search Algorithm",
+            title: "Finding a Needle in an Unsorted Haystack",
             body: [
-              "Invented by Lov Grover in 1996, this algorithm searches an unsorted database of N items for a specific target.",
-              "![Search amplification animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781864197/Classical_vs_Quantum_Search_202606191524_etkb8t.mp4)",
-              "Classically, searching an unsorted list requires checking each item one by one, taking O(N) time.",
-              "Grover's algorithm initializes a superposition of all possible items. It then iteratively applies an oracle that 'tags' the correct item with a negative phase.",
-              "Following the oracle, a 'diffusion operator' performs 'amplitude amplification', which shrinks the probability of the wrong items and grows the probability of the correct item.",
-              "This finds the target in O(√N) steps, offering a quadratic speedup."
+              "Picture a phone book with a million names, but completely unsorted — no alphabetical order, nothing. You need to find one specific name:",
+              "• Classically, there's no shortcut — you check entries one by one, averaging N/2 checks before finding it",
+              "• For a million entries, that's roughly 500,000 checks on average",
+              "Grover's algorithm, conceived by Lov Grover in 1996, slashes that down to just √N checks — about 1,000 checks for the same million-entry list."
+            ]
+          },
+          {
+            title: "Amplitude Amplification — Code Without the Circuit",
+            body: [
+              "Our `code` cell prints this comparison directly: `print(\"For N = 1,000,000, average queries = √1,000,000 = 1,000\")`. But how does the quantum version actually achieve this?",
+              "• It starts every item in equal superposition — all candidates are 'equally likely' at first",
+              "• An oracle flips the phase of just the correct item, tagging it as 'negative' without anyone looking at it directly",
+              "A diffusion operator then reflects every amplitude about the average — and like a seesaw, this shrinks the wrong answers' amplitudes while growing the correct one's. Repeat this O(√N) times and the right answer becomes overwhelmingly likely to be measured. The print statement comparing `500,000 vs 1,000 queries` is exactly this quadratic speedup quantified."
             ]
           }
         ],
@@ -170,13 +185,21 @@ else:
         },
         theory: [
           {
-            title: "Shor's Algorithm",
+            title: "Why Factoring Big Numbers Matters",
             body: [
-              "Formulated by Peter Shor in 1994, this algorithm finds the prime factors of an integer N in polynomial time, representing an exponential speedup over the best known classical algorithms.",
-              "![Factorization visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781864197/RSA_encryption_factoring_with_Sh__202606191528_grtrm9.mp4)",
-              "Modern cryptography (like RSA used in secure web browsing) relies entirely on the assumption that factoring very large numbers (e.g., 2048-bit numbers) is practically impossible for classical computers, taking millions of years.",
-              "Shor's algorithm breaks the factoring problem down into a 'period finding' problem. It uses the Quantum Fourier Transform (QFT) to find this period almost instantly.",
-              "Once the period is found quantumly, simple classical mathematics (Greatest Common Divisor) extracts the prime factors, breaking the encryption."
+              "Every time you see a padlock icon in your browser, you're trusting that factoring a giant number into its two prime components is practically impossible for a classical computer — that's the entire foundation of RSA encryption:",
+              "• A 2048-bit number would take classical computers millions of years to factor",
+              "• Shor's algorithm, devised by Peter Shor in 1994, can do it in a tiny fraction of that time",
+              "This is why Shor's algorithm is considered one of the most consequential quantum algorithms ever discovered."
+            ]
+          },
+          {
+            title: "Turning Factoring Into Period-Finding",
+            body: [
+              "In our `code` cell, we set `N = 15` and pick a helper number `a = 7`. The real trick is rephrasing 'find the factors' as 'find the period':",
+              "• The loop `for x in range(1, 10): val = (a**x) % N` is hunting for the smallest x where `7^x mod 15` loops back to 1",
+              "• Classically, this period-finding loop is slow for large N — but the Quantum Fourier Transform (QFT) finds this exact period almost instantly",
+              "Once the period `r` is found (here, `r = 4`), it's all classical math from there: `math.gcd(a**(r//2) - 1, N)` and `math.gcd(a**(r//2) + 1, N)` extract the actual prime factors — `3` and `5` — closing the loop between quantum speed and classical algebra."
             ]
           }
         ],
@@ -215,12 +238,21 @@ print("Data input/output is slow. Getting huge classical datasets IN and OUT of 
         },
         theory: [
           {
-            title: "Quantum Machine Learning",
+            title: "Teaching AI to Think in Hilbert Space",
             body: [
-              "Quantum Machine Learning (QML) aims to utilize quantum computers to improve the speed or capability of AI and machine learning tasks.",
-              "![QML workflow visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781864212/Classical_vs_quantum_neural_netw__202606191544_pyijkd.mp4)",
-              "One major approach is the Quantum Support Vector Machine (QSVM). Classical SVMs map data to higher dimensions using the 'kernel trick'. Quantum feature maps use quantum entanglement to map data into an exponentially large Hilbert space, potentially uncovering patterns completely invisible to classical computers.",
-              "Another approach is Hybrid Quantum-Classical algorithms like VQE or QAOA. In these, a parameterized quantum circuit evaluates a complex function, and a classical CPU uses gradient descent to adjust the circuit's parameters, combining the strengths of both architectures."
+              "Classical machine learning often struggles when patterns in data are too tangled for simple math to separate cleanly. Quantum Machine Learning (QML) asks: what if we used entanglement itself as the pattern-recognition tool?",
+              "• A Quantum Support Vector Machine (QSVM) maps ordinary data into an exponentially large quantum space using a 'quantum feature map'",
+              "• Patterns invisible to classical algorithms can become easy to separate once mapped into this richer space",
+              "Our `code` cell's print statement, `Uses quantum entanglement to map data into ultra-high-dimensional spaces`, is describing exactly this — entanglement doing the heavy lifting that classical kernels struggle with."
+            ]
+          },
+          {
+            title: "Hybrid Algorithms — Quantum and Classical Working Together",
+            body: [
+              "Most practical QML today isn't 'fully quantum' — it's a handshake between a quantum circuit and a classical computer:",
+              "• A Variational Quantum Eigensolver (VQE) uses a quantum circuit to calculate a cost function",
+              "• A classical optimizer then tweaks the circuit's parameters, just like adjusting weights in a neural network",
+              "This loop — quantum calculates, classical adjusts, repeat — is what our `code` cell calls a Quantum Neural Network (QNN) when used as a layer. The final printed warning about QRAM bottlenecks is a real, current limitation: getting massive datasets in and out of a quantum state is still slow, and is one of the biggest open challenges in the field."
             ]
           }
         ],
@@ -265,12 +297,21 @@ print("- Solution: Creating unhackable networks using Quantum Key Distribution (
         },
         theory: [
           {
-            title: "Real-World Applications",
+            title: "Quantum Computers Aren't Here to Replace Your Laptop",
             body: [
-              "Quantum computers are not designed to replace classical computers for everyday tasks like sending emails or playing video games. They are specialized coprocessors designed to solve specific problems that are intractable for classical machines.",
-              "![Industry case-study animations](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781864210/Quantum_Computing_branches_diagram_202606191546_ddcvpc.mp4)",
-              "As Richard Feynman noted, nature is quantum mechanical. Therefore, to simulate nature accurately (like molecular chemistry and drug interactions), we need a quantum computer. This is expected to be the first major commercial breakthrough.",
-              "Other major areas include optimization (finance, logistics, traffic routing), where evaluating a massive number of permutations simultaneously provides an enormous advantage."
+              "It's tempting to imagine quantum computers as 'faster versions' of regular computers — but that's not the goal. They're specialized coprocessors, built to solve specific problems that classical machines genuinely cannot handle efficiently:",
+              "• Richard Feynman observed that nature itself behaves quantum mechanically",
+              "• So to simulate nature accurately — like molecules, proteins, and chemical reactions — you need a machine that thinks the same way nature does",
+              "Our `code` cell's first printed section on Chemistry and Drug Discovery captures this directly: classical computers fail here because electron interactions grow exponentially, while a quantum computer handles that complexity natively."
+            ]
+          },
+          {
+            title: "From Finance to Cybersecurity — Where Quantum Hits Hardest",
+            body: [
+              "Beyond chemistry, the same quantum advantage of evaluating many possibilities simultaneously reshapes several other industries:",
+              "• Financial Modeling — evaluating millions of portfolio pathways at once using superposition",
+              "• Logistics — QAOA (Quantum Approximate Optimization Algorithm) finding near-optimal routes across massive networks, tackling problems like the Traveling Salesperson Problem",
+              "And then there's the double-edged sword of Cybersecurity: the same quantum power that threatens to break RSA encryption via Shor's Algorithm also offers the fix — Quantum Key Distribution (BB84), creating networks that are provably unhackable rather than just difficult to hack."
             ]
           }
         ],

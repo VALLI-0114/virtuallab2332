@@ -41,12 +41,22 @@ print("Interference pattern generated! The peaks represent high probability of d
         },
         theory: [
           {
-            title: "Wave-Particle Duality",
+            title: "What Does It Mean to Be Both a Wave and a Particle?",
             body: [
-              "Imagine throwing a tennis ball at a wall with two holes in it. The ball goes through one hole and leaves one mark on the wall behind it. Simple, right? Now imagine doing the same thing with a tiny particle like an electron. Something weird happens — instead of leaving just one mark, it creates a striped pattern on the wall, just like waves in water would when they overlap and either boost or cancel each other out. This is called an interference pattern, and it shows that the electron was behaving like a wave, not a ball.",
+              "Imagine throwing a tennis ball at a wall with two holes in it. The ball goes through one hole and leaves a single mark behind it. Simple, right? Now do the same thing with a tiny particle like an electron, and something weird happens:",
               "![Double-slit animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781507208/Wave-particle_duality_animation___202606151224_bnn1ey.mp4)",
-              "But here's where it gets even stranger: what if we place a tiny camera or detector at the two holes to watch which hole the electron goes through? The moment we try to \"spy\" on the electron, the stripe pattern completely disappears! Instead, we get just two plain clumps — exactly what you'd expect from a normal ball. The act of watching changed the result.",
-              "This is called the Observer Effect — in the quantum world, simply observing a particle changes how it behaves. This mind-bending behavior is called wave-particle duality, meaning every tiny particle has a split personality: it can act like a wave or like a particle depending on whether we're watching it or not."
+              "• Instead of one mark, the electron leaves a striped pattern on the wall — exactly like overlapping water ripples that boost each other in some places and cancel out in others",
+              "• This striped pattern is called an interference pattern, and it's the signature of wave-like behavior",
+              "In our `code` cell, this is exactly what `wave1` and `wave2` represent — two cosine waves spreading out from each slit. When we add them together and square the result (`intensity = (wave1 + wave2)**2`), we get the same striped pattern nature gives us. The peaks in that plot are the bright stripes — spots where a particle is most likely to land."
+            ]
+          },
+          {
+            title: "The Observer Effect — Watching Changes the Outcome",
+            body: [
+              "Here's where it gets stranger. What if we place a tiny detector at the slits to see which one the electron actually goes through?",
+              "• The moment we 'spy' on the electron, the stripes vanish",
+              "• Instead, we get two plain clumps — exactly what a normal ball would do",
+              "This is the Observer Effect: simply observing a quantum particle changes how it behaves. The takeaway is wave-particle duality — every tiny particle has a split personality, behaving like a wave when unobserved and like a particle the instant we look."
             ]
           }
         ],
@@ -90,13 +100,22 @@ print(f"Total Probability: {total_probability:.3f} (Must be exactly 1.0)")`,
         },
         theory: [
           {
-            title: "Quantum States",
+            title: "Describing a Particle With a Recipe Card",
             body: [
-              "In everyday life, if you want to describe where something is or what it's doing, you just say it — \"the ball is on the table\" or \"the switch is OFF.\" But in the quantum world, things are far more uncertain. Scientists use something called a state vector, written as |ψ⟩ (pronounced \"psi\"), to describe a quantum particle. Think of it like a recipe card that tells you all the possible things a particle could be doing and how likely each one is.",
-              "The simplest quantum object is called a qubit (like a quantum version of a computer's 0 or 1 bit). A qubit's state is written as: |ψ⟩ = α|0⟩ + β|1⟩",
+              "In everyday life, describing something is easy — 'the ball is on the table.' In the quantum world, things are far less certain, so physicists use a state vector, written |ψ⟩ ('psi'), to describe a particle:",
+              "• Think of |ψ⟩ as a recipe card listing every possible outcome and how likely each one is",
               "![State vector visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781507208/Quantum_superposition_animation___202606151234_vnxpzx.mp4)",
-              "Don't be scared by the symbols! Here's what it simply means: |0⟩ and |1⟩ are the two possible results you can get when you measure the qubit (like heads or tails on a coin). α and β are just numbers that tell you \"how much\" the qubit leans toward being a 0 or a 1. When you square those numbers (|α|² and |β|²), you get the actual probability — the chance — of getting each result.",
-              "There's one golden rule though: the probabilities must always add up to 100% (or 1 in math terms). This makes sense — when you measure the qubit, it has to be something! This rule is called normalization, and it keeps our math connected to reality."
+              "• The simplest quantum object — a qubit — has a state written as |ψ⟩ = α|0⟩ + β|1⟩",
+              "In the `code` cell, `alpha` and `beta` are exactly these two numbers. `state_vector = np.array([alpha, beta])` is the actual |ψ⟩ written in code — a list holding how much the qubit 'leans' toward 0 versus 1."
+            ]
+          },
+          {
+            title: "Turning Amplitudes Into Real Probabilities",
+            body: [
+              "α and β aren't probabilities themselves — they're probability amplitudes. To get an actual chance of an outcome, you square them:",
+              "• `probability_0 = np.abs(alpha)**2` is literally |α|², the chance of measuring |0⟩",
+              "• `probability_1 = np.abs(beta)**2` is |β|², the chance of measuring |1⟩",
+              "There's one unbreakable rule: every probability must add up to exactly 100% (1.0 in math). This is normalization — checked in code by `total_probability = probability_0 + probability_1`, which must always print as 1.000. It makes sense: when you finally measure the qubit, it has to be something."
             ]
           }
         ],
@@ -154,13 +173,20 @@ except ImportError:
         },
         theory: [
           {
-            title: "Quantum Superposition",
+            title: "A Coin That's Both Heads and Tails Mid-Air",
             body: [
-              "Imagine a coin spinning in the air. While it's spinning, it's not really \"heads\" or \"tails\" — it's kind of both at the same time. The moment it lands and you look at it, it becomes one or the other. Quantum superposition works in exactly the same way, but it's not just a trick of not knowing — the particle genuinely exists in multiple states at once until you look at it.",
+              "Picture a coin spinning in the air. While it spins, it isn't really 'heads' or 'tails' — it's kind of both at once. The instant it lands, it becomes one or the other. Quantum superposition works the same way, except it's not just our ignorance — the particle truly exists in multiple states simultaneously until measured.",
               "![Superposition animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781507210/Quantum_particle_in_scientific_lab_202606151226_ovqcsu.mp4)",
-              "A qubit (a quantum particle used like a computer bit) can be in state |0⟩, state |1⟩, or a magical mix of both at the same time. This mixed state is superposition.",
-              "To actually put a qubit into superposition, scientists use something called a Hadamard gate (or H-gate). Think of it like a \"quantum coin flipper.\" When you apply the H-gate to a qubit that starts as a definite |0⟩, it instantly enters a perfect 50/50 superposition called |+⟩. This means: if you measure it, there's exactly a 50% chance you'll get |0⟩ and exactly a 50% chance you'll get |1⟩.",
-              "Nobody — not even the laws of physics — can tell you in advance which one you'll get. It's truly random. But the moment you measure it, the superposition instantly vanishes and the qubit \"picks a side.\""
+              "A qubit can sit in state |0⟩, state |1⟩, or a magical mix of both — that mix is superposition."
+            ]
+          },
+          {
+            title: "The Hadamard Gate — Our Quantum Coin Flipper",
+            body: [
+              "To actually create superposition, we use a Hadamard gate, written in code as `qc.h(0)`:",
+              "• Before the gate: the qubit starts as a definite |0⟩",
+              "• After `qc.h(0)`: the qubit enters a perfect 50/50 superposition called |+⟩",
+              "The line `qc.measure(0, 0)` then collapses that superposition — forcing the qubit to 'pick a side.' Running the circuit `1000` times (`shots=1000`) and tallying `counts.get('0', 0)` versus `counts.get('1', 0)` shows the result: roughly a 50/50 split, with no way to predict any single outcome in advance."
             ]
           }
         ],
@@ -207,13 +233,22 @@ plt.show()`,
         },
         theory: [
           {
-            title: "Measurement and Wave Function Collapse",
+            title: "Measurement Isn't Gentle — It's Permanent",
             body: [
-              "In everyday life, measuring something is harmless. You can check the temperature of a room without changing the temperature. But in the quantum world, measurement is violent — it completely and permanently changes the thing you're measuring.",
+              "Checking a room's temperature doesn't change the room. But in the quantum world, measurement is violent — it permanently changes the thing being measured:",
               "![Measurement collapse animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781508332/Quantum_measurement_qubit_collapse_202606151244_g4ea6x.mp4)",
-              "Here's why: before you measure a quantum particle, it exists in superposition — a ghostly mix of multiple possible states all at once. The moment you measure it, this superposition instantly \"pops\" and the particle is forced to choose one definite state. This sudden change is called wave function collapse. It's like asking a spinning coin \"heads or tails?\" — the very act of asking forces it to pick one and stop spinning.",
-              "How do we know which state it will collapse to? We use the Born Rule, named after physicist Max Born. It's simple: The probability of getting a particular result = the square of that state's probability amplitude. In plain English: take the number (α or β) attached to each possible state, square it, and you get the percentage chance of getting that result when you measure.",
-              "The really important — and strange — thing is what happens after measurement. Once the particle has collapsed into a definite state, it stays there. Measure it again immediately and you'll get the exact same answer every time. The superposition is gone forever. There's no going back. This is what makes quantum measurement fundamentally different from anything in classical physics."
+              "• Before measuring, a particle exists in superposition — a ghostly mix of states",
+              "• The instant you measure it, the superposition 'pops' and the particle is forced into one definite state",
+              "This sudden change is wave function collapse — like asking a spinning coin 'heads or tails?' and forcing it to stop and answer."
+            ]
+          },
+          {
+            title: "The Born Rule — Predicting Which Way It Collapses",
+            body: [
+              "How do we know the odds of each outcome? The Born Rule: square the probability amplitude to get the percentage chance.",
+              "• In our `code` cell, `prob_0 = 0.8` and `prob_1 = 0.2` are these exact probabilities, already squared and ready to use",
+              "• `measurements = np.random.choice([0, 1], size=100, p=[prob_0, prob_1])` simulates 100 separate quantum measurements, each one obeying the Born Rule",
+              "The bar chart built from `count_0` and `count_1` shows the result settling in close to 80 and 20 — and once a qubit collapses to a result, measuring it again immediately gives the same answer every time. There's no going back."
             ]
           }
         ],
@@ -266,13 +301,20 @@ print("The red curve has high Δx (uncertain position), allowing for a more cert
         },
         theory: [
           {
-            title: "Heisenberg's Uncertainty Principle",
+            title: "The Camera Shutter Problem",
             body: [
-              "Imagine trying to take a photo of a fast-moving car at night. If you use a very fast shutter speed, you get a sharp, clear image of where the car is — but you can't tell how fast it was moving. If you use a slow shutter speed, the car appears as a blur — which actually tells you about its motion, but now you can't pin down exactly where it is. You can't get both perfectly at the same time.",
+              "Imagine photographing a speeding car at night. A fast shutter gives a sharp picture of where the car is — but tells you nothing about how fast it's moving. A slow shutter captures motion as a blur — but now you can't pin down its exact position. You can never get both perfectly at once.",
               "![Uncertainty visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781508331/Heisenberg_Uncertainty_Principle__202606151255_mwpalx.mp4)",
-              "Werner Heisenberg discovered that nature has exactly this kind of built-in trade-off for tiny particles, and it's not because our cameras (or instruments) aren't good enough — it's a fundamental law of the universe. This is called the Heisenberg Uncertainty Principle, and it says: The more precisely you know a particle's position, the less precisely you can know its momentum (speed × mass) — and vice versa.",
-              "The math behind it is: Δx × Δp ≥ ℏ/2, where Δx = the uncertainty in position (how fuzzy the location is), Δp = the uncertainty in momentum (how fuzzy the speed is), and ℏ = a tiny constant of nature (Planck's constant ÷ 2π).",
-              "The reason this happens goes back to wave-particle duality. A particle behaves like a wave, and a wave that is very tightly squeezed into one location (so you know where it is) must be made up of many many different wavelengths mixed together — and each wavelength corresponds to a different speed. So the more you pin down the location, the more scrambled the speed becomes. It's not a flaw in our tools. It's how the universe is built."
+              "Heisenberg discovered nature has this exact trade-off built in for quantum particles — not because our tools are imperfect, but as a fundamental law of the universe."
+            ]
+          },
+          {
+            title: "Reading the Uncertainty Formula in Code",
+            body: [
+              "The Heisenberg Uncertainty Principle is written as Δx × Δp ≥ ℏ/2 — the more precisely you know position, the less precisely you can know momentum, and vice versa.",
+              "• In our `code` cell, `width_narrow = 0.5` builds a tightly squeezed wave packet — small Δx, certain position",
+              "• `width_wide = 3.0` builds a spread-out wave packet — large Δx, uncertain position",
+              "The function `wave_packet(x, width)` literally encodes this trade-off: shrink the width to pin down position, and (by the math of waves) the corresponding momentum spread must grow. It's not a flaw in measurement — it's how waves work, traced straight back to wave-particle duality."
             ]
           }
         ],

@@ -125,6 +125,7 @@ import { JavaJDBCInsertSim } from "@/components/simulations/JavaJDBCInsertSim";
 import { JavaJDBCDeleteSim } from "@/components/simulations/JavaJDBCDeleteSim";
 import { PostSolveAuthModal } from '@/components/PostSolveAuthModal';
 import { markGuestSolved, hasGuestSolved } from '@/lib/guestProgress';
+import { QuantumWorkspace } from "@/components/QuantumWorkspace";
 type WorkspaceSearch = {
   exp?: string;
 };
@@ -233,6 +234,20 @@ function loadPyodide(): Promise<any> {
 interface SqlResultTable {
   columns: string[];
   rows: any[][];
+}
+
+let quantumPyodidePromise: Promise<any> | null = null;
+
+async function loadQuantumPyodide(): Promise<any> {
+  if (quantumPyodidePromise) return quantumPyodidePromise;
+  quantumPyodidePromise = (async () => {
+    // Reuse the base Pyodide loader
+    const pyodide = await loadPyodide();
+    // Load numpy and matplotlib
+    await pyodide.loadPackage(['numpy', 'matplotlib']);
+    return pyodide;
+  })();
+  return quantumPyodidePromise;
 }
 
 function runSqlQuery(SQL: any, dbRef: React.MutableRefObject<any>, query: string): { tables: SqlResultTable[]; messages: string[]; error?: string } {
@@ -539,6 +554,12 @@ function Workspace() {
   const [pyodideLoaded, setPyodideLoaded] = useState(false);
   const [pyodideLoadError, setPyodideLoadError] = useState<string | null>(null);
   const pyodideRef = useRef<any>(null); // pyodide instance
+
+  // ── Quantum-specific Pyodide state ────────────────────────────────────────────
+const [quantumPyodideLoaded, setQuantumPyodideLoaded] = useState(false);
+const [quantumPyodideError, setQuantumPyodideError] = useState<string | null>(null);
+const quantumPyodideRef = useRef<any>(null);
+const quantumShimRef = useRef<string | null>(null); // stores shim source
 
   const [showPostSolveModal, setShowPostSolveModal] = useState(false);
 
@@ -892,6 +913,24 @@ except BaseException:
   const isAITools = details?.course.id === "ai-tools";
   const isIot = details?.course.id === "iot";
   const isQuantum = details?.course.id === "quantum-computing";
+
+    // Pre-load Pyodide + numpy + matplotlib for quantum course
+useEffect(() => {
+  if (isQuantum && !quantumPyodideLoaded) {
+    // Fetch the shim source from the public folder
+    fetch('/quantumShim.py')
+      .then(r => r.text())
+      .then(shimSrc => {
+        quantumShimRef.current = shimSrc;
+        return loadQuantumPyodide();
+      })
+      .then(pyodide => {
+        quantumPyodideRef.current = pyodide;
+        setQuantumPyodideLoaded(true);
+      })
+      .catch(err => setQuantumPyodideError(err.message));
+  }
+}, [isQuantum, quantumPyodideLoaded]);
 
   const WORKSPACE_STEPS = isAITools 
     ? ["Aim", "Theory", "Pretest", "Procedure", "Solve", "Posttest", "References"]
@@ -1336,6 +1375,14 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                     </div>
                   </div>
                 </div>
+              ) : isQuantum ? (
+                <QuantumWorkspace
+                  experimentCode={details?.experiment?.code ?? ''}
+                  isLoaded={quantumPyodideLoaded}
+                  loadError={quantumPyodideError}
+                  pyodideRef={quantumPyodideRef}
+                  shimRef={quantumShimRef}
+                />
               ) : (
                 <>
                   {/* Toolbar */}
@@ -1597,6 +1644,7 @@ const handlePostSolveAuthenticated = async (userId: string) => {
                                           </div>
                                         );
                                       }
+                                      
                                       return (
                                         <div key={j} className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
                                           {textBefore && (

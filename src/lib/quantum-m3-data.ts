@@ -47,12 +47,22 @@ except ImportError:
         },
         theory: [
           {
-            title: "The Pauli-X Gate",
+            title: "What Is the Pauli-X Gate?",
             body: [
-              "The Pauli-X gate is one of the fundamental single-qubit quantum logic gates. It is the quantum equivalent of the classical NOT gate.",
+              "The Pauli-X gate is the quantum world's version of a light switch — it flips a qubit from one state to the other:",
               "![Gate transformation animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612931/Animation_showing_only_a_quant_plqpx5.mp4)",
-              "Mathematically, it performs a 180-degree (π radian) rotation of the qubit's state vector around the X-axis of the Bloch sphere.",
-              "If the qubit is in state |0⟩ (pointing up at the North Pole), applying the X-gate rotates it to the South Pole, putting it in state |1⟩. Conversely, if applied to |1⟩, it flips the state back to |0⟩."
+              "• Classical computers have a NOT gate that flips 0 to 1 and 1 to 0",
+              "• The X-gate does exactly the same job, but for qubits — written in code as `qc.x(0)`",
+              "Geometrically, it performs a 180-degree spin of the qubit's state vector around the X-axis of the Bloch sphere — imagine grabbing a globe and flipping it from the North Pole straight down to the South Pole."
+            ]
+          },
+          {
+            title: "Reading the Flip in Code",
+            body: [
+              "In our `code` cell, the qubit starts at the North Pole — state |0⟩ — before anything happens:",
+              "• `qc.x(0)` applies the gate, rotating the qubit to the South Pole, state |1⟩",
+              "• `qc.measure(0, 0)` then locks in that result",
+              "Running the circuit for `shots=10` and printing `counts` shows `{'1': 10}` every single time — 100% certainty, with zero randomness. That's the X-gate's signature: it doesn't create uncertainty, it just swaps one definite state for the other."
             ]
           }
         ],
@@ -106,13 +116,21 @@ except ImportError:
         },
         theory: [
           {
-            title: "The Pauli-Y Gate",
+            title: "A Flip With a Twist",
             body: [
-              "The Pauli-Y gate rotates the qubit's state vector by 180 degrees (π radians) around the Y-axis of the Bloch sphere.",
+              "The Pauli-Y gate also flips the qubit's state, just like the X-gate — but it adds a secret ingredient along the way: a complex phase.",
               "![Phase change visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612932/Animation_showing_only_a_Bloch_1_vjuoie.mp4)",
-              "Because it rotates through the complex Y-axis, it introduces an imaginary phase factor (i).",
-              "When applied to |0⟩, it results in i|1⟩. When applied to |1⟩, it results in -i|0⟩.",
-              "While the measurement probabilities (the absolute squares of the amplitudes) are identical to the X-gate when starting from |0⟩ or |1⟩, the complex phase is critical for interference effects in multi-gate algorithms."
+              "• Geometrically, it's a 180-degree rotation around the Y-axis of the Bloch sphere, instead of the X-axis",
+              "Think of the X-gate as flipping a coin face-down to face-up, while the Y-gate flips it the same way but also gives it a quarter-turn spin in the air — same final 'side,' but with extra information tagging along."
+            ]
+          },
+          {
+            title: "Spotting the Imaginary Number in Code",
+            body: [
+              "This 'extra spin' shows up in code as the imaginary unit `i` (written as `j` in Python):",
+              "• `qc.y(0)` applies the gate to a qubit starting in |0⟩",
+              "• Using the `statevector_simulator` instead of a regular measurement lets us peek at the hidden amplitudes before collapse",
+              "The printed result `[0.+0.j  0.+1.j]` is the qubit in state i|1⟩ — same measurement odds as the X-gate, but carrying a complex phase that becomes crucial later when gates start interfering with each other in bigger algorithms."
             ]
           }
         ],
@@ -173,13 +191,22 @@ except ImportError:
         },
         theory: [
           {
-            title: "The Pauli-Z Gate",
+            title: "The Gate That Changes Sign, Not Identity",
             body: [
-              "The Pauli-Z gate rotates the state vector by 180 degrees (π radians) around the Z-axis of the Bloch sphere.",
+              "The Pauli-Z gate is the odd one out — it doesn't flip |0⟩ to |1⟩ at all. Instead, it rotates the state vector 180 degrees around the Z-axis of the Bloch sphere, the same axis |0⟩ and |1⟩ already sit on:",
               "![State inversion animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612932/Quantum_circuit_showing_superpos__202606161758_maymef.mp4)",
-              "Because the |0⟩ and |1⟩ states lie exactly ON the Z-axis, rotating around the Z-axis does not change the probability of measuring 0 or 1. This is why it's called a phase-flip gate rather than a bit-flip gate.",
-              "Specifically, it leaves the |0⟩ state entirely unchanged. However, it multiplies the |1⟩ state by -1, changing it to -|1⟩.",
-              "Its most noticeable effect is on superposition states that lie on the equator. If applied to the |+⟩ state (α=1/√2, β=1/√2), it flips the sign of β, resulting in the |-⟩ state (α=1/√2, β=-1/√2)."
+              "• Because |0⟩ and |1⟩ live directly on that axis, spinning around it leaves them looking unchanged in terms of measurement odds",
+              "• This is why it's called a phase-flip gate, not a bit-flip gate"
+            ]
+          },
+          {
+            title: "Tracing Three Cases in Code",
+            body: [
+              "Our `code` cell tests the Z-gate on three different starting states to show what 'phase flip' really means:",
+              "• `qc_0.z(0)` applied straight to |0⟩ — output stays `[1.+0.j  0.+0.j]`, completely unchanged",
+              "• `qc_1.x(0)` then `qc_1.z(0)` — flips to |1⟩ first, then Z slaps a minus sign on it, giving `-|1⟩`",
+              "• `qc_plus.h(0)` then `qc_plus.z(0)` — builds the |+⟩ superposition first, then Z flips the sign of just the second amplitude, transforming it into the |-⟩ state",
+              "The lesson: Z is invisible on its own basis states, but it quietly rewires the relationship between amplitudes in a superposition — and that hidden sign change matters enormously once interference comes into play."
             ]
           }
         ],
@@ -237,13 +264,22 @@ except ImportError:
         },
         theory: [
           {
-            title: "The Hadamard Gate",
+            title: "Meet the Gate That Builds Superposition",
             body: [
-              "The Hadamard (H) gate is arguably the most important gate in quantum algorithms. It is responsible for creating superposition.",
+              "If the Pauli gates are about flipping and twisting an already-definite state, the Hadamard (H) gate is about creating genuine uncertainty:",
               "![Superposition creation animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781612933/2-qubit_circuit_Bell_state_created_202606161756_bdx5av.mp4)",
-              "When applied to the |0⟩ state, it creates the |+⟩ state: an equal superposition where the probability of measuring 0 or 1 is exactly 50%. Mathematically: H|0⟩ = 1/√2|0⟩ + 1/√2|1⟩.",
-              "When applied to the |1⟩ state, it creates the |-⟩ state: H|1⟩ = 1/√2|0⟩ - 1/√2|1⟩. Note the negative phase on the |1⟩ component.",
-              "The H-gate is its own inverse. Applying an H-gate to a state that is already in superposition (like |+⟩) will collapse it deterministically back into its original basis state (|0⟩)."
+              "• Applying `qc.h(0)` to a definite |0⟩ produces the |+⟩ state — an equal 50/50 superposition",
+              "• Mathematically: H|0⟩ = 1/√2|0⟩ + 1/√2|1⟩",
+              "Picture it like balancing a coin perfectly on its edge — give it the slightest push (the H-gate) and it becomes equally likely to land heads or tails."
+            ]
+          },
+          {
+            title: "Confirming the 50/50 Split With Real Numbers",
+            body: [
+              "In our `code` cell, the circuit applies `qc.h(0)` then measures `1024` times (`shots=1024`) to see the H-gate's signature in action:",
+              "• The printed `counts` dictionary shows results close to `{'0': 518, '1': 506}` — almost exactly half and half",
+              "• Applied instead to |1⟩, H produces the |-⟩ state: H|1⟩ = 1/√2|0⟩ - 1/√2|1⟩, with the same 50/50 odds but a flipped sign",
+              "One neat trick: the H-gate is its own inverse — apply it a second time to |+⟩ and it snaps right back to the original definite state, no randomness involved."
             ]
           }
         ],
@@ -305,14 +341,21 @@ except ImportError:
         },
         theory: [
           {
-            title: "Quantum Circuit Architecture",
+            title: "Reading a Circuit Like a Sheet of Music",
             body: [
-              "Quantum circuits are the standard visual language for describing quantum algorithms.",
-              "![Circuit execution visualization](https://res.cloudinary.com/den4nmmwx/image/upload/q_auto/f_auto/v1781612934/Gemini_Generated_Image_cdhhycdhhycdhhyc_leohfj.webp)",
-              "Each horizontal line represents a qubit evolving over time, flowing from left to right. The top wire is usually labeled q_0, the next q_1, and so on.",
-              "A double line at the bottom represents the classical register, where measurement results are stored as standard bits.",
-              "Gates are placed on the wires. Single-qubit gates (like H, X, Y, Z) appear as boxes on a single wire. Multi-qubit gates (like CNOT) span across multiple wires, indicating interaction or entanglement.",
-              "The final step in most circuits is a measurement gate, represented by a meter icon, pointing down to the classical register."
+              "A quantum circuit diagram is just a timeline — read left to right — showing every gate a qubit passes through:",
+              "• Each horizontal wire represents one qubit evolving over time, usually labeled `q_0`, `q_1`, and so on",
+              "• Single-qubit gates like H, X, Y, Z appear as labeled boxes sitting directly on a wire",
+              "In our `code` cell, `qc.h(0)` places an H box on wire `q_0`, and `qc.x(1)` places an X box on wire `q_1` — exactly where you'd expect from reading the diagram."
+            ]
+          },
+          {
+            title: "Spotting Multi-Qubit Gates and Measurement",
+            body: [
+              "Some gates touch more than one wire at once — these are multi-qubit gates, and they're where entanglement enters the picture:",
+              "• `qc.cx(0, 1)` draws as a vertical line connecting `q_0` (a dot, the control) to `q_1` (a crossed circle, the target)",
+              "• It flips the target qubit only if the control qubit is |1⟩ — a rule we'll dig into properly in Module 4",
+              "Finally, `qc.measure([0, 1], [0, 1])` draws as meter icons pointing down into the double-line classical register at the bottom — the moment where quantum information becomes an ordinary readable bit."
             ]
           }
         ],

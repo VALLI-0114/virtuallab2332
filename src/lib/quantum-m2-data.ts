@@ -49,12 +49,22 @@ except ImportError:
         },
         theory: [
           {
-            title: "Classical Bits vs Qubits",
+            title: "The Same Question, Two Very Different Answers",
             body: [
-              "A classical bit is the fundamental unit of information in classical computing. It can hold only one of two values: 0 or 1. Every operation on a classical bit is deterministic.",
+              "A classical bit is the stubborn, predictable cousin in this story. It can only ever be 0 or 1, and flipping it always gives the exact same answer:",
               "![Comparison animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781609635/Classical_bit_vs_qubit_comparison_202606161541_ro45og.mp4)",
-              "A quantum bit, or qubit, is the basic unit of quantum information. Thanks to superposition, a qubit can be in state |0⟩, state |1⟩, or any linear combination of the two.",
-              "While a classical system with N bits can represent exactly one of 2^N possible states at any given time, a quantum system with N qubits can represent a superposition of all 2^N states simultaneously."
+              "• In our `code` cell, `classical_bit = 0` then `classical_bit = 1 - classical_bit` is a NOT operation — run it a million times, you get `1` every single time, no surprises",
+              "A qubit is the unpredictable cousin. It doesn't just store 0 or 1 — it can hold a blend of both, called superposition."
+            ]
+          },
+          {
+            title: "Same Starting Point, Same Operation — Different Results Every Time",
+            body: [
+              "This is the part that breaks people's brains the first time they see it: the exact same qubit, given the exact same instruction, doesn't always give the same answer.",
+              "• `qc.h(0)` applies a Hadamard gate — the 'half-NOT' that pushes a qubit from a definite |0⟩ into a 50/50 superposition",
+              "• `qc.measure(0, 0)` then forces a collapse into either 0 or 1",
+              "• Running `simulator.run(compiled_circuit, shots=10)` fires this exact same circuit 10 separate times",
+              "The printed `counts` dictionary — something like `{'0': 5, '1': 5}` — is the smoking-gun evidence: ten identical setups, yet a genuine mix of outcomes. And it scales: while N classical bits can only ever represent one of 2^N states at a time, N qubits in superposition can represent all 2^N states simultaneously."
             ]
           }
         ],
@@ -101,13 +111,22 @@ except ImportError:
         },
         theory: [
           {
-            title: "The Bloch Sphere",
+            title: "Turning an Invisible State Into Something You Can See",
             body: [
-              "Because a single qubit state requires complex numbers to describe, it can be mathematically mapped to the surface of a 3-dimensional sphere of radius 1, known as the Bloch Sphere.",
+              "A qubit's state involves complex numbers, which is hard to picture directly. So physicists found a clever trick: map every possible qubit state onto the surface of a globe — the Bloch Sphere.",
               "![3D Bloch Sphere](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781609632/Bloch_Sphere_quantum_computing_s__202606161545_ncozjn.mp4)",
-              "The North Pole represents the classical state |0⟩, and the South Pole represents the classical state |1⟩.",
-              "Points on the surface of the sphere between the poles represent quantum superpositions. The equator represents states with exactly 50/50 probability, such as |+⟩ and |-⟩.",
-              "Quantum logic gates can be visualized as rotations of the state vector around the X, Y, or Z axes of this sphere."
+              "• North Pole = the classical state |0⟩",
+              "• South Pole = the classical state |1⟩",
+              "In our `code` cell, `vector = [0, 0, 1]` is exactly the North Pole — the point on the sphere representing a qubit sitting purely in |0⟩. That's why `plot_bloch_vector(vector, title='Qubit in State |0>')` draws the arrow pointing straight up."
+            ]
+          },
+          {
+            title: "The Equator, and Why Gates Are Just Rotations",
+            body: [
+              "Anywhere between the poles represents a superposition — and the equator is special:",
+              "• Points on the equator, like |+⟩ at `[x=1, y=0, z=0]`, represent perfect 50/50 superpositions",
+              "• Compare this to |0⟩'s `[x=0, y=0, z=1]` and |1⟩'s `[x=0, y=0, z=-1]` — same sphere, totally different latitude",
+              "This geometric picture pays off beautifully: every quantum logic gate (like the Hadamard from Experiment 1) can be visualized as simply rotating this arrow around the X, Y, or Z axis. A gate isn't some abstract operation — it's a spin of the globe."
             ]
           }
         ],
@@ -151,12 +170,20 @@ except ImportError:
         },
         theory: [
           {
-            title: "Initialization and Reset",
+            title: "You Can't Build on a Messy Foundation",
             body: [
-              "Before a quantum algorithm can run, the computer must be initialized to a known, well-defined baseline state. In almost all quantum computing frameworks, this default starting state is the ground state: |0⟩ for every qubit.",
+              "Imagine starting a math problem on a whiteboard that still has leftover scribbles from someone else's homework. You'd get the wrong answer before you even begin. Quantum computers have the exact same problem — and they solve it the same way: wipe the board clean first.",
               "![Initialization animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781609633/Qubit_initialization_in_quantum___202606161549_tukldx.mp4)",
-              "If the qubits start in a random, noisy, or entangled state from a previous calculation, the results of the current algorithm will be corrupted.",
-              "Physically, initializing a qubit to |0⟩ involves actively cooling the system down to its lowest energy state or performing a rapid measurement and conditional reset to force it into |0⟩."
+              "• By default, every qubit in our framework starts at the ground state |0⟩",
+              "• In our `code` cell, a fresh `qc = QuantumCircuit(3)` automatically begins life as the state |000⟩ — no extra code needed",
+              "If qubits were left in a random or leftover entangled state from a previous calculation, every result that follows would be corrupted."
+            ]
+          },
+          {
+            title: "Telling the Qubits Exactly Where to Start",
+            body: [
+              "Sometimes you don't want the default |000⟩ — you want a specific custom starting point. That's what `qc.initialize('101', qc.qubits)` does in our `code` cell: it manually forces the three qubits into the state |101⟩ instead of the default.",
+              "Physically, this 'reset to zero' isn't just bookkeeping — it means actively cooling the qubit to its lowest energy state, or rapidly measuring it and conditionally flipping it back to |0⟩ if needed. Either way, the goal is the same: guarantee a known, trustworthy baseline before the real computation begins."
             ]
           }
         ],
@@ -203,13 +230,22 @@ print("Inner Product <0|1> (Should be 0 - Orthogonal):", ortho_prod[0][0])`,
         },
         theory: [
           {
-            title: "Bra-Ket Notation",
+            title: "Kets — Writing Quantum States as Columns",
             body: [
-              "Invented by Paul Dirac, bra-ket notation is the standard mathematical language of quantum mechanics.",
+              "Paul Dirac gave physicists a clean shorthand for quantum states, and our code uses it directly:",
               "![State representation visualizer](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781609633/Quantum_state_representation_vis__202606161552_f0enlh.mp4)",
-              "A 'ket' written as |ψ⟩ represents a column vector describing a quantum state.",
-              "A 'bra' written as ⟨ψ| represents a row vector, specifically the complex conjugate transpose of the ket.",
-              "Putting them together forms a 'bra-ket' ⟨φ|ψ⟩, which calculates the inner product (dot product) of the two vectors. This inner product tells us how much the state |ψ⟩ overlaps with the state |φ⟩."
+              "• `ket_0 = np.array([[1], [0]])` is the column vector for |0⟩",
+              "• `ket_1 = np.array([[0], [1]])` is the column vector for |1⟩",
+              "Whenever you see a state written as |something⟩, picture exactly this — a column vector, just like the ones printed by our `code` cell."
+            ]
+          },
+          {
+            title: "Bras, and the Inner Product That Reveals Overlap",
+            body: [
+              "Flip a ket on its side (transpose it) and you get its 'bra' — written ⟨something|. In our `code` cell, `bra_0 = ket_0.T` does exactly this flip.",
+              "• Multiplying a bra by a ket, like `np.dot(bra_0, ket_0)`, gives the inner product ⟨0|0⟩",
+              "• This number tells you how much one state overlaps with another",
+              "Two outcomes prove the rule: `inner_prod` for ⟨0|0⟩ comes out to exactly 1 (a state always fully overlaps with itself), while `ortho_prod` for ⟨0|1⟩ comes out to exactly 0 — these states are orthogonal, meaning completely distinguishable from one another, like North and East pointing in totally different directions."
             ]
           }
         ],
@@ -250,13 +286,21 @@ print(f"Total Probability: {total * 100:.1f}%")`,
         },
         theory: [
           {
-            title: "Calculating Probabilities",
+            title: "Amplitudes Are Not Probabilities — Yet",
             body: [
-              "The state of a qubit is |ψ⟩ = α|0⟩ + β|1⟩.",
+              "It's tempting to think the numbers in front of |0⟩ and |1⟉ are probabilities directly, but they're not — they're amplitudes, and you need one extra step to turn them into real percentages.",
               "![Measurement visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781609633/Quantum_processor_in_refrigerator_202606161559_sfajbj.mp4)",
-              "To find the probability of the qubit collapsing into the |0⟩ state upon measurement in the standard Z-basis, we take the absolute square of α, denoted as |α|².",
-              "To find the probability of collapsing into the |1⟩ state, we calculate |β|².",
-              "If the amplitudes are complex numbers (e.g., α = a + bi), the absolute square is calculated by multiplying the number by its complex conjugate: |α|² = α * α* = a² + b²."
+              "• In our `code` cell, `amplitude_0 = np.sqrt(3)/2` and `amplitude_1 = 1/2` describe the state |ψ⟩ = (√3/2)|0⟩ + (1/2)|1⟩",
+              "Notice these numbers themselves don't look like '75%' or '25%' — that conversion is the whole point of this experiment."
+            ]
+          },
+          {
+            title: "Squaring Your Way to a Real Percentage",
+            body: [
+              "The rule is simple: square the amplitude to get the actual probability. In our `code` cell, this is exactly what happens:",
+              "• `prob_0 = np.abs(amplitude_0)**2` takes √3/2 and squares it to get 0.75 — a 75% chance of measuring |0⟩",
+              "• `prob_1 = np.abs(amplitude_1)**2` takes 1/2 and squares it to get 0.25 — a 25% chance of measuring |1⟩",
+              "And just like every experiment before this one, the `total` printed at the end checks out to exactly 100% — proof the state was valid all along. If the amplitudes had been complex numbers instead of plain real numbers, the same idea still works: multiply by the complex conjugate (α × α*) to get the same kind of guaranteed-real, guaranteed-positive probability."
             ]
           }
         ],

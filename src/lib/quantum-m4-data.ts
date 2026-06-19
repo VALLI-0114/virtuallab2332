@@ -48,13 +48,21 @@ except ImportError:
         },
         theory: [
           {
-            title: "Quantum Entanglement",
+            title: "What Is Entanglement?",
             body: [
-              "Entanglement is a purely quantum phenomenon where two or more particles become intrinsically linked, such that the state of one cannot be described independently of the state of the other.",
-              "![Entanglement animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614030/Entangled_pair_measurement_corre__202606161811_psr9zf.mp4)",
-              "Einstein famously referred to it as 'spooky action at a distance' because measuring one entangled particle instantaneously determines the state of its partner, even if they are light-years apart.",
-              "The most common way to entangle two qubits is to place the first qubit in a superposition using a Hadamard (H) gate, and then use a Controlled-NOT (CNOT) gate to link the second qubit to the first.",
-              "In a perfectly entangled |Φ+⟩ state, if you measure the first qubit and get a 0, the second qubit is guaranteed to be 0. If you get a 1, the second is guaranteed to be 1."
+              "Entanglement is a purely quantum phenomenon where two particles become so deeply linked that you can no longer describe one without describing the other:",
+              "• It's like two coins that are magically tied together — flip one and the other instantly matches it, no matter how far apart they are",
+              "• Einstein called this 'spooky action at a distance' because measuring one entangled particle instantaneously determines the state of its partner",
+              "In our `code` cell, this connection is built in exactly two lines: `qc.h(0)` puts qubit 0 into superposition, and `qc.cx(0, 1)` is the Controlled-NOT (CNOT) gate that links qubit 1's fate to qubit 0's."
+            ]
+          },
+          {
+            title: "Reading the Entangled Results",
+            body: [
+              "Once entangled, the two qubits behave as a single correlated unit rather than two independent ones:",
+              "• `qc.measure([0,1], [0,1])` measures both qubits at once",
+              "• Running this `shots=1000` times and checking `counts` shows only `'00'` and `'11'` ever appear — never `'01'` or `'10'`",
+              "That's the proof: when qubit 0 collapses to 0, qubit 1 instantly collapses to 0 as well — and the same goes for 1. The correlation is perfect and instantaneous."
             ]
           }
         ],
@@ -116,13 +124,23 @@ except ImportError:
         },
         theory: [
           {
-            title: "The Four Bell States",
+            title: "Meet the Four Bell States",
             body: [
-              "There are four specific, maximally entangled quantum states of two qubits, collectively known as the Bell States (or EPR pairs).",
-              "![Bell State visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614030/Bell_state_diagram_quantum_circuit_202606161814_r8iuu6.mp4)",
-              "They form a complete orthonormal basis for the 4-dimensional state space of two qubits.",
-              "The states are:\n1. |Φ+⟩ = 1/√2(|00⟩ + |11⟩) -> Perfect positive correlation.\n2. |Φ-⟩ = 1/√2(|00⟩ - |11⟩) -> Perfect positive correlation with a phase shift.\n3. |Ψ+⟩ = 1/√2(|01⟩ + |10⟩) -> Perfect anti-correlation.\n4. |Ψ-⟩ = 1/√2(|01⟩ - |10⟩) -> Perfect anti-correlation with a phase shift.",
-              "These specific states are used in quantum teleportation, superdense coding, and quantum cryptography."
+              "If entanglement is a special handshake between two qubits, the Bell States are the four 'official' ways that handshake can happen:",
+              "• They are the four maximally entangled states possible for a pair of qubits, also called EPR pairs",
+              "• Together they form a complete basis — every possible two-qubit entangled state can be built from them",
+              "In code, each state comes from the same basic recipe — `qc.h(0)` then `qc.cx(0,1)` — with small tweaks. Adding an `qc.x(0)` or `qc.x(1)` beforehand (an X gate, which flips a qubit) changes which Bell state you land on."
+            ]
+          },
+          {
+            title: "Mapping the Math to the Code",
+            body: [
+              "Each Bell state has its own formula, and each formula has a matching block in the `code` cell:",
+              "• `qc1` (just H then CX) builds |Φ+⟩ = 1/√2(|00⟩ + |11⟩) — perfect positive correlation",
+              "• `qc2` (X, then H, then CX) builds |Φ-⟩ = 1/√2(|00⟩ - |11⟩) — same correlation, flipped phase",
+              "• `qc3` (H, then X on qubit 1, then CX) builds |Ψ+⟩ = 1/√2(|01⟩ + |10⟩) — perfect anti-correlation",
+              "• `qc4` (X, H, X, then CX) builds |Ψ-⟩ = 1/√2(|01⟩ - |10⟩) — anti-correlation, flipped phase",
+              "When you print `sv1.data`, `sv2.data`, etc., the `0.71` values you see are just 1/√2 rounded — the code output and the textbook formula are literally the same numbers."
             ]
           }
         ],
@@ -195,14 +213,20 @@ except ImportError:
         },
         theory: [
           {
-            title: "Quantum Teleportation",
+            title: "Sending a Quantum State, Not Matter",
             body: [
-              "Quantum teleportation allows the exact transfer of quantum information (a state vector) from one location to another. It does not transport physical matter.",
-              "![Teleportation animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614030/Quantum_state_transfer_animation_202606161816_vn6tse.mp4)",
-              "It requires three qubits: the qubit to be teleported (Alice's payload), and a pre-shared entangled pair (one with Alice, one with Bob).",
-              "Alice performs a joint measurement on her payload qubit and her half of the entangled pair, which collapses their states and destroys the original payload (satisfying the No-Cloning Theorem).",
-              "She then calls Bob on a classical telephone to tell him her two measurement results (00, 01, 10, or 11).",
-              "Based on those two classical bits, Bob applies specific correction gates (X and/or Z) to his half of the entangled pair. After correction, Bob's qubit is in the exact identical state as Alice's original payload."
+              "Quantum teleportation sounds like science fiction, but it does something very specific: it moves a quantum state from one qubit to another without physically moving any particle:",
+              "• Three qubits are involved: `q0` (Alice's payload — the state to send), `q1` (Alice's half of an entangled pair), and `q2` (Bob's half)",
+              "In the `code` cell, `qc.x(0)` prepares a test state on q0, and `qc.h(1)` + `qc.cx(1, 2)` builds the entangled bridge between Alice and Bob before anything is sent."
+            ]
+          },
+          {
+            title: "The Handshake That Completes the Transfer",
+            body: [
+              "Teleportation finishes with a mix of quantum gates and an old-fashioned phone call:",
+              "• `qc.cx(0, 1)` and `qc.h(0)` are Alice's joint operations on her two qubits",
+              "• `qc.measure([0, 1], [0, 1])` collapses Alice's qubits — and destroys her original state in the process, which is exactly what the No-Cloning Theorem demands",
+              "Bob then uses Alice's two classical bits as instructions: `qc.cx(1, 2)` and `qc.cz(0, 2)` are his correction gates. After that, measuring `q2` always gives `'1'` — proof that Alice's original state successfully reappeared on Bob's qubit."
             ]
           }
         ],
@@ -240,14 +264,22 @@ print("Therefore, the linear laws of quantum mechanics forbid cloning!")`,
         },
         theory: [
           {
-            title: "The No-Cloning Theorem",
+            title: "Why You Can't Photocopy a Qubit",
             body: [
-              "In classical computing, copying data is trivial. You just read the bits and write them somewhere else.",
-              "![Communication flow animation](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614282/Network_diagram_quantum_communic__202606161820_f0w1ez.mp4)",
-              "In quantum computing, it is strictly physically impossible to make a perfect copy of an unknown quantum state. This is known as the No-Cloning Theorem.",
-              "If you try to measure the state to copy it, you collapse it, destroying the original superposition.",
-              "If you try to use a physical quantum gate (which must be a linear matrix) to clone it, the mathematics of linearity fail to replicate the cross-terms of a superposition, as shown in the simulator output.",
-              "This theorem is the fundamental reason why quantum teleportation destroys the original state, and why quantum cryptography is so secure."
+              "Copying a file on your computer is trivial — read the bits, write them somewhere else. Quantum states don't allow this trick at all:",
+              "• The No-Cloning Theorem says it's physically impossible to create a perfect copy of an unknown quantum state",
+              "• If you try to measure the state first to 'read' it, you immediately collapse it — destroying the very superposition you wanted to copy",
+              "Our `code` cell proves this with algebra rather than a circuit — it walks through what a hypothetical cloning gate `U` would have to do."
+            ]
+          },
+          {
+            title: "Following the Proof Line by Line",
+            body: [
+              "The proof hinges on one key quantum rule: every physical operation must be linear.",
+              "• The printed line `U(|psi> |0>) = |psi> |psi>` is the wishful definition of a cloning machine",
+              "• Applying linearity to a superposition gives `a|00> + b|11>` — only the matching terms",
+              "• But a genuine clone of `a|0> + b|1>` paired with itself expands to `a^2|00> + ab|01> + ab|10> + b^2|11>` — extra cross terms that the linear version can never produce",
+              "Since those two expressions can never match for a general superposition, the conclusion printed at the end — that cloning is forbidden — falls directly out of the math, not just intuition."
             ]
           }
         ],
@@ -307,15 +339,21 @@ print(f"Generated a {len(sifted_key)}-bit perfectly secure cryptographic key!")`
         },
         theory: [
           {
-            title: "BB84 Quantum Key Distribution",
+            title: "Building an Unbreakable Key With Light",
             body: [
-              "Proposed by Bennett and Brassard in 1984, BB84 is the first quantum cryptography protocol. It provides a way for two parties (Alice and Bob) to securely share a cryptographic key.",
-              "![BB84 visualization](https://res.cloudinary.com/den4nmmwx/video/upload/q_auto/f_auto/v1781614117/Alice_sends_qubits_to_Bob_202606161818_zpo3uv.mp4)",
-              "Alice sends a stream of photons to Bob. She randomly encodes each photon's bit (0 or 1) into one of two bases (e.g., standard horizontal/vertical, or diagonal +45/-45 degrees).",
-              "Bob doesn't know which basis Alice used, so he guesses randomly for each photon.",
-              "If Bob guesses correctly, he reads the exact bit Alice sent. If he guesses wrong, he gets a random result due to the uncertainty principle.",
-              "Later, they publicly call each other and compare ONLY the bases they used (not the bits). They keep the bits where their bases matched, forming a shared, secure key.",
-              "If an eavesdropper (Eve) intercepts the photons, she must also guess bases. Because of the No-Cloning theorem and wave collapse, her incorrect guesses will irreversibly corrupt the photons, creating a high error rate that Alice and Bob can easily detect."
+              "BB84 is the first quantum cryptography protocol, letting Alice and Bob agree on a secret key that's secure thanks to physics itself, not just clever math:",
+              "• `alice_bits` are the random 0s and 1s Alice wants to eventually share as a key",
+              "• `alice_bases` are her random choice of how to encode each bit — think of a basis as a 'style' of envelope she seals each bit in",
+              "Bob doesn't know which envelope style Alice used for each bit, so `bob_bases` is his own independent random guess for each one."
+            ]
+          },
+          {
+            title: "Sifting Out the Secret Key",
+            body: [
+              "The magic of BB84 is what happens when Bob's guesses are checked against Alice's choices:",
+              "• In the `for i in range(length)` loop, if `alice_bases[i] == bob_bases[i]`, Bob's measurement matches Alice's bit perfectly",
+              "• If the bases don't match, `bob_bits.append(random.choice([0, 1]))` shows Bob just gets a random, useless result — the uncertainty principle in action",
+              "Afterward, Alice and Bob publicly compare only their bases (never their bits) and keep just the positions where `alice_bases[i] == bob_bases[i]` — that's the `sifted_key`. Any eavesdropper trying to peek would disturb the photons and introduce errors Alice and Bob could easily catch, which is exactly why this key is provably secure."
             ]
           }
         ],
