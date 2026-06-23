@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise4: Week = {
   title: "EXERCISE 4",
-  objective: "Double Linked List Implementation including doubly linked list operations with forward and backward traversal and circular linked list implementation with insertion, deletion, and traversal.",
+  objective: "Build advanced dynamic structures by implementing Doubly Linked Lists for bidirectional traversal and Circular Linked Lists for continuous looping.",
   tutorial: "Tutorial 4: Doubly and Circular Linked Lists",
   labTitle: "Lab 4: Double Linked List Implementation",
   experiments: [
@@ -91,7 +91,13 @@ export const dsExercise4: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which traversal visits Root, Left, Right?",
+            options: ["Inorder", "Preorder", "Postorder", "Level-order"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Theory and draw a doubly linked list [10 ↔ 20 ↔ 30] on paper showing both prev and next arrows at each node",
           "Trace insert at beginning with value 5 — show all four pointer assignments: newNode→prev=NULL, newNode→next=head, head→prev=newNode, head=newNode",
@@ -118,7 +124,13 @@ export const dsExercise4: Week = {
             { line: 0, annotation: "Step 6 — Backward Traversal", memory: [], output: "Backward: 20 ↔ 10 ↔ NULL\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Which of these allows insertions at both ends?",
+            options: ["Stack", "Queue", "Deque", "Priority Queue"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -226,7 +238,13 @@ export const dsExercise4: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the time complexity to insert at the head of a Linked List?",
+            options: ["O(n)", "O(n^2)", "O(1)", "O(log n)"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Theory and draw a circular linked list [10 → 20 → 30] on paper showing that node(30)→next = node(10) and tail = node(30)",
           "Trace insert at end with value 40 — show newNode→next = tail→next = node(10), tail→next = node(40), tail = node(40)",
@@ -253,7 +271,13 @@ export const dsExercise4: Week = {
             { line: 0, annotation: "Step 5 — Circular Traversal (Display)", memory: [], output: "Circular List: 10 → 20 → (back to 10)\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What is the load factor in hashing?",
+            options: ["Items / Table Size", "Table Size / Items", "Items * Table Size", "Collisions / Items"],
+            answerIndex: 0
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",

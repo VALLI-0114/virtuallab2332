@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise8: Week = {
   title: "EXERCISE 8",
-  objective: "Binary Search Tree including linked list-based BST implementation with insertion and deletion and all three standard traversals — inorder, preorder, and postorder.",
+  objective: "Navigate non-linear data structures by constructing a Binary Search Tree (BST) and executing standard tree traversals (Inorder, Preorder, Postorder).",
   tutorial: "Tutorial 8: Trees",
   labTitle: "Lab 8: Binary Search Tree",
   experiments: [
@@ -69,7 +69,8 @@ export const dsExercise8: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+        ],
         procedure: [
           "Read Theory and understand the BST node structure — data, left pointer, right pointer",
           "Trace insertion of keys 50, 30, 70, 20, 40, 60, 80 on paper and draw the resulting tree",
@@ -103,7 +104,8 @@ export const dsExercise8: Week = {
             { line: 0, annotation: "Postorder Traversal: 20 40 30 70 50", memory: [], output: "Postorder Traversal : 20 40 30 70 50\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson — Chapter 4: Trees",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008 — Chapter 5",

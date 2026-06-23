@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise9: Week = {
   title: "EXERCISE 9",
-  objective: "Hashing including hash table implementation with collision resolution techniques and a simple cache implementation using hashing for fast data retrieval.",
+  objective: "Achieve lightning-fast O(1) data retrieval by implementing Hash Tables and managing collisions via robust resolution techniques.",
   tutorial: "Tutorial 9: Hashing",
   labTitle: "Lab 9: Hashing",
   experiments: [
@@ -65,7 +65,8 @@ export const dsExercise9: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+        ],
         procedure: [
           "Read Aim and Theory. Understand what a collision is and why it occurs.",
           "Step through the Simulation — observe how the same index is reached by two different keys.",
@@ -87,7 +88,8 @@ export const dsExercise9: Week = {
             { line: 0, annotation: "Step 6 — display()", memory: [], output: "Table[0]: 30 -> 20 -> 10 -> NULL\nTable[1] to Table[9]: empty\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+        ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
           "Balagurusamy — \"Data Structures Using C\", McGraw Hill",
@@ -155,7 +157,8 @@ export const dsExercise9: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+        ],
         procedure: [
           "Read Aim and Theory. Understand cache hit, cache miss, and eviction.",
           "Step through the Simulation — observe how a lookup first checks the cache before computing.",
@@ -176,7 +179,8 @@ export const dsExercise9: Week = {
             { line: 0, annotation: "Step 5 — get(13) called (eviction scenario): index = 13 % 8 = 5. Evict key 5.", memory: [], output: "CACHE MISS for key 13. Evicted key 5. Stored key 13 at index 5.\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+        ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
           "Balagurusamy — \"Data Structures Using C\", McGraw Hill",

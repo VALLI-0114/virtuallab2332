@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise6: Week = {
   title: "EXERCISE 6",
-  objective: "Queue Operations including array-based and linked list-based queue implementation, printer queue simulation as a real-world application, and circular queue implementation for memory-efficient operation.",
+  objective: "Master the FIFO principle by implementing linear and circular Queues to solve real-world problems like printer queue scheduling.",
   tutorial: "Tutorial 6: Queues",
   labTitle: "Lab 6: Queue Operations",
   experiments: [
@@ -42,7 +42,13 @@ export const dsExercise6: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the degree of a leaf node?",
+            options: ["1", "0", "2", "-1"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Study the Aim and Theory sections. Understand FIFO and the roles of front/rear.",
           "Step through the Simulation to observe array state changes during enqueue/dequeue.",
@@ -64,7 +70,13 @@ export const dsExercise6: Week = {
             { line: 0, annotation: "Step 6 — display(): prints Queue", memory: [], output: "Queue: 20 30\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Which of the following is an application of Stacks?",
+            options: ["CPU Scheduling", "Round Robin", "Undo Operation", "Breadth First Search"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
           "Balagurusamy — \"Data Structures Using C\", McGraw Hill",
@@ -109,7 +121,13 @@ export const dsExercise6: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which symbol is used for addressing in C?",
+            options: ["*", "&", "#", "@"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Study the Aim and Theory sections. Understand FIFO and the roles of front/rear.",
           "Open the Solve workspace. The starter file is provided.",
@@ -130,7 +148,13 @@ export const dsExercise6: Week = {
             { line: 0, annotation: "Step 6 — display(): prints Queue", memory: [], output: "Queue: 20 30\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "In an array representation of a binary tree, left child of index i is at:",
+            options: ["2i + 1", "2i + 2", "i/2", "i+1"],
+            answerIndex: 0
+          },
+        ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
           "Balagurusamy — \"Data Structures Using C\", McGraw Hill",
@@ -181,7 +205,13 @@ export const dsExercise6: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which sorting algorithm is like sorting playing cards?",
+            options: ["Bubble", "Selection", "Insertion", "Merge"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Aim and Theory. Note the struct definition for a print job.",
           "Step through the Simulation to see jobs being added and processed.",
@@ -202,7 +232,13 @@ export const dsExercise6: Week = {
             { line: 0, annotation: "Step 5 — viewQueue(): Only queue[1] (Report) remains.", memory: [], output: "--- Pending Print Jobs ---\n  [#2] Report - 12 pages\n--------------------------\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Which sorting algorithm is O(n) in its best case?",
+            options: ["Selection", "Insertion", "Merge", "Heap"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
           "Balagurusamy — \"Data Structures Using C\", McGraw Hill",
@@ -258,7 +294,13 @@ export const dsExercise6: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the height of a tree with a single node?",
+            options: ["1", "0", "2", "Undefined"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Study Aim and Theory. Pay close attention to the full/empty conditions.",
           "Step through the Simulation — observe how rear wraps to 0 after reaching MAX-1.",
@@ -279,7 +321,13 @@ export const dsExercise6: Week = {
             { line: 0, annotation: "Step 6 — enqueue(60): rear = (5+1)%6 = 0 (WRAP-AROUND)", memory: [], output: "Enqueued: 60  (front=1, rear=0)\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What is the time complexity to access the nth element in a Linked List?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Cormen, Leiserson, Rivest, Stein — \"Introduction to Algorithms\", 3rd Ed., MIT Press",
           "Balagurusamy — \"Data Structures Using C\", McGraw Hill",

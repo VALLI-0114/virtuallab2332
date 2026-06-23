@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise5: Week = {
   title: "EXERCISE 5",
-  objective: "Stack Operations including array-based and linked list-based stack implementation, postfix expression evaluation, and balanced parenthesis checking as classical stack applications.",
+  objective: "Understand the LIFO principle by building Stacks using arrays and pointers, and apply them to evaluate postfix expressions and balance parentheses.",
   tutorial: "Tutorial 5: Stacks",
   labTitle: "Lab 5: Stack Operations",
   experiments: [
@@ -94,7 +94,13 @@ export const dsExercise5: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is a Hash Collision?",
+            options: ["Two keys mapping to same index", "Memory leak", "Invalid pointer", "Empty hash table"],
+            answerIndex: 0
+          },
+        ],
         procedure: [
           "Read Theory and draw the array stack diagram for MAX=5 showing the array cells and top variable",
           "Trace on paper: Push 5, Push 10, Push 15, Pop, Push 20, Peek showing top value and array state after each",
@@ -123,7 +129,13 @@ export const dsExercise5: Week = {
             { line: 0, annotation: "Step 5 — Peek: returns 20, top=1", memory: [], output: "Top element is 20 (stack unchanged)\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "In separate chaining, what data structure resolves collisions?",
+            options: ["Array", "Stack", "Linked List", "Queue"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -232,7 +244,13 @@ export const dsExercise5: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which probing technique uses quadratic jumps?",
+            options: ["Linear Probing", "Separate Chaining", "Quadratic Probing", "Double Hashing"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Theory and draw the linked list diagram after each of: Push 5, Push 10, Push 15 showing top pointer and node connections",
           "Verify top→data = 15 (most recent push) and top→next→data = 10 and top→next→next→data = 5",
@@ -258,7 +276,13 @@ export const dsExercise5: Week = {
             { line: 0, annotation: "Step 5 — Peek: return top→data = 20", memory: [], output: "Top element is 20\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "In a circular linked list, traversing requires:",
+            options: ["Checking for NULL", "Checking if next is head", "Checking if next is tail", "Checking count"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -341,7 +365,13 @@ export const dsExercise5: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which data structure is FIFO?",
+            options: ["Stack", "Queue", "Tree", "Graph"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Theory and manually convert infix (4 + 5) * 2 - 6 / 3 to postfix: 4 5 + 2 * 6 3 / -",
           "Trace the postfix evaluation on paper token by token showing stack state after each",
@@ -370,7 +400,13 @@ export const dsExercise5: Week = {
             { line: 0, annotation: "Step 7 — Token: - (operator). Pop 4, Pop 30. Compute 30-4=26. Push 26. Stack: [26]", memory: [], output: "Result = 26\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "To delete a leaf node in a BST, you must:",
+            options: ["Replace with successor", "Set parent pointer to NULL", "Replace with predecessor", "Shift elements"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -467,7 +503,13 @@ export const dsExercise5: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What does malloc() return?",
+            options: ["Integer", "Float", "Void pointer", "Character"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Theory and manually trace {[(a+b)*(c-d)]} on paper token by token",
           "Only process { [ ( ) ] } — skip letters, digits, and operators",
@@ -499,7 +541,13 @@ export const dsExercise5: Week = {
             { line: 0, annotation: "Step 6 — Token: ]. Closing delimiter. Stack not empty — Pop [. Does [ match ]? Yes. Stack: []", memory: [], output: "Result: BALANCED\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What is a major advantage of Linked Lists over Arrays?",
+            options: ["Direct access", "Dynamic size", "Cache locality", "Less memory"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",

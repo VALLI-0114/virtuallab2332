@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise1: Week = {
   title: "EXERCISE 1",
-  objective: "Array Manipulation including reverse, linear search, binary search, bubble sort, selection sort, and insertion sort spanning the fundamental linear data structure and algorithm foundations.",
+  objective: "Master array manipulation by implementing fundamental searching (Linear, Binary) and sorting (Bubble, Selection, Insertion) algorithms in C.",
   tutorial: "Tutorial 1: Arrays and Basic Algorithms",
   labTitle: "Lab 1: Array Manipulation",
   experiments: [
@@ -79,7 +79,13 @@ export const dsExercise1: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the time complexity of linear search?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read the Aim and Theory sections carefully",
           "Trace the two-pointer reversal manually on paper for the array [5, 10, 15, 20, 25]",
@@ -111,7 +117,13 @@ export const dsExercise1: Week = {
             { line: 15, annotation: "printf executes", memory: [], output: "Reversed Array: 50 40 30 20 10\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "After passing an array to a function, what is actually passed?",
+            options: ["Base address", "Entire array", "First element value", "Size of array"],
+            answerIndex: 0
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -177,7 +189,13 @@ export const dsExercise1: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which data structure is LIFO?",
+            options: ["Queue", "Stack", "Array", "Linked List"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Aim and Theory and understand the sequential scanning approach",
           "Trace linear search manually on paper for array [15, 3, 9, 22, 7] searching for key=22",
@@ -206,7 +224,13 @@ export const dsExercise1: Week = {
             { line: 16, annotation: "Search successful", memory: [], output: "Element 22 found at index 3\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "If rear == front in a circular queue, it indicates:",
+            options: ["Full", "Empty", "One element", "Invalid state"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -281,7 +305,13 @@ export const dsExercise1: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What does a pointer hold?",
+            options: ["Value", "Address", "Function", "Array size"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Aim and Theory focusing on how log₂(n) comparisons achieves the search",
           "Trace binary search manually on paper for array [2, 4, 6, 8, 10, 12, 14] and key=10",
@@ -309,7 +339,13 @@ export const dsExercise1: Week = {
             { line: 22, annotation: "Search successful in 2 iterations", memory: [], output: "Element 23 found at index 5\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "In a BST, inorder traversal gives elements in:",
+            options: ["Random order", "Descending order", "Ascending order", "Insertion order"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -379,7 +415,13 @@ export const dsExercise1: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which of these is a non-linear data structure?",
+            options: ["Array", "Linked List", "Tree", "Stack"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Aim and Theory and trace the given example [64, 34, 25, 12, 22] manually",
           "Write each pass showing all comparisons, swaps, and the array state after each pass",
@@ -411,7 +453,13 @@ export const dsExercise1: Week = {
             { line: 18, annotation: "Sorting complete", memory: [], output: "Sorted Array: 12 22 25 34 64\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Which pointer connects to both previous and next nodes?",
+            options: ["Singly Linked List", "Doubly Linked List", "Circular List", "Stack"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Sedgewick R., Algorithms in C Parts 1-5, Addison-Wesley",
@@ -471,7 +519,13 @@ export const dsExercise1: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the worst-case time complexity of Bubble Sort?",
+            options: ["O(n)", "O(log n)", "O(n^2)", "O(n log n)"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Theory and trace Selection Sort manually on paper for [29, 10, 14, 37, 13]",
           "Show each pass: find minimum in unsorted portion, record its index, perform swap, show array state",
@@ -501,7 +555,13 @@ export const dsExercise1: Week = {
             { line: 22, annotation: "Sorting complete", memory: [], output: "Sorted Array: 11 12 22 25 64\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Time complexity of Binary Search is:",
+            options: ["O(n)", "O(log n)", "O(1)", "O(n^2)"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Sedgewick R., Algorithms in C Parts 1-5, Addison-Wesley",
@@ -564,7 +624,13 @@ export const dsExercise1: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is an array?",
+            options: ["Contiguous memory collection", "Scattered memory", "Hierarchical structure", "LIFO structure"],
+            answerIndex: 0
+          },
+        ],
         procedure: [
           "Read Theory and study the card sorting analogy carefully",
           "Trace Insertion Sort manually on paper for array [9, 3, 7, 1, 5]",
@@ -593,7 +659,13 @@ export const dsExercise1: Week = {
             { line: 18, annotation: "Sorting complete", memory: [], output: "Sorted Array: 5 6 11 12 13\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What does free() do in C?",
+            options: ["Allocates memory", "Deallocates memory", "Clears screen", "Exits program"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Cormen T.H., Leiserson C.E., Rivest R.L., and Stein C., Introduction to Algorithms, 3rd Edition, MIT Press, Chapter 2",

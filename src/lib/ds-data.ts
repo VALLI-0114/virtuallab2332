@@ -13,14 +13,13 @@ export const dsCourse: Course = {
   id: "data-structures-using-c-programming",
   title: "Data Structures using C Programming",
   objectives: [
-    "To understand the significance of linear data structures including arrays, linked lists, stacks, and queues in problem-solving and to perform basic time and space complexity analysis of operations on these structures.",
-    "To create and manage singly linked lists, doubly linked lists, and circular linked lists to efficiently organize and manipulate data, emphasizing dynamic memory allocation and pointer-based implementation in C.",
-    "To implement and apply stacks using both array-based and linked list-based approaches to manage program flow and solve classical problems involving postfix expression evaluation, infix to postfix conversion, palindrome checking, and balanced parenthesis validation.",
-    "To utilize queues to model real-world scenarios such as printer queue simulation and process scheduling, understand circular queues for efficient memory utilization, and explore double-ended queues for versatile data management.",
-    "To impart a foundational understanding of non-linear data structures particularly Binary Search Trees including insertion, deletion, and all standard traversal techniques — inorder, preorder, and postorder.",
-    "To explore fundamental hashing concepts including hash functions, collision resolution techniques, and practical applications such as implementing a simple cache using hash tables for fast data retrieval.",
-    "To develop the ability to analyze the advantages and trade-offs of different data structures and select the most appropriate structure for a given computational problem.",
-    "To bridge the gap between theoretical understanding and practical implementation by writing, compiling, and running complete C programs for each data structure concept covered in the JNTUGV syllabus."
+    "Master the Core Concepts: Understand the fundamental principles of Data Structures, differentiating between linear (Arrays, Linked Lists, Stacks, Queues) and non-linear (Trees, Graphs) structures.",
+    "Analyze Algorithm Efficiency: Learn how to evaluate Time and Space Complexity (Big O Notation) to compare the performance of different searching and sorting algorithms.",
+    "Implement Dynamic Memory: Gain practical experience using pointers and dynamic memory allocation in C (malloc/free) to construct flexible data structures like Linked Lists.",
+    "Solve Problems with Stacks & Queues: Build LIFO and FIFO structures from scratch to solve real-world problems like expression evaluation, balanced parentheses, and process scheduling.",
+    "Navigate Non-Linear Data: Understand how to implement and traverse Binary Search Trees (BST) for lightning-fast O(log n) data retrieval.",
+    "Optimize with Hashing: Learn how to achieve O(1) constant-time data access by implementing Hash Tables and handling collisions via chaining and probing.",
+    "Bridge Theory & Practice: Translate abstract theoretical concepts into functional, compiled C programs that handle real data efficiently."
   ],
   introduction: [
     "Data structures form the backbone of efficient software engineering. Every algorithm that powers modern technology — from search engines and social networks to operating systems and databases — depends fundamentally on how data is organized, stored, and accessed in memory. A strong understanding of data structures is not merely an academic requirement but an essential skill for every practicing software engineer and computer scientist.",

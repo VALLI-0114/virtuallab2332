@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise2: Week = {
   title: "EXERCISE 2",
-  objective: "Singly Linked List Implementation including insertion, deletion, iterative reversal, recursive reversal, traversal, and manipulation forming the foundation of dynamic memory-based data structures.",
+  objective: "Learn dynamic memory allocation by building a Singly Linked List from scratch, complete with insertion, deletion, and reversal operations.",
   tutorial: "Tutorial 2: Singly Linked Lists",
   labTitle: "Lab 2: Linked List Implementation",
   experiments: [
@@ -88,7 +88,13 @@ export const dsExercise2: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Binary search requires the array to be:",
+            options: ["Unsorted", "Sorted", "Reversed", "Empty"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Aim and Theory focusing on the self-referential structure definition and pointer manipulation",
           "Draw on paper a linked list 10 → 20 → 30 → NULL with node addresses labeled",
@@ -116,7 +122,13 @@ export const dsExercise2: Week = {
             { line: 41, annotation: "Step 5: Display List. Traverse and print.", memory: [], output: "10 -> 20 -> NULL\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What solves the 'False Full' problem in a Queue?",
+            options: ["Stack", "Circular Queue", "Priority Queue", "Double Ended Queue"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -193,7 +205,13 @@ export const dsExercise2: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the index of the first element in a C array?",
+            options: ["1", "0", "-1", "Depends on size"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Theory and draw the three-pointer diagram for list 1 → 2 → 3 → NULL on paper",
           "Trace each iteration showing the state of prev, cur, next, and the direction of all next pointers",
@@ -223,7 +241,13 @@ export const dsExercise2: Week = {
             { line: 36, annotation: "Reversal complete", memory: [], output: "Reversed List: 30 -> 20 -> 10 -> NULL\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "In Postfix evaluation, which data structure is heavily used?",
+            options: ["Queue", "Tree", "Stack", "Graph"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -291,7 +315,13 @@ export const dsExercise2: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "In a singly linked list, the last node points to:",
+            options: ["Head", "Previous node", "NULL", "Itself"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Theory and draw the call stack diagram for reversing 1 → 2 → 3 → 4 on paper",
           "Show all four recursive calls stacking up and the base case triggering at node 4",
@@ -321,7 +351,13 @@ export const dsExercise2: Week = {
             { line: 33, annotation: "Reversal complete", memory: [], output: "Reversed List: 3 -> 2 -> 1 -> NULL\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What happens if you dereference a NULL pointer?",
+            options: ["Returns 0", "Segmentation fault", "Compiler warning", "Returns garbage"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -390,7 +426,13 @@ export const dsExercise2: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which sort finds the minimum element first?",
+            options: ["Bubble", "Selection", "Insertion", "Merge"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Theory and manually trace slow-fast pointers on list 1 → 2 → 3 → 4 → 5 showing each step",
           "Verify slow stops at node(3) — the middle",
@@ -417,7 +459,13 @@ export const dsExercise2: Week = {
             { line: 27, annotation: "Middle Node output", memory: [], output: "Middle Node = 1\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Which sorting algorithm minimizes the number of swaps?",
+            options: ["Bubble", "Selection", "Insertion", "Quick"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Floyd R.W., Algorithm 97: Shortest Path, Communications of the ACM, 1962",

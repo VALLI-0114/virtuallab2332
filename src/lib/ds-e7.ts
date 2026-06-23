@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise7: Week = {
   title: "EXERCISE 7",
-  objective: "Stack and Queue Applications including infix to postfix conversion using stack, palindrome checking, and symmetry checking demonstrating combined stack and queue usage.",
+  objective: "Combine Stacks and Queues to solve complex parsing challenges, including converting infix expressions to postfix and validating string palindromes.",
   tutorial: "Tutorial 7: Applications of Stacks and Queues",
   labTitle: "Lab 7: Stack and Queue Applications",
   experiments: [
@@ -113,7 +113,13 @@ export const dsExercise7: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "Which data structure is used for Breadth-First Search?",
+            options: ["Stack", "Queue", "Tree", "Heap"],
+            answerIndex: 1
+          },
+        ],
         procedure: [
           "Read Theory carefully and memorize the precedence table: +- have precedence 1, */ have precedence 2",
           "Manually convert infix (5 + 3) * 2 - 4 / 2 to postfix using Shunting Yard on paper",
@@ -150,7 +156,13 @@ export const dsExercise7: Week = {
             { line: 0, annotation: "Phase 2 — Postfix Evaluation: 4 5 + 2 * 3 -", memory: [], output: "Evaluated Result: 15\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What defines the height of a tree?",
+            options: ["Number of leaf nodes", "Longest path from root to leaf", "Total nodes", "Number of edges from root"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -270,7 +282,13 @@ export const dsExercise7: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What is the best case for linear search?",
+            options: ["Element at end", "Element not found", "Element at index 0", "Array is sorted"],
+            answerIndex: 2
+          },
+        ],
         procedure: [
           "Read Theory and trace palindrome check for \"madam\" using stack approach on paper",
           "Push m-a-d-a-m, then pop and compare: m==m, a==a, d==d, a==a, m==m — all match — palindrome",
@@ -300,7 +318,13 @@ export const dsExercise7: Week = {
             { line: 0, annotation: "Middle character e (position 3) — no comparison needed", memory: [], output: "Result: \"racecar\" IS a Palindrome\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "Which function allocates memory and initializes it to zero?",
+            options: ["malloc", "calloc", "realloc", "free"],
+            answerIndex: 1
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -404,7 +428,8 @@ export const dsExercise7: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+        ],
         procedure: [
           "Read Theory and understand the two-phase approach — load first half, compare second half",
           "Trace symmetry check for \"abcba\" on paper showing Phase 1 stack and queue contents and Phase 2 comparisons",
@@ -436,7 +461,8 @@ export const dsExercise7: Week = {
             { line: 0, annotation: "Comparison 2: i=4 ('a'). Stack Pop: 'a' == 'a' (Match). Queue Dequeue: 'b' != 'a' (Mismatch)", memory: [], output: "Result: \"abcba\" IS Mirror Symmetric (Palindrome)\nResult: \"abcba\" is NOT Forward Symmetric\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",

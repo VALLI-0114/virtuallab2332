@@ -2,7 +2,7 @@ import type { Week } from "./course-data";
 
 export const dsExercise3: Week = {
   title: "EXERCISE 3",
-  objective: "Linked List Applications including duplicate detection and removal, polynomial representation and addition using linked lists, and double-ended queue implementation as real-world linked list use cases.",
+  objective: "Apply Linked Lists to solve practical computational problems like polynomial addition, duplicate detection, and Double-Ended Queue (Deque) implementation.",
   tutorial: "Tutorial 3: Linked List Applications",
   labTitle: "Lab 3: Linked List Applications",
   experiments: [
@@ -69,7 +69,13 @@ export const dsExercise3: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What causes a Stack Overflow?",
+            options: ["Pushing to full stack", "Popping empty stack", "Peek on empty stack", "Queue operations"],
+            answerIndex: 0
+          },
+        ],
         procedure: [
           "Read Theory and trace the two-pointer algorithm on paper for list 1 → 2 → 1 → 3 → 2 → NULL",
           "Show each position of current and runner and identify which nodes get deleted",
@@ -101,7 +107,13 @@ export const dsExercise3: Week = {
             { line: 42, annotation: "Deduplication complete.", memory: [], output: "After Removing Duplicates: 1 -> 2 -> 3 -> NULL\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "A complete binary tree can be efficiently represented using:",
+            options: ["Array", "Linked List", "Stack", "Queue"],
+            answerIndex: 0
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Horowitz E., Sahni S., and Anderson-Freed S., Fundamentals of Data Structures in C, Silicon Press, 2008",
@@ -177,7 +189,13 @@ export const dsExercise3: Week = {
             ]
           }
         ],
-        pretest: [],
+        pretest: [
+          {
+            question: "What operation removes an element from a Queue?",
+            options: ["Push", "Pop", "Enqueue", "Dequeue"],
+            answerIndex: 3
+          },
+        ],
         procedure: [
           "Read Theory and understand the three-case addition logic for equal, p1 greater, and p2 greater exponents",
           "Represent P1 = 3x³ + 2x + 1 and P2 = x³ + 4x² + 3 as linked lists on paper",
@@ -208,7 +226,13 @@ export const dsExercise3: Week = {
             { line: 51, annotation: "Addition complete.", memory: [], output: "Result: 5x^4 + 4x^3 + 6x^2 + 7x + 3\n" }
           ]
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What is the worst-case search time in a skewed BST?",
+            options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+            answerIndex: 2
+          },
+        ],
         references: [
           "Weiss M.A., Data Structures and Algorithm Analysis in C, 2nd Edition, Pearson",
           "Knuth D.E., The Art of Computer Programming, Volume 2: Seminumerical Algorithms, Addison-Wesley",
@@ -227,13 +251,25 @@ export const dsExercise3: Week = {
           bullets: []
         },
         theory: [],
-        pretest: [],
+        pretest: [
+          {
+            question: "A tree with at most two children per node is called:",
+            options: ["Binary Tree", "Ternary Tree", "Graph", "Linked List"],
+            answerIndex: 0
+          },
+        ],
         procedure: [],
         simulation: {
           code: "int main() { return 0; }",
           steps: []
         },
-        posttest: [],
+        posttest: [
+          {
+            question: "What is 'top' initialized to in an array stack?",
+            options: ["0", "1", "-1", "n"],
+            answerIndex: 2
+          },
+        ],
         references: []
       }
     }
