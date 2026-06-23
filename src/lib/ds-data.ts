@@ -79,319 +79,446 @@ export const dsCourse: Course = {
     dsExercise8,
     dsExercise9
   ],
-  shortNotes: `DATA STRUCTURES - SHORT NOTES
-(As per JNTUGV Syllabus)
+  shortNotes: `DATA STRUCTURES - EXTENDED SHORT NOTES
+(Comprehensive Guide with C Implementations & Deep Explanations)
 
 INTRODUCTION TO DATA STRUCTURES
-Data Structures is the study of organizing, managing, and storing data in a computer so that it can be accessed and modified efficiently. Just like we arrange books in a library systematically to find them quickly, data structures help arrange data in memory for fast processing.
-Why Data Structures?
 
-Every program deals with data. Without proper organization, even simple operations become slow and complex.
-They help in writing efficient algorithms, saving time (time complexity) and memory (space complexity).
-Real-world applications like Google Search, social media feeds, GPS navigation, databases — all rely heavily on data structures.
+A **Data Structure** is a specialized format for organizing, processing, retrieving, and storing data in a computer. The way we store data in memory drastically impacts the speed of our software. Imagine a library: if books are just thrown in a pile, finding one (Searching) takes forever. If they are neatly arranged by category and author (Data Structure), finding a book is almost instant.
 
-Types of Data Structures:
+[TABLE]:<div class="grid grid-cols-2 gap-6 my-6"><div class="bg-indigo-50 p-5 rounded-xl border border-indigo-200"><h4 class="font-bold text-indigo-800 text-lg mb-3">Linear Data Structures</h4><ul class="list-disc ml-4 space-y-2 text-sm text-gray-700"><li>Elements are arranged sequentially.</li><li>Each element connects to exactly one next element.</li><li>Data is traversed sequentially in a single run.</li><li><strong>Examples:</strong> Arrays (Contiguous), Linked Lists (Scattered), Stacks (LIFO), Queues (FIFO).</li></ul></div><div class="bg-purple-50 p-5 rounded-xl border border-purple-200"><h4 class="font-bold text-purple-800 text-lg mb-3">Non-Linear Data Structures</h4><ul class="list-disc ml-4 space-y-2 text-sm text-gray-700"><li>Elements are arranged hierarchically.</li><li>One element can connect to multiple subsequent elements.</li><li>Data cannot be traversed in a single run.</li><li><strong>Examples:</strong> Trees (Parent-child relationship), Graphs (Network relationship).</li></ul></div></div>
 
-Linear Data Structures — elements are arranged in a sequential order.
-Examples: Arrays, Linked Lists, Stacks, Queues
-Non-Linear Data Structures — elements are arranged in a hierarchical or networked manner.
-Examples: Trees, Graphs
+Abstract Data Type (ADT)
+An ADT is like an interface or blueprint. It tells you **what** a data structure should do, but not **how** it should do it.
+- **Example:** A Stack ADT specifies operations like 'Push()' and 'Pop()'. But you can physically implement this Stack using an Array or a Linked List. The ADT only cares about the behavior, not the underlying code.
 
-Abstract Data Type (ADT):
-An ADT is a mathematical model of a data structure that defines the data and the operations on that data, without specifying implementation details. For example, a Stack ADT defines push, pop, and peek — but doesn't say whether it's built using an array or a linked list.
-Time and Space Complexity:
-
-Time Complexity: How the time taken by an algorithm grows as the input size increases. Expressed using Big O notation — O(1), O(n), O(n²), O(log n), etc.
-Space Complexity: How much extra memory an algorithm uses.
-Goal is always to write algorithms with lower time and space complexity.
+Time and Space Complexity (Big O Notation)
+To compare algorithms, we don't use execution time in seconds (because a fast computer will always beat a slow one). Instead, we count the number of operations based on the input size $n$.
+- **O(1) - Constant Time:** The operation takes the same amount of time regardless of data size (e.g., accessing an array element via index).
+- **O(log n) - Logarithmic Time:** The data size is repeatedly halved (e.g., Binary Search). Extremely fast even for millions of records.
+- **O(n) - Linear Time:** Execution time grows directly with the data size (e.g., Linear Search).
+- **O(n²) - Quadratic Time:** Execution time grows exponentially, usually due to nested loops (e.g., Bubble Sort).
 
 
-UNIT I — LINEAR DATA STRUCTURES, SEARCHING & SORTING
-Searching Techniques:
+UNIT I — SEARCHING & SORTING
 
-Linear Search
+1. SEARCHING TECHNIQUES
+
+Linear Search:
+Linear Search checks every single element from start to finish until the target is found.
+- **When to use:** When the array is unsorted, or when the dataset is very small.
+- **Time Complexity:** O(n) (Worst case: the element is at the very end).
+
+[START_CODE_SNIPPET]
+// Linear Search in C - O(n)
+int linearSearch(int arr[], int n, int target) {
+    // Loop through every single element
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i; // Found! Return the index.
+        }
+    }
+    return -1; // Exhausted the array, target not found
+}
+[END_CODE_SNIPPET]
+
+Binary Search:
+Binary search is vastly superior to Linear Search but requires the array to be **Sorted**. It works by comparing the target to the middle element. If the target is smaller, it discards the right half. If larger, it discards the left half.
+- **When to use:** When searching inside large, sorted datasets.
+- **Time Complexity:** O(log n).
+
+[START_CODE_SNIPPET]
+// Binary Search in C - O(log n)
+int binarySearch(int arr[], int n, int target) {
+    int left = 0, right = n - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2; // Prevents integer overflow
+        
+        if (arr[mid] == target) return mid;         // Target found at mid
+        if (arr[mid] < target) left = mid + 1;      // Target must be in right half
+        else right = mid - 1;                       // Target must be in left half
+    }
+    return -1; // Not found
+}
+[END_CODE_SNIPPET]
 
 
-Searches each element one by one from the beginning.
-Works on both sorted and unsorted arrays.
-Time Complexity: O(n) in worst case.
-Simple but slow for large datasets.
+2. SORTING TECHNIQUES
 
+Bubble Sort:
+Works by repeatedly comparing adjacent elements and swapping them if they are out of order. The largest unsorted element "bubbles" up to the end of the array in every pass.
+- **Drawback:** Extremely slow for large datasets because of excessive swapping.
+- **Time Complexity:** O(n²).
 
-Binary Search
+[START_CODE_SNIPPET]
+// Bubble Sort in C
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        // Last i elements are already in place
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap if out of order
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+[END_CODE_SNIPPET]
 
+Selection Sort:
+Instead of swapping adjacent elements constantly, Selection Sort finds the absolute minimum element from the unsorted portion, and performs just ONE swap to place it at the beginning.
+- **Advantage over Bubble Sort:** Performs significantly fewer memory writes (swaps).
+- **Time Complexity:** O(n²).
 
-Works only on sorted arrays.
-Divides the array in half each time and eliminates one half.
-Time Complexity: O(log n) — much faster than linear search.
-Steps: Find the middle element. If target = middle, found. If target < middle, search left half. If target > middle, search right half. Repeat.
+[START_CODE_SNIPPET]
+// Selection Sort in C
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;
+        // Find the minimum element in unsorted array
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
+            }
+        }
+        // Swap the found minimum element with the first unsorted element
+        int temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
+    }
+}
+[END_CODE_SNIPPET]
 
-Sorting Techniques:
+Insertion Sort:
+Builds the sorted array one element at a time. It takes the current element and "inserts" it into its correct position among the already sorted elements to its left.
+- **When to use:** Extremely fast (O(n)) when the array is already mostly sorted.
+- **Time Complexity:** O(n²) worst-case, O(n) best-case.
 
-Bubble Sort
-
-
-Repeatedly compares adjacent elements and swaps them if they are in the wrong order.
-Largest element "bubbles" to the end in each pass.
-Time Complexity: O(n²) — slow for large data.
-Simple to understand and implement.
-
-
-Selection Sort
-
-
-Finds the minimum element from the unsorted part and places it at the beginning.
-Repeat for the remaining unsorted part.
-Time Complexity: O(n²).
-Performs fewer swaps than bubble sort.
-
-
-Insertion Sort
-
-
-Picks each element and inserts it into its correct position in the already sorted part.
-Works like sorting playing cards in hand.
-Time Complexity: O(n²) worst case, O(n) best case (already sorted).
-Efficient for small or nearly sorted datasets.
+[START_CODE_SNIPPET]
+// Insertion Sort in C
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i]; // Element to be inserted
+        int j = i - 1;
+        
+        // Move elements of arr[0..i-1] that are greater than key
+        // to one position ahead of their current position
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+[END_CODE_SNIPPET]
 
 
 UNIT II — LINKED LISTS
-Introduction:
-A Linked List is a linear data structure where elements (called nodes) are not stored in contiguous memory locations. Each node contains Data and a Pointer/Link to the next node.
-Types of Linked Lists:
 
-Singly Linked List
+A Linked List overcomes the fixed-size limitations of an Array. Instead of allocating a huge block of contiguous memory, Linked Lists allocate memory dynamically as needed. Each element is called a **Node**.
 
+[TABLE]:<table class="w-full border-collapse border border-cyan/30 text-base text-foreground/90 my-6 shadow-md rounded-xl overflow-hidden"><thead class="bg-gradient-to-r from-cyan/20 to-blue-500/10 text-cyan font-bold"><tr><th class="p-3 border border-cyan/20">Feature</th><th class="p-3 border border-cyan/20">Arrays</th><th class="p-3 border border-cyan/20">Linked Lists</th></tr></thead><tbody><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Memory Layout</td><td class="p-3 border border-cyan/20">Contiguous blocks (Sequential)</td><td class="p-3 border border-cyan/20">Scattered across RAM, connected via pointers</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Size Flexibility</td><td class="p-3 border border-cyan/20">Fixed at compile-time (Static)</td><td class="p-3 border border-cyan/20">Can grow and shrink at runtime (Dynamic)</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Insertion / Deletion</td><td class="p-3 border border-cyan/20">Slow O(n) (requires shifting elements)</td><td class="p-3 border border-cyan/20">Fast O(1) (just change pointer links)</td></tr><tr class="hover:bg-cyan/5"><td class="p-3 border border-cyan-20 font-bold">Accessing Element i</td><td class="p-3 border border-cyan/20">Fast O(1) (Direct index access)</td><td class="p-3 border border-cyan/20">Slow O(n) (Must traverse from Head)</td></tr></tbody></table>
 
-Each node has data and a pointer to the next node.
-Traversal is only in one direction (forward).
-Operations: Insert (at beginning, end, or middle), Delete, Search, Traverse.
-Last node points to NULL.
+1. Singly Linked List
+Each node contains 'data' and a 'next' pointer pointing to the following node. The final node points to 'NULL'.
+Traversal is strictly **Unidirectional** (forward only).
 
+[START_CODE_SNIPPET]
+// Singly Linked List Operations
+#include <stdio.h>
+#include <stdlib.h>
 
-Doubly Linked List
+struct Node {
+    int data;
+    struct Node* next; // Pointer to the next node
+};
 
+// 1. Insert at Beginning (O(1) Time)
+void insertAtBeginning(struct Node** head_ref, int newData) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node)); // Allocate memory
+    newNode->data = newData;      // Assign data
+    newNode->next = *head_ref;    // Point new node to current head
+    *head_ref = newNode;          // Update head to be the new node
+}
 
-Each node has data, a pointer to the next node, and a pointer to the previous node.
-Traversal is possible in both forward and backward directions.
-More memory per node, but more flexible operations.
+// 2. Delete Last Node safely (O(n) Time)
+void deleteLastNode(struct Node** head_ref) {
+    if (*head_ref == NULL) return; // Empty list
+    
+    // If there is only one node
+    if ((*head_ref)->next == NULL) {
+        free(*head_ref);
+        *head_ref = NULL;
+        return;
+    }
+    
+    // Traverse to the second to last node
+    struct Node* temp = *head_ref;
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    
+    free(temp->next);       // Free the last node's memory
+    temp->next = NULL;      // Disconnect it
+}
+[END_CODE_SNIPPET]
 
+2. Doubly Linked List
+Each node contains 'data', a 'next' pointer, AND a 'prev' pointer. 
+This requires more memory per node but allows **Bidirectional Traversal** (can move forward and backward). Extremely useful for implementations like Browser History (Back/Forward buttons).
 
-Circular Linked List
+[START_CODE_SNIPPET]
+// Doubly Linked List Node and Middle Insertion
+struct DNode {
+    int data;
+    struct DNode* prev; // Points to previous node
+    struct DNode* next; // Points to next node
+};
 
+// Insert after a given node
+void insertAfter(struct DNode* prev_node, int newData) {
+    if (prev_node == NULL) return;
+    
+    struct DNode* newNode = (struct DNode*)malloc(sizeof(struct DNode));
+    newNode->data = newData;
+    
+    newNode->next = prev_node->next; // 1. Link new node to right side
+    newNode->prev = prev_node;       // 2. Link new node to left side
+    prev_node->next = newNode;       // 3. Link left node to new node
+    
+    if (newNode->next != NULL) {
+        newNode->next->prev = newNode; // 4. Link right node back to new node
+    }
+}
+[END_CODE_SNIPPET]
 
-Last node points back to the first node instead of NULL.
-Can be singly or doubly circular.
-Useful for circular/round-robin applications.
-
-Arrays vs Linked Lists:
-FeatureArrayLinked ListMemoryContiguousNon-contiguousSizeFixed at creationDynamic (grows/shrinks)AccessO(1) — direct indexingO(n) — must traverseInsert/DeleteSlow — shifting neededFast — just change linksMemory WastePossible (fixed size)Extra memory for pointers
-Applications of Linked Lists:
-
-Implementation of Stacks and Queues
-Dynamic memory allocation
-Polynomial representation
-Undo functionality in editors
-Browser history (doubly linked list)
-Music playlist management
+3. Circular Linked List
+A list where the 'next' pointer of the final node points back to the 'head' node, forming an infinite circle. 
+- **Application:** Essential for Operating Systems running Round-Robin task scheduling (CPU repeatedly cycles through active programs).
 
 
 UNIT III — STACKS
-Introduction:
-A Stack is a linear data structure that follows the LIFO principle — Last In, First Out. Like a stack of plates: you add and remove from the top only.
-Properties:
 
-Only the top element is accessible at any time.
-Two primary operations: Push (insert) and Pop (remove).
+A Stack is a linear ADT following the **LIFO (Last In, First Out)** principle. Imagine a stack of dinner plates: you can only place a new plate on the top, and you must remove the top plate before accessing the ones underneath.
 
-Operations:
+Crucial Stack Errors:
+- **Stack Overflow:** Attempting to 'Push' data onto a stack that has exhausted its memory limit.
+- **Stack Underflow:** Attempting to 'Pop' data from a stack that is already entirely empty.
 
-Push: Add an element to the top of the stack.
-Pop: Remove the top element from the stack.
-Peek/Top: View the top element without removing it.
-isEmpty: Check if the stack is empty.
-isFull: Check if the stack is full (for array implementation).
+Real-World Applications:
+- **Expression Evaluation:** Converting readable math equations (Infix like A+B) into machine-readable formats (Postfix like AB+).
+- **Undo Functionality:** Every action you take is pushed to a stack. Hitting Ctrl+Z pops the most recent action.
+- **Call Stack:** When a function calls another function, the OS pushes the current execution state onto a stack to return to later.
 
-Implementing Stacks:
+Array Implementation of a Stack:
+Fast and simple, but suffers from a rigid, fixed maximum size.
 
-Using Arrays — simple, fixed size, fast access.
-Using Linked Lists — dynamic size, no overflow issue (until memory is exhausted).
+[START_CODE_SNIPPET]
+// Array Implementation of Stack in C
+#define MAX_SIZE 100
+int stack[MAX_SIZE];
+int top = -1; // -1 indicates the stack is empty
 
-Applications of Stacks:
+void push(int data) {
+    if (top >= MAX_SIZE - 1) {
+        printf("ERROR: Stack Overflow! Cannot push %d\\n", data);
+        return;
+    }
+    top++;
+    stack[top] = data;
+}
 
-Expression Evaluation
+int pop() {
+    if (top < 0) {
+        printf("ERROR: Stack Underflow! Nothing to pop.\\n");
+        return -1;
+    }
+    int poppedData = stack[top];
+    top--;
+    return poppedData;
+}
+[END_CODE_SNIPPET]
 
+Linked List Implementation of a Stack:
+Never overflows unless the entire computer runs out of RAM. The 'Head' of the linked list acts as the 'Top' of the stack.
 
-Infix expressions (A+B) are converted to Postfix (AB+) or Prefix (+AB) using stacks.
-Postfix expressions are then evaluated using a stack.
+[START_CODE_SNIPPET]
+// Linked List Implementation of Stack in C
+struct StackNode {
+    int data;
+    struct StackNode* next;
+};
+struct StackNode* topNode = NULL;
 
+void pushList(int data) {
+    struct StackNode* newNode = (struct StackNode*)malloc(sizeof(struct StackNode));
+    newNode->data = data;
+    newNode->next = topNode; // New node points to old top
+    topNode = newNode;       // New node becomes the top
+}
 
-Backtracking
-
-
-Used in maze solving, game trees, and recursion.
-When a path fails, the stack helps go back to the previous state.
-
-
-Reversing a List
-
-
-Push all elements onto the stack, then pop them — they come out in reverse order.
-
-
-Function Call Stack
-
-
-Every function call is pushed onto the call stack; when a function returns, it's popped off.
-
-
-Balancing Parentheses
-
-
-Used by compilers to check if brackets are properly matched.
+int popList() {
+    if (topNode == NULL) return -1; // Underflow
+    
+    struct StackNode* temp = topNode;
+    int poppedValue = temp->data;
+    topNode = topNode->next; // Move top to the next node down
+    
+    free(temp); // Prevent memory leak
+    return poppedValue;
+}
+[END_CODE_SNIPPET]
 
 
 UNIT IV — QUEUES & DEQUES
-Introduction to Queues:
-A Queue is a linear data structure that follows the FIFO principle — First In, First Out. Like a line at a ticket counter: first person to join is first to be served.
-Properties:
 
-Elements are added from the rear (Enqueue) and removed from the front (Dequeue).
-Two ends: Front (removal) and Rear (insertion).
+A Queue is a linear ADT following the **FIFO (First In, First Out)** principle. Think of a queue of people waiting for a movie ticket. The first person to join the line is the first one served.
+- **Enqueue:** Insert at the 'Rear'.
+- **Dequeue:** Remove from the 'Front'.
 
-Operations:
+Real-World Applications:
+- **Print Spooling:** Documents sent to a printer wait in a Queue.
+- **Process Scheduling:** The OS puts background processes in a queue to await CPU time.
+- **Network Buffers:** Streaming video packets arrive and are processed in order.
 
-Enqueue: Add an element to the rear.
-Dequeue: Remove an element from the front.
-Peek/Front: View the front element.
-isEmpty / isFull: Check queue status.
+The "False Full" Problem & Circular Queues:
+In a standard array-based queue, as we 'Dequeue' elements, the 'Front' index moves forward. Even if the array has empty spaces at the beginning, once the 'Rear' index hits the end of the array, the queue reports it is FULL.
+We solve this using a **Circular Queue**, where the 'Rear' wraps around to index 0 using the modulo '%' operator.
 
-Implementing Queues:
+[START_CODE_SNIPPET]
+// Circular Queue Implementation in C
+#define SIZE 5
+int cQueue[SIZE];
+int front = -1, rear = -1;
 
-Using Arrays — simple, but size is fixed; can have the "false full" problem (solved by circular queue).
-Using Linked Lists — dynamic, no size restrictions.
+void enqueueCircular(int data) {
+    // Check if the next position for rear hits the front (Queue is Full)
+    if ((rear + 1) % SIZE == front) {
+        printf("Queue is Full! Cannot enqueue.\\n");
+        return;
+    }
+    if (front == -1) front = 0; // Initialize front on first insertion
+    
+    rear = (rear + 1) % SIZE;   // Wrap around using modulo
+    cQueue[rear] = data;
+}
 
-Applications of Queues:
+int dequeueCircular() {
+    if (front == -1) {
+        printf("Queue is Empty! Underflow.\\n");
+        return -1;
+    }
+    
+    int data = cQueue[front];
+    
+    // If it was the very last element in the queue
+    if (front == rear) { 
+        front = -1; rear = -1; // Reset queue
+    } else {
+        front = (front + 1) % SIZE; // Wrap around using modulo
+    }
+    return data;
+}
+[END_CODE_SNIPPET]
 
-Breadth-First Search (BFS) in graphs
-CPU Scheduling (round-robin scheduling)
-Printer spooling — jobs are printed in the order they arrive
-Network packet management
-Simulation of real-world waiting lines
-
-
-Deques (Double-Ended Queues):
-Introduction:
-A Deque (pronounced "deck") is a linear data structure where insertion and deletion can happen at BOTH ends — front and rear. It is a generalization of both stack and queue.
-Types of Deques:
-
-Input Restricted Deque: Insertion only at rear, deletion at both ends.
-Output Restricted Deque: Deletion only at front, insertion at both ends.
-
-Operations on Deques:
-
-insertFront: Add element at the front.
-insertRear: Add element at the rear.
-deleteFront: Remove element from the front.
-deleteRear: Remove element from the rear.
-getFront / getRear: View front or rear element.
-isEmpty / isFull: Check status.
-
-Applications of Deques:
-
-Undo/Redo operations in text editors
-Sliding window maximum/minimum problems in algorithms
-Palindrome checking
-Storing browser forward/backward navigation history
-Task scheduling where priority can come from either end
+Deques (Double-Ended Queues)
+A Deque removes the strict FIFO rule, allowing both insertion and deletion at BOTH the Front and the Rear ends.
+- **Input Restricted Deque:** Can only insert at the Rear, but can delete from Both ends.
+- **Output Restricted Deque:** Can insert at Both ends, but can only delete from the Front.
 
 
 UNIT V — TREES & HASHING
-Introduction to Trees:
-A Tree is a non-linear, hierarchical data structure consisting of nodes connected by edges. Unlike linear structures, a tree branches out — like a real tree.
-Key Terms:
 
-Root: The topmost node (no parent).
-Node: Each element in the tree.
-Edge: Connection between two nodes.
-Parent/Child: A node with branches is a parent; the branches are its children.
-Leaf: A node with no children.
-Height of Tree: Number of edges on the longest path from root to a leaf.
-Depth of a Node: Number of edges from root to that node.
+1. TREES
+Unlike Arrays and Linked Lists, a Tree represents data hierarchically.
+- **Root Node:** The ultimate top-level parent node.
+- **Leaf Node:** A node at the very bottom with absolutely no children.
+- **Height of Tree:** The longest possible downward path from the root to a leaf.
 
-Binary Search Tree (BST):
-A Binary Search Tree is a binary tree where:
+Binary Search Tree (BST)
+A binary tree where every node obeys a strict mathematical rule:
+- Everything in the **Left Subtree** must be strictly smaller than the parent.
+- Everything in the **Right Subtree** must be strictly greater than the parent.
+This guarantees extremely fast searching (O(log n) time) because half the tree is discarded at every step.
 
-Each node has at most 2 children (left and right).
-Left child < Parent node.
-Right child > Parent node.
-This property applies to every node in the tree.
+[START_CODE_SNIPPET]
+// BST Node Definition and Recursive Traversals in C
+struct TreeNode {
+    int data;
+    struct TreeNode *left, *right;
+};
 
-BST Operations:
+// Inorder Traversal: Left -> Root -> Right
+// In a BST, Inorder ALWAYS prints elements in ascending sorted order!
+void inorder(struct TreeNode* root) {
+    if (root != NULL) {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
 
-Insertion:
+// Preorder Traversal: Root -> Left -> Right
+// Used practically when you need to clone or copy a complete tree.
+void preorder(struct TreeNode* root) {
+    if (root != NULL) {
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
 
+// Postorder Traversal: Left -> Right -> Root
+// Used practically to delete a tree from memory, as children are deleted before the parent.
+void postorder(struct TreeNode* root) {
+    if (root != NULL) {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ", root->data);
+    }
+}
+[END_CODE_SNIPPET]
 
-Start at root. If the value to insert < current node, go left; if greater, go right.
-Insert at the first NULL position found.
-Time Complexity: O(log n) average, O(n) worst case (skewed tree).
+BST Deletion Rules (The 3 Cases):
+Deleting a node from a BST is complex because the BST structure must not break.
+1. **Node is a Leaf (0 children):** Safest. Just delete it from memory and set the parent's pointer to NULL.
+2. **Node has 1 Child:** Delete the node, and directly link the parent to the node's single child (bypassing the deleted node).
+3. **Node has 2 Children:** Most complex. Find the node's Inorder Successor (the absolute smallest node in its right subtree). Copy the successor's data into the node to be deleted, then safely delete the successor.
 
+2. HASHING
+Hashing is the ultimate search algorithm. It achieves lightning-fast **O(1) Constant Time** lookups.
+- **Hash Function:** A math formula that accepts a 'Key' (like a username) and converts it directly into an integer 'Index'. The data is then instantly stored at that index in an array (Hash Table).
+- **Hash Collision:** Because memory is limited, eventually a Hash Function will generate the *exact same index* for two totally different keys. 
 
-Deletion:
-Three cases exist:
+How to Handle Collisions:
+1. **Separate Chaining:** Instead of storing raw data, each index in the Hash Table array stores a pointer to a Linked List. If a collision happens, the new data is simply appended to the linked list at that specific index.
+2. **Open Addressing (Linear Probing):** If an index is already occupied, the algorithm simply scans linearly (index + 1, index + 2, etc.) until it finds the next available empty slot in the array.
+3. **Open Addressing (Quadratic Probing):** To prevent "clustering" (where data bunches up in one area), this checks slots in quadratic jumps (index + 1², index + 2², index + 3²).
 
+[START_CODE_SNIPPET]
+// Simple Hashing using Linear Probing for Collision Resolution
+#define TABLE_SIZE 10
+int hashTable[TABLE_SIZE]; // Array representing the hash table (Assume all initialized to -1)
 
-Node is a leaf: Simply remove it.
-Node has one child: Replace the node with its child.
-Node has two children: Replace the node with its inorder successor (smallest node in right subtree), then delete the successor.
-
-
-Traversals:
-
-
-Inorder (Left → Root → Right): Gives elements in sorted/ascending order.
-Preorder (Root → Left → Right): Used to copy a tree.
-Postorder (Left → Right → Root): Used to delete a tree.
-
-
-Hashing:
-Introduction:
-Hashing is a technique to convert a key (like a name or number) into an index of an array (called a hash table) using a hash function. It enables very fast data retrieval — ideally O(1) time.
-Hash Function:
-A hash function takes a key and returns an index. A simple example: h(key) = key % table_size.
-A good hash function distributes keys uniformly, minimizes collisions, and is fast to compute.
-Hash Table:
-An array where data is stored at positions computed by the hash function. Each position is called a bucket or slot.
-Collision:
-When two different keys produce the same hash value (same index), it is called a collision. Collisions are unavoidable and must be handled properly.
-Collision Resolution Techniques:
-
-Chaining (Separate Chaining):
-
-
-Each index in the hash table holds a linked list.
-All keys that map to the same index are stored in that list.
-Simple and handles unlimited collisions, but requires extra memory for pointers.
-
-
-Open Addressing:
-
-
-All elements are stored inside the hash table itself.
-When a collision occurs, a different empty slot is found using a probing strategy.
-
-Linear Probing: Check the next slot (index+1, index+2, ...) until an empty slot is found.
-Quadratic Probing: Check slots at quadratic intervals (index+1², index+2², ...).
-Double Hashing: Use a second hash function to determine the step size.
-
-
-
-Applications of Hashing:
-
-Unique Identifier Generation (e.g., user IDs, transaction IDs)
-Caching — web browsers, databases cache data using hash tables for fast lookup
-Database Indexing — fast record retrieval
-Password storage — passwords are stored as hashed values
-Compiler Symbol Tables — variable names are stored and looked up using hashing
-Sets and Dictionaries in programming languages (Python dict, Java HashMap)`
+void insertHash(int key) {
+    int index = key % TABLE_SIZE; // Basic Hash Function
+    int i = 0;
+    
+    // While the calculated index is occupied (Collision detected!)
+    while (hashTable[(index + i) % TABLE_SIZE] != -1) {
+        if (i == TABLE_SIZE) {
+            printf("Error: Hash Table is 100%% Full!\\n");
+            return;
+        }
+        i++; // Linear Probe: Jump to the next adjacent slot
+    }
+    
+    // Empty slot found, insert the key
+    hashTable[(index + i) % TABLE_SIZE] = key;
+}
+[END_CODE_SNIPPET]
+`
 };
